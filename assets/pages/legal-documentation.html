@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحة طلبات الأسانيد</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/mobile-additions.css">
+    <link rel="stylesheet" href="../css/size-fixes.css">
+    <link rel="stylesheet" href="../css/legal-documentation/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="legal-container">
+        <!-- Header -->
+        <header class="page-header">
+            <div class="logo-container">
+                <img src="../images/logo.png" alt="محاماة وقانون" class="logo">
+                <span class="logo-subtitle">خدمات قانونية ومشورة متخصصة</span>
+            </div>
+            <div class="header-controls">
+                <div class="notification-icon">
+                    <i class="far fa-bell"></i>
+                    <span class="notification-count">2</span>
+                </div>
+                <div class="user-profile">
+                    <i class="fas fa-user"></i>
+                </div>
+            </div>
+        </header>
+
+        <!-- Breadcrumb -->
+        <div class="breadcrumb">
+            <a href="#" class="breadcrumb-item">الرئيسية</a>
+            <span class="breadcrumb-separator">
+                <i class="fas fa-chevron-left"></i>
+            </span>
+            <span class="breadcrumb-item active">طلبات الاستشارات</span>
+        </div>
+
+        <!-- Page title and statistics -->
+        <div class="page-title-container">
+            <h1 class="page-title">طلبات الاستشارات القانونية</h1>
+            <div class="stats-container">
+                <div class="stat-item">
+                    <span class="stat-value">142</span>
+                    <span class="stat-label">إجمالي الطلبات</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-value new-stat">12</span>
+                    <span class="stat-label">طلبات جديدة</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action buttons -->
+        <div class="action-buttons">
+            <button class="action-btn export-btn">
+                <i class="far fa-file-pdf"></i>
+                <span>PDF</span>
+            </button>
+            <button class="action-btn export-btn">
+                <i class="far fa-file-excel"></i>
+                <span>Excel</span>
+            </button>
+        </div>
+
+        <!-- Filter section -->
+        <div class="filter-section">
+            <div class="filter-dropdown">
+                <select>
+                    <option>حالة الطلب</option>
+                    <option>جديد</option>
+                    <option>قيد التنفيذ</option>
+                    <option>تم التنفيذ</option>
+                    <option>ملغي</option>
+                </select>
+            </div>
+            <div class="search-bar">
+                <input type="text" placeholder="بحث...">
+                <i class="fas fa-search"></i>
+            </div>
+            <div class="filter-period">
+                <i class="fas fa-filter"></i>
+                <span>فترة متقدمة</span>
+            </div>
+        </div>
+
+        <!-- Requests table -->
+        <div class="requests-table-container">
+            <table class="requests-table">
+                <thead>
+                    <tr>
+                        <th>
+                            <label class="checkbox-container">
+                                <input type="checkbox" id="select-all">
+                                <span class="checkmark"></span>
+                            </label>
+                        </th>
+                        <th>رقم الطلب</th>
+                        <th>رقم المستخدم</th>
+                        <th>اسم العميل</th>
+                        <th>البريد الإلكتروني</th>
+                        <th>محتوى طلب الإرشاد</th>
+                        <th>تاريخ إرسال الطلب</th>
+                        <th>تم التنفيذ</th>
+                        <th>إجراءات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <label class="checkbox-container">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                        </td>
+                        <td>#12458</td>
+                        <td>#8742</td>
+                        <td>محمد عبدالله الرشيدي</td>
+                        <td>m.rashidi@example.com</td>
+                        <td>
+                            <div class="request-content">
+                                أرغب في الحصول على استشارة قانونية بخصوص عقد إيجار تجاري. 
+                                لدي بعض البنود التي أود مراجعتها قبل التوقيع القانوني. العقد 
+                                يتضمن شروطاً وأحكاماً بخصوص تجديد المدة وزيادة القيمة...
+                            </div>
+                            <a href="#" class="show-more">عرض المزيد</a>
+                        </td>
+                        <td>2025</td>
+                        <td>
+                            <div class="status-indicator">
+                                <span class="status-dot status-new"></span>
+                                <span class="status-text">جديد</span>
+                            </div>
+                        </td>
+                        <td>
+                            <a href="#" class="action-link">
+                                <i class="fas fa-check checkmark-green"></i>
+                            </a>
+                            <a href="#" class="action-link">
+                                <i class="far fa-envelope email-icon"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label class="checkbox-container">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                        </td>
+                        <td>#12457</td>
+                        <td>#6523</td>
+                        <td>فاطمة أحمد الزهراني</td>
+                        <td>f.zahrani@example.com</td>
+                        <td>
+                            <div class="request-content">
+                                أحتاج إلى استشارة قانونية حول إجراءات تسجيل علامة تجارية 
+                                جديدة. شركتنا تعمل في مجال التجارة الإلكترونية وقد قمنا 
+                                بتصميم شعار وعلامة تجارية جديدة. أرغب في معرفة الإجراءات...
+                            </div>
+                            <a href="#" class="show-more">عرض المزيد</a>
+                        </td>
+                        <td>2025</td>
+                        <td>
+                            <div class="status-indicator">
+                                <span class="status-dot status-pending"></span>
+                                <span class="status-text">قيد التنفيذ</span>
+                            </div>
+                        </td>
+                        <td>
+                            <a href="#" class="action-link">
+                                <i class="fas fa-check checkmark-green"></i>
+                            </a>
+                            <a href="#" class="action-link">
+                                <i class="far fa-envelope email-icon"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label class="checkbox-container">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                        </td>
+                        <td>#12456</td>
+                        <td>#9231</td>
+                        <td>خالد سعيد الجهني</td>
+                        <td>k.otaibi@example.com</td>
+                        <td>
+                            <div class="request-content">
+                                أطلب استشارة قانونية بخصوص نزاع عمالي مع الشركة التي أعمل 
+                                بها. تم خصم 5% من راتبي دون إشعار مسبق أو موافقة 
+                                مني، وعند الاستفسار تم إبلاغي بأن ذلك بسبب الموقف...
+                            </div>
+                            <a href="#" class="show-more">عرض المزيد</a>
+                        </td>
+                        <td>2025</td>
+                        <td>
+                            <div class="status-indicator">
+                                <span class="status-dot status-completed"></span>
+                                <span class="status-text">تم التنفيذ</span>
+                            </div>
+                        </td>
+                        <td>
+                            <a href="#" class="action-link">
+                                <i class="fas fa-check checkmark-green"></i>
+                            </a>
+                            <a href="#" class="action-link">
+                                <i class="far fa-envelope email-icon"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label class="checkbox-container">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                        </td>
+                        <td>#12455</td>
+                        <td>#5674</td>
+                        <td>نورة محمد القحطاني</td>
+                        <td>n.qahtani@example.com</td>
+                        <td>
+                            <div class="request-content">
+                                أرغب في الحصول على استشارة قانونية بخصوص إجراءات تأسيس 
+                                شركة ذات مسؤولية محدودة في مجال التكنولوجيا. أحتاج لمعرفة 
+                                المتطلبات القانونية والإجراءات اللازمة، وكذلك الالتزامات الضريبية...
+                            </div>
+                            <a href="#" class="show-more">عرض المزيد</a>
+                        </td>
+                        <td>2025</td>
+                        <td>
+                            <div class="status-indicator">
+                                <span class="status-dot status-pending"></span>
+                                <span class="status-text">قيد التنفيذ</span>
+                            </div>
+                        </td>
+                        <td>
+                            <a href="#" class="action-link">
+                                <i class="fas fa-check checkmark-green"></i>
+                            </a>
+                            <a href="#" class="action-link">
+                                <i class="far fa-envelope email-icon"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label class="checkbox-container">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                        </td>
+                        <td>#12454</td>
+                        <td>#7812</td>
+                        <td>عبدالرحمن علي الشمري</td>
+                        <td>a.shamri@example.com</td>
+                        <td>
+                            <div class="request-content">
+                                أطلب استشارة قانونية حول قسمة ميراث توفي والدي منذ شهرين 
+                                وترك عقارات وأصول مالية، ولم يترك وصية. نحن خمسة ورثة (ثلاثة 
+                                أبناء وبنتان) بالإضافة إلى والدتي. أرغب في معرفة كيفية توزيع...
+                            </div>
+                            <a href="#" class="show-more">عرض المزيد</a>
+                        </td>
+                        <td>2025</td>
+                        <td>
+                            <div class="status-indicator">
+                                <span class="status-dot status-completed"></span>
+                                <span class="status-text">تم التنفيذ</span>
+                            </div>
+                        </td>
+                        <td>
+                            <a href="#" class="action-link">
+                                <i class="fas fa-check checkmark-green"></i>
+                            </a>
+                            <a href="#" class="action-link">
+                                <i class="far fa-envelope email-icon"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label class="checkbox-container">
+                                <input type="checkbox">
+                                <span class="checkmark"></span>
+                            </label>
+                        </td>
+                        <td>#12453</td>
+                        <td>#4328</td>
+                        <td>سارة يوسف الدوسري</td>
+                        <td>s.dossari@example.com</td>
+                        <td>
+                            <div class="request-content">
+                                أحتاج إلى استشارة قانونية بخصوص عقد شراكة تجارية. أنا 
+                                وشريكي نخطط لتأسيس مشروع مشترك في مجال التجارة 
+                                الإلكترونية، وأرغب في صياغة عقد شراكة يضمن حقوق الطرفين...
+                            </div>
+                            <a href="#" class="show-more">عرض المزيد</a>
+                        </td>
+                        <td>2025</td>
+                        <td>
+                            <div class="status-indicator">
+                                <span class="status-dot status-completed"></span>
+                                <span class="status-text">تم التنفيذ</span>
+                            </div>
+                        </td>
+                        <td>
+                            <a href="#" class="action-link">
+                                <i class="fas fa-check checkmark-green"></i>
+                            </a>
+                            <a href="#" class="action-link">
+                                <i class="far fa-envelope email-icon"></i>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination-container">
+            <div class="pagination-controls">
+                <button class="pagination-btn">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                <button class="pagination-btn active">1</button>
+                <button class="pagination-btn">2</button>
+                <button class="pagination-btn">3</button>
+                <div class="pagination-ellipsis">...</div>
+                <button class="pagination-btn">15</button>
+                <button class="pagination-btn">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+            </div>
+            <div class="results-per-page">
+                <span class="results-label">عرض</span>
+                <select class="results-select">
+                    <option>10</option>
+                    <option>25</option>
+                    <option>50</option>
+                    <option>100</option>
+                </select>
+                <span class="results-label">طلب</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Select all checkbox functionality
+            $('#select-all').on('change', function() {
+                $('table input[type="checkbox"]').prop('checked', $(this).is(':checked'));
+            });
+            
+            // Show more functionality
+            $('.show-more').on('click', function(e) {
+                e.preventDefault();
+                const content = $(this).prev('.request-content');
+                content.toggleClass('expanded');
+                
+                if (content.hasClass('expanded')) {
+                    content.css('max-height', 'none');
+                    $(this).text('عرض أقل');
+                } else {
+                    content.css('max-height', '');
+                    $(this).text('عرض المزيد');
+                }
+            });
+            
+            // Status filter dropdown
+            $('.filter-dropdown select').on('change', function() {
+                console.log('Filter by status:', $(this).val());
+                // Add filter functionality
+            });
+            
+            // Pagination controls
+            $('.pagination-btn').on('click', function() {
+                if (!$(this).find('i').length) {
+                    $('.pagination-btn').removeClass('active');
+                    $(this).addClass('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

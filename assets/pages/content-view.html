@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام إدارة المحتوى</title>
+    <link rel="stylesheet" href="../css/content-view/content-view.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="../js/content-view.js" defer></script>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-right">
+                <button class="header-icon-btn">
+                    <i class="fas fa-home"></i>
+                </button>
+                <button class="header-icon-btn">
+                    <i class="fas fa-bell"></i>
+                </button>
+                <div class="search-box">
+                    <input type="text" placeholder="بحث">
+                    <button>
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+            <h1 class="title">نظام إدارة المحتوى</h1>
+        </div>
+        
+        <!-- Filter Bar -->
+        <div class="filter-bar">
+            <div class="filter-tabs">
+                <div class="filter-tab">الاسم</div>
+                <div class="filter-tab">ترتيب حسب</div>
+                <div class="filter-tab">الكل</div>
+                <div class="filter-tab">عرض</div>
+            </div>
+            <div class="action-buttons">
+                <button class="btn btn-white">
+                    <span>تدقيق</span>
+                </button>
+                <button class="btn btn-blue">
+                    <i class="fas fa-folder-plus"></i>
+                    <span>إضافة مجلد</span>
+                </button>
+                <button class="btn btn-blue">
+                    <i class="fas fa-file-plus"></i>
+                    <span>إضافة ملف</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Table Header -->
+        <div class="table-header">
+            <div class="cell number-heading">رقم متسلسل</div>
+            <div class="cell name-heading">اسم الملف/المجلد</div>
+            <div class="cell status-heading">حالة الوصول</div>
+            <div class="cell tools-heading">أدوات التحرير</div>
+            <div class="cell toggle-heading">إظهار/إخفاء</div>
+            <div class="cell delete-heading">حذف</div>
+        </div>
+
+        <!-- Table Content -->
+        <div class="table-content">
+            <!-- Row 1 -->
+            <div class="table-row">
+                <div class="cell number-cell">1</div>
+                <div class="cell name-cell">
+                    <div class="folder-item">
+                        <i class="fas fa-folder"></i>
+                        <span>الصفحة الرئيسية</span>
+                    </div>
+                </div>
+                <div class="cell status-cell">
+                    <span class="status-free">مجاني</span>
+                </div>
+                <div class="cell tools-cell">
+                    <button class="tools-btn">
+                        <i class="fas fa-ellipsis-v"></i>
+                    </button>
+                </div>
+                <div class="cell toggle-cell">
+                    <label class="toggle">
+                        <input type="checkbox" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+                <div class="cell delete-cell">
+                    <button class="delete-btn">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </div>
+            </div>
+            <!-- Row 2 -->
+            <div class="table-row">
+                <div class="cell number-cell">2</div>
+                <div class="cell name-cell">
+                    <div class="file-item">
+                        <i class="fas fa-file-alt"></i>
+                        <span>سياسة الخصوصية</span>
+                    </div>
+                </div>
+                <div class="cell status-cell">
+                    <span class="status-free">مجاني</span>
+                </div>
+                <div class="cell tools-cell">
+                    <button class="tools-btn">
+                        <i class="fas fa-ellipsis-v"></i>
+                    </button>
+                </div>
+                <div class="cell toggle-cell">
+                    <label class="toggle">
+                        <input type="checkbox" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+                <div class="cell delete-cell">
+                    <button class="delete-btn">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Row 3 -->
+            <div class="table-row">
+                <div class="cell number-cell">3</div>
+                <div class="cell name-cell">
+                    <div class="folder-item">
+                        <i class="fas fa-folder"></i>
+                        <span>المنتجات</span>
+                    </div>
+                </div>
+                <div class="cell status-cell">
+                    <span class="status-paid">غير مجاني</span>
+                </div>
+                <div class="cell tools-cell">
+                    <button class="tools-btn">
+                        <i class="fas fa-ellipsis-v"></i>
+                    </button>
+                </div>
+                <div class="cell toggle-cell">
+                    <label class="toggle">
+                        <input type="checkbox" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+                <div class="cell delete-cell">
+                    <button class="delete-btn">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Row 4 -->
+            <div class="table-row">
+                <div class="cell number-cell">4</div>
+                <div class="cell name-cell">
+                    <div class="file-item">
+                        <i class="fas fa-file-alt"></i>
+                        <span>من نحن</span>
+                    </div>
+                </div>
+                <div class="cell status-cell">
+                    <span class="status-free">مجاني</span>
+                </div>
+                <div class="cell tools-cell">
+                    <button class="tools-btn">
+                        <i class="fas fa-ellipsis-v"></i>
+                    </button>
+                </div>
+                <div class="cell toggle-cell">
+                    <label class="toggle">
+                        <input type="checkbox">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+                <div class="cell delete-cell">
+                    <button class="delete-btn">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Row 5 -->
+            <div class="table-row">
+                <div class="cell number-cell">5</div>
+                <div class="cell name-cell">
+                    <div class="file-item">
+                        <i class="fas fa-file-alt"></i>
+                        <span>اتصل بنا</span>
+                    </div>
+                </div>
+                <div class="cell status-cell">
+                    <span class="status-free">مجاني</span>
+                </div>
+                <div class="cell tools-cell">
+                    <button class="tools-btn">
+                        <i class="fas fa-ellipsis-v"></i>
+                    </button>
+                </div>
+                <div class="cell toggle-cell">
+                    <label class="toggle">
+                        <input type="checkbox" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+                <div class="cell delete-cell">
+                    <button class="delete-btn">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Row 6 -->
+            <div class="table-row">
+                <div class="cell number-cell">6</div>
+                <div class="cell name-cell">
+                    <div class="folder-item">
+                        <i class="fas fa-folder"></i>
+                        <span>الهوية</span>
+                    </div>
+                </div>
+                <div class="cell status-cell">
+                    <span class="status-paid">غير مجاني</span>
+                </div>
+                <div class="cell tools-cell">
+                    <button class="tools-btn">
+                        <i class="fas fa-ellipsis-v"></i>
+                    </button>
+                </div>
+                <div class="cell toggle-cell">
+                    <label class="toggle">
+                        <input type="checkbox">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+                <div class="cell delete-cell">
+                    <button class="delete-btn">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Row 7 -->
+            <div class="table-row">
+                <div class="cell number-cell">7</div>
+                <div class="cell name-cell">
+                    <div class="file-item">
+                        <i class="fas fa-file-alt"></i>
+                        <span>الأسئلة الشائعة</span>
+                    </div>
+                </div>
+                <div class="cell status-cell">
+                    <span class="status-free">مجاني</span>
+                </div>
+                <div class="cell tools-cell">
+                    <button class="tools-btn">
+                        <i class="fas fa-ellipsis-v"></i>
+                    </button>
+                </div>
+                <div class="cell toggle-cell">
+                    <label class="toggle">
+                        <input type="checkbox" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+                <div class="cell delete-cell">
+                    <button class="delete-btn">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination">
+            <div class="pagination-buttons">
+                <button class="prev-btn"><i class="fas fa-chevron-right"></i></button>
+                <button class="page-btn active">1</button>
+                <button class="page-btn">2</button>
+                <button class="page-btn">3</button>
+                <button class="next-btn"><i class="fas fa-chevron-left"></i></button>
+            </div>
+            <div class="counter">عناصر</div>
+        </div>
+    </div>
+</body>
+</html>

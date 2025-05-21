@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحة الدفع الإلكتروني / عرض بيانات المستخدم</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/mobile-additions.css">
+    <link rel="stylesheet" href="../css/size-fixes.css">
+    <link rel="stylesheet" href="../css/user-profile/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Main Content -->
+        <main class="main-content full-width">
+            <!-- Profile Container -->
+            <div class="profile-container">
+                <h1 class="profile-title">عرض بيانات المستخدم</h1>
+                
+                <!-- Profile Card -->
+                <div class="profile-card">
+                    <!-- Profile Sections -->
+                    <div class="profile-sections">
+                        <!-- Personal Information Section -->
+                        <div class="profile-section">
+                            <h2 class="section-title">المعلومات الشخصية</h2>
+                            
+                            <div class="profile-details">
+                                <div class="detail-row">
+                                    <span class="detail-label">اسم المستخدم</span>
+                                    <span class="detail-value">ahmed_admin</span>
+                                </div>
+                                
+                                <div class="detail-row">
+                                    <span class="detail-label">البريد الإلكتروني</span>
+                                    <div class="detail-value">
+                                        <span>ahmed.abdullah@example.com</span>
+                                        <span class="profile-icon-copy"><i class="far fa-copy"></i></span>
+                                    </div>
+                                </div>
+                                
+                                <div class="detail-row">
+                                    <span class="detail-label">الاسم الكامل</span>
+                                    <span class="detail-value">أحمد عبدالله المنصوري</span>
+                                </div>
+                                
+                                <div class="detail-row">
+                                    <span class="detail-label">الجوال</span>
+                                    <div class="detail-value">
+                                        <i class="fas fa-phone profile-icon"></i>
+                                        <span>4567</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="detail-row">
+                                    <span class="detail-label">المدينة</span>
+                                    <div class="detail-value">
+                                        <i class="fas fa-map-marker-alt profile-icon"></i>
+                                        <span>الرياض</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="detail-row">
+                                    <span class="detail-label">الحالة</span>
+                                    <span class="detail-value">
+                                        <span class="status-pill status-connected">متصل</span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Account Information Section -->
+                        <div class="profile-section">
+                            <h2 class="section-title">معلومات الحساب</h2>
+                            
+                            <div class="profile-details">
+                                <div class="detail-row">
+                                    <span class="detail-label">نوع المستخدم</span>
+                                    <span class="detail-value">
+                                        <span class="status-pill status-admin">مدير النظام</span>
+                                    </span>
+                                </div>
+                                
+                                <div class="detail-row">
+                                    <span class="detail-label">الحالة</span>
+                                    <span class="detail-value">
+                                        <span class="status-pill status-active">نشط</span>
+                                    </span>
+                                </div>
+                                
+                                <div class="detail-row">
+                                    <span class="detail-label">منذ تاريخ</span>
+                                    <span class="detail-value">٢٠٢٥</span>
+                                </div>
+                                
+                                <div class="detail-row">
+                                    <span class="detail-label">الصلاحيات المتاحة</span>
+                                    <div class="detail-value menu-tabs">
+                                        <span class="menu-tab active">لوحة التحكم</span>
+                                        <span class="menu-tab">إدارة المستخدمين</span>
+                                        <span class="menu-tab">التقارير</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Profile Actions -->
+                    <div class="profile-actions">
+                        <button class="action-btn btn-primary">
+                            <i class="fas fa-edit"></i>
+                            <span>تعديل البيانات</span>
+                        </button>
+                        
+                        <button class="action-btn btn-secondary">
+                            <i class="fas fa-arrow-right"></i>
+                            <span>رجوع</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="../js/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Copy functionality
+            $('.profile-icon-copy').on('click', function() {
+                const textToCopy = $(this).prev('span').text();
+                navigator.clipboard.writeText(textToCopy);
+                alert('تم نسخ النص: ' + textToCopy);
+            });
+            
+            // Button click handlers
+            $('.action-btn').on('click', function() {
+                if ($(this).hasClass('btn-secondary')) {
+                    window.history.back();
+                }
+            });
+            
+            // Menu tabs
+            $('.menu-tab').on('click', function() {
+                $('.menu-tab').removeClass('active');
+                $(this).addClass('active');
+            });
+        });
+    </script>
+</body>
+</html>

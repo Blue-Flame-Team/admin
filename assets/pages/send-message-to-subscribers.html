@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إرسال رسالة للمشتركين</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/mailing-list/send-message.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900;1000&display=swap');
+        
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #f8f9fa;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container d-flex justify-content-center align-items-center min-vh-100">
+        <div class="card contact-card">
+            <div class="card-body p-4 p-md-5">
+                <div class="text-center mb-4">
+                    <h2 class="fw-bold">تواصل معنا</h2>
+                    <div class="title-underline"></div>
+                </div>
+
+                <form id="contact-form">
+                    <div class="mb-4">
+                        <label for="subject" class="form-label">عنوان الرسالة</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="subject" placeholder="أدخل عنوان الرسالة">
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="message" class="form-label">نص الرسالة</label>
+                        <div class="input-group">
+                            <textarea class="form-control" id="message" rows="6" placeholder="أدخل نص الرسالة هنا"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="attachments" class="form-label">مرفقات الرسالة</label>
+                        <div class="input-group file-upload">
+                            <input type="file" class="form-control" id="attachments" multiple>
+                            <label for="attachments" class="file-upload-label">
+                                <i class="fas fa-upload me-2"></i> اختر ملفاً أو عدة ملفات هنا
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-send">
+                            أرسل <i class="fas fa-paper-plane ms-2"></i>
+                        </button>
+                    </div>
+
+                    <div class="text-center mt-3">
+                        <p class="privacy-note">عزيزي العميل، خطابك سيصل لجميع المشتركين في القائمة البريدية بما فيها</p>
+                        <p class="privacy-note">بيانات صحيحة ودقيقة</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('contact-form');
+            const fileInput = document.getElementById('attachments');
+            const fileLabel = document.querySelector('.file-upload-label');
+            
+            fileInput.addEventListener('change', function() {
+                if (fileInput.files.length > 0) {
+                    if (fileInput.files.length === 1) {
+                        fileLabel.textContent = fileInput.files[0].name;
+                    } else {
+                        fileLabel.textContent = fileInput.files.length + ' ملفات تم اختيارها';
+                    }
+                } else {
+                    fileLabel.innerHTML = '<i class="fas fa-upload me-2"></i> اختر ملفاً أو عدة ملفات هنا';
+                }
+            });
+            
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+                
+                const subjectInput = document.getElementById('subject');
+                const messageInput = document.getElementById('message');
+                
+                // Simple validation
+                if (!subjectInput.value.trim()) {
+                    alert('الرجاء إدخال عنوان الرسالة');
+                    subjectInput.focus();
+                    return;
+                }
+                
+                if (!messageInput.value.trim()) {
+                    alert('الرجاء إدخال نص الرسالة');
+                    messageInput.focus();
+                    return;
+                }
+                
+                // Submit form (this would normally send to server)
+                alert('تم إرسال الرسالة بنجاح!');
+                form.reset();
+                fileLabel.innerHTML = '<i class="fas fa-upload me-2"></i> اختر ملفاً أو عدة ملفات هنا';
+            });
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,429 @@
+/* Advertisement Add/Edit Page Styles */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Cairo', sans-serif;
+    background-color: #f6f8fb;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.ad-management-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 25px;
+    margin-bottom: 30px;
+}
+
+.panel-title {
+    color: #2e4ead;
+    font-size: 24px;
+    margin: 0 0 10px;
+}
+
+.breadcrumb {
+    margin-bottom: 20px;
+}
+
+.breadcrumb a {
+    color: #2e4ead;
+    text-decoration: none;
+}
+
+.breadcrumb span {
+    color: #666;
+}
+
+.section-title h2 {
+    font-size: 22px;
+    color: #333;
+    margin: 0 0 20px;
+}
+
+/* Ad Configuration Section */
+.ad-config-section {
+    margin-bottom: 25px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 20px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.section-header h3 {
+    font-size: 18px;
+    color: #444;
+    margin: 0;
+}
+
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+    flex: 1;
+    min-width: 250px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #555;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"] {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.form-group input[readonly] {
+    background-color: #f2f2f2;
+    cursor: not-allowed;
+}
+
+.dimension-inputs {
+    display: flex;
+    gap: 10px;
+}
+
+.dimension-inputs input {
+    flex: 1;
+}
+
+/* Current Ads Section */
+.current-ads-section {
+    margin-bottom: 25px;
+}
+
+.search-wrapper {
+    position: relative;
+}
+
+.search-wrapper input {
+    padding: 8px 35px 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 200px;
+    background-color: #f9f9f9;
+}
+
+.search-wrapper i {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+}
+
+.ads-table-wrapper {
+    overflow-x: auto;
+    margin-bottom: 15px;
+}
+
+.ads-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: right;
+}
+
+.ads-table th, 
+.ads-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.ads-table th {
+    background-color: #f8f9fb;
+    color: #444;
+    font-weight: 600;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-danger {
+    color: #f44336;
+}
+
+.text-primary {
+    color: #ff80ab;
+}
+
+.text-success {
+    color: #4caf50;
+}
+
+.text-warning {
+    color: #ff9800;
+}
+
+.ad-image-cell {
+    width: 120px;
+}
+
+.image-preview {
+    display: inline-block;
+    background-color: #ff6b6b;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.image-preview-alt {
+    background-color: #ff80ab;
+}
+
+.image-preview-green {
+    background-color: #4caf50;
+}
+
+.image-preview-yellow {
+    background-color: #ff9800;
+}
+
+.url-cell {
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.actions-cell {
+    white-space: nowrap;
+}
+
+.edit-btn, .delete-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 4px;
+    color: white;
+    margin: 0 2px;
+    text-decoration: none;
+}
+
+.edit-btn {
+    background-color: #2e4ead;
+}
+
+.delete-btn {
+    background-color: #f44336;
+}
+
+.pagination {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 5px;
+}
+
+.page-prev,
+.page-next,
+.page-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 4px;
+    background-color: #f8f9fb;
+    color: #555;
+    text-decoration: none;
+}
+
+.page-number.active {
+    background-color: #2e4ead;
+    color: white;
+}
+
+/* Add New Ad Section */
+.add-ad-section {
+    margin-top: 30px;
+}
+
+.url-input-wrapper {
+    position: relative;
+}
+
+.url-input-wrapper input {
+    padding-left: 35px;
+}
+
+.url-input-wrapper i {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+}
+
+.date-group {
+    display: flex;
+    gap: 20px;
+}
+
+.date-field {
+    flex: 1;
+}
+
+.date-input-wrapper {
+    position: relative;
+}
+
+.date-input-wrapper input {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.date-input-wrapper i {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #888;
+}
+
+.slider-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.slider {
+    flex: 1;
+    -webkit-appearance: none;
+    width: 100%;
+    height: 5px;
+    border-radius: 5px;
+    background: #ddd;
+    outline: none;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #2e4ead;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #2e4ead;
+    cursor: pointer;
+}
+
+output {
+    min-width: 40px;
+    text-align: center;
+}
+
+.services-options {
+    display: flex;
+    gap: 20px;
+}
+
+.checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.upload-group label {
+    margin-bottom: 10px;
+}
+
+.upload-container {
+    margin-top: 10px;
+}
+
+.image-upload-area {
+    height: 150px;
+    border: 2px dashed #ddd;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: border-color 0.3s;
+}
+
+.image-upload-area:hover,
+.image-upload-area.drop-active {
+    border-color: #2e4ead;
+}
+
+.image-upload-area i {
+    font-size: 30px;
+    color: #aaa;
+    margin-bottom: 10px;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn-cancel {
+    padding: 8px 20px;
+    background-color: #f0f0f0;
+    border: none;
+    border-radius: 5px;
+    color: #666;
+    cursor: pointer;
+}
+
+.btn-primary {
+    padding: 8px 20px;
+    background-color: #2e4ead;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .form-row,
+    .date-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .ads-table th,
+    .ads-table td {
+        padding: 8px;
+    }
+}

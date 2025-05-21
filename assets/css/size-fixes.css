@@ -1,0 +1,93 @@
+/* تنسيق عرض النشاطات الأخيرة وإحصائيات الزيارات */
+
+/* الحاوية الرئيسية للعناصر */
+.main-widgets-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start; /* تغيير الى اليمين في RTL */
+    gap: 0; /* إلغاء الـ gap واستخدام margin بدلاً منه */
+    margin-bottom: 30px;
+    height: 375px;
+    padding: 0;
+}
+
+/* قسم النشاطات الأخيرة (على اليمين) */
+#recent-activities-widget {
+    width: 824px;
+    height: 375px;
+    max-width: 60%;
+    order: 1; /* ترتيب العنصر ليظهر أولا من اليمين */
+    margin: 0;
+    padding: 0;
+    border-radius: 10px;
+}
+
+/* قسم إحصائيات الزيارات (على اليسار) */
+#visits-chart-widget {
+    width: 400px;
+    height: 375px;
+    max-width: 40%;
+    order: 2; /* ترتيب العنصر ليظهر ثانيا (على اليسار) */
+    margin-right: 24px; /* مسافة 24 بيكسل عن العنصر المجاور */
+    padding: 0;
+    border-radius: 10px;
+}
+
+/* إلغاء التباعد الداخلي في جميع العناصر */
+.widget-body, .widget-header {
+    padding: 15px !important;
+    margin: 0 !important;
+}
+
+/* إلغاء أي تباعد إضافي */
+.main-widgets-container > * {
+    box-sizing: border-box;
+}
+
+/* قسم النشاطات الأخيرة وقسم إحصائيات الزيارات */
+#recent-activities-widget, #visits-chart-widget {
+    overflow: hidden;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+}
+
+/* ضبط أبعاد عناصر قائمة الإشعارات */
+.notification-list li.notification {
+    width: 192px;
+    height: 69px;
+    box-sizing: border-box;
+    margin-bottom: 15px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+/* تنسيق قائمة الإشعارات */
+.notification-list {
+    display: block; /* عرض العناصر بشكل عمودي تحت بعضها */
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+/* تعديلات الاتجاه وضبط النص */
+.widget {
+    direction: rtl;
+}
+
+/* تنسيق القائمة المنسدلة في إحصائيات الزيارات */
+.widget-actions select {
+    padding: 5px 10px;
+    border-radius: 4px;
+    border: 1px solid var(--border-color);
+    color: var(--primary-color);
+    font-size: 0.9rem;
+    margin-left: 10px;
+    background-color: #f8f8f8;
+    font-family: 'Cairo', sans-serif;
+}
+
+/* تعديل حجم خط العناوين */
+.widget-header h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+}

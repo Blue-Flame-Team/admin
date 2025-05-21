@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحة الإعلانات / الإعلانات النصية / صفحة إضافة وتعديل إعلان نصي</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/mobile-additions.css">
+    <link rel="stylesheet" href="../css/size-fixes.css">
+    <link rel="stylesheet" href="../css/advertisements/text-advertisement-add-edit.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="main-content">
+            <!-- Header -->
+            <div class="header">
+                <div class="header-right">
+                    <div class="notification-icon">
+                        <span class="badge">1</span>
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <div class="user-info">
+                        <span>أحمد جديد</span>
+                        <img src="../img/user-avatar.png" alt="User Avatar" class="avatar">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="breadcrumb">
+                <a href="#" class="breadcrumb-item">الرئيسية</a>
+                <span class="breadcrumb-separator">/</span>
+                <a href="#" class="breadcrumb-item">الإعلانات</a>
+                <span class="breadcrumb-separator">/</span>
+                <span class="breadcrumb-item active">إضافة مؤسسة جديدة</span>
+            </div>
+
+            <div class="content-card">
+                <!-- Form Header -->
+                <div class="form-header">
+                    <h1 class="page-title">إضافة/تحرير ملف المؤسسة</h1>
+                </div>
+
+                <!-- Form Content -->
+                <form id="institutionForm" class="add-edit-form">
+                    <!-- Basic Information Section -->
+                    <div class="form-section">
+                        <div class="section-header">
+                            <h2 class="section-title">
+                                <i class="fas fa-info-circle"></i>
+                                المعلومات الأساسية
+                            </h2>
+                        </div>
+                        <div class="form-group">
+                            <label for="name">الاسم <span class="required">*</span></label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">البريد الإلكتروني <span class="required">*</span></label>
+                            <input type="email" id="email" class="form-control" value="example@domain.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="website">الموقع الإلكتروني</label>
+                            <input type="url" id="website" class="form-control" value="https://example.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">الهاتف</label>
+                            <input type="tel" id="phone" class="form-control" dir="ltr">
+                        </div>
+                        <div class="form-group">
+                            <label for="activityType">نوع النشاط</label>
+                            <select id="activityType" class="form-control">
+                                <option value="" selected disabled>-</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="date">تاريخ الإنشاء</label>
+                            <input type="date" id="date" class="form-control" dir="ltr">
+                        </div>
+                        <div class="form-group">
+                            <label for="description">السيرة الذاتية</label>
+                            <textarea id="description" class="form-control" rows="4" placeholder="نبذة عن المؤسسة"></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Classification Section -->
+                    <div class="form-section">
+                        <div class="section-header">
+                            <h2 class="section-title">
+                                <i class="fas fa-tags"></i>
+                                التصنيف
+                            </h2>
+                        </div>
+                        <div class="form-group">
+                            <label for="categoryId">رقم تصنيف المؤسسات</label>
+                            <input type="text" id="categoryId" class="form-control" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="endDate">انتهاء الفترة الزمنية</label>
+                            <select id="endDate" class="form-control">
+                                <option value="" selected disabled>-</option>
+                                <option value="never">أبداً (الفترة الزمنية غير محددة)</option>
+                                <option value="custom">تحديد تاريخ الانتهاء الزمني</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Payment Information Section -->
+                    <div class="form-section">
+                        <div class="section-header">
+                            <h2 class="section-title">
+                                <i class="fas fa-credit-card"></i>
+                                إعدادات الاشتراك
+                            </h2>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group half-width">
+                                <label for="paymentType">نوع الدفعة والاشتراك</label>
+                                <select id="paymentType" class="form-control">
+                                    <option value="monthly">شهري (mm/dd/yyyy)</option>
+                                    <option value="yearly">سنوي (mm/dd/yyyy)</option>
+                                </select>
+                            </div>
+                            <div class="form-group half-width">
+                                <label for="paymentDate">تاريخ الدفع</label>
+                                <input type="date" id="paymentDate" class="form-control" dir="ltr">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="uploadLogo">رفع صورة</label>
+                            <div class="upload-area" id="uploadLogoArea">
+                                <div class="upload-message">
+                                    <i class="fas fa-cloud-upload-alt upload-icon"></i>
+                                    <p class="upload-text">اسحب وأفلت الصورة هنا</p>
+                                    <p class="upload-subtext">أو</p>
+                                    <label for="uploadLogo" class="upload-button-label">تصفح الملفات</label>
+                                    <input type="file" id="uploadLogo" class="upload-input" accept="image/*" hidden>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group switch-group">
+                            <label class="switch-label">عرض على الصفحة الرئيسية</label>
+                            <label class="switch">
+                                <input type="checkbox" id="showOnHomepage">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="homePageSettings">إعدادات الصفحة</label>
+                            <select id="homePageSettings" class="form-control" disabled>
+                                <option value="default">-</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="form-actions">
+                        <button type="button" class="btn-secondary" id="cancelBtn">إلغاء</button>
+                        <button type="button" class="btn-secondary" id="resetBtn">إعادة تعيين</button>
+                        <button type="submit" class="btn-primary" id="saveBtn">حفظ</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-menu">
+                <a href="#" class="sidebar-item">
+                    <i class="fas fa-user"></i>
+                    <span>المستخدمين</span>
+                </a>
+                <a href="#" class="sidebar-item active">
+                    <i class="fas fa-ad"></i>
+                    <span>الإعلانات</span>
+                </a>
+                <a href="#" class="sidebar-item">
+                    <i class="fas fa-cog"></i>
+                    <span>الإعدادات</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Toggle form fields based on selection
+            $('#endDate').on('change', function() {
+                if ($(this).val() === 'custom') {
+                    // Show date picker for custom end date
+                    // Implementation would go here
+                }
+            });
+
+            $('#showOnHomepage').on('change', function() {
+                const isChecked = $(this).prop('checked');
+                $('#homePageSettings').prop('disabled', !isChecked);
+            });
+
+            // File upload handling
+            $('#uploadLogo').on('change', function(e) {
+                if (e.target.files.length > 0) {
+                    const file = e.target.files[0];
+                    const reader = new FileReader();
+                    
+                    reader.onload = function(e) {
+                        // Create image preview
+                        const imgPreview = `<div class="uploaded-image-container">
+                            <img src="${e.target.result}" class="uploaded-image">
+                            <button type="button" class="remove-image-btn"><i class="fas fa-times"></i></button>
+                        </div>`;
+                        
+                        // Update upload area with preview
+                        $('#uploadLogoArea .upload-message').hide();
+                        $('#uploadLogoArea').append(imgPreview);
+                    };
+                    
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            // Remove uploaded image
+            $(document).on('click', '.remove-image-btn', function() {
+                $(this).closest('.uploaded-image-container').remove();
+                $('#uploadLogo').val('');
+                $('#uploadLogoArea .upload-message').show();
+            });
+
+            // Drag and drop functionality
+            const uploadArea = document.getElementById('uploadLogoArea');
+            
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                uploadArea.addEventListener(eventName, preventDefaults, false);
+            });
+            
+            function preventDefaults(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            
+            ['dragenter', 'dragover'].forEach(eventName => {
+                uploadArea.addEventListener(eventName, highlight, false);
+            });
+            
+            ['dragleave', 'drop'].forEach(eventName => {
+                uploadArea.addEventListener(eventName, unhighlight, false);
+            });
+            
+            function highlight() {
+                uploadArea.classList.add('highlight');
+            }
+            
+            function unhighlight() {
+                uploadArea.classList.remove('highlight');
+            }
+            
+            uploadArea.addEventListener('drop', handleDrop, false);
+            
+            function handleDrop(e) {
+                const dt = e.dataTransfer;
+                const files = dt.files;
+                
+                if (files.length > 0) {
+                    const file = files[0];
+                    const reader = new FileReader();
+                    
+                    reader.onload = function(e) {
+                        const imgPreview = `<div class="uploaded-image-container">
+                            <img src="${e.target.result}" class="uploaded-image">
+                            <button type="button" class="remove-image-btn"><i class="fas fa-times"></i></button>
+                        </div>`;
+                        
+                        $('#uploadLogoArea .upload-message').hide();
+                        $('#uploadLogoArea').append(imgPreview);
+                    };
+                    
+                    reader.readAsDataURL(file);
+                }
+            }
+
+            // Form Submission
+            $('#institutionForm').on('submit', function(e) {
+                e.preventDefault();
+                
+                // Form validation
+                if (!$('#name').val() || !$('#email').val()) {
+                    alert('الرجاء ملء جميع الحقول المطلوبة');
+                    return;
+                }
+                
+                // Submit form data (would be implemented with actual API)
+                console.log('Form submitted successfully');
+                // Redirect back to listing page after success
+                // window.location.href = 'text-advertisements-view.html';
+            });
+            
+            // Cancel button
+            $('#cancelBtn').on('click', function() {
+                if (confirm('هل أنت متأكد من إلغاء العملية؟ سيتم فقدان التغييرات.')) {
+                    window.location.href = 'text-advertisements-view.html';
+                }
+            });
+            
+            // Reset button
+            $('#resetBtn').on('click', function() {
+                if (confirm('هل أنت متأكد من إعادة تعيين جميع الحقول؟')) {
+                    $('#institutionForm')[0].reset();
+                    $('.uploaded-image-container').remove();
+                    $('#uploadLogoArea .upload-message').show();
+                    $('#homePageSettings').prop('disabled', true);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+/* User Profile Display Styles */
+
+.container {
+    padding: 20px;
+    background-color: #f5f7fb;
+    min-height: 100vh;
+}
+
+.profile-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    padding: 20px 30px 25px;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.profile-header {
+    text-align: right;
+    margin-bottom: 20px;
+    padding-bottom: 5px;
+}
+
+.profile-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+}
+
+.profile-content {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 25px;
+}
+
+.profile-section {
+    flex: 1;
+}
+
+.section-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 12px 20px;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.info-label {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.info-value {
+    font-size: 13px;
+    color: #333;
+}
+
+.profile-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-start;
+    margin-top: 20px;
+    border-top: 1px solid #eee;
+    padding-top: 15px;
+}
+
+.action-btn {
+    padding: 6px 12px;
+    border-radius: 5px;
+    font-size: 13px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.btn-primary {
+    background-color: #2e4ead;
+    color: white;
+    border: none;
+}
+
+.btn-secondary {
+    background-color: #f8f9fa;
+    color: #333;
+    border: 1px solid #ddd;
+}
+
+.email-value, .phone-value {
+    display: flex;
+    align-items: center;
+}
+
+.email-value i, .phone-value i, .location-value i {
+    margin-left: 5px;
+    color: #aaa;
+    font-size: 12px;
+}
+
+.badge-success {
+    background-color: #e6f7ed;
+    color: #22c55e;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 12px;
+    display: inline-block;
+}
+
+/* Specific alignment fixes */
+.right-section .info-label {
+    text-align: left;
+}
+
+.left-section .info-label {
+    text-align: right;
+}
+
+.icon-with-text {
+    display: flex;
+    align-items: center;
+}
+
+.icon-with-text i {
+    margin-left: 5px;
+    color: #aaa;
+    font-size: 12px;
+}
+
+@media (max-width: 768px) {
+    .profile-content {
+        flex-direction: column;
+    }
+    
+    .profile-section {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+}

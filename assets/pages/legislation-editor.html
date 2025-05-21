@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>موسوعة الانظمة – صفحة إضافة وتعديل محتوى للملف (التشريع)</title>
+    <link rel="stylesheet" href="../css/legislation-editor/legislation-editor.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="../js/legislation-editor.js" defer></script>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Breadcrumb Navigation -->
+        <div class="breadcrumb">
+            <a href="#">لوحة التحكم</a>
+            <span>›</span>
+            <a href="#">المحتوى</a>
+            <span>›</span>
+            <a href="#">الملفات</a>
+            <span>›</span>
+            <a href="#">تحرير المقال</a>
+        </div>
+
+        <!-- Content Container -->
+        <div class="content-container">
+            <div class="header-row">
+                <h1 class="page-title">تحرير المقال</h1>
+                
+                <div class="header-actions">
+                    <button class="preview-btn">
+                        <i class="far fa-eye"></i>
+                        <span>معاينة</span>
+                    </button>
+                    <button class="save-btn">
+                        <i class="far fa-save"></i>
+                        <span>حفظ التغييرات</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Article Editor Form -->
+            <form id="articleEditorForm">
+                <div class="form-group">
+                    <label for="articleTitle">عنوان المقال</label>
+                    <input type="text" id="articleTitle" class="form-control" placeholder="أدخل عنوان المقال">
+                </div>
+
+                <!-- Rich Text Editor -->
+                <div class="editor-container">
+                    <div class="editor-toolbar">
+                        <button type="button" class="toolbar-btn" title="تنسيق النص"><i class="fas fa-text-height"></i></button>
+                        <button type="button" class="toolbar-btn" title="إدراج جدول"><i class="fas fa-table"></i></button>
+                        <button type="button" class="toolbar-btn" title="إدراج صورة"><i class="far fa-image"></i></button>
+                        <button type="button" class="toolbar-btn" title="تراجع"><i class="fas fa-undo"></i></button>
+                        <button type="button" class="toolbar-btn" title="إعادة"><i class="fas fa-redo"></i></button>
+                        <button type="button" class="toolbar-btn" title="حذف التنسيق"><i class="fas fa-eraser"></i></button>
+                        <button type="button" class="toolbar-btn" title="إدراج رابط"><i class="fas fa-link"></i></button>
+                        <button type="button" class="toolbar-btn" title="محاذاة للوسط"><i class="fas fa-align-center"></i></button>
+                        <button type="button" class="toolbar-btn" title="محاذاة لليمين"><i class="fas fa-align-right"></i></button>
+                        <button type="button" class="toolbar-btn active" title="محاذاة للنص"><i class="fas fa-align-justify"></i></button>
+                        <button type="button" class="toolbar-btn" title="قائمة مرقمة"><i class="fas fa-list-ol"></i></button>
+                        <button type="button" class="toolbar-btn" title="قائمة نقطية"><i class="fas fa-list-ul"></i></button>
+                        <button type="button" class="toolbar-btn" title="تسطير"><i class="fas fa-underline"></i></button>
+                        <button type="button" class="toolbar-btn" title="مائل"><i class="fas fa-italic"></i></button>
+                        <button type="button" class="toolbar-btn" title="عريض"><i class="fas fa-bold"></i></button>
+                    </div>
+                    <div class="editor-content" contenteditable="true"></div>
+                </div>
+
+                <!-- Additional Options -->
+                <div class="additional-options">
+                    <h3>خيارات إضافية</h3>
+                    
+                    <div class="options-row">
+                        <div class="option-group">
+                            <label for="categories">التصنيفات</label>
+                            <div class="select-container">
+                                <select id="categories" class="form-select">
+                                    <option value="" disabled selected>تكنولوجيا</option>
+                                </select>
+                                <span class="select-arrow"><i class="fas fa-chevron-down"></i></span>
+                            </div>
+                        </div>
+                        
+                        <div class="option-group">
+                            <label for="relatedTags">الكلمات المفتاحية</label>
+                            <input type="text" id="relatedTags" class="form-control" placeholder="أضف الكلمات المفتاحية مفصولة بفواصل">
+                        </div>
+                    </div>
+                    
+                    <div class="options-row">
+                        <div class="option-group">
+                            <label for="publishDate">تاريخ النشر</label>
+                            <div class="date-input">
+                                <input type="text" id="publishDate" class="form-control" value="04/19/2025" readonly>
+                                <i class="far fa-calendar"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="option-group">
+                            <label for="publishStatus">حالة النشر</label>
+                            <div class="select-container">
+                                <select id="publishStatus" class="form-select">
+                                    <option value="draft" selected>مسودة</option>
+                                    <option value="published">منشور</option>
+                                    <option value="pending">قيد المراجعة</option>
+                                </select>
+                                <span class="select-arrow"><i class="fas fa-chevron-down"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form Actions -->
+                <div class="form-actions">
+                    <button type="button" class="cancel-btn">إلغاء</button>
+                    <button type="button" class="delete-btn">
+                        <i class="far fa-trash-alt"></i>
+                        <span>حذف المقال</span>
+                    </button>
+                    <button type="submit" class="save-btn">
+                        <i class="far fa-save"></i>
+                        <span>حفظ التغييرات</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

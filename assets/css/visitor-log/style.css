@@ -1,0 +1,453 @@
+/* Visitor Log Page Styles */
+
+:root {
+    --primary-blue: #4a8cff;
+    --light-blue: #e6f0ff;
+    --dark-blue: #2d5ca6;
+    --green: #36d6a1;
+    --orange: #ffb054;
+    --red: #ff6a6a;
+    --text-color: #333;
+    --light-text: #777;
+    --border-color: #e0e0e0;
+    --bg-color: #f5f7fb;
+    --hover-bg: #f0f3ff;
+}
+
+body {
+    font-family: 'Cairo', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    direction: rtl;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+    margin-bottom: 20px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo img {
+    max-height: 40px;
+}
+
+.logo-text {
+    font-size: 0.75rem;
+    color: var(--light-text);
+    margin-top: 5px;
+    text-align: center;
+}
+
+.user-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.search-bar {
+    position: relative;
+}
+
+.search-bar input {
+    padding: 8px 35px 8px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    outline: none;
+    width: 200px;
+    background-color: #f5f5f5;
+}
+
+.search-bar i {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--light-text);
+}
+
+.user-profile, 
+.settings-btn, 
+.notifications-btn {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    cursor: pointer;
+    color: var(--light-text);
+}
+
+.user-profile {
+    background-color: #eaeef9;
+    color: var(--primary-blue);
+}
+
+/* Content */
+.content-container {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    overflow: hidden;
+    padding: 20px;
+}
+
+/* Page header */
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.page-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.action-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.action-btn {
+    padding: 8px 15px;
+    border-radius: 8px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.btn-primary {
+    background-color: var(--primary-blue);
+    color: white;
+    border: none;
+}
+
+.btn-outline {
+    background-color: white;
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+}
+
+/* Filter tabs */
+.filter-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.filter-tab {
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border: 1px solid var(--border-color);
+    background-color: white;
+}
+
+.filter-tab.active {
+    background-color: var(--primary-blue);
+    color: white;
+    border-color: var(--primary-blue);
+}
+
+.tab-counter {
+    background-color: #f0f3ff;
+    padding: 2px 6px;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    color: var(--primary-blue);
+    margin-right: 5px;
+}
+
+.filter-tab.active .tab-counter {
+    background-color: white;
+    color: var(--primary-blue);
+}
+
+/* Table */
+.messages-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.messages-table th {
+    padding: 12px 15px;
+    text-align: right;
+    font-weight: 500;
+    color: var(--light-text);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.messages-table td {
+    padding: 15px;
+    border-bottom: 1px solid var(--border-color);
+    vertical-align: top;
+}
+
+.messages-table tr:hover {
+    background-color: var(--hover-bg);
+}
+
+/* Checkbox */
+.checkbox-container {
+    display: block;
+    position: relative;
+    padding-right: 25px;
+    cursor: pointer;
+    user-select: none;
+    height: 18px;
+}
+
+.checkbox-container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 18px;
+    width: 18px;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+
+.checkbox-container:hover input ~ .checkmark {
+    background-color: #f1f1f1;
+}
+
+.checkbox-container input:checked ~ .checkmark {
+    background-color: var(--primary-blue);
+    border-color: var(--primary-blue);
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+.checkbox-container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+.checkbox-container .checkmark:after {
+    right: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+/* Status badges */
+.status-badge {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+.status-open {
+    background-color: #e6f8f1;
+    color: var(--green);
+}
+
+.status-pending {
+    background-color: #fff4e6;
+    color: var(--orange);
+}
+
+.status-closed {
+    background-color: #ffe6e6;
+    color: var(--red);
+}
+
+/* Message content */
+.message-content {
+    max-width: 350px;
+    line-height: 1.5;
+    color: var(--text-color);
+    font-size: 0.95rem;
+}
+
+.truncate {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* User data */
+.user-data {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-name {
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.user-id {
+    color: var(--light-text);
+    font-size: 0.85rem;
+}
+
+/* Email */
+.email {
+    color: var(--primary-blue);
+    text-decoration: none;
+}
+
+.email:hover {
+    text-decoration: underline;
+}
+
+/* Action icons */
+.action-icons {
+    display: flex;
+    gap: 12px;
+}
+
+.action-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    cursor: pointer;
+}
+
+.icon-delete {
+    background-color: var(--red);
+}
+
+.icon-edit {
+    background-color: var(--light-text);
+}
+
+.icon-reply {
+    background-color: var(--green);
+}
+
+.show-more {
+    color: var(--primary-blue);
+    text-decoration: none;
+    margin-top: 5px;
+    display: inline-block;
+    font-size: 0.85rem;
+}
+
+.show-more:hover {
+    text-decoration: underline;
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 5px;
+}
+
+.pagination-btn {
+    width: 35px;
+    height: 35px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background-color: white;
+}
+
+.pagination-btn.active {
+    background-color: var(--primary-blue);
+    color: white;
+    border-color: var(--primary-blue);
+}
+
+.pagination-btn:hover:not(.active) {
+    background-color: var(--hover-bg);
+}
+
+@media (max-width: 992px) {
+    .page-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .action-buttons {
+        width: 100%;
+    }
+    
+    .action-btn {
+        flex: 1;
+        justify-content: center;
+    }
+    
+    .messages-table th:nth-child(4),
+    .messages-table td:nth-child(4) {
+        display: none;
+    }
+    
+    .message-content {
+        max-width: 200px;
+    }
+}
+
+@media (max-width: 768px) {
+    .filter-tabs {
+        flex-wrap: wrap;
+    }
+    
+    .filter-tab {
+        flex: 1;
+        text-align: center;
+    }
+    
+    .messages-table th:nth-child(3),
+    .messages-table td:nth-child(3),
+    .messages-table th:nth-child(5),
+    .messages-table td:nth-child(5) {
+        display: none;
+    }
+    
+    .message-content {
+        max-width: 100px;
+    }
+}

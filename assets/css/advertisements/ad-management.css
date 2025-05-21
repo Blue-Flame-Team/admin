@@ -1,0 +1,459 @@
+/* Advertisement Management Page Styles */
+
+body {
+    font-family: 'Cairo', sans-serif;
+    background-color: #f5f7fb;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 0 15px;
+}
+
+.ad-management-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    padding: 25px;
+    overflow: hidden;
+}
+
+/* Header Section */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-avatar {
+    width: 30px;
+    height: 30px;
+    background-color: #f0f2f5;
+    color: #666;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+}
+
+.notification-badge {
+    background-color: #007bff;
+    color: white;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    margin-left: -8px;
+    margin-top: -8px;
+    border: 2px solid white;
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.nav-link.active {
+    color: #333;
+    font-weight: 500;
+}
+
+/* Page Title */
+.page-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+/* Ad Config Section */
+.section-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.form-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    flex: 1;
+    min-width: 180px;
+}
+
+.form-group.full-width {
+    width: 100%;
+    flex-basis: 100%;
+}
+
+.form-label {
+    display: block;
+    font-size: 0.85rem;
+    margin-bottom: 8px;
+    color: #666;
+}
+
+.form-control {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 0.9rem;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+}
+
+.input-addon {
+    padding: 8px 12px;
+    background-color: #f0f2f5;
+    border: 1px solid #ddd;
+    border-right: none;
+    border-radius: 5px 0 0 5px;
+    color: #666;
+    font-size: 0.85rem;
+}
+
+.input-group .form-control {
+    border-radius: 0 5px 5px 0;
+}
+
+.radio-group {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.radio-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.radio-item input[type="radio"] {
+    width: 16px;
+    height: 16px;
+}
+
+/* Current Ads Table */
+.ads-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+.ads-table th {
+    text-align: right;
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+    font-weight: 500;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.ads-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+    font-size: 0.9rem;
+}
+
+.status-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 15px;
+    font-size: 0.75rem;
+    font-weight: 500;
+}
+
+.status-active {
+    background-color: #e3fff1;
+    color: #00c853;
+}
+
+.status-inactive {
+    background-color: #fff9e3;
+    color: #ffc107;
+}
+
+.status-expired {
+    background-color: #ffe3e3;
+    color: #f44336;
+}
+
+.action-cell {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.action-btn {
+    width: 25px;
+    height: 25px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.2s;
+    background-color: transparent;
+    border: none;
+}
+
+.action-btn:hover {
+    background-color: #f0f2f5;
+}
+
+.action-btn.edit {
+    color: #007bff;
+}
+
+.action-btn.delete {
+    color: #f44336;
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.page-list {
+    display: flex;
+    gap: 5px;
+}
+
+.page-item {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    background-color: white;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    font-size: 0.85rem;
+    text-decoration: none;
+    color: #333;
+    transition: all 0.2s;
+}
+
+.page-item:hover {
+    background-color: #f5f5f5;
+}
+
+.page-item.active {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+/* Add New Ad Section */
+.add-ad-section {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.url-input {
+    position: relative;
+}
+
+.url-input .form-control {
+    padding-left: 35px;
+}
+
+.url-input i {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666;
+}
+
+.image-upload {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f2f5;
+    border: 1px dashed #ddd;
+    border-radius: 5px;
+    height: 120px;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+.image-upload i {
+    font-size: 2rem;
+    color: #ccc;
+}
+
+/* Date Picker */
+.date-input {
+    position: relative;
+}
+
+.date-input .form-control {
+    padding-left: 35px;
+}
+
+.date-input i {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666;
+}
+
+/* Range Slider */
+.range-slider {
+    width: 100%;
+    margin-top: 10px;
+}
+
+.range-slider input[type="range"] {
+    width: 100%;
+    -webkit-appearance: none;
+    height: 4px;
+    border-radius: 4px;
+    background: #ddd;
+    outline: none;
+}
+
+.range-slider input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #007bff;
+    cursor: pointer;
+    border: 2px solid white;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.targeting-section {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.targeting-input {
+    position: relative;
+}
+
+.targeting-input .form-control {
+    padding-right: 35px;
+}
+
+.targeting-input i {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666;
+}
+
+/* Submit buttons */
+.btn-row {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.btn {
+    padding: 8px 20px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    border: none;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn-secondary {
+    background-color: #f0f2f5;
+    color: #333;
+    border: 1px solid #ddd;
+}
+
+/* Checkbox */
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 10px;
+}
+
+.checkbox-item input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .nav-links {
+        width: 100%;
+        overflow-x: auto;
+        padding-bottom: 5px;
+    }
+    
+    .form-row {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .action-cell {
+        flex-direction: column;
+        gap: 5px;
+    }
+    
+    .ads-table {
+        display: block;
+        overflow-x: auto;
+    }
+}

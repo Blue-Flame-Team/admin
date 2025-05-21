@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحة الإعلانات / الإعلانات المصورة / صفحة إضافة وتعديل إعلان</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/mobile-additions.css">
+    <link rel="stylesheet" href="../css/size-fixes.css">
+    <link rel="stylesheet" href="../css/advertisements/ad-add-edit.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="ad-management-card">
+            <h1 class="panel-title">لوحة التحكم</h1>
+            <nav class="breadcrumb">
+                <a href="#">الرئيسية</a> /
+                <a href="advertisements-banners.html">إدارة الإعلانات</a> /
+                <span>إضافة إعلان</span>
+            </nav>
+            
+            <div class="section-title">
+                <h2>إدارة الإعلانات</h2>
+            </div>
+            
+            <!-- Ad Configuration Section -->
+            <div class="ad-config-section">
+                <div class="section-header">
+                    <h3>إعدادات موضع الإعلان</h3>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="ad-position">الموضع</label>
+                        <input type="text" id="ad-position" value="رأس الصفحة" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="ad-dimensions">أبعاد الإعلان (بيكسل)</label>
+                        <div class="dimension-inputs">
+                            <input type="number" id="ad-width" placeholder="العرض" value="750">
+                            <input type="number" id="ad-height" placeholder="الارتفاع" value="500">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Current Ads Section -->
+            <div class="current-ads-section">
+                <div class="section-header">
+                    <h3>الإعلانات الحالية</h3>
+                    <div class="search-wrapper">
+                        <input type="text" id="search-ads" placeholder="بحث">
+                        <i class="fas fa-search"></i>
+                    </div>
+                </div>
+                
+                <div class="ads-table-wrapper">
+                    <table class="ads-table">
+                        <thead>
+                            <tr>
+                                <th class="text-center">الرمز</th>
+                                <th>التاريخ</th>
+                                <th>تاريخ انتهاء<br>الصلاحية</th>
+                                <th>محتوى الإعلان</th>
+                                <th>معدل الظهور</th>
+                                <th>عنوان الرابط</th>
+                                <th class="text-center">إجراءات</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-center"><i class="fas fa-circle text-danger"></i></td>
+                                <td>2025</td>
+                                <td>أبريل<br>2025</td>
+                                <td class="ad-image-cell"><span class="image-preview">إعلانات</span></td>
+                                <td>75%</td>
+                                <td class="url-cell">https://example.com/promo-egypt</td>
+                                <td class="actions-cell text-center">
+                                    <a href="#" class="edit-btn"><i class="fas fa-pencil-alt"></i></a>
+                                    <a href="#" class="delete-btn"><i class="fas fa-trash"></i></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center"><i class="fas fa-circle text-primary"></i></td>
+                                <td>2025</td>
+                                <td>2025</td>
+                                <td class="ad-image-cell"><span class="image-preview image-preview-alt">تسوق</span></td>
+                                <td>60%</td>
+                                <td class="url-cell">https://example.com/fashion-summer</td>
+                                <td class="actions-cell text-center">
+                                    <a href="#" class="edit-btn"><i class="fas fa-pencil-alt"></i></a>
+                                    <a href="#" class="delete-btn"><i class="fas fa-trash"></i></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center"><i class="fas fa-circle text-success"></i></td>
+                                <td>2025</td>
+                                <td>أبريل<br>2025</td>
+                                <td class="ad-image-cell"><span class="image-preview image-preview-green">عروض</span></td>
+                                <td>90%</td>
+                                <td class="url-cell">https://example.com/food-delivery</td>
+                                <td class="actions-cell text-center">
+                                    <a href="#" class="edit-btn"><i class="fas fa-pencil-alt"></i></a>
+                                    <a href="#" class="delete-btn"><i class="fas fa-trash"></i></a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-center"><i class="fas fa-circle text-warning"></i></td>
+                                <td>2025</td>
+                                <td>أغسطس<br>2025</td>
+                                <td class="ad-image-cell"><span class="image-preview image-preview-yellow">سفر</span></td>
+                                <td>30%</td>
+                                <td class="url-cell">https://example.com/travel-deals</td>
+                                <td class="actions-cell text-center">
+                                    <a href="#" class="edit-btn"><i class="fas fa-pencil-alt"></i></a>
+                                    <a href="#" class="delete-btn"><i class="fas fa-trash"></i></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="pagination">
+                    <a href="#" class="page-prev">&lt;</a>
+                    <a href="#" class="page-number active">1</a>
+                    <a href="#" class="page-number">2</a>
+                    <a href="#" class="page-number">3</a>
+                    <a href="#" class="page-next">&gt;</a>
+                </div>
+            </div>
+            
+            <!-- Add New Ad Section -->
+            <div class="add-ad-section">
+                <div class="section-header">
+                    <h3>إضافة إعلان جديد</h3>
+                </div>
+                
+                <form id="add-ad-form">
+                    <div class="form-group">
+                        <label for="ad-url">الموقع</label>
+                        <div class="url-input-wrapper">
+                            <input type="text" id="ad-url" placeholder="https://example.com">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="ad-title">العنوان البديل</label>
+                        <input type="text" id="ad-title" placeholder="ضع عنوان للإعلان">
+                    </div>
+                    
+                    <div class="form-group date-group">
+                        <div class="date-field">
+                            <label for="start-date">تاريخ البدء *</label>
+                            <div class="date-input-wrapper">
+                                <input type="date" id="start-date" required>
+                                <i class="far fa-calendar-alt"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="date-field">
+                            <label for="end-date">تاريخ الانتهاء *</label>
+                            <div class="date-input-wrapper">
+                                <input type="date" id="end-date" required>
+                                <i class="far fa-calendar-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="display-rate">معدل الظهور</label>
+                        <div class="slider-container">
+                            <input type="range" id="display-rate" min="0" max="100" value="30" class="slider">
+                            <output for="display-rate">30%</output>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>الخدمات المستهدفة</label>
+                        <div class="services-options">
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" id="specific-services">
+                                <label for="specific-services">محدد</label>
+                            </div>
+                            <div class="checkbox-wrapper">
+                                <input type="checkbox" id="all-services" checked>
+                                <label for="all-services">الكل</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group upload-group">
+                        <label>صورة الإعلان (سيتم تحجيمها تلقائياً إلى 425×100 بكسل)</label>
+                        <div class="upload-container">
+                            <div class="image-upload-area" id="image-drop-area">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <span>اسحب وأفلت الصورة هنا</span>
+                            </div>
+                            <input type="file" id="ad-image" accept="image/*" style="display: none;">
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn-cancel">إلغاء</button>
+                        <button type="submit" class="btn-primary">إضافة إعلان</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script src="../js/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Handle slider value display
+            const slider = $('#display-rate');
+            const output = $('output[for="display-rate"]');
+            
+            slider.on('input', function() {
+                output.text(slider.val() + '%');
+            });
+            
+            // Handle image upload
+            const dropArea = $('#image-drop-area');
+            const fileInput = $('#ad-image');
+            
+            dropArea.on('click', function() {
+                fileInput.click();
+            });
+            
+            fileInput.on('change', function(e) {
+                const file = e.target.files[0];
+                if (file && file.type.match('image.*')) {
+                    const reader = new FileReader();
+                    
+                    reader.onload = function(e) {
+                        dropArea.html(`<img src="${e.target.result}" style="max-width: 100%; max-height: 100%;">`);
+                    };
+                    
+                    reader.readAsDataURL(file);
+                }
+            });
+            
+            // Handle drag and drop
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                dropArea.on(eventName, function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                });
+            });
+            
+            ['dragenter', 'dragover'].forEach(eventName => {
+                dropArea.on(eventName, function() {
+                    dropArea.addClass('drop-active');
+                });
+            });
+            
+            ['dragleave', 'drop'].forEach(eventName => {
+                dropArea.on(eventName, function() {
+                    dropArea.removeClass('drop-active');
+                });
+            });
+            
+            dropArea.on('drop', function(e) {
+                const dt = e.originalEvent.dataTransfer;
+                const file = dt.files[0];
+                
+                if (file && file.type.match('image.*')) {
+                    const reader = new FileReader();
+                    
+                    reader.onload = function(e) {
+                        dropArea.html(`<img src="${e.target.result}" style="max-width: 100%; max-height: 100%;">`);
+                    };
+                    
+                    reader.readAsDataURL(file);
+                }
+            });
+            
+            // Form submission
+            $('#add-ad-form').on('submit', function(e) {
+                e.preventDefault();
+                
+                // Validate required fields
+                if (!$('#start-date').val() || !$('#end-date').val()) {
+                    alert('الرجاء ملء جميع الحقول المطلوبة');
+                    return;
+                }
+                
+                // Here you would typically collect and send form data
+                console.log('Ad form submitted');
+                alert('تم إضافة الإعلان بنجاح');
+                
+                // Reset form
+                $('#add-ad-form')[0].reset();
+                dropArea.html(`<i class="fas fa-cloud-upload-alt"></i><span>اسحب وأفلت الصورة هنا</span>`);
+            });
+        });
+    </script>
+</body>
+</html>

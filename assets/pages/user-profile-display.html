@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عرض بيانات المستخدم</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/mobile-additions.css">
+    <link rel="stylesheet" href="../css/size-fixes.css">
+    <link rel="stylesheet" href="../css/user-profile-display/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- User Profile Card -->
+        <div class="profile-card">
+            <div class="profile-header">
+                <h2 class="profile-title">عرض بيانات المستخدم</h2>
+            </div>
+            
+            <div class="profile-content">
+                <!-- Right Section: Personal Information -->
+                <div class="profile-section right-section">
+                    <h3 class="section-title">المعلومات الشخصية</h3>
+                    
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-label">اسم المستخدم</div>
+                            <div class="info-value">ahmed_admin</div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="info-label">البريد الإلكتروني</div>
+                            <div class="info-value email-value">
+                                <i class="fas fa-envelope"></i>
+                                ahmed.abdullah@example.com
+                            </div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="info-label">الاسم الكامل</div>
+                            <div class="info-value">أحمد عبدالله المنصوري</div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="info-label">الجوال</div>
+                            <div class="info-value phone-value">
+                                <i class="fas fa-phone"></i>
+                                4567
+                            </div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="info-label">المدينة</div>
+                            <div class="info-value location-value">
+                                <i class="fas fa-map-marker-alt"></i>
+                                الرياض
+                            </div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="info-label">الحالة</div>
+                            <div class="info-value">
+                                <span class="badge-success">نشط</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Left Section: Account Information -->
+                <div class="profile-section left-section">
+                    <h3 class="section-title">معلومات الحساب</h3>
+                    
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <div class="info-label">نوع المستخدم</div>
+                            <div class="info-value">مدير النظام</div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="info-label">الحالة</div>
+                            <div class="info-value">
+                                <span class="badge-success">نشط</span>
+                            </div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="info-label">من تاريخ</div>
+                            <div class="info-value">22/5</div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="info-label">لوحة التحكم</div>
+                            <div class="info-value">إدارة المستخدمين</div>
+                        </div>
+                        
+                        <div class="info-item">
+                            <div class="info-label">الخدمات المتاحة</div>
+                            <div class="info-value">التقارير</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Profile Actions -->
+            <div class="profile-actions">
+                <button class="action-btn btn-primary">
+                    <i class="fas fa-edit"></i>
+                    تعديل البيانات
+                </button>
+                <button class="action-btn btn-secondary">
+                    <i class="fas fa-undo"></i>
+                    رجوع
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Edit button functionality
+            $('.btn-primary').click(function() {
+                console.log('Edit profile clicked');
+                // Implement profile edit functionality
+            });
+            
+            // Back button functionality
+            $('.btn-secondary').click(function() {
+                console.log('Back button clicked');
+                window.history.back();
+            });
+        });
+    </script>
+</body>
+</html>

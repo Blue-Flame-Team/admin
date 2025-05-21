@@ -1,0 +1,216 @@
+/* Mobile-specific additions */
+
+/* Recent Activities dimensions */
+.recent-activities {
+    width: 824px;
+    max-width: 100%;
+    height: 375px;
+}
+
+.recent-activities .widget-body {
+    height: 325px; /* Adjusting for header height of approximately 50px */
+    overflow-y: auto;
+}
+
+/* Activity date in notifications */
+.activity-date {
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    text-align: right;
+    font-size: 0.9rem;
+}
+
+/* User links in notifications */
+.user-link, .doc-link {
+    display: block;
+    color: var(--primary-color);
+    text-decoration: none;
+    margin: 3px 0;
+    font-weight: 500;
+}
+
+/* Mobile documents list */
+.mobile-documents-list {
+    display: none;
+}
+
+.document-item {
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.document-item:last-child {
+    border-bottom: none;
+}
+
+.document-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.document-number {
+    color: var(--light-text);
+    font-size: 0.85rem;
+    margin-bottom: 4px;
+}
+
+.document-title {
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+/* Event time for mobile */
+.event-content .time {
+    display: block;
+    color: var(--light-text);
+    font-size: 0.8rem;
+    margin-top: 5px;
+}
+
+/* Mobile menu adjustments */
+@media screen and (max-width: 768px) {
+    /* Show mobile documents list, hide desktop table */
+    .mobile-documents-list {
+        display: block;
+    }
+    
+    .desktop-only {
+        display: none;
+    }
+    
+    /* Top stats layout for mobile */
+    .stats-cards {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
+    
+    .stats-cards .card {
+        flex-direction: column;
+        text-align: center;
+        padding: 15px 10px;
+    }
+    
+    .stats-cards .card-icon {
+        margin: 0 auto 10px;
+    }
+    
+    .stats-cards .trend {
+        position: relative;
+        top: auto;
+        left: auto;
+        margin-top: 5px;
+        display: inline-block;
+    }
+    
+    /* Mobile header adjustments */
+    .dashboard-header {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .dashboard-header h1 {
+        margin-bottom: 5px;
+    }
+    
+    /* Sidebar background overlay */
+    .sidebar-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 99;
+    }
+    
+    .sidebar-overlay.active {
+        display: block;
+    }
+    
+    /* Notification redesign for mobile */
+    .notification {
+        margin-bottom: 20px;
+    }
+    
+    .notification-icon {
+        width: 36px;
+        height: 36px;
+    }
+    
+    /* Events for mobile */
+    .event-date {
+        width: 45px;
+        height: 45px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    
+    .event-content h4 {
+        line-height: 1.4;
+    }
+    
+    /* Location icon in event */
+    .event-content p i {
+        margin-left: 5px;
+        color: var(--light-text);
+        font-size: 0.85rem;
+    }
+    
+    /* Improve mobile floating button */
+    .floating-add {
+        bottom: 20px;
+        left: 20px;
+    }
+    
+    .floating-add button {
+        width: 45px;
+        height: 45px;
+        font-size: 1rem;
+    }
+    
+    /* Mobile charts */
+    .widget-body {
+        height: 220px;
+    }
+}
+
+/* Mobile layout for very small screens */
+@media screen and (max-width: 480px) {
+    /* Single column stats on very small screens */
+    .stats-cards {
+        grid-template-columns: 1fr;
+    }
+    
+    /* Simplify header area */
+    .nav-left .user-name {
+        display: none;
+    }
+    
+    .search-box input {
+        width: 120px;
+    }
+    
+    .search-box input:focus {
+        width: 140px;
+    }
+    
+    /* Smaller action icons */
+    .action-icon {
+        width: 35px;
+        height: 35px;
+        margin-bottom: 8px;
+    }
+    
+    .action-icon i {
+        font-size: 0.9rem;
+    }
+    
+    .action-card p {
+        font-size: 0.8rem;
+    }
+}

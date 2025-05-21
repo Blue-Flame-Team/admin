@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إضافة وتعديل مجلد</title>
+    <link rel="stylesheet" href="../css/folder-edit/folder-edit.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="../js/folder-edit.js" defer></script>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Breadcrumb Navigation -->
+        <div class="breadcrumb">
+            <a href="#">الرئيسية</a>
+            <span>›</span>
+            <a href="#">المستوى الأول</a>
+            <span>›</span>
+            <a href="#">مجموعة الأنظمة</a>
+        </div>
+
+        <!-- Content Container -->
+        <div class="content-container">
+            <div class="content-header">
+                <h1>إضافة مجلد جديد</h1>
+            </div>
+
+            <!-- Form Container -->
+            <div class="form-container">
+                <form id="folderForm">
+                    <!-- Title Field -->
+                    <div class="form-group">
+                        <label for="folderTitle">العنوان</label>
+                        <input type="text" id="folderTitle" class="form-control" placeholder="أدخل العنوان هنا">
+                    </div>
+
+                    <!-- Table Order Field -->
+                    <div class="form-group">
+                        <label for="tableOrder">اسم الجدول</label>
+                        <input type="text" id="tableOrder" class="form-control" value="TableOrder" readonly>
+                    </div>
+
+                    <!-- Free Access Checkbox -->
+                    <div class="form-group checkbox-group">
+                        <div class="checkbox-container">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="freeAccess" checked>
+                                <span class="checkbox-icon"></span>
+                                <span>عنصر مجاني</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Display in New View Checkbox -->
+                    <div class="form-group checkbox-group">
+                        <div class="checkbox-container">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="displayInNewView">
+                                <span class="checkbox-icon"></span>
+                                <span>السماح بالعرض في العرض الجديد</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="form-group">
+                        <button type="submit" class="btn-add">
+                            <i class="fas fa-plus"></i>
+                            <span>إضافة</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

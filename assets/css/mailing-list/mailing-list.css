@@ -1,0 +1,210 @@
+/* Mailing List CSS */
+body {
+    background-color: #f8f9fa;
+}
+
+.container-fluid {
+    max-width: 1400px;
+}
+
+.card {
+    border-radius: 10px;
+    border: none;
+}
+
+.card-title {
+    font-weight: 600;
+    color: #333;
+}
+
+.header-section h1 {
+    color: #333;
+    font-size: 1.8rem;
+}
+
+.header-section p {
+    font-size: 0.9rem;
+}
+
+/* Search and Filter Section */
+.search-filters .card {
+    background-color: #fff;
+    margin-bottom: 20px;
+}
+
+.form-control, .form-select {
+    background-color: #f5f5f5;
+    border: 1px solid #e0e0e0;
+    padding: 10px 15px;
+    font-size: 0.9rem;
+}
+
+.form-control:focus, .form-select:focus {
+    box-shadow: 0 0 0 0.2rem rgba(46, 78, 173, 0.25);
+    border-color: #2e4ead;
+}
+
+.form-label {
+    font-weight: 500;
+    margin-bottom: 6px;
+    font-size: 0.9rem;
+}
+
+.search-btn {
+    background-color: #2e4ead;
+    border-color: #2e4ead;
+    padding: 8px 20px;
+    font-weight: 500;
+}
+
+.search-btn:hover {
+    background-color: #233c8a;
+    border-color: #233c8a;
+}
+
+/* Table Styles */
+.table-header {
+    background-color: #1f3b6a;
+    color: white;
+}
+
+.table-header th {
+    font-weight: 500;
+    padding: 12px;
+    font-size: 0.9rem;
+}
+
+.table td {
+    padding: 12px;
+    font-size: 0.9rem;
+    vertical-align: middle;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+/* Category Tags */
+.category-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+.category-general {
+    background-color: #e3f2fd;
+    color: #0d47a1;
+}
+
+.category-marketing {
+    background-color: #e0f2f1;
+    color: #00695c;
+}
+
+.category-tech {
+    background-color: #f3e5f5;
+    color: #6a1b9a;
+}
+
+.category-customer {
+    background-color: #fff8e1;
+    color: #ff8f00;
+}
+
+/* Action Buttons */
+.btn-edit {
+    color: #2e4ead;
+    background-color: #e3f2fd;
+    border: none;
+    margin-right: 5px;
+}
+
+.btn-delete {
+    color: #dc3545;
+    background-color: #f8d7da;
+    border: none;
+}
+
+.btn-edit:hover {
+    background-color: #c7e2fb;
+}
+
+.btn-delete:hover {
+    background-color: #f4c2c7;
+}
+
+/* Pagination */
+.pagination-info {
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+.pagination .page-link {
+    color: #2e4ead;
+    border-color: #dee2e6;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #2e4ead;
+    border-color: #2e4ead;
+    color: #fff;
+}
+
+.pagination .page-link:focus {
+    box-shadow: 0 0 0 0.2rem rgba(46, 78, 173, 0.25);
+}
+
+/* Send Message Button */
+.send-message-btn {
+    background-color: #2e4ead;
+    border-color: #2e4ead;
+    padding: 8px 16px;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.send-message-btn:hover {
+    background-color: #233c8a;
+    border-color: #233c8a;
+}
+
+/* Checkbox Styling */
+.form-check-input {
+    width: 1.1rem;
+    height: 1.1rem;
+    margin-top: 0.25rem;
+    border: 1px solid #adb5bd;
+}
+
+.form-check-input:checked {
+    background-color: #2e4ead;
+    border-color: #2e4ead;
+}
+
+.form-check-input:focus {
+    box-shadow: 0 0 0 0.2rem rgba(46, 78, 173, 0.25);
+    border-color: #2e4ead;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 767.98px) {
+    .send-message-btn {
+        margin-top: 15px;
+        width: 100%;
+    }
+    
+    .pagination {
+        margin-top: 15px;
+    }
+    
+    .d-flex.justify-content-between {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .pagination-info {
+        margin-bottom: 15px;
+    }
+}

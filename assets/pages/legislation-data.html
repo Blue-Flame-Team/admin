@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>موسوعة الأنظمة – صفحة إضافة بيانات ملف (تشريع) – إضافة وتعديل بيانات بطاقة التعريف</title>
+    <link rel="stylesheet" href="../css/legislation-data/legislation-data.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="../js/legislation-data.js" defer></script>
+</head>
+<body>
+    <div class="main-container">
+        <div class="content-container">
+            <h1 class="page-title">إدخال بيانات التشريع</h1>
+            
+            <form id="legislationForm">
+                <!-- Legislation Type Section -->
+                <div class="form-section">
+                    <h2 class="section-title">نوع التشريع</h2>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="legislationType" value="regulation">
+                            <span class="radio-custom"></span>
+                            <span class="radio-text">لائحة</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="legislationType" value="decision" checked>
+                            <span class="radio-custom"></span>
+                            <span class="radio-text">قرار</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Issuance Information Section -->
+                <div class="form-section">
+                    <h2 class="section-title">معلومات الإصدار</h2>
+                    
+                    <div class="form-group">
+                        <label for="issuingAuthority">الجهة المصدرة</label>
+                        <div class="select-container">
+                            <select id="issuingAuthority" class="form-select">
+                                <option value="" disabled selected>اختر الجهة المصدرة</option>
+                            </select>
+                            <span class="select-arrow"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="issuanceTool">أداة الإصدار</label>
+                        <div class="select-container">
+                            <select id="issuanceTool" class="form-select">
+                                <option value="" disabled selected>اختر أداة الإصدار</option>
+                            </select>
+                            <span class="select-arrow"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="publishSource">مصدر النشر</label>
+                        <div class="select-container">
+                            <select id="publishSource" class="form-select">
+                                <option value="" disabled selected>اختر مصدر النشر</option>
+                            </select>
+                            <span class="select-arrow"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Publication Details Section -->
+                <div class="form-section">
+                    <h2 class="section-title">تفاصيل النشر</h2>
+                    
+                    <div class="form-row">
+                        <div class="form-group half-width">
+                            <label for="issuanceNumber">رقم الإصدار</label>
+                            <input type="text" id="issuanceNumber" class="form-control" placeholder="أدخل رقم الإصدار">
+                        </div>
+                        <div class="form-group half-width">
+                            <label for="documentTitle">عنوان الوثيقة</label>
+                            <input type="text" id="documentTitle" class="form-control" placeholder="أدخل عنوان الوثيقة">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group half-width">
+                            <label for="officialGazetteNumber">رقم الجريدة الرسمية</label>
+                            <input type="text" id="officialGazetteNumber" class="form-control" placeholder="أدخل رقم الجريدة الرسمية">
+                        </div>
+                        <div class="form-group half-width">
+                            <label for="pageNumber">رقم الصفحة</label>
+                            <input type="text" id="pageNumber" class="form-control" placeholder="أدخل رقم الصفحة">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group third-width">
+                            <label for="publishDate">تاريخ النشر</label>
+                            <div class="date-input">
+                                <input type="text" id="publishDate" class="form-control" placeholder="dd/mm/yyyy">
+                                <i class="far fa-calendar"></i>
+                            </div>
+                        </div>
+                        <div class="form-group third-width">
+                            <label for="effectiveDate">تاريخ النفاذ</label>
+                            <div class="date-input">
+                                <input type="text" id="effectiveDate" class="form-control" placeholder="dd/mm/yyyy">
+                                <i class="far fa-calendar"></i>
+                            </div>
+                        </div>
+                        <div class="form-group third-width">
+                            <label for="endDate">تاريخ الانتهاء</label>
+                            <div class="date-input">
+                                <input type="text" id="endDate" class="form-control" placeholder="dd/mm/yyyy">
+                                <i class="far fa-calendar"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Status and Additions Section -->
+                <div class="form-section">
+                    <h2 class="section-title">الحالة والإضافات</h2>
+                    
+                    <div class="form-group">
+                        <label for="legislationStatus">حالة التشريع</label>
+                        <div class="select-container">
+                            <select id="legislationStatus" class="form-select">
+                                <option value="" disabled selected>اختر حالة التشريع</option>
+                            </select>
+                            <span class="select-arrow"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="officialDocumentUpload">رفع النسخة الرسمية</label>
+                        <div class="file-upload-container">
+                            <div class="file-upload-area">
+                                <div class="file-upload-content">
+                                    <i class="fas fa-upload"></i>
+                                    <p>اسحب الملف هنا أو انقر للتحميل</p>
+                                    <small>PDF, DOCX, etc</small>
+                                </div>
+                                <input type="file" id="officialDocumentUpload" class="file-input">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="attachToDefinitionCard">
+                            <span class="checkbox-custom"></span>
+                            <span class="checkbox-text">إضافة بيانات لبطاقة التعريف</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="form-actions">
+                    <button type="submit" class="btn-add">إضافة</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

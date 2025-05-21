@@ -1,0 +1,96 @@
+/* Permission Add/Edit Page Styles - Updated for Template System */
+
+.permission-form-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    padding: 20px 30px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Form Heading */
+.form-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.form-subtitle {
+    font-size: 0.9rem;
+    color: #6c757d;
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+/* Only include specific styles for this page that aren't in unified-styles.css */
+
+/* Use existing form styles from unified-styles.css */
+
+/* Specific select styling */
+select.form-control {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: left 15px center;
+    background-size: 15px;
+    padding-left: 40px;
+}
+
+textarea.form-control {
+    min-height: 120px;
+}
+
+/* Radio Buttons */
+.radio-group {
+    margin-top: 15px;
+}
+
+.radio-option {
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.radio-option input[type="radio"] {
+    margin-left: 10px;
+    width: 18px;
+    height: 18px;
+}
+
+/* Submit Button - Using custom styling to match design */
+.btn-submit {
+    background-color: #2e4ead;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 12px 30px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: all 0.3s ease;
+    display: block;
+    width: 200px;
+    text-align: center;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.btn-submit:hover {
+    background-color: #243c8f;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-submit:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+/* Make form more responsive */
+@media (max-width: 768px) {
+    .permission-form-card {
+        padding: 15px;
+    }
+}

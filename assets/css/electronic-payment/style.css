@@ -1,0 +1,243 @@
+/* Electronic Payment Page Styles */
+
+/* Main container styling */
+.payment-dashboard {
+    padding: 20px;
+    background-color: #f5f7fb;
+}
+
+.payment-title {
+    text-align: right;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    color: #333;
+    font-weight: 600;
+}
+
+/* Filter section styling */
+.filter-section {
+    background-color: white;
+    border-radius: 10px;
+    padding: 15px 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 10px;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.filter-label {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.filter-input {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    min-width: 200px;
+}
+
+.filter-input[type="date"] {
+    padding-right: 30px;
+    position: relative;
+}
+
+.filter-input[type="date"]::-webkit-calendar-picker-indicator {
+    position: absolute;
+    left: 10px;
+}
+
+.filter-dropdown {
+    position: relative;
+    min-width: 200px;
+}
+
+.filter-dropdown select {
+    width: 100%;
+    padding: 8px 30px 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    appearance: none;
+}
+
+.filter-dropdown::after {
+    content: '\f107';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+.search-btn {
+    background-color: #2e4ead;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    height: 38px;
+}
+
+/* Export buttons */
+.export-buttons {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    justify-content: flex-end;
+}
+
+.export-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 15px;
+    background-color: #f1f1f1;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: #555;
+    font-weight: 500;
+}
+
+/* Table styling */
+.payment-table-container {
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.payment-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.payment-table th,
+.payment-table td {
+    padding: 12px 15px;
+    text-align: right;
+    white-space: nowrap;
+}
+
+.payment-table th {
+    background-color: #f8f9fa;
+    font-weight: 600;
+    color: #333;
+}
+
+.payment-table tbody tr {
+    border-bottom: 1px solid #eee;
+}
+
+.payment-table tbody tr:hover {
+    background-color: rgba(46, 78, 173, 0.03);
+}
+
+.payment-table td a {
+    color: #2e4ead;
+    text-decoration: none;
+}
+
+.payment-table th:last-child, 
+.payment-table td:last-child {
+    text-align: right;
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.pagination-info {
+    color: #777;
+    font-size: 14px;
+}
+
+.pagination-controls {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.pagination-btn {
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: white;
+    cursor: pointer;
+    color: #555;
+}
+
+.pagination-btn.active {
+    background-color: #2e4ead;
+    color: white;
+    border-color: #2e4ead;
+}
+
+.pagination-dropdown {
+    margin-right: 15px;
+}
+
+.pagination-dropdown select {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: white;
+    appearance: none;
+    position: relative;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 1200px) {
+    .filter-section {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .filter-group {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .export-buttons {
+        justify-content: flex-start;
+    }
+    
+    .pagination {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .pagination-info {
+        text-align: center;
+    }
+    
+    .pagination-controls {
+        justify-content: center;
+    }
+}

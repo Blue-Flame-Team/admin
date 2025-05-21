@@ -1,0 +1,225 @@
+/* Search Keywords Management CSS */
+body {
+    background-color: #f8f9fa;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.container-fluid {
+    max-width: 1400px;
+}
+
+.card {
+    border-radius: 10px;
+    border: none;
+    transition: background-color 0.3s;
+}
+
+h1 {
+    color: #333;
+    font-weight: 700;
+}
+
+.form-check-label {
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+/* Search and Filter Section */
+.search-filters {
+    margin-bottom: 1.5rem;
+}
+
+.search-input {
+    border-start-end-radius: 0;
+    border-end-end-radius: 0;
+}
+
+.filter-btn {
+    border-start-start-radius: 0;
+    border-end-start-radius: 0;
+    background-color: #fff;
+    border-color: #ced4da;
+}
+
+.filter-btn:hover {
+    background-color: #f8f9fa;
+}
+
+.add-keyword-btn {
+    background-color: #2e4ead;
+    border-color: #2e4ead;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+}
+
+.add-keyword-btn:hover {
+    background-color: #243c8a;
+    border-color: #243c8a;
+}
+
+.export-btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    border-color: #ced4da;
+}
+
+/* Table Styles */
+.keywords-table {
+    margin-bottom: 0;
+}
+
+.keywords-table thead th {
+    font-weight: 600;
+    color: #495057;
+    background-color: #f8f9fa;
+    padding: 0.75rem;
+    font-size: 0.9rem;
+}
+
+.keywords-table tbody td {
+    padding: 0.75rem;
+    font-size: 0.9rem;
+    vertical-align: middle;
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Attachment Count */
+.attachment-count {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    background-color: #e9f0fe;
+    color: #2e4ead;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+/* Action Buttons */
+.btn-edit {
+    color: #2e4ead;
+    background-color: #e3f2fd;
+    border: none;
+    margin-right: 5px;
+}
+
+.btn-delete {
+    color: #dc3545;
+    background-color: #f8d7da;
+    border: none;
+}
+
+.btn-edit:hover {
+    background-color: #c7e2fb;
+}
+
+.btn-delete:hover {
+    background-color: #f4c2c7;
+}
+
+/* Pagination */
+.pagination-info {
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+.pagination .page-link {
+    color: #2e4ead;
+    border-color: #dee2e6;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #2e4ead;
+    border-color: #2e4ead;
+    color: #fff;
+}
+
+.pagination .page-link:focus {
+    box-shadow: 0 0 0 0.2rem rgba(46, 78, 173, 0.25);
+}
+
+/* Dark Mode */
+body.dark-mode {
+    background-color: #212529;
+    color: #f8f9fa;
+}
+
+body.dark-mode .card {
+    background-color: #343a40;
+    border-color: #495057;
+}
+
+body.dark-mode h1,
+body.dark-mode h5 {
+    color: #f8f9fa;
+}
+
+body.dark-mode .form-check-label {
+    color: #ced4da;
+}
+
+body.dark-mode .search-input,
+body.dark-mode .filter-btn {
+    background-color: #495057;
+    border-color: #6c757d;
+    color: #f8f9fa;
+}
+
+body.dark-mode .filter-btn:hover {
+    background-color: #5a6268;
+}
+
+body.dark-mode .export-btn {
+    background-color: #495057;
+    border-color: #6c757d;
+    color: #f8f9fa;
+}
+
+body.dark-mode .table {
+    color: #f8f9fa;
+}
+
+body.dark-mode .keywords-table thead th {
+    background-color: #343a40;
+    color: #f8f9fa;
+    border-color: #495057;
+}
+
+body.dark-mode .keywords-table tbody td {
+    border-color: #495057;
+}
+
+body.dark-mode .table-hover tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.075);
+}
+
+body.dark-mode .pagination .page-link {
+    background-color: #343a40;
+    border-color: #495057;
+    color: #f8f9fa;
+}
+
+body.dark-mode .attachment-count {
+    background-color: #495057;
+    color: #ced4da;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 767.98px) {
+    .search-filters .row > div {
+        margin-bottom: 1rem;
+    }
+    
+    .col-lg-4.text-end {
+        text-align: start !important;
+    }
+    
+    .add-keyword-btn, .export-btn {
+        width: 100%;
+        margin-bottom: 0.5rem;
+        margin-left: 0 !important;
+    }
+}

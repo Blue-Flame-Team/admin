@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة تحكم المستخدمين</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+        }
+        
+        body {
+            background-color: #F5F7FA;
+            color: #333;
+            direction: rtl;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+        
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+        }
+        
+        .user-icon {
+            width: 36px;
+            height: 36px;
+            background-color: #4B6BFB;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin-left: 10px;
+        }
+        
+        .date-display {
+            display: flex;
+            align-items: center;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .date-display i {
+            margin-left: 5px;
+            color: #4B6BFB;
+        }
+        
+        .dashboard-title {
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .grid-icon {
+            display: flex;
+            align-items: center;
+            color: #4B6BFB;
+            font-size: 20px;
+        }
+        
+        /* Filter Section */
+        .filter-section {
+            padding: 20px;
+        }
+        
+        .filter-header {
+            margin-bottom: 15px;
+            color: #666;
+        }
+        
+        .filter-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #E0E0E0;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        
+        .date-input {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #E0E0E0;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        
+        select.form-control {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23888' d='M6 8.825L1.763 4.5 6 0.175 10.237 4.5z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: left 12px center;
+            padding-left: 30px;
+        }
+        
+        /* Checkbox styles */
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            margin-left: 20px;
+        }
+        
+        .checkbox-item input[type="checkbox"] {
+            margin-left: 5px;
+            width: 16px;
+            height: 16px;
+            accent-color: #4B6BFB;
+        }
+        
+        /* Button styles */
+        .action-buttons {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+        }
+        
+        .btn {
+            padding: 8px 16px;
+            border-radius: 6px;
+            border: none;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+        }
+        
+        .btn i {
+            margin-left: 5px;
+        }
+        
+        .btn-primary {
+            background-color: #4B6BFB;
+            color: white;
+        }
+        
+        .btn-secondary {
+            background-color: #F5F5F5;
+            color: #333;
+        }
+        
+        /* User table */
+        .users-table-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .users-table-title {
+            font-size: 16px;
+            font-weight: 600;
+        }
+        
+        .search-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .search-input {
+            padding: 8px 12px;
+            border: 1px solid #E0E0E0;
+            border-radius: 6px;
+            font-size: 14px;
+            margin-left: 10px;
+        }
+        
+        .add-user-btn {
+            width: 32px;
+            height: 32px;
+            background-color: #4B6BFB;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        
+        /* Table styles */
+        .users-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        
+        .users-table th {
+            text-align: right;
+            padding: 12px 15px;
+            font-weight: 500;
+            font-size: 14px;
+            color: #555;
+            border-bottom: 1px solid #eee;
+            white-space: nowrap;
+        }
+        
+        .users-table th.sortable {
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .users-table th.sortable::after {
+            content: '⌄';
+            font-size: 14px;
+            color: #999;
+            margin-right: 5px;
+        }
+        
+        .users-table td {
+            padding: 12px 15px;
+            font-size: 14px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .status-indicator {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            text-align: center;
+        }
+        
+        .status-active {
+            background-color: #E8F5E9;
+            color: #4CAF50;
+        }
+        
+        .status-pending {
+            background-color: #FFF8E1;
+            color: #FFC107;
+        }
+        
+        .status-inactive {
+            background-color: #FFEBEE;
+            color: #F44336;
+        }
+        
+        .icon-buttons {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .icon-btn {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: #4B6BFB;
+            font-size: 14px;
+        }
+        
+        /* Pagination */
+        .pagination-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            font-size: 14px;
+        }
+        
+        .pagination {
+            display: flex;
+            align-items: center;
+        }
+        
+        .page-link {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 3px;
+            cursor: pointer;
+            color: #666;
+            text-decoration: none;
+        }
+        
+        .page-link.active {
+            background-color: #4B6BFB;
+            color: white;
+        }
+        
+        .page-dots {
+            margin: 0 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <div class="header">
+            <div class="user-info">
+                <div class="user-icon">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="date-display">
+                    <i class="far fa-calendar-alt"></i>
+                    20 أبريل 2025
+                </div>
+            </div>
+            <div class="dashboard-title">لوحة تحكم المستخدمين</div>
+            <div class="grid-icon">
+                <i class="fas fa-th"></i>
+            </div>
+        </div>
+
+        <!-- Filter Section -->
+        <div class="filter-section">
+            <div class="filter-header">
+                <h2>تصفية المستخدمين</h2>
+            </div>
+
+            <div class="filter-grid">
+                <!-- Row 1 -->
+                <div class="form-group">
+                    <label class="form-label">رقم المستخدم</label>
+                    <input type="text" class="form-control" placeholder="أدخل رقم المستخدم">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">الاسم</label>
+                    <input type="text" class="form-control" placeholder="أدخل اسم المستخدم">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">البريد الإلكتروني</label>
+                    <input type="text" class="form-control" placeholder="أدخل البريد الإلكتروني">
+                </div>
+                
+                <!-- Row 2 -->
+                <div class="form-group">
+                    <label class="form-label">رقم الهاتف</label>
+                    <input type="text" class="form-control" placeholder="أدخل رقم الهاتف">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">المدينة</label>
+                    <select class="form-control">
+                        <option>اختر المدينة</option>
+                        <option value="riyadh">الرياض</option>
+                        <option value="jeddah">جدة</option>
+                        <option value="dammam">الدمام</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">الدرجة العلمية</label>
+                    <select class="form-control">
+                        <option>اختر الدرجة العلمية</option>
+                        <option value="bachelor">بكالوريوس</option>
+                        <option value="master">ماجستير</option>
+                        <option value="phd">دكتوراه</option>
+                    </select>
+                </div>
+                
+                <!-- Row 3 -->
+                <div class="form-group">
+                    <label class="form-label">تاريخ التسجيل</label>
+                    <input type="text" class="date-input" placeholder="mm/dd/yyyy">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">تاريخ بداية الاشتراك</label>
+                    <input type="text" class="date-input" placeholder="mm/dd/yyyy">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">تاريخ نهاية الاشتراك</label>
+                    <input type="text" class="date-input" placeholder="mm/dd/yyyy">
+                </div>
+                
+                <!-- Row 4 -->
+                <div class="form-group">
+                    <label class="form-label">الجهة</label>
+                    <input type="text" class="form-control" placeholder="أدخل الجهة">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">الوظيفة</label>
+                    <input type="text" class="form-control" placeholder="أدخل المسمى الوظيفي">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">عدد مرات الدخول</label>
+                    <input type="text" class="form-control" placeholder="أدخل عدد مرات الدخول">
+                </div>
+                
+                <!-- Row 5 -->
+                <div class="form-group">
+                    <label class="form-label">عدد مرات الطباعة</label>
+                    <input type="text" class="form-control" placeholder="أدخل عدد مرات الطباعة">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">الحالة</label>
+                    <select class="form-control">
+                        <option>اختر الحالة</option>
+                        <option value="active">نشط</option>
+                        <option value="pending">معلق</option>
+                        <option value="blocked">غير نشط</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">طريقة الدفع</label>
+                    <select class="form-control">
+                        <option>اختر طريقة الدفع</option>
+                        <option value="credit">بطاقة ائتمان</option>
+                        <option value="bank">تحويل بنكي</option>
+                        <option value="cash">نقدي</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Checkboxes -->
+            <div class="checkbox-container">
+                <div class="checkbox-item">
+                    <input type="checkbox" id="active-only">
+                    <label for="active-only">المستخدمين النشطين فقط</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="include-all">
+                    <label for="include-all">مطابقة كل العناصر</label>
+                </div>
+            </div>
+            
+            <!-- Buttons -->
+            <div class="action-buttons">
+                <button class="btn btn-secondary">
+                    <i class="fas fa-redo"></i>
+                    إعادة تعيين
+                </button>
+                <button class="btn btn-primary">
+                    <i class="fas fa-search"></i>
+                    بحث
+                </button>
+            </div>
+        </div>
+
+        <!-- Users Table Section -->
+        <div class="users-section">
+            <div class="users-header">
+                <h2 class="users-title">قائمة المستخدمين</h2>
+                <div class="action-buttons">
+                    <button class="action-btn download">
+                        <i class="fas fa-download"></i>
+                    </button>
+                    <button class="action-btn blue">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                    <div class="search-box">
+                        <input type="text" class="search-input" placeholder="بحث سريع...">
+                        <button class="search-btn">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <table class="users-table">
+                <thead>
+                    <tr>
+                        <th>رقم المستخدم</th>
+                        <th>الاسم</th>
+                        <th>البريد الإلكتروني</th>
+                        <th>الجهة</th>
+                        <th>الحالة</th>
+                        <th>الإجراءات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>#10045</td>
+                        <td>عبدالله محمد العتيبي</td>
+                        <td>abdullah@example.com</td>
+                        <td>جامعة الملك سعود</td>
+                        <td><span class="status-indicator status-active">نشط</span></td>
+                        <td>
+                            <div class="icon-buttons">
+                                <a class="icon-btn"><i class="fas fa-envelope"></i></a>
+                                <a class="icon-btn"><i class="fas fa-trash"></i></a>
+                                <a class="icon-btn"><i class="fas fa-edit"></i></a>
+                                <a class="icon-btn"><i class="fas fa-eye"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>#10046</td>
+                        <td>سارة أحمد الغامدي</td>
+                        <td>sarah@example.com</td>
+                        <td>مستشفى الملك فهد</td>
+                        <td><span class="status-indicator status-active">نشط</span></td>
+                        <td>
+                            <div class="icon-buttons">
+                                <a class="icon-btn"><i class="fas fa-envelope"></i></a>
+                                <a class="icon-btn"><i class="fas fa-trash"></i></a>
+                                <a class="icon-btn"><i class="fas fa-edit"></i></a>
+                                <a class="icon-btn"><i class="fas fa-eye"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>#10047</td>
+                        <td>محمد خالد القحطاني</td>
+                        <td>mohammed@example.com</td>
+                        <td>شركة أرامكو</td>
+                        <td><span class="status-indicator status-inactive">غير نشط</span></td>
+                        <td>
+                            <div class="icon-buttons">
+                                <a class="icon-btn"><i class="fas fa-envelope"></i></a>
+                                <a class="icon-btn"><i class="fas fa-trash"></i></a>
+                                <a class="icon-btn"><i class="fas fa-edit"></i></a>
+                                <a class="icon-btn"><i class="fas fa-eye"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>#10048</td>
+                        <td>نورة سعد العتيبي</td>
+                        <td>norah@example.com</td>
+                        <td>وزارة التعليم</td>
+                        <td><span class="status-indicator status-pending">معلق</span></td>
+                        <td>
+                            <div class="icon-buttons">
+                                <a class="icon-btn"><i class="fas fa-envelope"></i></a>
+                                <a class="icon-btn"><i class="fas fa-trash"></i></a>
+                                <a class="icon-btn"><i class="fas fa-edit"></i></a>
+                                <a class="icon-btn"><i class="fas fa-eye"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>#10049</td>
+                        <td>فهد عبدالرحمن العتيبي</td>
+                        <td>fahad@example.com</td>
+                        <td>البنك الأهلي</td>
+                        <td><span class="status-indicator status-active">نشط</span></td>
+                        <td>
+                            <div class="icon-buttons">
+                                <a class="icon-btn"><i class="fas fa-envelope"></i></a>
+                                <a class="icon-btn"><i class="fas fa-trash"></i></a>
+                                <a class="icon-btn"><i class="fas fa-edit"></i></a>
+                                <a class="icon-btn"><i class="fas fa-eye"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Pagination -->
+            <div class="pagination-container">
+                <div>
+                    عرض 1 إلى 5 من 45 سجل
+                </div>
+                <div class="pagination">
+                    <a href="#" class="page-link">
+                        <i class="fas fa-chevron-right"></i>
+                    </a>
+                    <a href="#" class="page-link">9</a>
+                    <span class="page-dots">...</span>
+                    <a href="#" class="page-link">3</a>
+                    <a href="#" class="page-link">2</a>
+                    <a href="#" class="page-link active">1</a>
+                    <a href="#" class="page-link">
+                        <i class="fas fa-chevron-left"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="../js/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Toggle filter section
+            $('.filter-toggle').on('click', function() {
+                $(this).toggleClass('collapsed');
+                $('.filter-form').slideToggle(300);
+            });
+            
+            // Search functionality
+            $('.search-input').on('keyup', function() {
+                const searchValue = $(this).val().toLowerCase();
+                $('.users-table tbody tr').filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(searchValue) > -1);
+                });
+            });
+            
+            // Add new user
+            $('.action-btn.blue').on('click', function() {
+                alert('سيتم فتح نموذج إضافة مستخدم جديد');
+                // Here you would navigate to an add user form or show a modal
+            });
+            
+            // View user
+            $('.icon-btn.view').on('click', function() {
+                const row = $(this).closest('tr');
+                const name = row.find('td:nth-child(3)').text();
+                alert(`سيتم عرض بيانات المستخدم: ${name}`);
+                // Here you would navigate to a user details page or show a modal
+            });
+            
+            // Edit user
+            $('.icon-btn.edit').on('click', function() {
+                const row = $(this).closest('tr');
+                const name = row.find('td:nth-child(3)').text();
+                alert(`سيتم فتح نموذج تعديل بيانات المستخدم: ${name}`);
+                // Here you would navigate to an edit user form or show a modal
+            });
+            
+            // Delete user
+            $('.icon-btn.delete').on('click', function() {
+                const row = $(this).closest('tr');
+                const name = row.find('td:nth-child(3)').text();
+                
+                if (confirm(`هل أنت متأكد من رغبتك في حذف المستخدم: ${name}؟`)) {
+                    // Delete logic would go here
+                    alert(`تم حذف المستخدم: ${name}`);
+                    row.fadeOut(300, function() {
+                        $(this).remove();
+                    });
+                }
+            });
+            
+            // Pagination
+            $('.page-link').not('.active').on('click', function() {
+                $('.page-link').removeClass('active');
+                $(this).addClass('active');
+                // Here you would fetch the appropriate page of users
+            });
+            
+            // Reset filter form
+            $('.btn-secondary').on('click', function() {
+                $('.filter-form')[0].reset();
+            });
+            
+            // Check all users in table
+            $('.users-table thead .custom-checkbox').on('change', function() {
+                const isChecked = $(this).prop('checked');
+                $('.users-table tbody .custom-checkbox').prop('checked', isChecked);
+            });
+        });
+    </script>
+</body>
+</html>

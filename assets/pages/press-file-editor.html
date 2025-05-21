@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الملف الصحفي / صفحة إضافة وتعديل بيانات ملف صحفي</title>
+    <link rel="stylesheet" href="../css/press-file-editor/press-file-editor.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="../js/press-file-editor.js" defer></script>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Breadcrumb Navigation -->
+        <div class="breadcrumb">
+            <a href="#">الرئيسية</a>
+            <span>/</span>
+            <a href="#">ملف صحفي</a>
+        </div>
+
+        <!-- Content Container -->
+        <div class="content-container">
+            <div class="header-row">
+                <div class="year-display">2025</div>
+                <div class="page-title-container">
+                    <h1 class="page-title">ترتيب الجدول</h1>
+                    <div class="status-badge">مجاني</div>
+                </div>
+            </div>
+
+            <!-- Form Container -->
+            <div class="form-container">
+                <form id="pressFileForm">
+                    <!-- News Title -->
+                    <div class="form-group">
+                        <label for="newsTitle" class="required-label">عنوان الخبر</label>
+                        <input type="text" id="newsTitle" class="form-control" placeholder="">
+                    </div>
+
+                    <!-- Image Caption -->
+                    <div class="form-group">
+                        <label for="imageCaption">تفسير الصورة</label>
+                        <div class="upload-container">
+                            <input type="text" id="imageCaption" class="form-control" placeholder="">
+                            <button type="button" class="upload-btn">
+                                <i class="far fa-image"></i>
+                                <span>اختر ملفًا أو اسحب هنا</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Publication Details -->
+                    <div class="form-group">
+                        <label for="publicationDetails">تفاصيل النشر</label>
+                        <textarea id="publicationDetails" class="form-control textarea" rows="4"></textarea>
+                    </div>
+
+                    <!-- Related News IDs -->
+                    <div class="form-group">
+                        <label for="relatedNewsIds">أرقام الأخبار المرتبطة</label>
+                        <input type="text" id="relatedNewsIds" class="form-control" placeholder="أدخل الأرقام مفصولة بفواصل">
+                    </div>
+
+                    <!-- News Classification -->
+                    <div class="form-group">
+                        <label for="newsClassification" class="required-label">تصنيف الأخبار</label>
+                        <div class="select-container">
+                            <select id="newsClassification" class="form-select">
+                                <option value="" disabled selected>اختر تصنيفًا</option>
+                                <option value="politics">سياسة</option>
+                                <option value="economics">اقتصاد</option>
+                                <option value="sports">رياضة</option>
+                                <option value="technology">تكنولوجيا</option>
+                                <option value="health">صحة</option>
+                            </select>
+                            <span class="select-arrow"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                    </div>
+
+                    <!-- News Source -->
+                    <div class="form-group">
+                        <label for="newsSource" class="required-label">مصدر الخبر</label>
+                        <div class="select-container">
+                            <select id="newsSource" class="form-select">
+                                <option value="" disabled selected>اختر مصدرًا</option>
+                                <option value="source1">وكالة الأنباء السعودية</option>
+                                <option value="source2">رويترز</option>
+                                <option value="source3">الجزيرة</option>
+                                <option value="source4">CNN عربية</option>
+                                <option value="source5">العربية</option>
+                            </select>
+                            <span class="select-arrow"><i class="fas fa-chevron-down"></i></span>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="form-actions">
+                        <button type="submit" class="btn-add">
+                            <i class="fas fa-plus"></i>
+                            <span>إضافة</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

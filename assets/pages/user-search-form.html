@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحة إدارة المستخدمينة</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/mobile-additions.css">
+    <link rel="stylesheet" href="../css/size-fixes.css">
+    <link rel="stylesheet" href="../css/users/user-search-form.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="search-card">
+            <h1 class="page-title">بحث متقدم عن المستخدم</h1>
+            
+            <!-- Basic Information Section -->
+            <div class="form-section">
+                <div class="section-header" data-toggle="collapse" data-target="#basic-info">
+                    <h2 class="section-title">معلومات المستخدم</h2>
+                    <span class="toggle-icon">
+                        <i class="fas fa-chevron-up"></i>
+                    </span>
+                </div>
+                
+                <div id="basic-info" class="section-content">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">رقم المستخدم</label>
+                            <input type="text" class="form-control" placeholder="أدخل رقم المستخدم">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">كود المستخدم</label>
+                            <input type="text" class="form-control" placeholder="أدخل كود المستخدم">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">الهوية</label>
+                            <div class="icon-input">
+                                <input type="text" class="form-control" placeholder="حدد الهوية / اسم المستخدم">
+                                <span class="icon"><i class="fas fa-search"></i></span>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">نوع الهوية</label>
+                            <div class="icon-input">
+                                <input type="text" class="form-control" placeholder="اختر نوع الهوية">
+                                <span class="icon"><i class="fas fa-sort-down"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">الاسم الكامل</label>
+                            <input type="text" class="form-control" placeholder="أدخل الاسم الكامل">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Contact Information Section -->
+            <div class="form-section">
+                <div class="section-header" data-toggle="collapse" data-target="#contact-info">
+                    <h2 class="section-title">معلومات الاتصال</h2>
+                    <span class="toggle-icon">
+                        <i class="fas fa-chevron-up"></i>
+                    </span>
+                </div>
+                
+                <div id="contact-info" class="section-content">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">بريد الإلكتروني</label>
+                            <input type="email" class="form-control" placeholder="أدخل البريد الإلكتروني">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">الجوال</label>
+                            <div class="form-control">
+                                <input type="text" class="form-control" placeholder="أدخل رقم الجوال">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">الهاتف</label>
+                            <input type="text" class="form-control" placeholder="أدخل رقم الهاتف">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">عنوان الويب</label>
+                            <div class="form-row">
+                                <input type="text" class="form-control" placeholder="أدخل عنوان الويب">
+                                <div class="icon-input" style="width: 180px;">
+                                    <input type="text" class="form-control" placeholder="https://www.example.com">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Subscription Information Section -->
+            <div class="form-section">
+                <div class="section-header" data-toggle="collapse" data-target="#subscription-info">
+                    <h2 class="section-title">الاشتراك / الخدمة</h2>
+                    <span class="toggle-icon">
+                        <i class="fas fa-chevron-up"></i>
+                    </span>
+                </div>
+                
+                <div id="subscription-info" class="section-content">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">درجة الخدمة / الاشتراك</label>
+                            <div class="radio-group">
+                                <div class="radio-item">
+                                    <input type="radio" id="subscription-active" name="subscription-status" checked>
+                                    <label for="subscription-active">مفعل</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" id="subscription-inactive" name="subscription-status">
+                                    <label for="subscription-inactive">غير مفعل</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">الحساب الرئيسي</label>
+                            <input type="text" class="form-control" placeholder="أدخل الحساب الرئيسي">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">نوع الخدمة</label>
+                            <input type="text" class="form-control" placeholder="أدخل نوع الخدمة">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">تاريخ بداية الاشتراك</label>
+                            <div class="date-range">
+                                <span class="range-separator">من</span>
+                                <input type="text" class="date-input" placeholder="mm/dd/yyyy">
+                                <span class="range-separator">إلى</span>
+                                <input type="text" class="date-input" placeholder="mm/dd/yyyy">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">اسم المدرب</label>
+                            <input type="text" class="form-control" placeholder="أدخل اسم المدرب">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Buttons -->
+            <div class="btn-row">
+                <button type="submit" class="btn btn-primary">بحث</button>
+                <button type="button" class="btn btn-secondary">إعادة تعيين</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="../js/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Toggle sections
+            $('.section-header').on('click', function() {
+                const icon = $(this).find('.toggle-icon i');
+                icon.toggleClass('fa-chevron-up fa-chevron-down');
+                
+                const targetId = $(this).data('target');
+                $(targetId).slideToggle();
+            });
+            
+            // Reset form
+            $('.btn-secondary').on('click', function() {
+                $('input').val('');
+                $('input[type="radio"]').prop('checked', false);
+                $('#subscription-active').prop('checked', true);
+            });
+            
+            // Form submission
+            $('.btn-primary').on('click', function(e) {
+                e.preventDefault();
+                
+                // Collect form data
+                const formData = {
+                    userId: $('input').eq(0).val(),
+                    userCode: $('input').eq(1).val(),
+                    identity: $('input').eq(2).val(),
+                    identityType: $('input').eq(3).val(),
+                    fullName: $('input').eq(4).val(),
+                    email: $('input').eq(5).val(),
+                    mobile: $('input').eq(6).val(),
+                    phone: $('input').eq(7).val(),
+                    webAddress: $('input').eq(8).val() + $('input').eq(9).val(),
+                    subscriptionStatus: $('#subscription-active').is(':checked') ? 'active' : 'inactive',
+                    mainAccount: $('input').eq(10).val(),
+                    serviceType: $('input').eq(11).val(),
+                    subscriptionDateFrom: $('input').eq(12).val(),
+                    subscriptionDateTo: $('input').eq(13).val(),
+                    trainerName: $('input').eq(14).val()
+                };
+                
+                console.log('Search criteria:', formData);
+                
+                // Here you would typically send this to a server
+                alert('جاري البحث...');
+                
+                // Redirect to search results page
+                // window.location.href = 'user-search-results.html';
+            });
+        });
+    </script>
+</body>
+</html>

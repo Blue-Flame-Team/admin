@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحة الاشتراك في الخدمات / تجديد اشتراك الخدمات</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/mobile-additions.css">
+    <link rel="stylesheet" href="../css/size-fixes.css">
+    <link rel="stylesheet" href="../css/subscription-renewal/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="renewal-container">
+        <div class="renewal-card">
+            <h1 class="renewal-title">تجديد الاشتراك</h1>
+            
+            <form id="renewalForm">
+                <div class="form-group">
+                    <div class="form-label">
+                        <span class="label-text">اسم المستخدم</span>
+                    </div>
+                    <div class="user-highlight">عيسى</div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="form-label">
+                        <span class="label-text">الاشتراك في الخدمة</span>
+                    </div>
+                    <div class="form-checkbox">
+                        <input type="checkbox" id="subscribeService" checked>
+                        <label for="subscribeService"></label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="form-label">
+                        <span class="label-text">مدة الاشتراك</span>
+                        <span class="info-icon"><i class="fas fa-info-circle"></i></span>
+                    </div>
+                    <select class="form-control form-select">
+                        <option selected>سنة</option>
+                        <option>شهر</option>
+                        <option>ستة أشهر</option>
+                        <option>ثلاثة أشهر</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <div class="form-label">
+                        <span class="label-text">القيمة المطلوبة</span>
+                        <span class="info-icon"><i class="fas fa-info-circle"></i></span>
+                    </div>
+                    <div class="currency-input">
+                        <input type="text" class="form-control" value="1200">
+                        <span class="currency-symbol">ريال</span>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="form-label">
+                        <span class="label-text">أسباب الرفض</span>
+                    </div>
+                    <textarea class="form-control form-textarea" placeholder="أدخل السبب هنا"></textarea>
+                </div>
+                
+                <div class="action-buttons">
+                    <button type="button" class="btn btn-primary">موافق</button>
+                    <button type="button" class="btn btn-secondary">رفض</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script src="../js/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Form validation
+            $('#renewalForm').on('submit', function(e) {
+                e.preventDefault();
+                
+                // Basic validation example
+                let isValid = true;
+                
+                if ($('#subscribeService').is(':checked')) {
+                    // Process form
+                    console.log('Form submitted successfully');
+                    // Redirect to success page or show success message
+                } else {
+                    isValid = false;
+                    // Show error
+                }
+                
+                return isValid;
+            });
+            
+            // Info tooltip
+            $('.info-icon').on('click', function() {
+                // Show tooltip or info modal
+                alert('معلومات إضافية حول هذا الحقل');
+            });
+            
+            // Action buttons
+            $('.btn-primary').on('click', function() {
+                // Handle approval logic
+                console.log('Subscription approved');
+                window.location.href = 'subscription-services.html';
+            });
+            
+            $('.btn-secondary').on('click', function() {
+                // Handle rejection logic
+                const reason = $('.form-textarea').val();
+                if (reason.trim() === '') {
+                    alert('يرجى إدخال سبب الرفض');
+                    $('.form-textarea').addClass('is-invalid');
+                    return;
+                }
+                
+                console.log('Subscription rejected. Reason:', reason);
+                window.location.href = 'subscription-services.html';
+            });
+        });
+    </script>
+</body>
+</html>

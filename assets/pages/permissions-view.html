@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدارة الصلاحيات</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+        }
+        
+        body {
+            background-color: #F5F7FA;
+            color: #333;
+            direction: rtl;
+            padding: 20px;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 1px 8px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .add-btn {
+            background-color: #0D6EFD;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 8px 15px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+        
+        .add-btn i {
+            margin-left: 5px;
+        }
+        
+        /* Table styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th {
+            background-color: #212529;
+            color: white;
+            text-align: right;
+            padding: 12px 15px;
+            font-weight: 500;
+            font-size: 14px;
+        }
+        
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #f2f2f2;
+            font-size: 14px;
+        }
+        
+        tbody tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        .btn-edit {
+            color: #0D6EFD;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .btn-delete {
+            color: #DC3545;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        /* Pagination */
+        .pagination-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+        }
+        
+        .pagination {
+            display: flex;
+            align-items: center;
+        }
+        
+        .page-link {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            margin: 0 3px;
+            color: #666;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        
+        .page-link.active {
+            background-color: #0D6EFD;
+            color: white;
+        }
+        
+        .page-text {
+            color: #666;
+            font-size: 14px;
+            margin: 0 5px;
+        }
+        
+        .records-info {
+            color: #666;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <!-- Card Header with Title and Add Button -->
+        <div class="card-header">
+            <h2 class="card-title">إدارة الصلاحيات</h2>
+            <button class="add-btn">
+                <i class="fas fa-plus"></i>
+                إضافة صلاحية
+            </button>
+        </div>
+        
+        <!-- Permissions Table -->
+        <table>
+            <thead>
+                <tr>
+                    <th>الرقم التسلسلي</th>
+                    <th>الاسم</th>
+                    <th>الاسم بالعربي</th>
+                    <th>تعديل</th>
+                    <th>حذف</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>LOGIN1</td>
+                    <td>تسجيل الدخول</td>
+                    <td>
+                        <button class="btn-edit">
+                            <i class="fas fa-pen"></i>
+                        </button>
+                    </td>
+                    <td>
+                        <button class="btn-delete">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>VIEW_DASHBOARD</td>
+                    <td>عرض لوحة التحكم</td>
+                    <td>
+                        <button class="btn-edit">
+                            <i class="fas fa-pen"></i>
+                        </button>
+                    </td>
+                    <td>
+                        <button class="btn-delete">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>MANAGE_USERS</td>
+                    <td>إدارة المستخدمين</td>
+                    <td>
+                        <button class="btn-edit">
+                            <i class="fas fa-pen"></i>
+                        </button>
+                    </td>
+                    <td>
+                        <button class="btn-delete">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>EDIT_SETTINGS</td>
+                    <td>تعديل الإعدادات</td>
+                    <td>
+                        <button class="btn-edit">
+                            <i class="fas fa-pen"></i>
+                        </button>
+                    </td>
+                    <td>
+                        <button class="btn-delete">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>VIEW_REPORTS</td>
+                    <td>عرض التقارير</td>
+                    <td>
+                        <button class="btn-edit">
+                            <i class="fas fa-pen"></i>
+                        </button>
+                    </td>
+                    <td>
+                        <button class="btn-delete">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>EXPORT_DATA</td>
+                    <td>تصدير البيانات</td>
+                    <td>
+                        <button class="btn-edit">
+                            <i class="fas fa-pen"></i>
+                        </button>
+                    </td>
+                    <td>
+                        <button class="btn-delete">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>MANAGE_ROLES</td>
+                    <td>إدارة الأدوار</td>
+                    <td>
+                        <button class="btn-edit">
+                            <i class="fas fa-pen"></i>
+                        </button>
+                    </td>
+                    <td>
+                        <button class="btn-delete">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>SYSTEM_BACKUP</td>
+                    <td>نسخ احتياطي للنظام</td>
+                    <td>
+                        <button class="btn-edit">
+                            <i class="fas fa-pen"></i>
+                        </button>
+                    </td>
+                    <td>
+                        <button class="btn-delete">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>API_ACCESS</td>
+                    <td>الوصول إلى واجهة برمجة التطبيقات</td>
+                    <td>
+                        <button class="btn-edit">
+                            <i class="fas fa-pen"></i>
+                        </button>
+                    </td>
+                    <td>
+                        <button class="btn-delete">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>AUDIT_LOGS</td>
+                    <td>سجلات التدقيق</td>
+                    <td>
+                        <button class="btn-edit">
+                            <i class="fas fa-pen"></i>
+                        </button>
+                    </td>
+                    <td>
+                        <button class="btn-delete">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <!-- Pagination -->
+        <div class="pagination-container">
+            <div class="pagination">
+                <a href="#" class="page-link"><i class="fas fa-chevron-right"></i></a>
+                <a href="#" class="page-link">2</a>
+                <a href="#" class="page-link">3</a>
+                <a href="#" class="page-link active">1</a>
+                <a href="#" class="page-link"><i class="fas fa-chevron-left"></i></a>
+            </div>
+            <div class="records-info">
+                عرض: 10 عناصر
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Add permission button
+            $('.add-btn').on('click', function() {
+                alert('سيتم فتح نموذج إضافة صلاحية جديدة');
+            });
+            
+            // Edit button click handler
+            $('.btn-edit').on('click', function() {
+                const row = $(this).closest('tr');
+                const id = row.find('td:first').text();
+                const name = row.find('td:nth-child(2)').text();
+                
+                alert(`سيتم فتح نموذج تعديل الصلاحية: ${name}`);
+            });
+            
+            // Delete button click handler
+            $('.btn-delete').on('click', function() {
+                const row = $(this).closest('tr');
+                const id = row.find('td:first').text();
+                const name = row.find('td:nth-child(2)').text();
+                
+                if (confirm(`هل أنت متأكد من رغبتك في حذف الصلاحية: ${name}؟`)) {
+                    row.fadeOut(300, function() {
+                        $(this).remove();
+                    });
+                }
+            });
+            
+            // Pagination click handler
+            $('.page-link').on('click', function(e) {
+                e.preventDefault();
+                $('.page-link').removeClass('active');
+                $(this).addClass('active');
+            });
+        });
+    </script>
+</body>
+</html>

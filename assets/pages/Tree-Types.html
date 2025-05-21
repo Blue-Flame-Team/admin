@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدارة الفئات</title>
+    <link rel="stylesheet" href="../css/Tree-Types/Tree-Types.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="../js/tree-types.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Header with User Info -->
+        <header class="header-container">
+            <div class="user-section">
+                <span>Manal Taha</span>
+                <div class="user-icons">
+                    <div class="icon-item"><i class="fas fa-user"></i></div>
+                    <div class="icon-item"><i class="fas fa-cog"></i></div>
+                    <div class="icon-item"><i class="fas fa-bell"></i></div>
+                </div>
+            </div>
+            
+            <div class="brand-section">
+                <div class="brand-text">
+                    <h2>محامو المملكة</h2>
+                    <p>MOHAMEDON KSA</p>
+                    <small>Mohamedon@gmail.com</small>
+                </div>
+            </div>
+        </header>
+
+        <!-- Navigation Menu Bar -->
+        <nav class="nav-bar">
+            <ul class="nav-list">
+                <li class="nav-item"><a href="#">تفاصيل العناصر</a></li>
+                <li class="nav-item"><a href="#">العناصر</a></li>
+                <li class="nav-item"><a href="#">البحث</a></li>
+                <li class="nav-item"><a href="#">الوثائق المرتبطة</a></li>
+                <li class="nav-item"><a href="#">تسجيلات العناصر المرتبطة</a></li>
+                <li class="nav-item active"><a href="#">جدول البيانات</a></li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="content">
+            <div class="header-content">
+                <div class="title-section">
+                    <h1 class="page-title">إدارة الفئات</h1>
+                    <p class="page-subtitle">قائمة بجميع الفئات المتاحة في النظام</p>
+                </div>
+            </div>
+
+            <!-- Controls Section -->
+            <div class="controls">
+                <div class="left-controls">
+                    <button class="add-button" id="addCategoryBtn">
+                        <i class="fas fa-plus"></i>
+                        إضافة فئة جديدة
+                    </button>
+                    <div class="search-box">
+                        <input type="text" placeholder="بحث">
+                        <button><i class="fas fa-search"></i></button>
+                    </div>
+                </div>
+                <div class="right-controls">
+                    <div class="toggle-container">
+                        <span>عرض المحذوفة</span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="filters">
+                        <div class="filter-group">
+                            <span class="filter-label">الحالة</span>
+                            <select class="filter-select">
+                                <option>الكل</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <span class="filter-label">الفرز</span>
+                            <select class="filter-select">
+                                <option>الأحدث</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <span class="filter-label">فلتر</span>
+                            <select class="filter-select">
+                                <option>الكل</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Data Table -->
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th><input type="checkbox" class="checkbox-custom"></th>
+                        <th>الرقم التسلسلي</th>
+                        <th>الاسم</th>
+                        <th>الحالة</th>
+                        <th>تاريخ الإنشاء</th>
+                        <th>الإجراءات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="checkbox" class="checkbox-custom"></td>
+                        <td>#1001</td>
+                        <td>الأخبار والمقالات</td>
+                        <td><span class="status status-active">نشط</span></td>
+                        <td>2025</td>
+                        <td>
+                            <div class="actions">
+                                <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                                <button class="action-btn delete"><i class="fas fa-trash-alt"></i></button>
+                                <button class="action-btn"><i class="fas fa-ellipsis-v"></i></button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="checkbox-custom"></td>
+                        <td>#1002</td>
+                        <td>المنتجات والخدمات</td>
+                        <td><span class="status status-active">نشط</span></td>
+                        <td>2025</td>
+                        <td>
+                            <div class="actions">
+                                <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                                <button class="action-btn delete"><i class="fas fa-trash-alt"></i></button>
+                                <button class="action-btn"><i class="fas fa-ellipsis-v"></i></button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="checkbox-custom"></td>
+                        <td>#1003</td>
+                        <td>المعرض والوسائط</td>
+                        <td><span class="status status-suspended">معلق</span></td>
+                        <td>2025</td>
+                        <td>
+                            <div class="actions">
+                                <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                                <button class="action-btn delete"><i class="fas fa-trash-alt"></i></button>
+                                <button class="action-btn"><i class="fas fa-ellipsis-v"></i></button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="checkbox-custom"></td>
+                        <td>#1004</td>
+                        <td>الفعاليات والمناسبات</td>
+                        <td><span class="status status-active">نشط</span></td>
+                        <td>2025</td>
+                        <td>
+                            <div class="actions">
+                                <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                                <button class="action-btn delete"><i class="fas fa-trash-alt"></i></button>
+                                <button class="action-btn"><i class="fas fa-ellipsis-v"></i></button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" class="checkbox-custom"></td>
+                        <td>#1005</td>
+                        <td>المدونة والمنشورات</td>
+                        <td><span class="status status-inactive">غير نشط</span></td>
+                        <td>2025</td>
+                        <td>
+                            <div class="actions">
+                                <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                                <button class="action-btn delete"><i class="fas fa-trash-alt"></i></button>
+                                <button class="action-btn"><i class="fas fa-ellipsis-v"></i></button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Pagination -->
+            <div class="pagination">
+                <div class="page-controls">
+                    <button class="page-btn"><i class="fas fa-chevron-right"></i></button>
+                    <button class="page-btn">12</button>
+                    <button class="page-btn">...</button>
+                    <button class="page-btn">3</button>
+                    <button class="page-btn">2</button>
+                    <button class="page-btn active">1</button>
+                    <button class="page-btn"><i class="fas fa-chevron-left"></i></button>
+                </div>
+                <div class="page-info">
+                    عرض 1 إلى 5 من 12 نتيجة
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modal for Adding New Category -->
+    <div class="modal-overlay" id="newCategoryModal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <div class="icon-circle">
+                    <i class="fas fa-plus"></i>
+                </div>
+                <h2>إنشاء عنصر جديد</h2>
+            </div>
+            <div class="modal-divider"></div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="categoryName">الاسم</label>
+                    <div class="input-wrapper">
+                        <div class="input-icon">T</div>
+                        <input type="text" id="categoryName" placeholder="" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="categoryDescription">الملخص</label>
+                    <div class="input-wrapper textarea-wrapper">
+                        <div class="input-icon">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <textarea id="categoryDescription" class="form-control" rows="5"></textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="dropdown-field">
+                        <span>رتب العناصر المدرجة تحت هذه الشجرة ب</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="dropdown-field">
+                        <span>طريقة الترتيب</span>
+                        <i class="fas fa-sort"></i>
+                    </div>
+                </div>
+                <div class="form-group toggle-group">
+                    <span>غير ظاهر للمستخدمين</span>
+                    <label class="toggle-switch">
+                        <input type="checkbox">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-save">
+                    <i class="fas fa-save"></i>
+                    حفظ التغييرات
+                </button>
+                <button class="btn-cancel" id="closeModalBtn">إلغاء</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Modal functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const addButton = document.querySelector('.add-button');
+            const modal = document.getElementById('newCategoryModal');
+            const closeModalBtn = document.getElementById('closeModalBtn');
+            
+            // Open modal when add button is clicked
+            addButton.addEventListener('click', function() {
+                modal.classList.add('show');
+            });
+            
+            // Close modal when cancel button is clicked
+            closeModalBtn.addEventListener('click', function() {
+                modal.classList.remove('show');
+            });
+            
+            // Close modal when clicking outside modal content
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.classList.remove('show');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

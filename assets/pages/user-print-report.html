@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام تتبع الطباعة والنسخ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+        }
+        
+        body {
+            background-color: #f6f7fb;
+            color: #333;
+            direction: rtl;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 20px auto;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            overflow: hidden;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .header h1 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .header .date {
+            font-size: 14px;
+            color: #777;
+        }
+        
+        .filter-panel {
+            background-color: #f9f9f9;
+            padding: 15px 20px;
+            margin: 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .filter-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .filter-form {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            align-items: end;
+        }
+        
+        .form-group {
+            margin-bottom: 0;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 12px;
+            color: #333;
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #e6e6e6;
+            border-radius: 6px;
+            font-size: 13px;
+            background-color: white;
+        }
+        
+        .search-input {
+            position: relative;
+        }
+        
+        .search-input i {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+        }
+        
+        .btn-search {
+            background-color: #4F77FF;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 8px 15px;
+            font-size: 13px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 36px;
+        }
+        
+        .btn-search i {
+            margin-left: 6px;
+        }
+        
+        /* Tabs Styles */
+        .tab-container {
+            display: flex;
+            border-bottom: 1px solid #eee;
+            margin-top: 15px;
+        }
+        
+        .tab {
+            padding: 10px 20px;
+            font-size: 14px;
+            cursor: pointer;
+            position: relative;
+            color: #777;
+        }
+        
+        .tab.active {
+            color: #4F77FF;
+            font-weight: 500;
+        }
+        
+        .tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #4F77FF;
+        }
+        
+        /* Table Styles */
+        .table-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+        
+        .download-btn {
+            color: #777;
+            background: none;
+            border: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+            font-size: 13px;
+        }
+        
+        .table-container {
+            overflow-x: auto;
+            padding: 0 20px 20px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        
+        thead {
+            background-color: #2C394B;
+            color: white;
+        }
+        
+        th {
+            padding: 12px 15px;
+            text-align: right;
+            font-weight: 500;
+            font-size: 12px;
+        }
+        
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eee;
+            font-size: 13px;
+        }
+        
+        tbody tr:hover {
+            background-color: #f9f9f9;
+        }
+        
+        tr.total-row {
+            font-weight: bold;
+            background-color: #f5f5f5;
+        }
+        
+        tr.total-row td {
+            text-align: right;
+        }
+        
+        .record-id {
+            color: #4F77FF;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <div class="header">
+            <h1>نظام تتبع الطباعة والنسخ</h1>
+            <div class="date">الأحد</div>
+        </div>
+
+        <!-- Filter Section -->
+        <div class="filter-panel">
+            <h3 class="filter-title">تصفية التقارير</h3>
+            <div class="filter-form">
+                <div class="form-group">
+                    <label for="employee">اسم الموظف</label>
+                    <div class="search-input">
+                        <input type="text" id="employee" class="form-control" placeholder="ادخل اسم الموظف">
+                        <i class="fas fa-search"></i>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="fromDate">من تاريخ</label>
+                    <input type="text" id="fromDate" class="form-control" placeholder="04/01/2025">
+                </div>
+                
+                <div class="form-group">
+                    <label for="toDate">الى تاريخ</label>
+                    <input type="text" id="toDate" class="form-control" placeholder="04/20/2025">
+                </div>
+                
+                <button class="btn-search">
+                    <i class="fas fa-search"></i>
+                    بحث
+                </button>
+            </div>
+        </div>
+
+        <!-- Tab Navigation -->
+        <div class="tab-container">
+            <div class="tab">تقرير النسخ</div>
+            <div class="tab active">تقرير الطباعة</div>
+        </div>
+
+        <!-- Table Header with Download Button -->
+        <div class="table-header">
+            <button class="download-btn">
+                <i class="fas fa-download"></i>
+                تنزيل التقرير
+            </button>
+        </div>
+
+        <!-- Table Container -->
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>رقم السجل</th>
+                        <th>اسم الموظف</th>
+                        <th>تاريخ الطبعة</th>
+                        <th>اسم الوثيقة</th>
+                        <th>نوع الوثيقة</th>
+                        <th>عدد الصفحات المطبوعة</th>
+                        <th>وصف الوثيقة</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="record-id">P-1025</td>
+                        <td>محمد عبد الرحمن</td>
+                        <td>2/15</td>
+                        <td>مدير المشاريع</td>
+                        <td>تقرير</td>
+                        <td>12</td>
+                        <td>مراجعة المشروع</td>
+                    </tr>
+                    <tr>
+                        <td class="record-id">P-1026</td>
+                        <td>سارة الأحمد</td>
+                        <td>2/15</td>
+                        <td>محلل مالي</td>
+                        <td>جدول بيانات</td>
+                        <td>8</td>
+                        <td>مراجعة المشروع</td>
+                    </tr>
+                    <tr>
+                        <td class="record-id">P-1027</td>
+                        <td>أحمد المنصوري</td>
+                        <td>2/15</td>
+                        <td>مطور البرمجيات</td>
+                        <td>مستند</td>
+                        <td>10</td>
+                        <td>وثائق التصميم الفنية</td>
+                    </tr>
+                    <tr>
+                        <td class="record-id">P-1028</td>
+                        <td>نورة المعطاني</td>
+                        <td>2/15</td>
+                        <td>مديرة الموارد البشرية</td>
+                        <td>مخطط</td>
+                        <td>3</td>
+                        <td>مخطط المؤسسة الجديدة</td>
+                    </tr>
+                    <tr>
+                        <td class="record-id">P-1029</td>
+                        <td>عبد الله الشمسي</td>
+                        <td>2/25</td>
+                        <td>التسويق</td>
+                        <td>عرض تقديمي</td>
+                        <td>18</td>
+                        <td>عرض استراتيجية التسويق</td>
+                    </tr>
+                    <tr>
+                        <td class="record-id">P-1030</td>
+                        <td>ليان الشمري</td>
+                        <td>2/25</td>
+                        <td>مساعدة إدارية</td>
+                        <td>رسالة</td>
+                        <td>2</td>
+                        <td>خطاب رسمي للعملاء</td>
+                    </tr>
+                    <tr>
+                        <td class="record-id">P-1031</td>
+                        <td>فهد الدوسري</td>
+                        <td>3/10</td>
+                        <td>محاسبة</td>
+                        <td>فاتورة</td>
+                        <td>4</td>
+                        <td>فواتير شهر ابريل</td>
+                    </tr>
+                    <tr>
+                        <td class="record-id">P-1032</td>
+                        <td>فهمي الحربي</td>
+                        <td>3/10</td>
+                        <td>مؤسسة وطنية</td>
+                        <td>تصميم</td>
+                        <td>6</td>
+                        <td>تصاميم العلامة التجارية الجديدة</td>
+                    </tr>
+                    <tr class="total-row">
+                        <td colspan="5">الإجمالي</td>
+                        <td>78</td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Tab switching functionality
+            $('.tab').click(function() {
+                $('.tab').removeClass('active');
+                $(this).addClass('active');
+                // En una implementación real, alternaría entre informes de impresión y copia
+            });
+            
+            // Search button functionality
+            $('.btn-search').click(function() {
+                // Search implementation would go here
+                console.log('Search clicked');
+            });
+            
+            // Download report functionality
+            $('.download-btn').click(function() {
+                console.log('Downloading report');
+                // Download implementation would go here
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+/* Mailing List Subscription Form CSS */
+body {
+    background-color: #f8f9fa;
+}
+
+.subscription-card {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 15px;
+    border: none;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.06);
+}
+
+.card-body {
+    padding: 2.5rem;
+}
+
+h2 {
+    color: #333;
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.text-muted {
+    color: #6c757d !important;
+}
+
+.form-label {
+    color: #495057;
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.form-control {
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
+    border-color: #e0e0e0;
+    background-color: #fff;
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: #6c63ff;
+}
+
+.input-group-text {
+    color: #6c757d;
+    background-color: #fff;
+    border-color: #e0e0e0;
+    padding-right: 1rem;
+}
+
+.btn-subscribe {
+    background-color: #6c63ff;
+    border-color: #6c63ff;
+    color: white;
+    font-weight: 600;
+    padding: 0.75rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    transition: all 0.3s;
+}
+
+.btn-subscribe:hover, .btn-subscribe:focus {
+    background-color: #5a52d5;
+    border-color: #5a52d5;
+    color: white;
+    box-shadow: 0 4px 10px rgba(108, 99, 255, 0.3);
+}
+
+.privacy-note {
+    font-size: 0.8rem;
+    color: #9da3a8;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 576px) {
+    .subscription-card {
+        margin: 0 15px;
+    }
+    
+    .card-body {
+        padding: 1.5rem;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+    }
+}

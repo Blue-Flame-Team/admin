@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إضافة/تعديل صلاحية</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../../css/mobile-additions.css">
+    <link rel="stylesheet" href="../../css/size-fixes.css">
+    <link rel="stylesheet" href="../../css/unified-styles.css">
+    <link rel="stylesheet" href="../../css/design-enhancements.css">
+    <link rel="stylesheet" href="../css/permissions/permission-add-edit.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="page-container">
+                <!-- Breadcrumb -->
+                <div class="breadcrumb">
+                    <!-- سيتم إنشاؤه تلقائياً بواسطة template-loader.js -->
+                </div>
+                
+                <div class="permission-form-card card">
+                <h1 class="form-title">إضافة صلاحية جديدة</h1>
+                <p class="form-subtitle">قم بإدخال المعلومات المطلوبة لإضافة صلاحية جديدة للنظام</p>
+                
+                <form id="permission-form">
+                    <!-- Permission Name -->
+                    <div class="form-group">
+                        <label class="form-label required">اسم الصلاحية</label>
+                        <input type="text" class="form-control" placeholder="أدخل اسم الصلاحية" required>
+                    </div>
+                    
+                    <!-- Permission Description -->
+                    <div class="form-group">
+                        <label class="form-label">وصف الصلاحية</label>
+                        <textarea class="form-control" placeholder="أدخل وصفًا موجزًا للصلاحية"></textarea>
+                    </div>
+                    
+                    <!-- Permission Type -->
+                    <div class="form-group">
+                        <label class="form-label required">نوع الصلاحية</label>
+                        <select class="form-control" required>
+                            <option value="" selected disabled>اختر نوع الصلاحية</option>
+                            <option value="view">عرض</option>
+                            <option value="edit">تعديل</option>
+                            <option value="create">إنشاء</option>
+                            <option value="delete">حذف</option>
+                            <option value="full_access">وصول كامل</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Display Name -->
+                    <div class="form-group">
+                        <label class="form-label">اسم العرض</label>
+                        <input type="text" class="form-control" placeholder="أدخل اسم العرض">
+                    </div>
+                    
+                    <!-- Permission Process -->
+                    <div class="form-group">
+                        <label class="form-label required">عملية الصلاحية</label>
+                        <input type="text" class="form-control" placeholder="أدخل عملية الصلاحية" required>
+                    </div>
+                    
+                    <!-- Access Level -->
+                    <div class="form-group">
+                        <label class="form-label required">نطاق الوصول</label>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" id="all-users" name="access_level" value="all" checked>
+                                <label for="all-users">صلاحيات خاصة لكل المستخدمين</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="specific-users" name="access_level" value="specific">
+                                <label for="specific-users">متاح للمستخدمين الذين لديهم الحق في الدخول لهذه الصلاحية</label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn-submit">أضف</button>
+                </form>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="../js/jquery.min.js"></script>
+    <script src="../../js/template-loader.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Form submission
+            $('#permission-form').on('submit', function(e) {
+                e.preventDefault();
+                
+                // Validation
+                const requiredFields = $(this).find('[required]');
+                let isValid = true;
+                
+                requiredFields.each(function() {
+                    if ($(this).val() === '') {
+                        isValid = false;
+                        $(this).addClass('is-invalid');
+                    } else {
+                        $(this).removeClass('is-invalid');
+                    }
+                });
+                
+                if (!isValid) {
+                    alert('الرجاء ملء جميع الحقول المطلوبة');
+                    return;
+                }
+                
+                // Form data
+                const formData = {
+                    name: $(this).find('input').eq(0).val(),
+                    description: $(this).find('textarea').val(),
+                    type: $(this).find('select').val(),
+                    displayName: $(this).find('input').eq(1).val(),
+                    process: $(this).find('input').eq(2).val(),
+                    accessLevel: $('input[name="access_level"]:checked').val()
+                };
+                
+                console.log('Form Data:', formData);
+                
+                // Here you would typically send the data to a server
+                alert('تمت إضافة الصلاحية بنجاح');
+                
+                // Redirect back to permissions list
+                setTimeout(function() {
+                    window.location.href = 'permissions-view-new.html';
+                }, 1000);
+            });
+        });
+        
+        // If URL contains edit parameter, load data for editing
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.has('edit')) {
+            const permissionToEdit = urlParams.get('edit');
+            $('.form-title').text('تعديل الصلاحية');
+            $('.form-subtitle').text('تعديل معلومات الصلاحية الحالية');
+            $('.btn-submit').text('حفظ التغييرات');
+            
+            // Here you would typically fetch the permission data from a server
+            // For demo, we'll just pre-fill with sample data
+            $('input').eq(0).val(permissionToEdit);
+            $('textarea').val('وصف تجريبي للصلاحية المختارة');
+            $('select').val('edit');
+            $('input').eq(1).val('اسم عرض تجريبي');
+            $('input').eq(2).val('عملية تجريبية');
+        }
+    </script>
+    <script>
+        // Mark this page as active in the menu
+        document.addEventListener('DOMContentLoaded', function() {
+            // This will be called after template-loader.js has loaded the templates
+            setTimeout(function() {
+                // Mark active items in sidebar and navigation
+                const permissionsLinks = document.querySelectorAll('a[href*="permissions-add-edit-new.html"]');
+                permissionsLinks.forEach(link => {
+                    const parentLi = link.closest('li');
+                    if (parentLi) {
+                        parentLi.classList.add('active');
+                    }
+                    
+                    // If this is in a dropdown, open the parent dropdown
+                    const parentDropdown = link.closest('.menu-item-has-children');
+                    if (parentDropdown) {
+                        parentDropdown.classList.add('open');
+                        const subMenu = parentDropdown.querySelector('.sub-menu');
+                        if (subMenu) {
+                            subMenu.style.maxHeight = subMenu.scrollHeight + 'px';
+                        }
+                    }
+                });
+                
+                // Handle permissions section active state
+                document.querySelectorAll('.nav-permissions').forEach(item => {
+                    item.classList.add('active');
+                });
+            }, 500); // Small delay to ensure templates are loaded
+        });
+    </script>
+</body>
+</html>

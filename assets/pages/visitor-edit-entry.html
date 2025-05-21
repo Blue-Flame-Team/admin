@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدارة سجل الزوار</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+        }
+        
+        body {
+            background-color: #f0f2f5;
+            color: #333;
+            direction: rtl;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 800px;
+            width: 100%;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            background-color: white;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        
+        .header h1 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            margin: 0;
+        }
+        
+        .user-icon {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background-color: #f6f6f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #666;
+        }
+        
+        .content-card {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .message-info {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .info-item {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .info-label {
+            color: #888;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+        
+        .info-value {
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .info-value.email {
+            color: #5B76E8;
+            text-decoration: none;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .status-pending {
+            background-color: #FFF8E1;
+            color: #F5A623;
+        }
+        
+        .status-approved {
+            background-color: #E8F5E9;
+            color: #4CAF50;
+        }
+        
+        .message-text {
+            color: #333;
+            line-height: 1.6;
+            margin: 15px 0 30px;
+            text-align: justify;
+        }
+        
+        .reply-section {
+            margin-top: 20px;
+        }
+        
+        .reply-textarea {
+            width: 100%;
+            height: 120px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 15px;
+            resize: none;
+            margin-bottom: 15px;
+            font-family: 'Tajawal', sans-serif;
+            font-size: 14px;
+        }
+        
+        .reply-textarea::placeholder {
+            color: #bbb;
+        }
+        
+        .action-control {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .visibility-control {
+            display: flex;
+            align-items: center;
+        }
+        
+        .visibility-label {
+            margin-left: 10px;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 40px;
+            height: 20px;
+        }
+        
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 34px;
+        }
+        
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 2px;
+            bottom: 2px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .slider {
+            background-color: #5B76E8;
+        }
+        
+        input:checked + .slider:before {
+            transform: translateX(20px);
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .btn {
+            padding: 8px 15px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+        
+        .btn-primary {
+            background-color: #5B46E8;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #4937c8;
+        }
+        
+        .btn-secondary {
+            background-color: #f5f5f5;
+            color: #333;
+        }
+        
+        .btn-secondary:hover {
+            background-color: #e8e8e8;
+        }
+        
+        .messages-table-section {
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+        
+        .section-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .messages-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .messages-table th {
+            text-align: right;
+            padding: 10px;
+            font-weight: 500;
+            color: #666;
+            font-size: 14px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .messages-table td {
+            padding: 10px;
+            font-size: 14px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .eye-btn {
+            color: #5B46E8;
+            cursor: pointer;
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="user-icon">
+                <i class="fas fa-user"></i>
+            </div>
+            <h1>إدارة سجل الزوار</h1>
+        </header>
+
+        <!-- Content Card -->
+        <div class="content-card">
+            <!-- User Information Grid -->
+            <div class="message-info">
+                <div class="info-item">
+                    <div class="info-label">الاسم</div>
+                    <div class="info-value">محمد عبد الرحمن</div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-label">البريد الإلكتروني</div>
+                    <a href="mailto:mohammed@example.com" class="info-value email">mohammed@example.com</a>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-label">تاريخ الإرسال</div>
+                    <div class="info-value">صباحاً</div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-label">الحالة</div>
+                    <div class="info-value">
+                        <span class="status-badge status-pending">بانتظار الرد</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Message Text -->
+            <div class="info-item">
+                <div class="info-label">الكلمة</div>
+                <div class="message-text">
+                    السلام عليكم ورحمة الله وبركاته.
+                    <br><br>
+                    أود أن أشكركم عن الخدمات الرائعة التي تقدمونها. لقد استفدت كثيرًا من موقعكم وأجد المحتوى مفيدًا للغاية. لدي بعض الاقتراحات التي قد تساعد في تحسين تجربة المستخدم:
+                    <br><br>
+                    إضافة المزيد من الفيديوهات التعليمية حول كيفية استخدام المنصة<br>
+                    توفير خيارات إضافية للدفع الإلكتروني
+                </div>
+            </div>
+            
+            <!-- Reply Section -->
+            <div class="reply-section">
+                <div class="info-label">رد من الإدارة</div>
+                <textarea class="reply-textarea" placeholder="اكتب ردك هنا..."></textarea>
+                
+                <!-- Action Controls -->
+                <div class="action-control">
+                    <!-- Visibility Toggle -->
+                    <div class="visibility-control">
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider"></span>
+                        </label>
+                        <span class="visibility-label">ظاهر للعامة</span>
+                    </div>
+                    
+                    <!-- Action Buttons -->
+                    <div class="action-buttons">
+                        <button class="btn btn-secondary">إلغاء</button>
+                        <button class="btn btn-primary">إرسال الرد</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Messages Table Section -->
+        <div class="messages-table-section">
+            <h2 class="section-title">رسائل أخرى في الانتظار</h2>
+            
+            <table class="messages-table">
+                <thead>
+                    <tr>
+                        <th>الاسم</th>
+                        <th>البريد الإلكتروني</th>
+                        <th>التاريخ</th>
+                        <th>الحالة</th>
+                        <th>الإجراءات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>أحمد محمود</td>
+                        <td>ahmed@example.com</td>
+                        <td>٢٠٢٥</td>
+                        <td>
+                            <span class="status-badge status-pending">بانتظار الرد</span>
+                        </td>
+                        <td>
+                            <div class="eye-btn">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>فاطمة علي</td>
+                        <td>fatima@example.com</td>
+                        <td>٢٠٢٥</td>
+                        <td>
+                            <span class="status-badge status-approved">تم الرد</span>
+                        </td>
+                        <td>
+                            <div class="eye-btn">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>عبد الله حسن</td>
+                        <td>abdullah@example.com</td>
+                        <td>٢٠٢٥</td>
+                        <td>
+                            <span class="status-badge status-pending">بانتظار الرد</span>
+                        </td>
+                        <td>
+                            <div class="eye-btn">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        </div>
+    </div>
+    
+    <script>
+        // View Message Function for eye buttons
+        const eyeButtons = document.querySelectorAll('.eye-btn');
+        eyeButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                window.location.href = 'visitor-edit-entry.html';
+            });
+        });
+        
+        // Toggle Visibility Function
+        const visibilityToggle = document.querySelector('.switch input');
+        if (visibilityToggle) {
+            visibilityToggle.addEventListener('change', function() {
+                if (this.checked) {
+                    console.log('الرسالة مرئية للعامة');
+                } else {
+                    console.log('الرسالة غير مرئية للعامة');
+                }
+            });
+        }
+        
+        // Send Reply Function
+        const sendReplyBtn = document.querySelector('.btn-primary');
+        const replyTextarea = document.querySelector('.reply-textarea');
+        
+        if (sendReplyBtn && replyTextarea) {
+            sendReplyBtn.addEventListener('click', function() {
+                const replyText = replyTextarea.value.trim();
+                if (replyText === '') {
+                    alert('الرجاء كتابة رد قبل الإرسال');
+                    return;
+                }
+                
+                alert('تم إرسال ردك بنجاح');
+                replyTextarea.value = '';
+                
+                setTimeout(function() {
+                    window.location.href = 'visitor-log.html';
+                }, 1000);
+            });
+        }
+        
+        // Cancel Reply Function
+        const cancelReplyBtn = document.querySelector('.btn-secondary');
+        if (cancelReplyBtn && replyTextarea) {
+            cancelReplyBtn.addEventListener('click', function() {
+                if (replyTextarea.value.trim() !== '') {
+                    if (confirm('هل أنت متأكد من إلغاء الرد؟')) {
+                        window.location.href = 'visitor-log.html';
+                    }
+                } else {
+                    window.location.href = 'visitor-log.html';
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>

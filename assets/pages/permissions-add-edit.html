@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحة الصلاحيات / صفحة إضافة وتعديل صلاحية</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/mobile-additions.css">
+    <link rel="stylesheet" href="../css/size-fixes.css">
+    <link rel="stylesheet" href="../css/permissions/add-edit.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="permission-form-card">
+            <!-- Form Header -->
+            <div class="form-header">
+                <h1 class="form-title">إضافة صلاحية جديدة</h1>
+                <p class="form-subtitle">قم بإدخال المعلومات المطلوبة لإضافة صلاحية جديدة للنظام</p>
+            </div>
+            
+            <form id="permissionForm">
+                <!-- Permission Name -->
+                <div class="form-group">
+                    <label for="permissionName" class="form-label">اسم الصلاحية <span class="required">*</span></label>
+                    <input type="text" id="permissionName" class="form-control" placeholder="أدخل اسم الصلاحية">
+                </div>
+                
+                <!-- Permission Description -->
+                <div class="form-group">
+                    <label for="permissionDesc" class="form-label">وصف الصلاحية</label>
+                    <textarea id="permissionDesc" class="form-control form-textarea" placeholder="أدخل وصفًا مختصرًا للصلاحية"></textarea>
+                </div>
+                
+                <!-- Permission Type -->
+                <div class="form-group">
+                    <label for="permissionType" class="form-label">نوع الصلاحية <span class="required">*</span></label>
+                    <select id="permissionType" class="form-control">
+                        <option value="" selected disabled>اختر نوع الصلاحية</option>
+                        <option value="admin">إدارية</option>
+                        <option value="user">مستخدم</option>
+                        <option value="report">تقارير</option>
+                        <option value="system">نظام</option>
+                    </select>
+                </div>
+                
+                <!-- Permission File Name -->
+                <div class="form-group">
+                    <label for="permissionFile" class="form-label">اسم الملف <span class="required">*</span></label>
+                    <input type="text" id="permissionFile" class="form-control" placeholder="أدخل اسم الملف">
+                </div>
+                
+                <!-- Permission Function Name -->
+                <div class="form-group">
+                    <label for="permissionFunction" class="form-label">عملية الصلاحية</label>
+                    <input type="text" id="permissionFunction" class="form-control" placeholder="أدخل عملية الصلاحية">
+                </div>
+                
+                <!-- Access Scope -->
+                <div class="form-group">
+                    <label class="form-label">نطاق الوصول <span class="required">*</span></label>
+                    <div class="radio-group">
+                        <div class="radio-option">
+                            <input type="radio" id="userSpecific" name="accessScope" class="radio-input" checked>
+                            <label for="userSpecific" class="radio-label">صلاحيات خاصة لكل المستخدمين</label>
+                        </div>
+                        <div class="radio-option">
+                            <input type="radio" id="roleSpecific" name="accessScope" class="radio-input">
+                            <label for="roleSpecific" class="radio-label">متاح للمستخدمين الذين لديهم الحق في الدخول لهذه الصلاحية</label>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Submit Button -->
+                <button type="submit" class="submit-btn">أضف</button>
+            </form>
+        </div>
+    </div>
+    
+    <script src="../js/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Form validation and submission
+            $('#permissionForm').on('submit', function(e) {
+                e.preventDefault();
+                
+                let isValid = true;
+                
+                // Validate permission name
+                const permissionName = $('#permissionName').val().trim();
+                if (permissionName === '') {
+                    $('#permissionName').css('border-color', '#dc3545');
+                    isValid = false;
+                } else {
+                    $('#permissionName').css('border-color', '#ddd');
+                }
+                
+                // Validate permission type
+                const permissionType = $('#permissionType').val();
+                if (!permissionType) {
+                    $('#permissionType').css('border-color', '#dc3545');
+                    isValid = false;
+                } else {
+                    $('#permissionType').css('border-color', '#ddd');
+                }
+                
+                // Validate file name
+                const permissionFile = $('#permissionFile').val().trim();
+                if (permissionFile === '') {
+                    $('#permissionFile').css('border-color', '#dc3545');
+                    isValid = false;
+                } else {
+                    $('#permissionFile').css('border-color', '#ddd');
+                }
+                
+                // If the form is valid, process submission
+                if (isValid) {
+                    const formData = {
+                        name: permissionName,
+                        description: $('#permissionDesc').val().trim(),
+                        type: permissionType,
+                        fileName: permissionFile,
+                        functionName: $('#permissionFunction').val().trim(),
+                        accessScope: $('input[name="accessScope"]:checked').attr('id')
+                    };
+                    
+                    console.log('Form data:', formData);
+                    
+                    // Success message and redirect
+                    alert('تم إضافة الصلاحية بنجاح!');
+                    
+                    // Redirect to permissions view page
+                    setTimeout(function() {
+                        window.location.href = 'permissions-view.html';
+                    }, 1000);
+                } else {
+                    alert('يرجى ملء جميع الحقول المطلوبة');
+                }
+            });
+            
+            // Clear validation on input
+            $('.form-control').on('input', function() {
+                $(this).css('border-color', '#ddd');
+            });
+        });
+    </script>
+</body>
+</html>

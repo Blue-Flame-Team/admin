@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحة إدارة المستخدمينة</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/mobile-additions.css">
+    <link rel="stylesheet" href="../css/size-fixes.css">
+    <link rel="stylesheet" href="../css/users/user-management.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="users-card">
+            <!-- Header Section -->
+            <div class="header">
+                <div class="user-info">
+                    <div class="user-avatar">أ</div>
+                    <span>أحمد محمد</span>
+                    <span class="user-date">
+                        <i class="far fa-calendar"></i>
+                        20 أبريل 2025
+                    </span>
+                </div>
+                <a href="#" class="dashboard-link">
+                    <span>لوحة تحكم المستخدمين</span>
+                    <i class="fas fa-th-large"></i>
+                </a>
+            </div>
+            
+            <!-- Filter Section -->
+            <div class="filter-section">
+                <div class="filter-header">
+                    <h2 class="filter-title">
+                        <i class="fas fa-filter"></i>
+                        <span>تصفية المستخدمين</span>
+                    </h2>
+                </div>
+                
+                <form id="filter-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">رقم المستخدم</label>
+                            <input type="text" class="form-control" placeholder="أدخل رقم المستخدم">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">الاسم</label>
+                            <input type="text" class="form-control" placeholder="أدخل اسم المستخدم">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">البريد الإلكتروني</label>
+                            <input type="email" class="form-control" placeholder="أدخل البريد الإلكتروني">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">رقم الهاتف</label>
+                            <input type="text" class="form-control" placeholder="أدخل رقم الهاتف">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">المدينة</label>
+                            <select class="form-select">
+                                <option value="" selected disabled>اختر المدينة</option>
+                                <option value="riyadh">الرياض</option>
+                                <option value="jeddah">جدة</option>
+                                <option value="dammam">الدمام</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">الدرجة العلمية</label>
+                            <select class="form-select">
+                                <option value="" selected disabled>اختر الدرجة العلمية</option>
+                                <option value="bachelor">بكالوريوس</option>
+                                <option value="master">ماجستير</option>
+                                <option value="phd">دكتوراه</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">تاريخ التسجيل</label>
+                            <input type="text" class="date-field" placeholder="mm/dd/yyyy">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">تاريخ بداية الاشتراك</label>
+                            <input type="text" class="date-field" placeholder="mm/dd/yyyy">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">تاريخ نهاية الاشتراك</label>
+                            <input type="text" class="date-field" placeholder="mm/dd/yyyy">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">الهوية</label>
+                            <input type="text" class="form-control" placeholder="أدخل اسم الهوية">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">الوظيفة</label>
+                            <input type="text" class="form-control" placeholder="أدخل المسمى الوظيفي">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">عدد مرات الدخول</label>
+                            <input type="text" class="form-control" placeholder="أدخل عدد مرات الدخول">
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">عدد مرات الطباعة</label>
+                            <input type="text" class="form-control" placeholder="أدخل عدد مرات الطباعة">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">الحالة</label>
+                            <select class="form-select">
+                                <option value="" selected disabled>اختر الحالة</option>
+                                <option value="active">نشط</option>
+                                <option value="inactive">غير نشط</option>
+                                <option value="pending">قيد المراجعة</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label">طريقة الدفع</label>
+                            <select class="form-select">
+                                <option value="" selected disabled>اختر طريقة الدفع</option>
+                                <option value="visa">فيزا</option>
+                                <option value="mastercard">ماستركارد</option>
+                                <option value="bank">تحويل بنكي</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="active-only">
+                            <label for="active-only">المفعلين فقط</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="inactive-only">
+                            <label for="inactive-only">الغير مفعلين فقط</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="pending-only">
+                            <label for="pending-only">المستخدمين النشطين فقط</label>
+                        </div>
+                    </div>
+                    
+                    <div class="actions">
+                        <button type="button" class="btn btn-secondary" id="reset-filter">
+                            <i class="fas fa-redo"></i>
+                            <span>إعادة تعيين</span>
+                        </button>
+                        <button type="submit" class="btn btn-primary" id="apply-filter">
+                            <i class="fas fa-search"></i>
+                            <span>بحث</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+            
+            <!-- Users List Section -->
+            <div class="users-list-section">
+                <div class="section-header">
+                    <h2 class="section-title">قائمة المستخدمين</h2>
+                    <button class="btn-new" title="إضافة مستخدم جديد">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                </div>
+                
+                <table class="users-table">
+                    <thead>
+                        <tr>
+                            <th class="sortable">
+                                <i class="fas fa-sort"></i>
+                                <span>رقم المستخدم</span>
+                            </th>
+                            <th class="sortable">
+                                <i class="fas fa-sort"></i>
+                                <span>الاسم</span>
+                            </th>
+                            <th class="sortable">
+                                <i class="fas fa-sort"></i>
+                                <span>البريد الإلكتروني</span>
+                            </th>
+                            <th class="sortable">
+                                <i class="fas fa-sort"></i>
+                                <span>الهوية</span>
+                            </th>
+                            <th class="sortable">
+                                <i class="fas fa-sort"></i>
+                                <span>تاريخ التسجيل</span>
+                            </th>
+                            <th class="sortable">
+                                <i class="fas fa-sort"></i>
+                                <span>الحالة</span>
+                            </th>
+                            <th>الإجراءات</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>#10065</td>
+                            <td>عبدالله محمد المقبل</td>
+                            <td>abdullah@example.com</td>
+                            <td>جامعة الملك سعود</td>
+                            <td>15/01/2025</td>
+                            <td><span class="status-badge status-active">نشط</span></td>
+                            <td class="actions-cell">
+                                <a href="#" class="action-icon mail"><i class="far fa-envelope"></i></a>
+                                <a href="#" class="action-icon edit"><i class="far fa-edit"></i></a>
+                                <a href="#" class="action-icon delete"><i class="far fa-trash-alt"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#10066</td>
+                            <td>سارة أحمد الغامدي</td>
+                            <td>sarah@example.com</td>
+                            <td>مستشفى الملك فهد</td>
+                            <td>20/02/2025</td>
+                            <td><span class="status-badge status-active">نشط</span></td>
+                            <td class="actions-cell">
+                                <a href="#" class="action-icon mail"><i class="far fa-envelope"></i></a>
+                                <a href="#" class="action-icon edit"><i class="far fa-edit"></i></a>
+                                <a href="#" class="action-icon delete"><i class="far fa-trash-alt"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#10067</td>
+                            <td>محمد خالد المخلافي</td>
+                            <td>mohammed@example.com</td>
+                            <td>شركة أرامكو</td>
+                            <td>05/03/2025</td>
+                            <td><span class="status-badge status-inactive">غير نشط</span></td>
+                            <td class="actions-cell">
+                                <a href="#" class="action-icon mail"><i class="far fa-envelope"></i></a>
+                                <a href="#" class="action-icon edit"><i class="far fa-edit"></i></a>
+                                <a href="#" class="action-icon delete"><i class="far fa-trash-alt"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#10068</td>
+                            <td>نورة سعد الشمري</td>
+                            <td>noura@example.com</td>
+                            <td>وزارة التعليم</td>
+                            <td>10/03/2025</td>
+                            <td><span class="status-badge status-pending">معلق</span></td>
+                            <td class="actions-cell">
+                                <a href="#" class="action-icon mail"><i class="far fa-envelope"></i></a>
+                                <a href="#" class="action-icon edit"><i class="far fa-edit"></i></a>
+                                <a href="#" class="action-icon delete"><i class="far fa-trash-alt"></i></a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>#10069</td>
+                            <td>فهد عبدالرحمن الدوسري</td>
+                            <td>fahad@example.com</td>
+                            <td>البنك الأهلي</td>
+                            <td>15/03/2025</td>
+                            <td><span class="status-badge status-active">نشط</span></td>
+                            <td class="actions-cell">
+                                <a href="#" class="action-icon mail"><i class="far fa-envelope"></i></a>
+                                <a href="#" class="action-icon edit"><i class="far fa-edit"></i></a>
+                                <a href="#" class="action-icon delete"><i class="far fa-trash-alt"></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <div class="pagination">
+                    <div class="page-info">عرض 1 إلى 5 من 45 نتيجة</div>
+                    <div class="page-numbers">
+                        <a href="#" class="page-item disabled"><i class="fas fa-chevron-right"></i></a>
+                        <a href="#" class="page-item">9</a>
+                        <a href="#" class="page-item">...</a>
+                        <a href="#" class="page-item">3</a>
+                        <a href="#" class="page-item">2</a>
+                        <a href="#" class="page-item active">1</a>
+                        <a href="#" class="page-item"><i class="fas fa-chevron-left"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="../js/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Reset Filter
+            $('#reset-filter').on('click', function() {
+                $('#filter-form')[0].reset();
+            });
+            
+            // Apply Filter
+            $('#filter-form').on('submit', function(e) {
+                e.preventDefault();
+                console.log('Applying filters...');
+                // Here you would typically send this to a server for filtering
+            });
+            
+            // Add New User
+            $('.btn-new').on('click', function() {
+                window.location.href = 'user-add-edit.html';
+            });
+            
+            // Table Actions
+            $('.action-icon.mail').on('click', function(e) {
+                e.preventDefault();
+                const row = $(this).closest('tr');
+                const userName = row.find('td:nth-child(2)').text();
+                const userEmail = row.find('td:nth-child(3)').text();
+                console.log(`Sending email to ${userName} (${userEmail})`);
+            });
+            
+            $('.action-icon.edit').on('click', function(e) {
+                e.preventDefault();
+                const row = $(this).closest('tr');
+                const userId = row.find('td:first').text();
+                window.location.href = `user-add-edit.html?edit=${userId}`;
+            });
+            
+            $('.action-icon.delete').on('click', function(e) {
+                e.preventDefault();
+                const row = $(this).closest('tr');
+                const userName = row.find('td:nth-child(2)').text();
+                if (confirm(`هل أنت متأكد من رغبتك في حذف المستخدم "${userName}"؟`)) {
+                    console.log(`Deleting user: ${userName}`);
+                    row.remove();
+                }
+            });
+            
+            // Pagination
+            $('.page-item').on('click', function(e) {
+                if ($(this).hasClass('disabled')) {
+                    e.preventDefault();
+                    return;
+                }
+                
+                e.preventDefault();
+                $('.page-item').removeClass('active');
+                if (!$(this).find('i').length) {
+                    $(this).addClass('active');
+                }
+                // Logic for page change would go here
+            });
+            
+            // Sortable columns
+            $('.sortable').on('click', function() {
+                const icon = $(this).find('i');
+                
+                // Toggle sort direction
+                if (icon.hasClass('fa-sort')) {
+                    icon.removeClass('fa-sort').addClass('fa-sort-up');
+                } else if (icon.hasClass('fa-sort-up')) {
+                    icon.removeClass('fa-sort-up').addClass('fa-sort-down');
+                } else {
+                    icon.removeClass('fa-sort-down').addClass('fa-sort');
+                }
+                
+                // Logic for sorting would go here
+            });
+        });
+    </script>
+</body>
+</html>

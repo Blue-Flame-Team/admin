@@ -1,0 +1,138 @@
+/* Permissions Add/Edit Page Styles */
+
+body {
+    font-family: 'Cairo', sans-serif;
+    background-color: #f5f7fb;
+    direction: rtl;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 0 15px;
+}
+
+/* Main card */
+.permission-form-card {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
+    padding: 30px;
+}
+
+/* Form header */
+.form-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.form-title {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.form-subtitle {
+    font-size: 0.9rem;
+    color: #777;
+}
+
+/* Form groups */
+.form-group {
+    margin-bottom: 25px;
+    display: flex;
+    flex-direction: column;
+}
+
+.form-label {
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+    color: #555;
+}
+
+.required {
+    color: #dc3545;
+    margin-right: 4px;
+}
+
+.form-control {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    color: #333;
+    background-color: #f9f9f9;
+}
+
+.form-control::placeholder {
+    color: #aaa;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #0d6efd;
+}
+
+.form-textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+/* Radio buttons */
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.radio-option {
+    display: flex;
+    align-items: center;
+}
+
+.radio-input {
+    margin-left: 10px;
+    width: 18px;
+    height: 18px;
+    accent-color: #0d6efd;
+}
+
+.radio-label {
+    font-size: 0.95rem;
+    color: #333;
+}
+
+/* Submit button */
+.submit-btn {
+    background-color: #0d6efd;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 30px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    width: auto;
+    display: inline-block;
+}
+
+.submit-btn:hover {
+    background-color: #0b5ed7;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .permission-form-card {
+        padding: 20px;
+    }
+    
+    .form-title {
+        font-size: 1.4rem;
+    }
+    
+    .submit-btn {
+        width: 100%;
+    }
+}

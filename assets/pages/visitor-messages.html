@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحة سجل الزوار</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/mobile-additions.css">
+    <link rel="stylesheet" href="../css/size-fixes.css">
+    <link rel="stylesheet" href="../css/visitor-log/messages.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <main class="main-content">
+            <!-- Header -->
+            <header class="top-header">
+                <div class="header-left">
+                    <div class="search-bar">
+                        <input type="text" placeholder="بحث...">
+                        <i class="fas fa-search"></i>
+                    </div>
+                </div>
+                
+                <div class="logo-center">
+                    <h1>محامو المملكة</h1>
+                    <p class="logo-text">للاستشارات القانونية</p>
+                </div>
+                
+                <div class="header-right">
+                    <div class="user-profile-info">
+                        <span>أحمد محمد</span>
+                        <i class="fas fa-user-circle"></i>
+                    </div>
+                    
+                    <div class="settings-icon">
+                        <i class="fas fa-cog"></i>
+                    </div>
+                    
+                    <div class="notification-icon">
+                        <i class="far fa-bell"></i>
+                        <span class="notification-badge">1</span>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- Message Management -->
+            <div class="message-management-container">
+                <div class="message-header">
+                    <div class="section-title">
+                        إدارة الرسائل
+                        <span class="message-count">45 رسالة</span>
+                    </div>
+                    
+                    <div class="message-filters">
+                        <div class="filter-tabs">
+                            <button class="message-filter active">تصفية</button>
+                            <button class="message-filter">جميع الرسائل</button>
+                            <button class="message-filter">الفئات</button>
+                        </div>
+                        
+                        <div class="status-filter">
+                            <div class="status-dropdown">
+                                <div class="status-select">
+                                    <span>تحديد الحالة</span>
+                                    <i class="fas fa-chevron-down"></i>
+                                </div>
+                            </div>
+                            
+                            <button class="new-message-btn">
+                                <i class="fas fa-plus"></i>
+                                <span>إضافة رسالة جديدة</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Messages Table -->
+                <table class="message-table">
+                    <thead>
+                        <tr>
+                            <th class="checkbox-col">
+                                <label class="checkbox-container">
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </th>
+                            <th>مفتاح</th>
+                            <th>الاسم</th>
+                            <th>البريد الإلكتروني</th>
+                            <th>الرسالة</th>
+                            <th>الحالة</th>
+                            <th>الرد</th>
+                            <th>الإجراءات</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="message-row">
+                            <td>
+                                <label class="checkbox-container">
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </td>
+                            <td>#1254</td>
+                            <td class="name-col">
+                                سارة<br>
+                                الحمد
+                            </td>
+                            <td>s.alhamad@example.com</td>
+                            <td class="message-col">
+                                نذكركم أن الخدمة المجانية التي قدمتموها لدعم قضايانا القائمة ومساعدتي في حل مشكلة أخرى نتطلع إلى التعامل معكم مرة أخرى
+                                <a href="#" class="show-more">عرض المزيد</a>
+                            </td>
+                            <td>
+                                <div class="status-badge status-new">متوافق</div>
+                            </td>
+                            <td>
+                                <div class="status-badge status-new">متوافق</div>
+                            </td>
+                            <td>
+                                <div class="action-icons">
+                                    <i class="fas fa-trash-alt action-icon"></i>
+                                    <i class="fas fa-pencil-alt action-icon"></i>
+                                    <i class="fas fa-eye action-icon"></i>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="message-row">
+                            <td>
+                                <label class="checkbox-container">
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </td>
+                            <td>#1253</td>
+                            <td class="name-col">
+                                محمد<br>
+                                العبدالله
+                            </td>
+                            <td>muhammeda@example.com</td>
+                            <td class="message-col">
+                                مرحبًا، أرغب في الاستفسار عن خدمات المكتب، هل يمكنني التسجيل إذا كنت طالبًا جامعيًا؟ وهل يوجد تخفيضات للطلاب؟ أتمنى الرد قبل الأحد
+                                <a href="#" class="show-more">عرض المزيد</a>
+                            </td>
+                            <td>
+                                <div class="status-badge status-pending">بانتظار الرد</div>
+                            </td>
+                            <td>
+                                <div class="status-badge status-pending">بانتظار الرد</div>
+                            </td>
+                            <td>
+                                <div class="action-icons">
+                                    <i class="fas fa-trash-alt action-icon"></i>
+                                    <i class="fas fa-pencil-alt action-icon"></i>
+                                    <i class="fas fa-eye action-icon"></i>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="message-row">
+                            <td>
+                                <label class="checkbox-container">
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </td>
+                            <td>#1252</td>
+                            <td class="name-col">
+                                فاطمة<br>
+                                الزهراء
+                            </td>
+                            <td>fatimaz@example.com</td>
+                            <td class="message-col">
+                                أنا مهتمة بالاشتراك في خدماتكم المميزة، ولكن لدي بعض الأسئلة قبل اتخاذ القرار، هل يمكن الحصول على شرح تفصيلي وما هي المميزات التي
+                                <a href="#" class="show-more">عرض المزيد</a>
+                            </td>
+                            <td>
+                                <div class="status-badge status-replied">بانتظار الرد</div>
+                            </td>
+                            <td>
+                                <div class="status-badge status-new">متوافق</div>
+                            </td>
+                            <td>
+                                <div class="action-icons">
+                                    <i class="fas fa-trash-alt action-icon"></i>
+                                    <i class="fas fa-pencil-alt action-icon"></i>
+                                    <i class="fas fa-eye action-icon"></i>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="message-row">
+                            <td>
+                                <label class="checkbox-container">
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </td>
+                            <td>#1251</td>
+                            <td class="name-col">
+                                عمر<br>
+                                الخالدي
+                            </td>
+                            <td>omare@example.com</td>
+                            <td class="message-col">
+                                كنت قد سجلت للحصول إلى حسابكم، لكن لم تصلني كلمة المرور بعد مرور عدة مرات، وأيضًا تم إخباري بالانتظار، ما المشكلة؟ متى سأتمكن من الدخول
+                                <a href="#" class="show-more">عرض المزيد</a>
+                            </td>
+                            <td>
+                                <div class="status-badge status-new">متوافق</div>
+                            </td>
+                            <td>
+                                <div class="status-badge status-new">متوافق</div>
+                            </td>
+                            <td>
+                                <div class="action-icons">
+                                    <i class="fas fa-trash-alt action-icon"></i>
+                                    <i class="fas fa-pencil-alt action-icon"></i>
+                                    <i class="fas fa-eye action-icon"></i>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="message-row">
+                            <td>
+                                <label class="checkbox-container">
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </td>
+                            <td>#1250</td>
+                            <td class="name-col">
+                                نورة<br>
+                                السعيد
+                            </td>
+                            <td>noura@example.com</td>
+                            <td class="message-col">
+                                شكرًا لتحسين خدماتكم! أعتقد أنه المطلوب إضافة ميزة الدفع عبر المحفظة. ذكر لي العديد من العملاء يتعاملون بهذه الميزة
+                                <a href="#" class="show-more">عرض المزيد</a>
+                            </td>
+                            <td>
+                                <div class="status-badge status-pending">بانتظار الرد</div>
+                            </td>
+                            <td>
+                                <div class="status-badge status-pending">بانتظار الرد</div>
+                            </td>
+                            <td>
+                                <div class="action-icons">
+                                    <i class="fas fa-trash-alt action-icon"></i>
+                                    <i class="fas fa-pencil-alt action-icon"></i>
+                                    <i class="fas fa-eye action-icon"></i>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr class="message-row">
+                            <td>
+                                <label class="checkbox-container">
+                                    <input type="checkbox">
+                                    <span class="checkmark"></span>
+                                </label>
+                            </td>
+                            <td>#1249</td>
+                            <td class="name-col">
+                                خالد<br>
+                                المنصور
+                            </td>
+                            <td>khalide@example.com</td>
+                            <td class="message-col">
+                                معرفة مواعيد عقد ورش العمل، وهل سيكون هناك ورش أونلاين أم ستقتصر على الحضور الشخصي فقط، وما الموضوعات المطروحة
+                                <a href="#" class="show-more">عرض المزيد</a>
+                            </td>
+                            <td>
+                                <div class="status-badge status-replied">بانتظار الرد</div>
+                            </td>
+                            <td>
+                                <div class="status-badge status-new">متوافق</div>
+                            </td>
+                            <td>
+                                <div class="action-icons">
+                                    <i class="fas fa-trash-alt action-icon"></i>
+                                    <i class="fas fa-pencil-alt action-icon"></i>
+                                    <i class="fas fa-eye action-icon"></i>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <!-- Pagination -->
+                <div class="pagination">
+                    <a href="#" class="page-item page-arrow"><i class="fas fa-chevron-right"></i></a>
+                    <a href="#" class="page-item">5</a>
+                    <a href="#" class="page-item">4</a>
+                    <a href="#" class="page-item">3</a>
+                    <a href="#" class="page-item">2</a>
+                    <a href="#" class="page-item active">1</a>
+                    <a href="#" class="page-item page-arrow"><i class="fas fa-chevron-left"></i></a>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="../js/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Checkbox selection functionality
+            $('.message-table thead input[type="checkbox"]').on('change', function() {
+                const isChecked = $(this).prop('checked');
+                $('.message-table tbody input[type="checkbox"]').prop('checked', isChecked);
+            });
+            
+            // Show more content
+            $('.show-more').on('click', function(e) {
+                e.preventDefault();
+                const content = $(this).parent();
+                content.css('max-height', 'none');
+                $(this).hide();
+            });
+            
+            // Filter tabs
+            $('.message-filter').on('click', function() {
+                $('.message-filter').removeClass('active');
+                $(this).addClass('active');
+            });
+            
+            // Status dropdown
+            $('.status-select').on('click', function() {
+                // Add dropdown logic here
+                console.log('Status filter clicked');
+            });
+            
+            // Action icons
+            $('.action-icon').on('click', function() {
+                const action = $(this).hasClass('fa-trash-alt') ? 'delete' : 
+                               $(this).hasClass('fa-pencil-alt') ? 'edit' : 'view';
+                const messageId = $(this).closest('tr').find('td:nth-child(2)').text();
+                console.log(`${action} message ${messageId}`);
+            });
+            
+            // New message button
+            $('.new-message-btn').on('click', function() {
+                console.log('Add new message clicked');
+                window.location.href = 'visitor-add-entry.html';
+            });
+            
+            // Pagination
+            $('.page-item').on('click', function(e) {
+                e.preventDefault();
+                $('.page-item').removeClass('active');
+                if (!$(this).hasClass('page-arrow')) {
+                    $(this).addClass('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

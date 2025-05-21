@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحة الإعلانات / الإعلانات المصورة</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/mobile-additions.css">
+    <link rel="stylesheet" href="../css/size-fixes.css">
+    <link rel="stylesheet" href="../css/advertisements/banners.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="banner-card">
+            <h1 class="panel-title">لوحة التحكم</h1>
+            <p class="panel-subtitle">قم بتخصيص إعلاناتك المصورة ببساطة</p>
+            
+            <form id="banner-form">
+                <div class="form-group">
+                    <label class="form-label">اختر الواجهة</label>
+                    <select class="form-select">
+                        <option value="home" selected>صفحة الرئيسية</option>
+                        <option value="dashboard">لوحة التحكم</option>
+                        <option value="users">صفحة المستخدمين</option>
+                        <option value="products">صفحة المنتجات</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">صورة</label>
+                    <div class="image-preview" id="image-drop-area">
+                        <i class="fas fa-image"></i>
+                    </div>
+                    <input type="file" id="banner-image" style="display: none;" accept="image/*">
+                </div>
+                
+                <button type="submit" class="btn-primary">تحميل التعديلات</button>
+            </form>
+        </div>
+    </div>
+    
+    <div class="page-footer"></div>
+    
+    <script src="../js/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Handle image preview upload
+            const dropArea = $('#image-drop-area');
+            const fileInput = $('#banner-image');
+            
+            // Open file dialog when clicking on the drop area
+            dropArea.on('click', function() {
+                fileInput.click();
+            });
+            
+            // Handle file selection
+            fileInput.on('change', function(e) {
+                const file = e.target.files[0];
+                if (file && file.type.match('image.*')) {
+                    const reader = new FileReader();
+                    
+                    reader.onload = function(e) {
+                        dropArea.html(`<img src="${e.target.result}" style="max-width: 100%; max-height: 100%;">`);
+                    };
+                    
+                    reader.readAsDataURL(file);
+                }
+            });
+            
+            // Handle drag and drop
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                dropArea.on(eventName, preventDefaults);
+            });
+            
+            function preventDefaults(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            
+            // Highlight drop area when dragging over
+            ['dragenter', 'dragover'].forEach(eventName => {
+                dropArea.on(eventName, function() {
+                    dropArea.addClass('drop-active');
+                });
+            });
+            
+            ['dragleave', 'drop'].forEach(eventName => {
+                dropArea.on(eventName, function() {
+                    dropArea.removeClass('drop-active');
+                });
+            });
+            
+            // Handle file drop
+            dropArea.on('drop', function(e) {
+                const dt = e.originalEvent.dataTransfer;
+                const file = dt.files[0];
+                
+                if (file && file.type.match('image.*')) {
+                    const reader = new FileReader();
+                    
+                    reader.onload = function(e) {
+                        dropArea.html(`<img src="${e.target.result}" style="max-width: 100%; max-height: 100%;">`);
+                    };
+                    
+                    reader.readAsDataURL(file);
+                }
+            });
+            
+            // Form submission
+            $('#banner-form').on('submit', function(e) {
+                e.preventDefault();
+                
+                const formData = new FormData();
+                formData.append('interface', $('.form-select').val());
+                
+                if (fileInput[0].files.length > 0) {
+                    formData.append('banner_image', fileInput[0].files[0]);
+                } else {
+                    alert('الرجاء اختيار صورة للإعلان');
+                    return;
+                }
+                
+                // Here you would typically send this to a server
+                console.log('Form data collected, ready to submit');
+                
+                // Simulate successful upload
+                alert('تم تحميل الإعلان بنجاح');
+                
+                // Reset form for next upload
+                dropArea.html('<i class="fas fa-image"></i>');
+                fileInput.val('');
+            });
+        });
+    </script>
+</body>
+</html>

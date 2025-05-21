@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>القائمة البريدية - إضافة وتعديل</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/mailing-list/mailing-list-add-edit.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900;1000&display=swap');
+        
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #f8f9fa;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container d-flex justify-content-center align-items-center min-vh-100">
+        <div class="card subscription-card">
+            <div class="card-body p-4 p-md-5">
+                <div class="text-center mb-4">
+                    <h2 class="fw-bold">القائمة البريدية</h2>
+                    <p class="text-muted">أضف بريدك الإلكتروني للحصول على آخر التحديثات</p>
+                </div>
+
+                <form id="subscription-form">
+                    <div class="mb-4">
+                        <label for="fullName" class="form-label">الاسم</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-white border-end-0"><i class="fa fa-user text-muted"></i></span>
+                            <input type="text" class="form-control border-start-0" id="fullName" placeholder="أدخل اسمك الكامل">
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label for="email" class="form-label">البريد الإلكتروني</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-white border-end-0"><i class="fa fa-envelope text-muted"></i></span>
+                            <input type="email" class="form-control border-start-0" id="email" placeholder="أدخل بريدك الإلكتروني">
+                        </div>
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-subscribe">
+                            اشتراك <i class="fa fa-paper-plane ms-2"></i>
+                        </button>
+                    </div>
+
+                    <div class="text-center mt-3">
+                        <p class="privacy-note">لن نشارك معلوماتك مع أي طرف ثالث</p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('subscription-form');
+            
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+                
+                const nameInput = document.getElementById('fullName');
+                const emailInput = document.getElementById('email');
+                
+                // Simple validation
+                if (!nameInput.value.trim()) {
+                    alert('الرجاء إدخال الاسم');
+                    nameInput.focus();
+                    return;
+                }
+                
+                if (!emailInput.value.trim()) {
+                    alert('الرجاء إدخال البريد الإلكتروني');
+                    emailInput.focus();
+                    return;
+                }
+                
+                // Email validation
+                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailPattern.test(emailInput.value)) {
+                    alert('الرجاء إدخال بريد إلكتروني صحيح');
+                    emailInput.focus();
+                    return;
+                }
+                
+                // Submit form (this would normally send to server)
+                alert('تم الاشتراك بنجاح!');
+                form.reset();
+            });
+        });
+    </script>
+</body>
+
+</html>

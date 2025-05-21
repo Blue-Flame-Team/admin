@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحة الاشتراك في الخدمات</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/mobile-additions.css">
+    <link rel="stylesheet" href="../css/size-fixes.css">
+    <link rel="stylesheet" href="../css/subscription-services/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Main Content -->
+        <main class="main-content full-width">
+            <!-- Top Header -->
+            <header class="top-header">
+                <div class="user-profile">
+                    <div class="user-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="user-info">
+                        <div class="user-name">أحمد محمد</div>
+                        <div class="user-role">مدير النظام</div>
+                    </div>
+                </div>
+                
+                <div class="header-controls">
+                    <div class="search-bar">
+                        <input type="text" placeholder="بحث...">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    
+                    <div class="header-icons">
+                        <div class="header-icon">
+                            <i class="far fa-bell"></i>
+                        </div>
+                        <div class="header-icon">
+                            <i class="fas fa-bars"></i>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            
+            <!-- Dashboard Layout -->
+            <div class="dashboard-layout">
+                <!-- Sidebar -->
+                <div class="sidebar">
+                    <ul class="sidebar-menu">
+                        <li>
+                            <a href="#">
+                                <i class="fas fa-th-large"></i>
+                                <span>لوحة التحكم</span>
+                            </a>
+                        </li>
+                        <li class="active">
+                            <a href="#">
+                                <i class="fas fa-clipboard-list"></i>
+                                <span>طلبات الاشتراك</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fas fa-users"></i>
+                                <span>المستخدمين</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fas fa-cog"></i>
+                                <span>الإعدادات</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Main Content Area -->
+                <div class="main-content-area">
+                    <div class="page-header">
+                        <div>
+                            <h1 class="page-title">طلبات الاشتراك</h1>
+                            <p class="page-subtitle">إدارة طلبات اشتراك الخدمات</p>
+                        </div>
+                        
+                        <div class="action-buttons">
+                            <button class="action-btn btn-export">
+                                <i class="far fa-file-excel"></i>
+                                <span>Excel</span>
+                            </button>
+                            <button class="action-btn btn-export">
+                                <i class="fas fa-print"></i>
+                                <span>طباعة</span>
+                            </button>
+                            <button class="action-btn btn-filter">
+                                <i class="fas fa-filter"></i>
+                                <span>تصفية</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Subscription Table -->
+                    <div class="table-container">
+                        <table class="subscription-table">
+                            <thead>
+                                <tr>
+                                    <th></th>
+                                    <th>كود المستخدم</th>
+                                    <th>اسم المستخدم</th>
+                                    <th>حالة السداد</th>
+                                    <th>الخدمة المطلوبة</th>
+                                    <th>الخدمة</th>
+                                    <th>المبلغ</th>
+                                    <th>العدد</th>
+                                    <th>تاريخ الطلب</th>
+                                    <th>إجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <label class="checkbox-container">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </td>
+                                    <td>USR-7842</td>
+                                    <td>عبدالله الزهراني</td>
+                                    <td><span class="status-badge status-paid">مدفوع</span></td>
+                                    <td>اشتراك سنوي</td>
+                                    <td>منصة التعليم الإلكتروني</td>
+                                    <td>ريال</td>
+                                    <td>١</td>
+                                    <td>٢٠٢٥</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label class="checkbox-container">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </td>
+                                    <td>USR-6589</td>
+                                    <td>محمد العتيبي</td>
+                                    <td><span class="status-badge status-unpaid">غير مدفوع</span></td>
+                                    <td>اشتراك شهري</td>
+                                    <td>خدمة الدعم الفني</td>
+                                    <td>ريال</td>
+                                    <td>١</td>
+                                    <td>٢٠٢٥</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label class="checkbox-container">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </td>
+                                    <td>USR-3421</td>
+                                    <td>سارة الشمراني</td>
+                                    <td><span class="status-badge status-pending">معلق</span></td>
+                                    <td>اشتراك سنوي</td>
+                                    <td>خدمة التسويق الإلكتروني</td>
+                                    <td>ريال</td>
+                                    <td>١</td>
+                                    <td>٢٠٢٥</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label class="checkbox-container">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </td>
+                                    <td>USR-9087</td>
+                                    <td>فهد الدوسري</td>
+                                    <td><span class="status-badge status-paid">مدفوع</span></td>
+                                    <td>اشتراك ربع سنوي</td>
+                                    <td>خدمة تحليل البيانات</td>
+                                    <td>ريال</td>
+                                    <td>١</td>
+                                    <td>٢٠٢٥</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label class="checkbox-container">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </td>
+                                    <td>USR-5432</td>
+                                    <td>نورة المالكي</td>
+                                    <td><span class="status-badge status-paid">مدفوع</span></td>
+                                    <td>اشتراك سنوي</td>
+                                    <td>منصة التدريب عن بعد</td>
+                                    <td>ريال</td>
+                                    <td>١</td>
+                                    <td>٢٠٢٥</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label class="checkbox-container">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </td>
+                                    <td>USR-2198</td>
+                                    <td>خالد الشهري</td>
+                                    <td><span class="status-badge status-unpaid">غير مدفوع</span></td>
+                                    <td>اشتراك شهري</td>
+                                    <td>خدمة الاستشارات</td>
+                                    <td>ريال</td>
+                                    <td>١</td>
+                                    <td>٢٠٢٥</td>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <label class="checkbox-container">
+                                            <input type="checkbox">
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </td>
+                                    <td>USR-7654</td>
+                                    <td>هند السبيعي</td>
+                                    <td><span class="status-badge status-pending">معلق</span></td>
+                                    <td>اشتراك نصف سنوي</td>
+                                    <td>خدمة إدارة المحتوى</td>
+                                    <td>ريال</td>
+                                    <td>١</td>
+                                    <td>٢٠٢٥</td>
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- Pagination -->
+                    <div class="pagination">
+                        <div class="pagination-info">
+                            عرض ٧ لكل صفحة
+                        </div>
+                        <div class="pagination-controls">
+                            <button class="pagination-btn">
+                                <i class="fas fa-angle-right"></i>
+                            </button>
+                            <button class="pagination-btn active">١</button>
+                            <button class="pagination-btn">٢</button>
+                            <button class="pagination-btn">٣</button>
+                            <button class="pagination-btn">٤</button>
+                            <button class="pagination-btn">
+                                <i class="fas fa-angle-left"></i>
+                            </button>
+                            <div class="results-per-page">
+                                <select class="results-select">
+                                    <option>٧ لكل صفحة</option>
+                                    <option>١٥ لكل صفحة</option>
+                                    <option>٣٠ لكل صفحة</option>
+                                    <option>جميع النتائج</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="../js/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Toggle sidebar collapse
+            $('.header-icon:last-child').on('click', function() {
+                $('.sidebar').toggleClass('collapsed');
+            });
+            
+            // Pagination buttons
+            $('.pagination-btn').on('click', function() {
+                if (!$(this).find('i').length) {
+                    $('.pagination-btn').removeClass('active');
+                    $(this).addClass('active');
+                }
+            });
+            
+            // Checkbox functionality
+            $('.checkbox-container input').on('change', function() {
+                if ($(this).is(':checked')) {
+                    $(this).closest('tr').addClass('selected');
+                } else {
+                    $(this).closest('tr').removeClass('selected');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

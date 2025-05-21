@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سجل دخول المستخدمين</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/user-login/user-login-history.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900;1000&display=swap');
+        
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #f8f9fa;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid py-4">
+        <div class="card shadow">
+            <div class="card-body">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <div>
+                        <h1 class="mb-0 fw-bold">تتبع سجلات المستخدم</h1>
+                        <p class="text-muted small">مراقبة نشاط المستخدم</p>
+                    </div>
+                </div>
+
+                <!-- Filters Section -->
+                <div class="filters-section mb-4">
+                    <div class="section-header d-flex justify-content-between align-items-center mb-3">
+                        <h5 class="m-0">معلومات المستخدم</h5>
+                        <button class="btn btn-link p-0 toggle-section" type="button">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="section-content">
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="username" class="form-label">اسم المستخدم</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                    <input type="text" class="form-control" id="username" value="ahmad_hassan">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="userType" class="form-label">نوع المستخدم</label>
+                                <div class="form-check form-check-inline mt-2">
+                                    <input class="form-check-input" type="checkbox" id="adminCheck" checked>
+                                    <label class="form-check-label" for="adminCheck">مسؤول</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="fullName" class="form-label">الاسم الكامل</label>
+                                <input type="text" class="form-control" id="fullName" value="أحمد حسن">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="email" class="form-label">البريد الإلكتروني</label>
+                                <input type="email" class="form-control" id="email" value="ahmad.hassan@example.com">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="startDate" class="form-label">تاريخ بدء الاشتراك</label>
+                                <div class="d-flex">
+                                    <div class="input-group me-2">
+                                        <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                        <input type="text" class="form-control" id="startDate" value="١٧/٠٩/٢٠٢٣">
+                                    </div>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-clock"></i></span>
+                                        <input type="text" class="form-control" value="١٠:٠٠">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="endDate" class="form-label">تاريخ انتهاء الاشتراك</label>
+                                <div class="d-flex">
+                                    <div class="input-group me-2">
+                                        <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                        <input type="text" class="form-control" id="endDate" value="١٧/٠٩/٢٠٢٤">
+                                    </div>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-clock"></i></span>
+                                        <input type="text" class="form-control" value="١٠:٠٠">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label class="form-label">صلاحيات الوصول</label>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="checkbox" id="permissionView" checked>
+                                            <label class="form-check-label" for="permissionView">عرض السجلات</label>
+                                        </div>
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="checkbox" id="permissionExport" checked>
+                                            <label class="form-check-label" for="permissionExport">تصدير البيانات</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="checkbox" id="permissionModify" checked>
+                                            <label class="form-check-label" for="permissionModify">تعديل البيانات</label>
+                                        </div>
+                                        <div class="form-check mb-2">
+                                            <input class="form-check-input" type="checkbox" id="permissionDelete" checked>
+                                            <label class="form-check-label" for="permissionDelete">حذف السجلات</label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Activity Summary Section -->
+                <div class="activity-section mb-4">
+                    <div class="section-header d-flex justify-content-between align-items-center mb-3">
+                        <h5 class="m-0">البيانات الإحصائية</h5>
+                        <button class="btn btn-link p-0 toggle-section" type="button">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="section-content">
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="lastLogin" class="form-label">آخر دخول</label>
+                                <div class="d-flex">
+                                    <div class="input-group me-2">
+                                        <span class="input-group-text"><i class="fas fa-calendar"></i></span>
+                                        <input type="text" class="form-control" id="lastLogin" value="٢٥/١١/٢٠٢٣">
+                                    </div>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-clock"></i></span>
+                                        <input type="text" class="form-control" value="١٥:٣٠">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="loginCount" class="form-label">عدد مرات الدخول</label>
+                                <input type="text" class="form-control" id="loginCount" value="٨٧">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                <label for="activeDuration" class="form-label">المدة الزمنية للنشاط</label>
+                                <input type="text" class="form-control" id="activeDuration" value="خلال فترة تزيد عن أسبوعين منذ آخر تسجيل الدخول للمستخدم">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Security Options -->
+                <div class="security-section mb-4">
+                    <div class="section-header d-flex justify-content-between align-items-center mb-3">
+                        <h5 class="m-0">الأمان</h5>
+                        <button class="btn btn-link p-0 toggle-section" type="button">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="section-content">
+                        <div class="row mb-3">
+                            <div class="col-12">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="twoFactorAuth" checked>
+                                    <label class="form-check-label" for="twoFactorAuth">تفعيل المصادقة الثنائية</label>
+                                </div>
+                                <div class="mt-3 two-factor-details">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <label class="form-label">عدد مرات التحقق عن طريق الهاتف</label>
+                                            <div class="d-flex align-items-center">
+                                                <input type="number" class="form-control me-2" value="3">
+                                                <span>-</span>
+                                                <input type="number" class="form-control ms-2" value="10">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <label class="form-label">عدد مرات التحقق عن طريق البريد</label>
+                                            <div class="d-flex align-items-center">
+                                                <input type="number" class="form-control me-2" value="16">
+                                                <span>-</span>
+                                                <input type="number" class="form-control ms-2" value="30">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="security-note mt-2">يمكن تحديد عدد مرات طلب رمز التحقق بناء على مستوى الأمان المطلوب</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Session Control -->
+                <div class="session-section mb-4">
+                    <div class="section-header d-flex justify-content-between align-items-center mb-3">
+                        <h5 class="m-0">الجلسات</h5>
+                        <button class="btn btn-link p-0 toggle-section" type="button">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="section-content">
+                        <div class="row mb-3">
+                            <div class="col-12">
+                                <div class="form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="multiSession" checked>
+                                    <label class="form-check-label" for="multiSession">السماح بتعدد الجلسات</label>
+                                </div>
+                                <div class="mt-3 session-details">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <label class="form-label">عدد الجلسات المتزامنة المسموح بها</label>
+                                            <div class="d-flex align-items-center">
+                                                <input type="number" class="form-control me-2" value="3">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="form-label">مدة الجلسة بعد عدم النشاط (دقيقة)</label>
+                                            <div class="d-flex align-items-center">
+                                                <input type="number" class="form-control me-2" value="120">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="form-label">الحد الأقصى لمدة الجلسة (دقيقة)</label>
+                                            <div class="d-flex align-items-center">
+                                                <input type="number" class="form-control me-2" value="360">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="security-note mt-2">يمكن تعديل إعدادات الجلسة بما يتناسب مع سياسة الأمان المتبعة لدى مؤسستكم</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="d-flex justify-content-between">
+                    <button type="button" class="btn btn-secondary">إلغاء</button>
+                    <button type="button" class="btn btn-primary">حفظ التغييرات</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggleButtons = document.querySelectorAll('.toggle-section');
+            
+            toggleButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const icon = this.querySelector('i');
+                    const sectionContent = this.closest('.section-header').nextElementSibling;
+                    
+                    if (icon.classList.contains('fa-chevron-down')) {
+                        icon.classList.replace('fa-chevron-down', 'fa-chevron-up');
+                        sectionContent.style.display = 'none';
+                    } else {
+                        icon.classList.replace('fa-chevron-up', 'fa-chevron-down');
+                        sectionContent.style.display = 'block';
+                    }
+                });
+            });
+            
+            // Two Factor Auth Toggle
+            const twoFactorToggle = document.getElementById('twoFactorAuth');
+            const twoFactorDetails = document.querySelector('.two-factor-details');
+            
+            twoFactorToggle.addEventListener('change', function() {
+                twoFactorDetails.style.display = this.checked ? 'block' : 'none';
+            });
+            
+            // Multi Session Toggle
+            const multiSessionToggle = document.getElementById('multiSession');
+            const sessionDetails = document.querySelector('.session-details');
+            
+            multiSessionToggle.addEventListener('change', function() {
+                sessionDetails.style.display = this.checked ? 'block' : 'none';
+            });
+        });
+    </script>
+</body>
+
+</html>

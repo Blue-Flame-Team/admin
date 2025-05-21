@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحة الإعلانات / الإعلانات النصية</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/mobile-additions.css">
+    <link rel="stylesheet" href="../css/size-fixes.css">
+    <link rel="stylesheet" href="../css/advertisements/text-advertisements.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="main-content">
+            <!-- Header -->
+            <div class="header">
+                <div class="header-right">
+                    <div class="notification-icon">
+                        <span class="badge">1</span>
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <div class="user-info">
+                        <span>أحمد جديد</span>
+                        <img src="../img/user-avatar.png" alt="User Avatar" class="avatar">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="content-card">
+                <div class="card-header">
+                    <div class="title-section">
+                        <h1 class="page-title">قائمة الإعلانات النصية</h1>
+                        <p class="page-description">إدارة جميع الإعلانات النصية المسجلة في النظام</p>
+                    </div>
+                    <div class="action-button">
+                        <a href="advertisement-add-edit.html" class="btn-primary">
+                            <i class="fas fa-plus"></i>
+                            إضافة إعلان
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Search Box -->
+                <div class="search-section">
+                    <div class="search-box">
+                        <input type="text" placeholder="بحث..." class="search-input">
+                        <i class="fas fa-search search-icon"></i>
+                    </div>
+                    <div class="filter-dropdown">
+                        <button class="filter-button">
+                            <i class="fas fa-filter"></i>
+                            تصفية
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Table -->
+                <div class="table-container">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th class="checkbox-column">
+                                    <input type="checkbox" id="selectAll">
+                                </th>
+                                <th class="serial-number">الرقم التسلسلي</th>
+                                <th class="name-column">الاسم</th>
+                                <th class="email-column">البريد الإلكتروني</th>
+                                <th class="phone-column">رقم الهاتف</th>
+                                <th class="status-column">الحالة</th>
+                                <th class="actions-column">الإجراءات</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><input type="checkbox" class="row-checkbox"></td>
+                                <td>001</td>
+                                <td>شركة الخالد للتكنولوجيا</td>
+                                <td>info@gulftech.com</td>
+                                <td>4567</td>
+                                <td><span class="status-badge active">نشط</span></td>
+                                <td class="actions">
+                                    <button class="action-btn delete"><i class="fas fa-trash-alt"></i></button>
+                                    <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                                    <button class="action-btn view"><i class="fas fa-eye"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="row-checkbox"></td>
+                                <td>002</td>
+                                <td>مجموعة الخليج للاستثمار</td>
+                                <td>contact@eliteinvest.com</td>
+                                <td>6543</td>
+                                <td><span class="status-badge active">نشط</span></td>
+                                <td class="actions">
+                                    <button class="action-btn delete"><i class="fas fa-trash-alt"></i></button>
+                                    <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                                    <button class="action-btn view"><i class="fas fa-eye"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="row-checkbox"></td>
+                                <td>003</td>
+                                <td>شركة المستقبل للبرمجيات</td>
+                                <td>support@futuresoft.com</td>
+                                <td>8901</td>
+                                <td><span class="status-badge pending">معلق</span></td>
+                                <td class="actions">
+                                    <button class="action-btn delete"><i class="fas fa-trash-alt"></i></button>
+                                    <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                                    <button class="action-btn view"><i class="fas fa-eye"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="row-checkbox"></td>
+                                <td>004</td>
+                                <td>دار الأمين للنشر</td>
+                                <td>info@horizonpublish.com</td>
+                                <td>5678</td>
+                                <td><span class="status-badge inactive">غير نشط</span></td>
+                                <td class="actions">
+                                    <button class="action-btn delete"><i class="fas fa-trash-alt"></i></button>
+                                    <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                                    <button class="action-btn view"><i class="fas fa-eye"></i></button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><input type="checkbox" class="row-checkbox"></td>
+                                <td>005</td>
+                                <td>مؤسسة الريادة للإنتاج</td>
+                                <td>sales@leadership.com</td>
+                                <td>5432</td>
+                                <td><span class="status-badge active">نشط</span></td>
+                                <td class="actions">
+                                    <button class="action-btn delete"><i class="fas fa-trash-alt"></i></button>
+                                    <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                                    <button class="action-btn view"><i class="fas fa-eye"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination">
+                    <button class="pagination-btn prev"><i class="fas fa-chevron-right"></i></button>
+                    <button class="pagination-btn">5</button>
+                    <div class="pagination-dots">...</div>
+                    <button class="pagination-btn">3</button>
+                    <button class="pagination-btn">2</button>
+                    <button class="pagination-btn active">1</button>
+                    <button class="pagination-btn next"><i class="fas fa-chevron-left"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-menu">
+                <a href="#" class="sidebar-item">
+                    <i class="fas fa-user"></i>
+                    <span>المستخدمين</span>
+                </a>
+                <a href="#" class="sidebar-item active">
+                    <i class="fas fa-ad"></i>
+                    <span>الإعلانات</span>
+                </a>
+                <a href="#" class="sidebar-item">
+                    <i class="fas fa-cog"></i>
+                    <span>الإعدادات</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Select all checkbox functionality
+            $('#selectAll').on('change', function() {
+                const isChecked = $(this).prop('checked');
+                $('.row-checkbox').prop('checked', isChecked);
+            });
+
+            // Filter dropdown toggle
+            $('.filter-button').on('click', function() {
+                // Add filter dropdown functionality here
+                console.log('Filter button clicked');
+            });
+
+            // Action buttons functionality
+            $('.action-btn.view').on('click', function() {
+                const row = $(this).closest('tr');
+                const id = row.find('td:nth-child(2)').text();
+                console.log(`View advertisement with ID: ${id}`);
+                // Implement view functionality
+            });
+
+            $('.action-btn.edit').on('click', function() {
+                const row = $(this).closest('tr');
+                const id = row.find('td:nth-child(2)').text();
+                console.log(`Edit advertisement with ID: ${id}`);
+                // Redirect to edit page
+                window.location.href = `advertisement-add-edit.html?id=${id}&mode=edit`;
+            });
+
+            $('.action-btn.delete').on('click', function() {
+                const row = $(this).closest('tr');
+                const id = row.find('td:nth-child(2)').text();
+                const name = row.find('td:nth-child(3)').text();
+                
+                if(confirm(`هل أنت متأكد من حذف الإعلان "${name}"؟`)) {
+                    console.log(`Delete advertisement with ID: ${id}`);
+                    // Implement delete functionality
+                    row.fadeOut(300, function() {
+                        $(this).remove();
+                    });
+                }
+            });
+
+            // Pagination functionality
+            $('.pagination-btn').not('.prev, .next').on('click', function() {
+                $('.pagination-btn').removeClass('active');
+                $(this).addClass('active');
+                // Implement page switching functionality
+            });
+
+            $('.pagination-btn.prev').on('click', function() {
+                const currentActive = $('.pagination-btn.active');
+                const prevPage = currentActive.next('.pagination-btn:not(.next)');
+                if (prevPage.length) {
+                    currentActive.removeClass('active');
+                    prevPage.addClass('active');
+                    // Implement previous page functionality
+                }
+            });
+
+            $('.pagination-btn.next').on('click', function() {
+                const currentActive = $('.pagination-btn.active');
+                const nextPage = currentActive.prev('.pagination-btn:not(.prev)');
+                if (nextPage.length) {
+                    currentActive.removeClass('active');
+                    nextPage.addClass('active');
+                    // Implement next page functionality
+                }
+            });
+        });
+    </script>
+</body>
+</html>

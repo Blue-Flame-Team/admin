@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحة الدفع الإلكتروني</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/mobile-additions.css">
+    <link rel="stylesheet" href="../css/size-fixes.css">
+    <link rel="stylesheet" href="../css/electronic-payment/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Main Content -->
+        <main class="main-content full-width">
+            <!-- Dashboard -->
+            <div class="payment-dashboard">
+                <h1 class="payment-title">نظام إدارة المدفوعات الإلكترونية</h1>
+
+                <!-- Filter Section -->
+                <div class="filter-section">
+                    <div class="filter-group">
+                        <label class="filter-label">رقم المستخدم</label>
+                        <input type="text" class="filter-input" placeholder="أدخل رقم المستخدم">
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label class="filter-label">نوع المعاملة</label>
+                        <div class="filter-dropdown">
+                            <select class="filter-input">
+                                <option value="">جميع الأنواع</option>
+                                <option value="transfer">تحويل بنكي</option>
+                                <option value="payment">دفع رسوم</option>
+                                <option value="deposit">إيداع</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label class="filter-label">من تاريخ</label>
+                        <input type="date" class="filter-input" value="2025-01-04">
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label class="filter-label">إلى تاريخ</label>
+                        <input type="date" class="filter-input" value="2025-04-20">
+                    </div>
+                    
+                    <button class="search-btn">
+                        <i class="fas fa-search"></i>
+                        <span>بحث</span>
+                    </button>
+                </div>
+
+                <!-- Export Buttons -->
+                <div class="export-buttons">
+                    <button class="export-btn">
+                        <i class="far fa-file-pdf"></i>
+                        <span>PDF</span>
+                    </button>
+                    <button class="export-btn">
+                        <i class="far fa-file-excel"></i>
+                        <span>Excel</span>
+                    </button>
+                </div>
+
+                <!-- Data Table -->
+                <div class="payment-table-container">
+                    <table class="payment-table">
+                        <thead>
+                            <tr>
+                                <th>تاريخ الدفع</th>
+                                <th>نوع العرض</th>
+                                <th>رقم المعاملة</th>
+                                <th>المبلغ</th>
+                                <th>النوع</th>
+                                <th>اسم المستخدم</th>
+                                <th>كود المستخدم</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>٢٠٢٥/٤/٢٩</td>
+                                <td>الرياض</td>
+                                <td>TRX-58721</td>
+                                <td>ريال</td>
+                                <td>تحويل إلى حساب بنكي</td>
+                                <td><a href="#">محمد عبدالله القحطاني</a></td>
+                                <td>USR-1294</td>
+                            </tr>
+                            <tr>
+                                <td>٢٠٢٥/٤/٢٨</td>
+                                <td>جدة</td>
+                                <td>TRX-58720</td>
+                                <td>ريال</td>
+                                <td>دفع رسوم خدمات</td>
+                                <td><a href="#">سارة أحمد العتيبي</a></td>
+                                <td>USR-1158</td>
+                            </tr>
+                            <tr>
+                                <td>٢٠٢٥/٤/٢٧</td>
+                                <td>الدمام</td>
+                                <td>TRX-58719</td>
+                                <td>ريال</td>
+                                <td>إيداع نقدي</td>
+                                <td><a href="#">عبدالرحمن خالد السعيد</a></td>
+                                <td>USR-1423</td>
+                            </tr>
+                            <tr>
+                                <td>٢٠٢٥/٤/٢١</td>
+                                <td>الرياض</td>
+                                <td>TRX-58718</td>
+                                <td>ريال</td>
+                                <td>سحب نقدي</td>
+                                <td><a href="#">نورة محمد السلمي</a></td>
+                                <td>USR-1087</td>
+                            </tr>
+                            <tr>
+                                <td>٢٠٢٥/٤/١٥</td>
+                                <td>مكة</td>
+                                <td>TRX-58717</td>
+                                <td>ريال</td>
+                                <td>تحويل بين حسابات</td>
+                                <td><a href="#">فهد سعيد الدوسري</a></td>
+                                <td>USR-1342</td>
+                            </tr>
+                            <tr>
+                                <td>٢٠٢٥/٤/١٤</td>
+                                <td>المدينة</td>
+                                <td>TRX-58716</td>
+                                <td>ريال</td>
+                                <td>دفع رسوم خدمات</td>
+                                <td><a href="#">هند عبدالعزيز الحربي</a></td>
+                                <td>USR-1256</td>
+                            </tr>
+                            <tr>
+                                <td>٢٠٢٥/٤/١٣</td>
+                                <td>جدة</td>
+                                <td>TRX-58715</td>
+                                <td>ريال</td>
+                                <td>إيداع شيك</td>
+                                <td><a href="#">سلطان ناصر الغامدي</a></td>
+                                <td>USR-1378</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination">
+                    <div class="pagination-info">
+                        عرض ١ إلى ٧ من ٤٢ سجل
+                    </div>
+                    <div class="pagination-controls">
+                        <button class="pagination-btn">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        <button class="pagination-btn active">١</button>
+                        <button class="pagination-btn">٢</button>
+                        <button class="pagination-btn">٣</button>
+                        <button class="pagination-btn">٤</button>
+                        <button class="pagination-btn">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <div class="pagination-dropdown">
+                            <select>
+                                <option>٧ لكل صفحة</option>
+                                <option>١٥ لكل صفحة</option>
+                                <option>٣٠ لكل صفحة</option>
+                                <option>٥٠ لكل صفحة</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <script src="../js/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Date input formatting
+            $('input[type="date"]').on('change', function() {
+                console.log('Date changed:', $(this).val());
+            });
+            
+            // Pagination buttons click handler
+            $('.pagination-btn').on('click', function() {
+                if (!$(this).hasClass('active') && !$(this).find('i').length) {
+                    $('.pagination-btn').removeClass('active');
+                    $(this).addClass('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحة سجل الزوار / صفحة تعديل للسجل</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/mobile-additions.css">
+    <link rel="stylesheet" href="../css/size-fixes.css">
+    <link rel="stylesheet" href="../css/visitor-log/visitor-edit-vertical.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1 class="page-title">إدارة سجل الزوار</h1>
+            <div class="user-profile">
+                <i class="fas fa-user"></i>
+            </div>
+        </header>
+
+        <!-- Message Card -->
+        <div class="message-card">
+            <!-- User Information - Now Vertical -->
+            <div class="user-info">
+                <div class="info-group">
+                    <div class="info-label">الاسم</div>
+                    <div class="info-value">محمد عبد الرحمن</div>
+                </div>
+                
+                <div class="info-group">
+                    <div class="info-label">تاريخ الإرسال</div>
+                    <div class="info-value">صباحًا</div>
+                </div>
+                
+                <div class="info-group">
+                    <div class="info-label">البريد الإلكتروني</div>
+                    <a href="mailto:mohammed@example.com" class="info-value email-value">mohammed@example.com</a>
+                </div>
+                
+                <div class="info-group">
+                    <div class="info-label">الحالة</div>
+                    <div class="info-value">
+                        <span class="status-badge status-pending">بانتظار الرد</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Message Content -->
+            <div class="info-group">
+                <div class="info-label">الرسالة</div>
+                <div class="message-content">
+                    السلام عليكم ورحمة الله وبركاته.
+                    <br><br>
+                    أود أن أشكركم على الخدمات الرائعة التي تقدمونها. لقد استفدت كثيرًا من موقعكم وأجد المحتوى مفيدًا للغاية. لدي بعض الاقتراحات التي قد تساعد في تحسين تجربة المستخدم:
+                    <br><br>
+                    -إضافة المزيد من الفيديوهات التعليمية حول كيفية استخدام المنصة<br>
+                    -توفير خيارات إضافية للدفع الإلكتروني
+                </div>
+            </div>
+            
+            <!-- Reply Section -->
+            <div class="reply-section">
+                <div class="info-label">الرد من الإدارة</div>
+                <textarea class="reply-textarea" placeholder="اكتب ردك هنا..."></textarea>
+                
+                <!-- Toggle -->
+                <div class="toggle-container">
+                    <span class="toggle-label">ظاهر للعامة</span>
+                    <label class="toggle-switch">
+                        <input type="checkbox">
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+                
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <button class="action-btn send-btn">إرسال الرد</button>
+                    <button class="action-btn cancel-btn">إلغاء</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pending Messages -->
+        <div class="pending-messages">
+            <h2 class="section-title">رسائل أخرى في الانتظار</h2>
+            
+            <table class="messages-table">
+                <thead>
+                    <tr>
+                        <th>الإجراءات</th>
+                        <th>الحالة</th>
+                        <th>التاريخ</th>
+                        <th>البريد الإلكتروني</th>
+                        <th>الاسم</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <i class="fas fa-eye view-icon"></i>
+                        </td>
+                        <td>
+                            <span class="status-badge yellow-badge">بانتظار الرد</span>
+                        </td>
+                        <td>٢٠٢٥</td>
+                        <td>ahmed@example.com</td>
+                        <td>أحمد محمود</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <i class="fas fa-eye view-icon"></i>
+                        </td>
+                        <td>
+                            <span class="status-badge green-badge">تم الرد</span>
+                        </td>
+                        <td>٢٠٢٥</td>
+                        <td>fatima@example.com</td>
+                        <td>فاطمة علي</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <i class="fas fa-eye view-icon"></i>
+                        </td>
+                        <td>
+                            <span class="status-badge yellow-badge">بانتظار الرد</span>
+                        </td>
+                        <td>٢٠٢٥</td>
+                        <td>abdullah@example.com</td>
+                        <td>عبد الله حسين</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <script src="../js/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Handle reply submission
+            $('.send-btn').on('click', function() {
+                const replyText = $('.reply-textarea').val().trim();
+                const isPublic = $('.toggle-switch input').is(':checked');
+                
+                if (replyText === '') {
+                    alert('الرجاء كتابة رد قبل الإرسال');
+                    return;
+                }
+                
+                // Here you would typically send the data to a server
+                console.log('Sending reply:', {
+                    reply: replyText,
+                    isPublic: isPublic
+                });
+                
+                alert('تم إرسال الرد بنجاح');
+                
+                // Redirect back to visitor log page
+                setTimeout(function() {
+                    window.location.href = 'visitor-messages.html';
+                }, 1000);
+            });
+            
+            // Cancel button
+            $('.cancel-btn').on('click', function() {
+                if (confirm('هل أنت متأكد من رغبتك في إلغاء الرد؟')) {
+                    window.location.href = 'visitor-messages.html';
+                }
+            });
+            
+            // View other messages
+            $('.view-icon').on('click', function() {
+                const row = $(this).closest('tr');
+                const name = row.find('td:last').text();
+                const email = row.find('td:nth-last-child(2)').text();
+                
+                // In a real application, this would navigate to the specific message
+                window.location.href = 'visitor-edit-vertical.html';
+            });
+        });
+    </script>
+</body>
+</html>

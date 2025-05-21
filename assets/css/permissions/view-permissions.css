@@ -1,0 +1,210 @@
+/* Permissions View Page Styles */
+
+body {
+    font-family: 'Cairo', sans-serif;
+    background-color: #f5f7fb;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 30px auto;
+    padding: 0 15px;
+}
+
+.permissions-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    padding: 25px;
+}
+
+/* Header Section */
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.card-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+}
+
+.add-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 15px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.add-btn i {
+    font-size: 0.85rem;
+}
+
+/* Table Styles */
+.permissions-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.permissions-table th {
+    background-color: #1e2c41;
+    color: white;
+    padding: 12px 15px;
+    text-align: right;
+    font-weight: 500;
+}
+
+.permissions-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+    text-align: right;
+}
+
+.permissions-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.permissions-table tr:hover {
+    background-color: #f5f5f5;
+}
+
+.action-cell {
+    width: 80px;
+    text-align: center !important;
+}
+
+.sequence-cell {
+    width: 60px;
+    text-align: center !important;
+}
+
+.action-btn {
+    width: 30px;
+    height: 30px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    border: none;
+}
+
+.edit-btn {
+    background-color: #2196F3;
+}
+
+.delete-btn {
+    background-color: #f44336;
+}
+
+.action-btn i {
+    font-size: 0.85rem;
+}
+
+/* Pagination */
+.pagination-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
+
+.page-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.display-count {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.display-count select {
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    background-color: white;
+}
+
+.jump-to-page {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.jump-to-page input {
+    width: 50px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+.pagination-numbers {
+    display: flex;
+    gap: 5px;
+}
+
+.page-item {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    background-color: white;
+    border: 1px solid #ddd;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.page-item:hover {
+    background-color: #f5f5f5;
+}
+
+.page-item.active {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+.page-arrow {
+    color: #666;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .card-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .pagination-controls {
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+    }
+    
+    .page-info {
+        flex-direction: column;
+        align-items: center;
+    }
+}

@@ -1,0 +1,374 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Tajawal', sans-serif;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #474747;
+    direction: rtl;
+}
+
+/* Main Container */
+.main-container {
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    background-color: white;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.header-icon-btn {
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    border: 1px solid #e1e1e1;
+    border-radius: 4px;
+    padding: 5px 10px;
+}
+
+.search-box input {
+    border: none;
+    outline: none;
+    background: none;
+    width: 130px;
+    font-size: 13px;
+}
+
+.search-box button {
+    background: none;
+    border: none;
+    color: #888;
+    cursor: pointer;
+}
+
+.title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+}
+
+/* Filter Bar */
+.filter-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.filter-tabs {
+    display: flex;
+    gap: 20px;
+}
+
+.filter-tab {
+    color: #777;
+    font-size: 14px;
+    cursor: pointer;
+    padding-bottom: 5px;
+}
+
+.filter-tab:first-child {
+    color: #333;
+    border-bottom: 2px solid #3498db;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 5px;
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 8px 15px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.btn-white {
+    background-color: #f8f9fa;
+    color: #333;
+    border: 1px solid #e5e5e5;
+}
+
+.btn-blue {
+    background-color: #3498db;
+    color: white;
+}
+
+/* Table Header */
+.table-header {
+    display: flex;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #e9ecef;
+    padding: 10px 20px;
+}
+
+.cell {
+    padding: 10px;
+    text-align: right;
+}
+
+.number-heading {
+    width: 70px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #444;
+}
+
+.name-heading {
+    flex: 1;
+    font-size: 14px;
+    font-weight: 500;
+    color: #444;
+}
+
+.status-heading {
+    width: 120px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #444;
+}
+
+.tools-heading {
+    width: 70px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #444;
+}
+
+.toggle-heading {
+    width: 120px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #444;
+}
+
+.delete-heading {
+    width: 70px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #444;
+}
+
+/* Table Content */
+.table-content {
+    padding: 0 20px;
+    flex: 1;
+    overflow-y: auto;
+}
+
+.table-row {
+    display: flex;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.number-cell {
+    width: 70px;
+    color: #444;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.name-cell {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.folder-item,
+.file-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.folder-item i {
+    color: #f1c40f;
+}
+
+.file-item i {
+    color: #95a5a6;
+}
+
+.status-cell {
+    width: 120px;
+    display: flex;
+    align-items: center;
+}
+
+.status-free {
+    background-color: rgba(39, 174, 96, 0.1);
+    color: #27ae60;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+.status-paid {
+    background-color: rgba(149, 165, 166, 0.1);
+    color: #7f8c8d;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+}
+
+.tools-cell {
+    width: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tools-btn {
+    background: none;
+    border: none;
+    color: #7f8c8d;
+    cursor: pointer;
+}
+
+.toggle-cell {
+    width: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Toggle Switch */
+.toggle {
+    position: relative;
+    display: inline-block;
+    width: 46px;
+    height: 24px;
+}
+
+.toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .toggle-slider {
+    background-color: #3498db;
+}
+
+input:checked + .toggle-slider:before {
+    transform: translateX(22px);
+}
+
+.delete-cell {
+    width: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.delete-btn {
+    background: none;
+    border: none;
+    color: #e74c3c;
+    cursor: pointer;
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 0;
+    gap: 15px;
+}
+
+.pagination-buttons {
+    display: flex;
+    gap: 5px;
+}
+
+.prev-btn,
+.page-btn,
+.next-btn {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #e1e1e1;
+    border-radius: 4px;
+    background: white;
+    color: #666;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.page-btn.active {
+    background-color: #3498db;
+    color: white;
+    border-color: #3498db;
+}
+
+.counter {
+    color: #7f8c8d;
+    font-size: 14px;
+}

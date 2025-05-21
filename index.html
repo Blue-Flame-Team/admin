@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم | محامو المملكة</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap RTL -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/dashboard/dashboard-exact.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar Menu -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <a href="#" class="logo">
+                    <img src="assets/images/logo.png" alt="محامو المملكة للاستشارات القانونية" class="full-logo">
+                </a>
+                <button class="close-sidebar"><i class="fas fa-times"></i></button>
+            </div>
+
+            <div class="sidebar-menu">
+                <ul>
+                    <li>
+                        <a href="index.html" class="active">
+                            <i class="fas fa-th-large"></i>
+                            <span>لوحة التحكم</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="assets/pages/visitor-add-entry.html">
+                            <i class="fas fa-users"></i>
+                            <span>سجل الزوار</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="assets/pages/legal-citation-requests.html">
+                            <i class="fas fa-clipboard-list"></i>
+                            <span>طلبات الأعضاء</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="assets/pages/visitor-edit-entry.html">
+                            <i class="fas fa-chart-line"></i>
+                            <span>تقارير الزوار</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="assets/pages/file-management.html">
+                            <i class="fas fa-folder"></i>
+                            <span>إدارة الملفات</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="assets/pages/image-upload.html">
+                            <i class="fas fa-upload"></i>
+                            <span>رفع صور</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="assets/pages/text-advertisements-view.html">
+                            <i class="fas fa-bullhorn"></i>
+                            <span>أكواد دعائية</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="assets/pages/print-copy-report.html">
+                            <i class="fas fa-file-alt"></i>
+                            <span>تقارير عامة</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="assets/pages/general-settings.html">
+                            <i class="fas fa-cog"></i>
+                            <span>إعدادات</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </aside>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Top Header -->
+            <header class="top-header">
+                <div class="user-info">
+                    <img src="assets/icons/Background.png" alt="Masael Taha">
+                    <span>Masael Taha</span>
+                </div>
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="بحث...">
+                </div>
+            </header>
+
+            <!-- Main Navigation -->
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html" class="active"><i class="fas fa-th-large"></i> لوحة التحكم</a></li>
+                    <li><a href="assets/pages/visitor-add-entry.html"><i class="fas fa-users"></i> سجل الزوار</a></li>
+                    <li><a href="assets/pages/legal-citation-requests.html"><i class="fas fa-clipboard-list"></i> طلبات الأعضاء</a></li>
+                    <li><a href="assets/pages/visitor-edit-entry.html"><i class="fas fa-chart-line"></i> تقارير الزوار</a></li>
+                    <li><a href="assets/pages/file-management.html"><i class="fas fa-folder"></i> إدارة الملفات</a></li>
+                    <li><a href="assets/pages/image-upload.html"><i class="fas fa-upload"></i> رفع صور</a></li>
+                    <li><a href="assets/pages/text-advertisements-view.html"><i class="fas fa-bullhorn"></i> أكواد دعائية</a></li>
+                    <li><a href="assets/pages/print-copy-report.html"><i class="fas fa-file-alt"></i> تقارير/إحصائية</a></li>
+                    <li><a href="assets/pages/general-settings.html"><i class="fas fa-cog"></i> إعدادات</a></li>
+                </ul>
+            </nav>
+
+            <!-- Dashboard Content -->
+            <div class="content-wrapper">
+                <!-- Page Header -->
+                <div class="page-header">
+                    <div>
+                        <h2>لوحة التحكم الرئيسية</h2>
+                        <div class="breadcrumb">
+                            <span>الرئيسية</span>
+                            <i class="fas fa-angle-left"></i>
+                            <span>لوحة التحكم</span>
+                        </div>
+                        <div class="year">2025</div>
+                    </div>
+                    <a href="assets/pages/legislation-editor.html" class="btn-add">
+                        <i class="fas fa-plus"></i>
+                        إضافة جديد
+                    </a>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="stats-cards">
+                    <div class="stat-card">
+                        <div class="stat-icon yellow">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>42</h3>
+                            <p>عدد الملفات الحالي</p>
+                        </div>
+                        <div class="stat-trend up">
+                            <i class="fas fa-arrow-up"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon purple">
+                            <i class="fas fa-file-invoice"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>856</h3>
+                            <p>عدد المستخدمين النشطين</p>
+                        </div>
+                        <div class="stat-trend down">
+                            <i class="fas fa-arrow-down"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon green">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>3,547</h3>
+                            <p>عدد الزوار</p>
+                        </div>
+                        <div class="stat-trend up">
+                            <i class="fas fa-arrow-up"></i>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon blue">
+                            <i class="fas fa-user"></i>
+                        </div>
+                        <div class="stat-info">
+                            <h3>1,284</h3>
+                            <p>عدد المحتوى المرفوع</p>
+                        </div>
+                        <div class="stat-trend up">
+                            <i class="fas fa-arrow-up"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts and Activities -->
+                <div class="card-row">
+                    <!-- Visits Chart -->
+                    <div class="card chart-card">
+                        <div class="card-header">
+                            <h3>إحصائيات الزيارات</h3>
+                            <div class="filter-options">
+                                <button>عرض الكل</button>
+                                <button class="active">آخر شهر</button>
+                            </div>
+                        </div>
+                        <div class="chart-wrapper">
+                            <div class="chart" id="visits-chart"></div>
+                        </div>
+                        <div class="chart-labels">
+                            <span>السبت</span>
+                            <span>الأحد</span>
+                            <span>الأربعاء</span>
+                            <span>الخميس</span>
+                            <span>الجمعة</span>
+                        </div>
+                    </div>
+
+                    <!-- Recent Activities -->
+                    <div class="card activities-card">
+                        <div class="card-header">
+                            <h3>النشاطات الأخيرة</h3>
+                        </div>
+                        <ul class="activities-list">
+                            <li class="activity-item">
+                                <div class="activity-icon blue">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <h4>تم تسجيل مستخدم جديد عبدالله الشمري</h4>
+                                    <p>صباحاً</p>
+                                </div>
+                            </li>
+                            <li class="activity-item">
+                                <div class="activity-icon green">
+                                    <i class="fas fa-file-alt"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <h4>تم إضافة مستند جديد عقد إيجار تجاري</h4>
+                                    <p>صباحاً</p>
+                                </div>
+                            </li>
+                            <li class="activity-item">
+                                <div class="activity-icon yellow">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <h4>تطبيق جديد من سيارة القصيم على مستند</h4>
+                                    <p>مساءً</p>
+                                </div>
+                            </li>
+                            <li class="activity-item">
+                                <div class="activity-icon red">
+                                    <i class="fas fa-calendar"></i>
+                                </div>
+                                <div class="activity-content">
+                                    <h4>تم تحديد موعد جلسة</h4>
+                                    <p>2025/42</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Recent Documents Table -->
+                <div class="card documents-card">
+                    <div class="card-header">
+                        <h3>المستندات الحديثة</h3>
+                        <a href="assets/pages/legal-documentation.html" class="view-all">عرض الكل</a>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="documents-table">
+                            <thead>
+                                <tr>
+                                    <th>رقم المستند</th>
+                                    <th>العنوان</th>
+                                    <th>النوع</th>
+                                    <th>تاريخ الإنشاء</th>
+                                    <th>الحالة</th>
+                                    <th>الإجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>DOC-2025-001</td>
+                                    <td>عقد تأسيس شركة</td>
+                                    <td>قانوني</td>
+                                    <td>2025</td>
+                                    <td><span class="status completed">مكتمل</span></td>
+                                    <td>
+                                        <div class="actions">
+                                            <a href="assets/pages/press-file-edit.html" class="delete-action"><i class="fas fa-trash"></i></a>
+                                            <a href="assets/pages/legislation-editor.html" class="edit-action"><i class="fas fa-edit"></i></a>
+                                            <a href="assets/pages/content-view.html" class="view-action"><i class="fas fa-eye"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>DOC-2025-002</td>
+                                    <td>عقد إيجار تجاري</td>
+                                    <td>عقاري</td>
+                                    <td>2025</td>
+                                    <td><span class="status review">قيد المراجعة</span></td>
+                                    <td>
+                                        <div class="actions">
+                                            <a href="assets/pages/press-file-edit.html" class="delete-action"><i class="fas fa-trash"></i></a>
+                                            <a href="assets/pages/legislation-editor.html" class="edit-action"><i class="fas fa-edit"></i></a>
+                                            <a href="assets/pages/content-view.html" class="view-action"><i class="fas fa-eye"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>DOC-2025-003</td>
+                                    <td>اتفاقية عدم الإفشاء</td>
+                                    <td>تجاري</td>
+                                    <td>2025</td>
+                                    <td><span class="status pending">بانتظار التوقيع</span></td>
+                                    <td>
+                                        <div class="actions">
+                                            <a href="assets/pages/press-file-edit.html" class="delete-action"><i class="fas fa-trash"></i></a>
+                                            <a href="assets/pages/legislation-editor.html" class="edit-action"><i class="fas fa-edit"></i></a>
+                                            <a href="assets/pages/content-view.html" class="view-action"><i class="fas fa-eye"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>DOC-2025-004</td>
+                                    <td>مذكرة دفاع قضائية</td>
+                                    <td>قضائي</td>
+                                    <td>2025</td>
+                                    <td><span class="status rejected">مرفوض</span></td>
+                                    <td>
+                                        <div class="actions">
+                                            <a href="assets/pages/press-file-edit.html" class="delete-action"><i class="fas fa-trash"></i></a>
+                                            <a href="assets/pages/legislation-editor.html" class="edit-action"><i class="fas fa-edit"></i></a>
+                                            <a href="assets/pages/content-view.html" class="view-action"><i class="fas fa-eye"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>DOC-2025-005</td>
+                                    <td>وكالة قانونية</td>
+                                    <td>قانوني</td>
+                                    <td>2025</td>
+                                    <td><span class="status completed">مكتمل</span></td>
+                                    <td>
+                                        <div class="actions">
+                                            <a href="assets/pages/press-file-edit.html" class="delete-action"><i class="fas fa-trash"></i></a>
+                                            <a href="assets/pages/legislation-editor.html" class="edit-action"><i class="fas fa-edit"></i></a>
+                                            <a href="assets/pages/content-view.html" class="view-action"><i class="fas fa-eye"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Events and Quick Actions -->
+                <div class="two-column-cards">
+                    <!-- Upcoming Events -->
+                    <div class="card events-card">
+                        <div class="card-header">
+                            <h3>المواعيد القادمة</h3>
+                            <a href="assets/pages/sitemap.html" class="view-all">عرض التقويم</a>
+                        </div>
+                        <ul class="events-list">
+                            <li class="event-item">
+                                <div class="event-date blue">
+                                    <span class="day">20</span>
+                                    <span class="month">نوف</span>
+                                </div>
+                                <div class="event-content">
+                                    <h4>اجتماع عمل حول - تجديد اتفاقية المستثمر</h4>
+                                    <p class="time">صباحاً</p>
+                                    <p class="location">قاعة الاجتماعات الرئيسية</p>
+                                </div>
+                            </li>
+                            <li class="event-item">
+                                <div class="event-date green">
+                                    <span class="day">22</span>
+                                    <span class="month">نوف</span>
+                                </div>
+                                <div class="event-content">
+                                    <h4>اجتماع عمل حول - تجديد اتفاقية المستثمر</h4>
+                                    <p class="time">ظهراً</p>
+                                    <p class="location">قاعة الاجتماعات الرئيسية</p>
+                                </div>
+                            </li>
+                            <li class="event-item">
+                                <div class="event-date yellow">
+                                    <span class="day">25</span>
+                                    <span class="month">نوف</span>
+                                </div>
+                                <div class="event-content">
+                                    <h4>توقيع عقد - مؤسسة الرؤية الوطنية للتطوير العقاري</h4>
+                                    <p class="time">مساءً</p>
+                                    <p class="location">مكتب المدير التنفيذي</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div class="card actions-card">
+                        <div class="card-header">
+                            <h3>إجراءات سريعة</h3>
+                        </div>
+                        <div class="quick-actions">
+                            <a href="assets/pages/user-management.html" class="quick-action-item">
+                                <div class="action-icon blue">
+                                    <i class="fas fa-user-plus"></i>
+                                </div>
+                                <span>إضافة عميل</span>
+                            </a>
+                            <a href="assets/pages/legislation-editor.html" class="quick-action-item">
+                                <div class="action-icon purple">
+                                    <i class="fas fa-file-alt"></i>
+                                </div>
+                                <span>إنشاء مستند</span>
+                            </a>
+                            <a href="assets/pages/print-copy-report.html" class="quick-action-item">
+                                <div class="action-icon green">
+                                    <i class="fas fa-chart-bar"></i>
+                                </div>
+                                <span>إنشاء تقرير</span>
+                            </a>
+                            <a href="assets/pages/visitor-add-entry.html" class="quick-action-item">
+                                <div class="action-icon yellow">
+                                    <i class="fas fa-calendar-plus"></i>
+                                </div>
+                                <span>جدولة موعد</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Floating Add Button -->
+        <a href="assets/pages/legislation-editor.html" class="float-add-btn">
+            <i class="fas fa-plus"></i>
+        </a>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Simple chart visualization for demo
+        document.addEventListener('DOMContentLoaded', function() {
+            // Chart background with SVG
+            const chartDiv = document.getElementById('visits-chart');
+            if (chartDiv) {
+                chartDiv.innerHTML = `
+                    <svg width="100%" height="100%" viewBox="0 0 800 300" preserveAspectRatio="none">
+                        <path d="M0,250 C100,230 200,100 300,80 S500,150 600,100 S700,50 800,100" 
+                              stroke="#3b82f6" stroke-width="3" fill="none"/>
+                        <path d="M0,250 C100,230 200,100 300,80 S500,150 600,100 S700,50 800,100 L800,300 L0,300 Z" 
+                              fill="rgba(59, 130, 246, 0.1)" stroke="none"/>
+                    </svg>
+                `;
+            }
+        });
+    </script>
+</body>
+</html>

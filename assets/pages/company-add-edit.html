@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الشركات / صفحة إضافة وتعديل تفاصيل شركة</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/mobile-additions.css">
+    <link rel="stylesheet" href="../css/size-fixes.css">
+    <link rel="stylesheet" href="../css/companies/company-add-edit.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="main-content">
+            <!-- Header -->
+            <div class="header">
+                <div class="user-profile">
+                    <span class="user-name">أحمد محمد</span>
+                    <img src="../img/user-avatar.png" alt="User Avatar" class="avatar">
+                </div>
+            </div>
+
+            <!-- Breadcrumb -->
+            <div class="breadcrumb">
+                <a href="#" class="breadcrumb-item">الرئيسية</a>
+                <span class="breadcrumb-separator">/</span>
+                <a href="companies-view.html" class="breadcrumb-item">إدارة الحقول</a>
+                <span class="breadcrumb-separator">/</span>
+                <span class="breadcrumb-item active">إضافة حقل جديد</span>
+            </div>
+
+            <!-- Page Title -->
+            <div class="page-title-container">
+                <h1 class="page-title">إضافة حقل جديد</h1>
+                <p class="page-description">قم بإنشاء حقل مخصص يحتوي الإضافات أو البيانات النصية ذات الصلة</p>
+            </div>
+
+            <!-- Form Content -->
+            <form id="companyForm" class="add-edit-form">
+                <!-- General Information Section -->
+                <div class="form-section">
+                    <h2 class="section-title">معلومات عامة</h2>
+                    
+                    <div class="form-group">
+                        <label for="fieldName">اسم الحقل <span class="required">*</span></label>
+                        <input type="text" id="fieldName" class="form-control" required>
+                        <small class="helper-text">يجب أن يكون الاسم الحقلي دقيق ويحتوي على كلمات تدل على محتواه</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="fieldLabel">تسمية الحقل <span class="required">*</span></label>
+                        <input type="text" id="fieldLabel" class="form-control" required>
+                        <small class="helper-text">سيتم عرض هذه التسمية للمستخدم عند ملء الاستمارات</small>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fieldType">نوع البيانات <span class="required">*</span></label>
+                            <select id="fieldType" class="form-control" required>
+                                <option value="" disabled selected>اختر نوع البيانات</option>
+                                <option value="text">نص</option>
+                                <option value="number">رقم</option>
+                                <option value="email">بريد إلكتروني</option>
+                                <option value="date">تاريخ</option>
+                                <option value="file">ملف</option>
+                            </select>
+                            <small class="helper-text">نوع البيانات التي سيحتويها هذا الحقل</small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="fieldDescription">وصف الحقل</label>
+                            <input type="text" id="fieldDescription" class="form-control">
+                            <small class="helper-text">حدد الغرض من الحقل، وكيف ستستخدم البيانات المسجلة</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Field Details Section -->
+                <div class="form-section">
+                    <h2 class="section-title">خصائص الحقل</h2>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="contentType">نوع عناصر المحتوى <span class="required">*</span></label>
+                            <select id="contentType" class="form-control" required>
+                                <option value="" disabled selected>اختر نوع عناصر المحتوى</option>
+                                <option value="text">نصوص</option>
+                                <option value="number">أرقام</option>
+                                <option value="date">تواريخ</option>
+                            </select>
+                            <small class="helper-text">كيف سيتم عرض نوع الحقل أو عرضه في النموذج</small>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="contentTypeValue">اختر نوع عناصر المحتوى</label>
+                            <select id="contentTypeValue" class="form-control">
+                                <option value="" disabled selected>اختر نوع عناصر المحتوى</option>
+                            </select>
+                            <small class="helper-text">الخيارات المتاحة بناءً على نوع عنصر المحتوى المحدد</small>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="targetValidation">الحقول المستهدفة</label>
+                        <select id="targetValidation" class="form-control">
+                            <option value="" disabled selected>-</option>
+                        </select>
+                        <small class="helper-text">الحقول التي سيرتبط بها هذا الحقل، أو سيؤثر عليها</small>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="targetValidationValue">اختر الحقول المستهدفة</label>
+                        <select id="targetValidationValue" class="form-control">
+                            <option value="" disabled selected>-</option>
+                        </select>
+                        <small class="helper-text">الحقول التي سيتم ربطها مع هذا الحقل لأغراض التحقق</small>
+                    </div>
+                </div>
+
+                <!-- Field Language Section -->
+                <div class="form-section">
+                    <h2 class="section-title">اللغة</h2>
+                    
+                    <div class="form-group">
+                        <label for="language">اختر اللغة</label>
+                        <select id="language" class="form-control">
+                            <option value="" disabled selected>-</option>
+                            <option value="ar">العربية</option>
+                            <option value="en">الإنجليزية</option>
+                        </select>
+                        <small class="helper-text">حدد اللغة الافتراضية للحقل، أو اتركها فارغة لاستخدام لغة النظام</small>
+                    </div>
+                    
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="requiredField" class="styled-checkbox">
+                        <label for="requiredField">حقل مطلوب</label>
+                    </div>
+                </div>
+
+                <!-- Display Options Section -->
+                <div class="form-section">
+                    <h2 class="section-title">خيارات العرض</h2>
+                    
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="showInSearch" class="styled-checkbox">
+                        <label for="showInSearch">إظهاره في نموذج البحث</label>
+                    </div>
+                    
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="showOnList" class="styled-checkbox">
+                        <label for="showOnList">المشاهدة بالقائمة</label>
+                    </div>
+                </div>
+
+                <!-- Form Actions -->
+                <div class="form-actions">
+                    <button type="button" class="btn-secondary" id="cancelBtn">إلغاء</button>
+                    <button type="submit" class="btn-primary" id="saveBtn">حفظ الحقل</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../js/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Field type change handler
+            $('#fieldType').on('change', function() {
+                const selectedType = $(this).val();
+                
+                // Update content type options based on field type
+                const contentTypeSelect = $('#contentType');
+                contentTypeSelect.empty();
+                
+                if (selectedType === 'text') {
+                    contentTypeSelect.append(new Option('نص قصير', 'short_text'));
+                    contentTypeSelect.append(new Option('نص طويل', 'long_text'));
+                } else if (selectedType === 'number') {
+                    contentTypeSelect.append(new Option('رقم عادي', 'number'));
+                    contentTypeSelect.append(new Option('رقم عشري', 'decimal'));
+                } else if (selectedType === 'date') {
+                    contentTypeSelect.append(new Option('تاريخ كامل', 'full_date'));
+                    contentTypeSelect.append(new Option('سنة فقط', 'year_only'));
+                }
+            });
+            
+            // Content type change handler
+            $('#contentType').on('change', function() {
+                const selectedContentType = $(this).val();
+                const contentTypeValueSelect = $('#contentTypeValue');
+                contentTypeValueSelect.empty();
+                
+                // Populate based on content type selection
+                if (selectedContentType) {
+                    contentTypeValueSelect.append(new Option('القيمة الافتراضية', 'default'));
+                    contentTypeValueSelect.append(new Option('قيم مخصصة', 'custom'));
+                }
+            });
+            
+            // Target validation change handler
+            $('#targetValidation').on('change', function() {
+                const selectedTarget = $(this).val();
+                const targetValueSelect = $('#targetValidationValue');
+                targetValueSelect.empty();
+                
+                if (selectedTarget) {
+                    // This would be populated with actual field names from the database
+                    targetValueSelect.append(new Option('الاسم', 'name'));
+                    targetValueSelect.append(new Option('البريد الإلكتروني', 'email'));
+                    targetValueSelect.append(new Option('رقم الهاتف', 'phone'));
+                }
+            });
+            
+            // Form submission
+            $('#companyForm').on('submit', function(e) {
+                e.preventDefault();
+                
+                // Validate required fields
+                const fieldName = $('#fieldName').val();
+                const fieldLabel = $('#fieldLabel').val();
+                const fieldType = $('#fieldType').val();
+                const contentType = $('#contentType').val();
+                
+                if (!fieldName || !fieldLabel || !fieldType || !contentType) {
+                    alert('الرجاء ملء جميع الحقول المطلوبة');
+                    return;
+                }
+                
+                // Here you would normally save the data via AJAX
+                console.log('Saving field data...');
+                alert('تم حفظ البيانات بنجاح');
+                
+                // Redirect to fields listing page
+                // window.location.href = 'companies-view.html';
+            });
+            
+            // Cancel button
+            $('#cancelBtn').on('click', function() {
+                if (confirm('هل أنت متأكد من إلغاء العملية؟ سيتم فقدان جميع البيانات المدخلة.')) {
+                    window.location.href = 'companies-view.html';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
