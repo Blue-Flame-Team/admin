@@ -222,4 +222,77 @@ body.dark-mode .attachment-count {
         margin-bottom: 0.5rem;
         margin-left: 0 !important;
     }
+    
+    .card {
+        border-radius: 8px;
+        margin-bottom: 1rem;
+    }
+    
+    .card-header, .card-body {
+        padding: 0.75rem;
+    }
+    
+    /* Make tables responsive for mobile */
+    .table-responsive {
+        border: 0;
+    }
+    
+    .keywords-table th,
+    .keywords-table td {
+        padding: 0.5rem;
+        font-size: 0.85rem;
+    }
+    
+    /* Optimize pagination for mobile */
+    .pagination .page-link {
+        padding: 0.4rem 0.75rem;
+    }
+    
+    .pagination-info {
+        text-align: center;
+        margin-bottom: 0.5rem;
+    }
+    
+    /* Better button sizing for mobile */
+    .btn-sm {
+        padding: 0.25rem 0.5rem;
+    }
+    
+    .attachment-count {
+        padding: 0.2rem 0.4rem;
+        font-size: 0.75rem;
+    }
+}
+
+/* Extra small devices */
+@media (max-width: 575.98px) {
+    h1 {
+        font-size: 1.4rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .form-check-label {
+        font-size: 0.85rem;
+    }
+    
+    .keywords-table th,
+    .keywords-table td {
+        padding: 0.4rem;
+        font-size: 0.8rem;
+    }
+    
+    .btn-edit, .btn-delete {
+        padding: 0.25rem 0.4rem;
+        font-size: 0.8rem;
+    }
+    
+    /* Hide less important columns on very small screens */
+    .keywords-table .d-none-xs {
+        display: none;
+    }
+    
+    /* Simpler pagination for very small screens */
+    .pagination .page-item:not(.active):not(:first-child):not(:last-child) {
+        display: none;
+    }
 }
