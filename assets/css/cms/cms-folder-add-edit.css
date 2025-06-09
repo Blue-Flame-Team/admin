@@ -1,0 +1,517 @@
+/* Reset and Base Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Tajawal', sans-serif;
+    background-color: #F9FAFB;
+    color: #111827;
+    direction: rtl;
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Breadcrumb Navigation */
+.breadcrumb-nav {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 8px;
+    font-size: 14px;
+    margin-bottom: 24px;
+    width: 848px;
+    direction: rtl;
+}
+
+.breadcrumb-link {
+    color: #3B82F6;
+    text-decoration: none;
+    font-weight: 400;
+    transition: color 0.2s ease;
+}
+
+.breadcrumb-link:hover {
+    color: #2563EB;
+}
+
+.breadcrumb-separator {
+    color: #9CA3AF;
+    margin: 0 4px;
+}
+
+.breadcrumb-current {
+    color: #6B7280;
+    font-weight: 400;
+}
+
+/* Main Form Container */
+.form-container {
+    background: #FFFFFF;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+    width: 848px;
+    height: 444px;
+    padding: 40px 48px;
+    border: 1px solid #E5E7EB;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    direction: rtl;
+    text-align: right;
+}
+
+.form-title {
+    font-family: 'Cairo', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: #111827;
+    text-align: right;
+    margin-bottom: 36px;
+    flex-shrink: 0;
+    width: 196.6px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    align-self: flex-start;
+}
+
+/* Form Styles */
+.content-form {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    flex: 1;
+    align-items: stretch;
+    direction: rtl;
+    text-align: right;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-start;
+    text-align: right;
+    direction: rtl;
+}
+
+.input-group.inline-group {
+    flex-direction: row-reverse;
+    align-items: center;
+    gap: 0px;
+    justify-content: flex-end;
+}
+
+.input-label {
+    font-family: 'Cairo', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: #374151;
+    text-align: right;
+}
+
+.text-input {
+    width: 798px;
+    height: 50px;
+    padding: 12px 16px;
+    border: 1px solid #D1D5DB;
+    border-radius: 8px;
+    font-family: 'Tajawal', sans-serif;
+    font-size: 14px;
+    color: #111827;
+    background: #FFFFFF;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    box-sizing: border-box;
+    text-align: right;
+    direction: rtl;
+}
+
+.text-input:focus {
+    border-color: #3B82F6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.text-input::placeholder {
+    color: #9CA3AF;
+}
+
+.text-display {
+    width: 98.48px;
+    height: 40px;
+    padding: 8px 12px;
+    border: 1px solid #E5E7EB;
+    border-radius: 8px;
+    font-family: 'Tajawal', sans-serif;
+    font-size: 14px;
+    color: #6B7280;
+    background: #F3F4F6;
+    user-select: text;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    margin-right: 8px;
+}
+
+/* Checkbox Styles */
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 12px;
+    padding: 8px 0;
+    width: 100%;
+    direction: rtl;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+    user-select: none;
+    font-size: 14px;
+    color: #374151;
+    flex-direction: row-reverse;
+}
+
+.checkbox-input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.checkbox-custom {
+    position: relative;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #D1D5DB;
+    border-radius: 4px;
+    background: #FFFFFF;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.checkbox-label:hover .checkbox-custom {
+    border-color: #3B82F6;
+}
+
+.checkbox-input:checked + .checkbox-custom {
+    background: #22C55E;
+    border-color: #22C55E;
+}
+
+.checkbox-input:checked + .checkbox-custom::after {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: 2px solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.checkbox-text {
+    font-weight: 400;
+}
+
+/* Form Actions */
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: auto;
+    padding: 24px 0 0 0;
+    border-top: 1px solid #F3F4F6;
+    background: #FAFBFC;
+    border-radius: 0 0 12px 12px;
+    margin: 20px -48px -40px -48px;
+    padding: 24px 48px;
+    direction: rtl;
+}
+
+.submit-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: #3B82F6;
+    color: #FFFFFF;
+    border: none;
+    width: 117.83px;
+    height: 48px;
+    border-radius: 8px;
+    font-family: 'Cairo', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+.submit-btn:hover {
+    background: #2563EB;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+
+.submit-btn i {
+    font-size: 12px;
+}
+
+/* Large Screens - Fixed Dimensions */
+@media (min-width: 900px) {
+    .form-container {
+        width: 848px;
+        height: 444px;
+        padding: 40px 48px;
+    }
+    
+    .breadcrumb-nav {
+        width: 848px;
+    }
+    
+    .form-title {
+        width: 196.6px;
+        height: 32px;
+        font-size: 24px;
+    }
+    
+    .submit-btn {
+        width: 117.83px;
+        height: 48px;
+    }
+    
+    .form-actions {
+        margin: 20px -48px -40px -48px;
+        padding: 24px 48px;
+        border-top: 1px solid #F3F4F6;
+        background: white;
+        border-radius: 0 0 12px 12px;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 899px) {
+    .form-container {
+        width: calc(100% - 32px);
+        height: auto;
+        min-height: 400px;
+        padding: 32px 24px;
+        direction: rtl;
+        text-align: right;
+    }
+    
+    .breadcrumb-nav {
+        width: 100%;
+        max-width: calc(100% - 32px);
+    }
+    
+    .text-input {
+        width: 100%;
+        height: 48px;
+        text-align: right;
+        direction: rtl;
+    }
+    
+    .input-group.inline-group {
+        flex-direction: row-reverse;
+        justify-content: flex-end;
+        gap: 0px;
+    }
+    
+    .text-display {
+        width: 110px;
+        height: 38px;
+        margin-right: 8px;
+    }
+    
+    .submit-btn {
+        width: 117.83px;
+        height: 46px;
+    }
+    
+    .form-actions {
+        margin: 20px -24px -32px -24px;
+        padding: 20px 24px;
+        border-top: 1px solid #F3F4F6;
+        background: #FAFBFC;
+        border-radius: 0 0 12px 12px;
+    }
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 20px 16px;
+    }
+    
+    .breadcrumb-nav {
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        margin-bottom: 30px;
+        width: 100%;
+        direction: rtl;
+    }
+    
+    .form-container {
+        padding: 24px 20px;
+        width: calc(100% - 32px);
+        height: auto;
+        min-height: 350px;
+        direction: rtl;
+        text-align: right;
+    }
+    
+    .form-title {
+        font-size: 18px;
+        margin-bottom: 24px;
+        text-align: right;
+        width: auto;
+        height: auto;
+        justify-content: flex-start;
+        align-self: flex-start;
+    }
+    
+    .content-form {
+        gap: 24px;
+    }
+    
+    .text-input {
+        width: 100%;
+        height: 45px;
+        text-align: right;
+        direction: rtl;
+    }
+    
+    .input-group.inline-group {
+        flex-direction: row-reverse;
+        align-items: center;
+        gap: 0px;
+        justify-content: flex-end;
+    }
+    
+    .text-display {
+        width: 100px;
+        height: 36px;
+        margin-right: 6px;
+    }
+    
+    .checkbox-group {
+        justify-content: flex-start;
+        direction: rtl;
+    }
+    
+    .form-actions {
+        justify-content: flex-end;
+        margin: 20px -24px -24px -24px;
+        padding: 20px 24px;
+        border-top: 1px solid #F3F4F6;
+        background: #FAFBFC;
+        border-radius: 0 0 12px 12px;
+        direction: rtl;
+    }
+    
+    .submit-btn {
+        width: 117.83px;
+        height: 44px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 15px 12px;
+    }
+    
+    .form-container {
+        padding: 20px 16px;
+        width: calc(100% - 24px);
+        height: auto;
+        min-height: 320px;
+        direction: rtl;
+        text-align: right;
+    }
+    
+    .form-title {
+        font-size: 18px;
+        margin-bottom: 25px;
+        width: auto;
+        height: auto;
+        justify-content: flex-start;
+        align-self: flex-start;
+    }
+    
+    .content-form {
+        gap: 20px;
+    }
+    
+    .text-input {
+        width: 100%;
+        height: 42px;
+        padding: 10px 14px;
+        font-size: 14px;
+        text-align: right;
+        direction: rtl;
+    }
+    
+    .input-group.inline-group {
+        flex-direction: row-reverse;
+        align-items: center;
+        gap: 0px;
+        justify-content: flex-end;
+    }
+    
+    .text-display {
+        width: 90px;
+        height: 32px;
+        padding: 6px 8px;
+        font-size: 12px;
+        margin-right: 6px;
+    }
+    
+    .checkbox-custom {
+        width: 18px;
+        height: 18px;
+    }
+    
+    .checkbox-input:checked + .checkbox-custom::after {
+        left: 5px;
+        top: 1px;
+        width: 4px;
+        height: 8px;
+    }
+    
+    .form-actions {
+        margin: 15px -16px -20px -16px;
+        padding: 16px 16px;
+        border-top: 1px solid #F3F4F6;
+        background: #FAFBFC;
+        border-radius: 0 0 12px 12px;
+    }
+    
+    .submit-btn {
+        width: 110px;
+        height: 42px;
+        font-size: 13px;
+    }
+}

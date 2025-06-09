@@ -1,8 +1,17 @@
-/* Subscription Renewal Page Styles */
+/* Subscription Renewal Page - Exact design match with specified dimensions */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 body {
-    background-color: #f5f7fb;
-    font-family: 'Cairo', sans-serif;
+    background-color: #f5f5f5;
+    font-family: 'Cairo', 'Arial', sans-serif;
+    direction: rtl;
+    font-size: 16px;
+    line-height: 1.5;
 }
 
 .renewal-container {
@@ -13,167 +22,604 @@ body {
     padding: 20px;
 }
 
+/* Main card - Width: 672px, Height: 573px, Radius: 16px */
 .renewal-card {
-    background-color: white;
-    border-radius: 15px;
-    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.05);
-    width: 100%;
-    max-width: 500px;
-    padding: 30px;
-    position: relative;
+    background-color: #ffffff;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    width: 672px;
+    height: 573px;
+    border: 1px solid #e5e7eb;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 16px;
+}
+
+/* Header section - Width: 672px, Height: 61px */
+.renewal-header {
+    width: 672px;
+    height: 61px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 24px;
+    border-bottom: 1px solid #f3f4f6;
 }
 
 .renewal-title {
-    text-align: center;
-    margin-bottom: 30px;
-    font-size: 1.5rem;
-    color: #333;
+    font-size: 20px;
+    color: #1f2937;
     font-weight: 600;
+    margin: 0;
 }
 
+.user-section {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #6b7280;
+    font-size: 16px;
+}
+
+.user-name {
+    color: #3b82f6;
+    font-weight: 500;
+}
+
+/* Content section - Width: 672px, Height: 496px, Padding: 24px */
+.form-content {
+    width: 672px;
+    height: 496px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* Form groups */
 .form-group {
-    margin-bottom: 20px;
-    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
 .form-label {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
 }
 
 .label-text {
-    color: #666;
-    font-size: 0.95rem;
+    color: #1f2937;
+    font-size: 16px;
+    font-weight: 500;
 }
 
 .info-icon {
-    color: #a0a0a0;
-    font-size: 0.9rem;
+    color: #6b7280;
+    font-size: 16px;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.info-icon:hover {
+    color: #3b82f6;
+}
+
+/* Checkbox styling */
+.checkbox-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.custom-checkbox {
+    position: relative;
+    display: inline-block;
+    width: 24px;
+    height: 24px;
     cursor: pointer;
 }
 
+.custom-checkbox input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 24px;
+    width: 24px;
+    background-color: #3b82f6;
+    border: 2px solid #3b82f6;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.custom-checkbox input:not(:checked) ~ .checkmark {
+    background-color: #ffffff;
+    border-color: #d1d5db;
+}
+
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: block;
+    left: 7px;
+    top: 3px;
+    width: 6px;
+    height: 12px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.custom-checkbox input:not(:checked) ~ .checkmark:after {
+    display: none;
+}
+
+/* Form controls */
 .form-control {
     width: 100%;
-    padding: 12px 15px;
-    border: 1px solid #ddd;
+    padding: 12px 16px;
+    border: 1px solid #d1d5db;
     border-radius: 8px;
-    font-size: 0.95rem;
+    font-size: 16px;
+    color: #1f2937;
+    background-color: #ffffff;
+    transition: border-color 0.2s ease;
+    font-family: 'Cairo', 'Arial', sans-serif;
 }
 
+.form-control:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Select dropdown */
 .form-select {
     appearance: none;
-    padding-right: 30px;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%23666' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%236b7280' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
-    background-position: left 10px center;
-    background-size: 12px;
+    background-position: left 16px center;
+    background-size: 16px;
+    padding-left: 40px;
+    cursor: pointer;
 }
 
-.form-checkbox {
+/* Currency input */
+.currency-wrapper {
+    position: relative;
     display: flex;
     align-items: center;
 }
 
-.form-checkbox input[type="checkbox"] {
-    width: 18px;
-    height: 18px;
-    margin-left: 10px;
-    accent-color: #2196F3;
-}
-
 .currency-input {
-    position: relative;
+    flex: 1;
+    text-align: right;
+    padding: 12px 70px 12px 16px;
 }
 
-.currency-input input {
-    padding-left: 40px;
-}
-
-.currency-symbol {
+.currency-label {
     position: absolute;
-    left: 15px;
-    top: 12px;
-    color: #666;
+    left: 16px;
+    color: #6b7280;
+    font-size: 16px;
+    pointer-events: none;
 }
 
+/* Textarea */
 .form-textarea {
-    min-height: 100px;
+    min-height: 120px;
     resize: vertical;
+    line-height: 1.5;
 }
 
-.form-placeholder {
-    color: #a0a0a0;
+.form-textarea::placeholder {
+    color: #9ca3af;
+    font-style: normal;
 }
 
+/* Action buttons */
 .action-buttons {
     display: flex;
-    justify-content: flex-end;
-    gap: 15px;
-    margin-top: 30px;
+    justify-content: flex-start;
+    gap: 16px;
+    margin-top: auto;
+    padding: 0 24px;
 }
 
 .btn {
-    padding: 10px 20px;
     border-radius: 8px;
     font-weight: 500;
     cursor: pointer;
     border: none;
-    font-size: 0.95rem;
+    font-size: 16px;
     transition: all 0.2s ease;
+    font-family: 'Cairo', 'Arial', sans-serif;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 16px;
 }
 
 .btn-primary {
-    background-color: #15c39a;
+    background-color: #10b981;
     color: white;
+    width: 97px;
 }
 
 .btn-primary:hover {
-    background-color: #13b38e;
+    background-color: #059669;
+    transform: translateY(-1px);
 }
 
 .btn-secondary {
-    background-color: #f5f5f5;
-    color: #666;
-    border: 1px solid #ddd;
+    background-color: #f9fafb;
+    color: #6b7280;
+    border: 1px solid #d1d5db;
+    width: 84px;
 }
 
 .btn-secondary:hover {
-    background-color: #e9e9e9;
+    background-color: #f3f4f6;
+    color: #374151;
 }
 
-.user-highlight {
-    color: #2196F3;
-    font-weight: 500;
-}
+/* Responsive Design - Comprehensive Mobile Optimization */
 
-/* Form validation styles */
-.is-valid {
-    border-color: #15c39a;
-}
-
-.is-invalid {
-    border-color: #dc3545;
-}
-
-.feedback-invalid {
-    color: #dc3545;
-    font-size: 0.85rem;
-    margin-top: 5px;
-}
-
-/* Responsive styles */
-@media (max-width: 576px) {
+/* Tablet and small desktop screens */
+@media (max-width: 1199px) and (min-width: 992px) {
+    .renewal-container {
+        padding: 16px;
+    }
+    
     .renewal-card {
+        width: 100%;
+        max-width: 672px;
+    }
+}
+
+/* Tablet screens */
+@media (max-width: 991px) and (min-width: 768px) {
+    .renewal-container {
+        padding: 16px;
+    }
+    
+    .renewal-card {
+        width: 100%;
+        max-width: 600px;
+        height: auto;
+        min-height: 573px;
+    }
+    
+    .renewal-header,
+    .form-content {
+        width: 100%;
+    }
+    
+    .form-control,
+    .btn {
+        min-height: 44px; /* Touch-friendly sizing */
+    }
+}
+
+/* Mobile landscape and small tablets */
+@media (max-width: 767px) and (min-width: 576px) {
+    .renewal-container {
+        padding: 12px;
+    }
+    
+    .renewal-card {
+        width: 100%;
+        height: auto;
+        min-height: 500px;
+        border-radius: 12px;
+    }
+    
+    .renewal-header {
+        width: 100%;
+        height: auto;
+        min-height: 61px;
+        padding: 16px 20px;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    
+    .renewal-title {
+        font-size: 18px;
+    }
+    
+    .user-section {
+        font-size: 14px;
+    }
+    
+    .form-content {
+        width: 100%;
+        height: auto;
+        flex: 1;
         padding: 20px;
+        gap: 20px;
+    }
+    
+    .form-control {
+        min-height: 44px;
+        font-size: 16px; /* Prevent zoom on iOS */
+    }
+    
+    .btn {
+        min-height: 44px;
+        width: 100%;
+    }
+    
+    .action-buttons {
+        flex-direction: row;
+        gap: 12px;
+    }
+}
+
+/* Mobile portrait */
+@media (max-width: 575px) {
+    .renewal-container {
+        padding: 8px;
+        min-height: 100vh;
+    }
+    
+    .renewal-card {
+        width: calc(100vw - 16px);
+        height: auto;
+        min-height: calc(100vh - 16px);
+        border-radius: 8px;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .renewal-header {
+        width: 100%;
+        height: auto;
+        min-height: 60px;
+        flex-direction: column;
+        gap: 8px;
+        padding: 16px 20px;
+        text-align: center;
+    }
+    
+    .renewal-title {
+        font-size: 18px;
+        text-align: center;
+    }
+    
+    .user-section {
+        font-size: 14px;
+        justify-content: center;
+    }
+    
+    .form-content {
+        width: 100%;
+        height: auto;
+        flex: 1;
+        padding: 20px 16px;
+        gap: 20px;
+    }
+    
+    .form-group {
+        gap: 12px;
+    }
+    
+    .form-label {
+        flex-direction: column;
+        gap: 8px;
+        align-items: flex-start;
+    }
+    
+    .label-text {
+        font-size: 15px;
+        width: 100%;
+    }
+    
+    .info-icon {
+        align-self: flex-end;
+        font-size: 18px;
+        padding: 4px;
+    }
+    
+    .checkbox-wrapper {
+        justify-content: flex-start;
+        margin-top: 8px;
+    }
+    
+    .custom-checkbox {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .checkmark {
+        width: 28px;
+        height: 28px;
+    }
+    
+    .checkmark:after {
+        left: 9px;
+        top: 4px;
+        width: 7px;
+        height: 14px;
+    }
+    
+    .form-control {
+        min-height: 44px;
+        font-size: 16px;
+        padding: 14px 16px;
+    }
+    
+    .form-select {
+        background-position: left 12px center;
+        padding-left: 36px;
+    }
+    
+    .currency-input {
+        padding: 14px 70px 14px 16px;
+    }
+    
+    .currency-label {
+        left: 12px;
+        font-size: 15px;
+    }
+    
+    .form-textarea {
+        min-height: 100px;
+        font-size: 16px;
     }
     
     .action-buttons {
         flex-direction: column;
+        gap: 12px;
+        padding: 0 16px 20px;
+        margin-top: 16px;
     }
     
     .btn {
         width: 100%;
+        min-height: 48px;
+        font-size: 16px;
+        border-radius: 8px;
+    }
+}
+
+/* Very small mobile devices */
+@media (max-width: 400px) {
+    .renewal-container {
+        padding: 4px;
+    }
+    
+    .renewal-card {
+        width: calc(100vw - 8px);
+        border-radius: 6px;
+    }
+    
+    .renewal-header {
+        padding: 12px 16px;
+    }
+    
+    .renewal-title {
+        font-size: 16px;
+    }
+    
+    .user-section {
+        font-size: 13px;
+    }
+    
+    .form-content {
+        padding: 16px 12px;
+        gap: 18px;
+    }
+    
+    .label-text {
+        font-size: 14px;
+    }
+    
+    .form-control {
+        font-size: 15px;
+        padding: 12px 14px;
+    }
+    
+    .currency-input {
+        padding: 12px 60px 12px 14px;
+    }
+    
+    .currency-label {
+        left: 10px;
+        font-size: 14px;
+    }
+    
+    .action-buttons {
+        padding: 0 12px 16px;
+    }
+    
+    .btn {
+        min-height: 44px;
+        font-size: 15px;
+    }
+}
+
+/* Landscape orientation optimization for mobile */
+@media (max-width: 767px) and (orientation: landscape) {
+    .renewal-container {
+        min-height: 100vh;
+        padding: 8px;
+    }
+    
+    .renewal-card {
+        max-height: calc(100vh - 16px);
+        overflow-y: auto;
+    }
+    
+    .renewal-header {
+        flex-direction: row;
+        padding: 12px 16px;
+        min-height: 50px;
+    }
+    
+    .renewal-title {
+        font-size: 16px;
+    }
+    
+    .user-section {
+        font-size: 13px;
+    }
+    
+    .form-content {
+        padding: 16px;
+        gap: 16px;
+    }
+    
+    .form-group {
+        gap: 10px;
+    }
+    
+    .form-textarea {
+        min-height: 80px;
+    }
+    
+    .action-buttons {
+        flex-direction: row;
+        padding: 0 16px 12px;
+    }
+}
+
+/* Print styles */
+@media print {
+    .renewal-container {
+        padding: 0;
+        min-height: auto;
+    }
+    
+    .renewal-card {
+        width: 100%;
+        height: auto;
+        box-shadow: none;
+        border: 1px solid #000;
+    }
+    
+    .action-buttons {
+        display: none;
+    }
+}
+
+/* Focus states for better accessibility */
+@media (max-width: 767px) {
+    .form-control:focus,
+    .btn:focus {
+        outline: 2px solid #3b82f6;
+        outline-offset: 2px;
+    }
+    
+    .custom-checkbox:focus-within .checkmark {
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
     }
 }

@@ -10,23 +10,23 @@
     <script src="../js/press-file-editor.js" defer></script>
 </head>
 <body>
-    <div class="main-container">
-        <!-- Breadcrumb Navigation -->
-        <div class="breadcrumb">
-            <a href="#">الرئيسية</a>
-            <span>/</span>
-            <a href="#">ملف صحفي</a>
-        </div>
-
-        <!-- Content Container -->
-        <div class="content-container">
-            <div class="header-row">
-                <div class="year-display">2025</div>
-                <div class="page-title-container">
-                    <h1 class="page-title">ترتيب الجدول</h1>
-                    <div class="status-badge">مجاني</div>
-                </div>
+    <div class="container">
+        <!-- Header and Breadcrumb -->
+        <div class="page-header">
+            <div class="breadcrumb">
+                <a href="#">الرئيسية</a>
+                <span>/</span>
+                <a href="#">ملف صحفي</a>
             </div>
+            
+            <div class="header-content">
+                <div class="page-info">
+                    <h1 class="page-title">2025</h1>
+                    <div class="page-subtitle">ترتيب الجدول</div>
+                </div>
+                <div class="status-badge">مجاني</div>
+            </div>
+        </div>
 
             <!-- Form Container -->
             <div class="form-container">
@@ -39,14 +39,11 @@
 
                     <!-- Image Caption -->
                     <div class="form-group">
-                        <label for="imageCaption">تفسير الصورة</label>
-                        <div class="upload-container">
-                            <input type="text" id="imageCaption" class="form-control" placeholder="">
-                            <button type="button" class="upload-btn">
-                                <i class="far fa-image"></i>
-                                <span>اختر ملفًا أو اسحب هنا</span>
-                            </button>
-                        </div>
+                        <label for="imageCaption">مسار الصورة</label>
+                        <button type="button" class="upload-btn">
+                            <i class="far fa-image"></i>
+                            <span>اختر ملفًا أو اسحب هنا</span>
+                        </button>
                     </div>
 
                     <!-- Publication Details -->

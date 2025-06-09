@@ -4,646 +4,885 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>تقارير الطباعة والنسخ</title>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Tajawal', sans-serif;
         }
-        
+
         body {
-            background-color: #f6f7fb;
+            font-family: 'Cairo', sans-serif;
+            background-color: #FAF5FF;
             color: #333;
             direction: rtl;
-            padding: 0;
-            margin: 0;
         }
-        
-        .main-container {
-            max-width: 970px;
-            margin: 20px auto;
-            background-color: white;
-            border-radius: 12px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            overflow: hidden;
-        }
-        
-        .header {
+
+        /* Header */
+        .page-header {
+            background: #FFFFFF;
+            color: #333;
+            padding: 12px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 20px;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid #e9ecef;
         }
-        
-        .header h1 {
+
+        .page-title {
             font-size: 16px;
             font-weight: 600;
-            color: #333;
         }
-        
-        .header .year {
-            font-size: 14px;
-            color: #777;
-        }
-        
-        .filter-panel {
-            background-color: #f9f6fd;
-            padding: 15px 20px;
-            margin: 15px;
-            border-radius: 10px;
-        }
-        
-        .filter-title {
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 15px;
-            color: #333;
-        }
-        
-        .filter-form {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
+
+        .date-info {
+            display: flex;
             gap: 15px;
+            font-size: 13px;
         }
-        
-        .form-group {
-            margin-bottom: 15px;
-            position: relative;
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
         }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 12px;
+
+        /* Filter Section */
+        .filter-section {
+            background: #FFFFFF;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
             color: #333;
+        }
+
+        .filter-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-align: right;
+            color: #495057;
+        }
+
+        .filter-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            align-items: end;
+        }
+
+        .filter-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .filter-item label {
+            font-size: 13px;
             font-weight: 500;
+            margin-bottom: 8px;
+            text-align: right;
         }
-        
-        .form-control {
-            width: 100%;
+
+        .filter-input {
             padding: 8px 12px;
-            border: 1px solid #e6e6e6;
-            border-radius: 6px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
             font-size: 13px;
-            background-color: white;
+            outline: none;
+            background: white;
+            color: #333;
         }
-        
-        .form-select {
-            width: 100%;
-            padding: 8px 12px;
-            border: 1px solid #e6e6e6;
-            border-radius: 6px;
-            font-size: 13px;
-            background-color: white;
-        }
-        
-        .search-input {
+
+        .search-input-wrapper {
             position: relative;
         }
-        
-        .search-input i {
+
+        .search-input-wrapper input {
+            padding-left: 30px;
+        }
+
+        .search-input-wrapper .fa-search {
             position: absolute;
-            left: 12px;
+            left: 10px;
             top: 50%;
             transform: translateY(-50%);
             color: #999;
         }
-        
+
         .checkbox-group {
             display: flex;
-            gap: 10px;
-            margin-top: 5px;
+            gap: 15px;
+            justify-content: flex-end;
+            align-items: center;
         }
-        
+
         .checkbox-item {
             display: flex;
             align-items: center;
+            gap: 5px;
+            font-size: 13px;
+            cursor: pointer;
         }
-        
+
         .checkbox-item input[type="checkbox"] {
-            margin-left: 5px;
-            accent-color: #4F77FF;
-            width: 16px;
-            height: 16px;
+            width: 14px;
+            height: 14px;
         }
-        
+
         .search-btn {
-            background-color: #4F77FF;
+            background: #007bff;
             color: white;
             border: none;
-            border-radius: 6px;
-            padding: 8px 15px;
+            padding: 8px 16px;
+            border-radius: 4px;
             font-size: 13px;
+            font-weight: 500;
             cursor: pointer;
             display: flex;
             align-items: center;
+            gap: 6px;
             justify-content: center;
-            width: 90px;
-            margin-top: 24px;
-            height: 36px;
         }
-        
-        .search-btn i {
-            margin-left: 6px;
-        }
-        
-        .reports-container {
+
+        /* Tables Grid */
+        .tables-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 20px;
-            padding: 0 20px;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
         }
-        
-        .report-card {
-            background-color: white;
-            border-radius: 10px;
+
+        .table-container {
+            background: #F3E8FF;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-            border: 1px solid #eaeaea;
         }
-        
-        .report-header {
+
+        .table-container.empty-table {
+            background: #FFFFFF;
+        }
+
+        .table-header {
+            background: #FFFFFF;
+            padding: 12px 15px;
+            border-bottom: 1px solid #e9ecef;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 15px;
-            border-bottom: 1px solid #eee;
         }
-        
-        .report-header h2 {
+
+        .table-title {
             font-size: 14px;
             font-weight: 600;
-            color: #333;
+            color: #495057;
             display: flex;
             align-items: center;
+            gap: 8px;
         }
-        
-        .report-header h2 i {
-            margin-left: 6px;
-            color: #4F77FF;
-        }
-        
-        .actions {
+
+        .table-actions {
             display: flex;
-            gap: 5px;
+            gap: 8px;
         }
-        
+
         .action-btn {
-            background: none;
-            border: none;
+            width: 24px;
+            height: 24px;
+            border: 1px solid #ced4da;
+            background: white;
+            border-radius: 3px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
-            color: #999;
-            font-size: 14px;
+            color: #6c757d;
+            font-size: 11px;
         }
-        
-        .report-table {
+
+        .action-btn:hover {
+            background: #f8f9fa;
+        }
+
+        .table-content {
+            overflow-x: auto;
+        }
+
+        table {
             width: 100%;
             border-collapse: collapse;
         }
-        
-        .report-table th {
-            padding: 10px;
-            text-align: right;
-            font-weight: 600;
-            color: #333;
-            font-size: 12px;
-            border-bottom: 1px solid #eaeaea;
-        }
-        
-        .report-table td {
-            padding: 8px 10px;
-            border-bottom: 1px solid #eaeaea;
-            font-size: 12px;
-            color: #333;
-        }
-        
-        .empty-state {
-            padding: 50px 0;
+
+        th, td {
+            padding: 8px 12px;
             text-align: center;
-            color: #999;
+            border-bottom: 1px solid #e9ecef;
+            font-size: 12px;
         }
-        
+
+        th {
+            background: #FFF9E6;
+            font-weight: 600;
+            color: #495057;
+        }
+
+        td {
+            color: #495057;
+            background: #FFFFFF;
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 30px 20px;
+            color: #6c757d;
+            background: #FFFFFF;
+        }
+
         .empty-state i {
-            font-size: 48px;
-            color: #e0e0e0;
+            font-size: 32px;
+            color: #ced4da;
             margin-bottom: 10px;
         }
-        
+
         .empty-state p {
             margin: 3px 0;
             font-size: 12px;
-            color: #999;
         }
-        
-        .activity-section {
-            margin: 15px;
+
+        /* Activity Summary */
+        .activity-summary {
+            margin-top: 20px;
         }
-        
-        .activity-title {
-            font-size: 14px;
+
+        .summary-title {
+            font-size: 16px;
             font-weight: 600;
+            color: #495057;
             margin-bottom: 15px;
-            color: #333;
+            text-align: right;
         }
-        
-        .stats-container {
+
+        .stats-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 15px;
         }
-        
+
         .stat-card {
-            background-color: #fffdf5;
-            border-radius: 10px;
+            background: white;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
             padding: 15px;
             display: flex;
             align-items: center;
-            border: 1px solid #eaeaea;
+            justify-content: space-between;
         }
-        
-        .stat-card:nth-child(2) {
-            background-color: #f8f9ff;
+
+        .stat-content {
+            text-align: right;
+            flex: 1;
         }
-        
-        .stat-card:nth-child(3) {
-            background-color: #fdf6ff;
+
+        .stat-number {
+            font-size: 20px;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 2px;
         }
-        
-        .stat-card:nth-child(4) {
-            background-color: #f3faff;
+
+        .stat-label {
+            font-size: 11px;
+            color: #6c757d;
+            font-weight: 500;
         }
-        
+
         .stat-icon {
             width: 32px;
             height: 32px;
-            border-radius: 4px;
+            border-radius: 6px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-left: 10px;
-            color: white;
-            font-size: 16px;
+            font-size: 14px;
         }
-        
-        .orange-bg {
-            background-color: #FF9800;
+
+        .stat-icon.yellow {
+            background: #fff3cd;
+            color: #856404;
         }
-        
-        .purple-bg {
-            background-color: #9C27B0;
+
+        .stat-icon.purple {
+            background: #e7d4f7;
+            color: #6f42c1;
         }
-        
-        .blue-bg {
-            background-color: #2196F3;
+
+        .stat-icon.blue {
+            background: #cce5ff;
+            color: #0056b3;
         }
-        
-        .green-bg {
-            background-color: #4CAF50;
+
+        .stat-icon.cyan {
+            background: #b8f5ff;
+            color: #0891b2;
         }
-        
-        .stat-info h4 {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 2px;
-            color: #333;
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 10px;
+                margin: 10px auto;
+            }
+
+            .page-header {
+                padding: 10px 15px;
+            }
+
+            .page-title {
+                font-size: 14px;
+            }
+
+            .date-info {
+                font-size: 12px;
+                gap: 10px;
+            }
+
+            .filter-section {
+                padding: 15px;
+                margin-bottom: 15px;
+            }
+
+            .filter-title {
+                font-size: 14px;
+                margin-bottom: 15px;
+            }
+
+            .filter-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .filter-item label {
+                font-size: 12px;
+            }
+
+            .filter-input {
+                padding: 10px 12px;
+                font-size: 14px;
+            }
+
+            .search-input-wrapper input {
+                padding-left: 35px;
+            }
+
+            .search-btn {
+                width: 100%;
+                padding: 12px;
+                font-size: 14px;
+                margin-top: 10px;
+            }
+            
+            .tables-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+                margin-bottom: 20px;
+            }
+
+            .table-container {
+                margin-bottom: 15px;
+            }
+
+            .table-header {
+                padding: 10px 15px;
+            }
+
+            .table-title {
+                font-size: 13px;
+            }
+
+            .action-btn {
+                width: 20px;
+                height: 20px;
+                font-size: 10px;
+            }
+
+            /* Mobile Table Styles */
+            .table-content table {
+                font-size: 11px;
+            }
+
+            .table-content th,
+            .table-content td {
+                padding: 6px 8px;
+                font-size: 11px;
+            }
+
+            /* Hide some columns on mobile for better readability */
+            .table-content table th:nth-child(3),
+            .table-content table td:nth-child(3) {
+                display: none;
+            }
+
+            /* For copy report, hide the last column (notes) */
+            .table-container:nth-child(2) .table-content table th:nth-child(4),
+            .table-container:nth-child(2) .table-content table td:nth-child(4) {
+                display: none;
+            }
+
+            /* For print report, show only name and department */
+            .table-container:nth-child(3) .table-content table th:nth-child(3),
+            .table-container:nth-child(3) .table-content table td:nth-child(3),
+            .table-container:nth-child(3) .table-content table th:nth-child(4),
+            .table-container:nth-child(3) .table-content table td:nth-child(4) {
+                display: none;
+            }
+
+            .empty-state {
+                padding: 20px 15px;
+            }
+
+            .empty-state i {
+                font-size: 24px;
+            }
+
+            .empty-state p {
+                font-size: 11px;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .stat-card {
+                padding: 12px;
+                margin-bottom: 10px;
+            }
+
+            .stat-number {
+                font-size: 18px;
+            }
+
+            .stat-label {
+                font-size: 10px;
+            }
+
+            .stat-icon {
+                width: 28px;
+                height: 28px;
+                font-size: 12px;
+            }
+
+            .summary-title {
+                font-size: 14px;
+                margin-bottom: 10px;
+            }
         }
-        
-        .stat-info p {
-            font-size: 11px;
-            color: #777;
-            margin: 0;
+
+        @media (max-width: 480px) {
+            .page-header {
+                padding: 8px 10px;
+                flex-direction: column;
+                gap: 5px;
+                text-align: center;
+            }
+
+            .date-info {
+                flex-direction: row;
+                justify-content: center;
+                gap: 15px;
+            }
+
+            .container {
+                padding: 0 5px;
+            }
+
+            .filter-section {
+                padding: 10px;
+            }
+
+            .table-header {
+                padding: 8px 10px;
+            }
+
+            .table-title {
+                font-size: 12px;
+            }
+
+            .action-btn {
+                width: 18px;
+                height: 18px;
+                font-size: 9px;
+            }
+
+            .table-content th,
+            .table-content td {
+                padding: 4px 6px;
+                font-size: 10px;
+            }
+
+            .stat-card {
+                padding: 10px;
+                flex-direction: row;
+                justify-content: space-between;
+            }
+
+            .stat-content {
+                text-align: left;
+            }
+
+            .stat-number {
+                font-size: 16px;
+            }
+
+            .stat-label {
+                font-size: 9px;
+            }
+
+            .stat-icon {
+                width: 24px;
+                height: 24px;
+                font-size: 10px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="main-container">
-        <!-- Header Section -->
-        <div class="header">
-            <h1>تقارير الطباعة والنسخ</h1>
-            <div class="year">2025</div>
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="page-title">تقارير الطباعة والنسخ</div>
+        <div class="date-info">
+            <span>الأحد</span>
+            <span>2025</span>
         </div>
+    </div>
 
-        <!-- Filter Panel -->
-        <div class="filter-panel">
+    <div class="container">
+        <!-- Filter Section -->
+        <div class="filter-section">
             <h3 class="filter-title">تصفية البيانات</h3>
-            <div class="filter-form">
-                <div class="form-group">
-                    <label for="employee">اسم الموظف</label>
-                    <div class="search-input">
-                        <input type="text" id="employee" class="form-control" placeholder="ادخل اسم الموظف">
+            <div class="filter-grid">
+                <div class="filter-item">
+                    <label>اسم الموظف</label>
+                    <div class="search-input-wrapper">
+                        <input type="text" class="filter-input" placeholder="ادخل اسم الموظف">
                         <i class="fas fa-search"></i>
                     </div>
                 </div>
                 
-                <div class="form-group">
-                    <label for="fromDate">من تاريخ</label>
-                    <input type="text" id="fromDate" class="form-control" placeholder="mm/dd/yyyy">
+                <div class="filter-item">
+                    <label>من تاريخ</label>
+                    <input type="text" class="filter-input" placeholder="mm/dd/yyyy">
                 </div>
                 
-                <div class="form-group">
-                    <label for="toDate">الى تاريخ</label>
-                    <input type="text" id="toDate" class="form-control" placeholder="mm/dd/yyyy">
+                <div class="filter-item">
+                    <label>إلى تاريخ</label>
+                    <input type="text" class="filter-input" placeholder="mm/dd/yyyy">
                 </div>
                 
-                <div class="form-group">
-                    <label for="department">القسم</label>
-                    <select id="department" class="form-select">
-                        <option value="all">جميع الأقسام</option>
-                        <option value="hr">الموارد البشرية</option>
-                        <option value="it">تكنولوجيا المعلومات</option>
-                        <option value="finance">المالية</option>
+                <div class="filter-item">
+                    <label>نوع المستند</label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-item">
+                            <input type="checkbox" checked>
+                            <span>طباعة</span>
+                        </label>
+                        <label class="checkbox-item">
+                            <input type="checkbox" checked>
+                            <span>نسخ</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="filter-item">
+                    <label>القسم</label>
+                    <select class="filter-input">
+                        <option>جميع الأقسام</option>
                     </select>
                 </div>
                 
-                <div class="form-group">
-                    <label>نوع المستند</label>
-                    <div class="checkbox-group">
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="print" checked>
-                            <label for="print">طباعة</label>
-                        </div>
-                        <div class="checkbox-item">
-                            <input type="checkbox" id="copy" checked>
-                            <label for="copy">نسخة</label>
-                        </div>
+                <div class="filter-item">
+                    <button class="search-btn">
+                        <i class="fas fa-search"></i>
+                        بحث
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tables Grid -->
+        <div class="tables-grid">
+            <!-- Print Report -->
+            <div class="table-container">
+                <div class="table-header">
+                    <div class="table-title">
+                        <i class="fas fa-print"></i>
+                        تقرير طباعة المستخدم
+                    </div>
+                    <div class="table-actions">
+                        <button class="action-btn">
+                            <i class="fas fa-print"></i>
+                        </button>
+                        <button class="action-btn">
+                            <i class="fas fa-download"></i>
+                        </button>
+                        <button class="action-btn">
+                            <i class="fas fa-expand"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="table-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>اسم المستخدم</th>
+                                <th>عدد الصفحات</th>
+                                <th>التاريخ</th>
+                                <th>اسم الملف</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>محمد عبدالله</td>
+                                <td>5</td>
+                                <td>20/04/2025</td>
+                                <td>pdf</td>
+                            </tr>
+                            <tr>
+                                <td>فاطمة الزهراء</td>
+                                <td>12</td>
+                                <td>20/04/2025</td>
+                                <td>pdf</td>
+                            </tr>
+                            <tr>
+                                <td>أحمد حسين</td>
+                                <td>3</td>
+                                <td>19/04/2025</td>
+                                <td>pdf</td>
+                            </tr>
+                            <tr>
+                                <td>سارة محمد</td>
+                                <td>8</td>
+                                <td>19/04/2025</td>
+                                <td>pdf</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Copy Report -->
+            <div class="table-container">
+                <div class="table-header">
+                    <div class="table-title">
+                        <i class="fas fa-copy"></i>
+                        تقرير نسخ المستخدم
+                    </div>
+                    <div class="table-actions">
+                        <button class="action-btn">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                        <button class="action-btn">
+                            <i class="fas fa-download"></i>
+                        </button>
+                        <button class="action-btn">
+                            <i class="fas fa-expand"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="table-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>اسم المستخدم</th>
+                                <th>عدد النسخ</th>
+                                <th>التاريخ</th>
+                                <th>الملاحظات</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>يوسف العلي</td>
+                                <td>15</td>
+                                <td>20/04/2025</td>
+                                <td>مستندات للعملاء</td>
+                            </tr>
+                            <tr>
+                                <td>نورة الأحمد</td>
+                                <td>8</td>
+                                <td>20/04/2025</td>
+                                <td>عقود موظفين</td>
+                            </tr>
+                            <tr>
+                                <td>عبدالرحمن سعيد</td>
+                                <td>22</td>
+                                <td>19/04/2025</td>
+                                <td>كتيبات تدريبية</td>
+                            </tr>
+                            <tr>
+                                <td>ليلى محمود</td>
+                                <td>5</td>
+                                <td>19/04/2025</td>
+                                <td>تقارير مالية</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Today's Print Report -->
+            <div class="table-container">
+                <div class="table-header">
+                    <div class="table-title">
+                        <i class="fas fa-print"></i>
+                        تقرير طباعة اليوم
+                    </div>
+                    <div class="table-actions">
+                        <button class="action-btn">
+                            <i class="fas fa-download"></i>
+                        </button>
+                        <button class="action-btn">
+                            <i class="fas fa-expand"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="table-content">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>اسم المستخدم</th>
+                                <th>القسم</th>
+                                <th>الوقت</th>
+                                <th>عدد الصفحات</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>محمد عبدالله</td>
+                                <td>البيانات</td>
+                                <td>09:15</td>
+                                <td>5</td>
+                            </tr>
+                            <tr>
+                                <td>فاطمة الزهراء</td>
+                                <td>الموارد البشرية</td>
+                                <td>10:30</td>
+                                <td>12</td>
+                            </tr>
+                            <tr>
+                                <td>يوسف العلي</td>
+                                <td>تكنولوجيا المعلومات</td>
+                                <td>11:45</td>
+                                <td>3</td>
+                            </tr>
+                            <tr>
+                                <td>نورة الأحمد</td>
+                                <td>المالية</td>
+                                <td>13:20</td>
+                                <td>8</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Today's Copy Report -->
+            <div class="table-container empty-table">
+                <div class="table-header">
+                    <div class="table-title">
+                        <i class="fas fa-copy"></i>
+                        تقرير نسخ اليوم
+                    </div>
+                    <div class="table-actions">
+                        <button class="action-btn">
+                            <i class="fas fa-download"></i>
+                        </button>
+                        <button class="action-btn">
+                            <i class="fas fa-expand"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="table-content">
+                    <div class="empty-state">
+                        <i class="far fa-file"></i>
+                        <p><strong>لا يوجد بيانات</strong></p>
+                        <p>لم يتم تسجيل أي عمليات نسخ اليوم</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Activity Summary -->
+        <div class="activity-summary">
+            <h3 class="summary-title">ملخص النشاط</h3>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-content">
+                        <div class="stat-number">78</div>
+                        <div class="stat-label">إجمالي الصفحات</div>
+                    </div>
+                    <div class="stat-icon yellow">
+                        <i class="fas fa-file-alt"></i>
                     </div>
                 </div>
                 
-                <button class="search-btn">
-                    <i class="fas fa-search"></i>
-                    بحث
-                </button>
-            </div>
-        </div>
-        
-        <!-- Reports Container -->
-        <div class="reports-container">
-            <!-- User Print Report Card -->
-            <div class="report-card">
-                <div class="report-header">
-                    <h2>
-                        <i class="fas fa-print"></i>
-                        تقرير طباعة المستخدم
-                    </h2>
-                    <div class="actions">
-                        <button class="action-btn" title="تحديث">
-                            <i class="fas fa-sync-alt"></i>
-                        </button>
-                        <button class="action-btn" title="تنزيل">
-                            <i class="fas fa-download"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <table class="report-table">
-                    <thead>
-                        <tr>
-                            <th>اسم المستخدم</th>
-                            <th>اسم الملف</th>
-                            <th>التاريخ</th>
-                            <th>عدد الصفحات</th>
-                            <th>الملاحظات</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>محمد عبدالله</td>
-                            <td>pdf</td>
-                            <td>20/04/2025</td>
-                            <td>5</td>
-                            <td>مستندات تسويق</td>
-                        </tr>
-                        <tr>
-                            <td>فاطمة الزهراء</td>
-                            <td>pdf</td>
-                            <td>20/04/2025</td>
-                            <td>12</td>
-                            <td>عقود موظفين</td>
-                        </tr>
-                        <tr>
-                            <td>احمد حسين</td>
-                            <td>pdf</td>
-                            <td>19/04/2025</td>
-                            <td>3</td>
-                            <td>كتيبات تدريبية</td>
-                        </tr>
-                        <tr>
-                            <td>سارة حامد</td>
-                            <td>pdf</td>
-                            <td>19/04/2025</td>
-                            <td>8</td>
-                            <td>تقارير مالية</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            
-            <!-- User Copy Report Card -->
-            <div class="report-card">
-                <div class="report-header">
-                    <h2>
-                        <i class="fas fa-copy"></i>
-                        تقرير نسخ المستخدم
-                    </h2>
-                    <div class="actions">
-                        <button class="action-btn" title="تحديث">
-                            <i class="fas fa-sync-alt"></i>
-                        </button>
-                        <button class="action-btn" title="تنزيل">
-                            <i class="fas fa-download"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <table class="report-table">
-                    <thead>
-                        <tr>
-                            <th>اسم المستخدم</th>
-                            <th>عدد النسخ</th>
-                            <th>التاريخ</th>
-                            <th>الملاحظات</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>يوسف الخالدي</td>
-                            <td>15</td>
-                            <td>20/04/2025</td>
-                            <td>مستندات تسويق</td>
-                        </tr>
-                        <tr>
-                            <td>نورة الأحمد</td>
-                            <td>8</td>
-                            <td>20/04/2025</td>
-                            <td>عقود موظفين</td>
-                        </tr>
-                        <tr>
-                            <td>عبدالرحمن سعيد</td>
-                            <td>22</td>
-                            <td>19/04/2025</td>
-                            <td>كتيبات تدريبية</td>
-                        </tr>
-                        <tr>
-                            <td>ليلى منصور</td>
-                            <td>5</td>
-                            <td>19/04/2025</td>
-                            <td>تقارير مالية</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            
-            <!-- Today's Print Report Card -->
-            <div class="report-card">
-                <div class="report-header">
-                    <h2>
-                        <i class="fas fa-print"></i>
-                        تقرير طباعة اليوم
-                    </h2>
-                    <div class="actions">
-                        <button class="action-btn" title="تحديث">
-                            <i class="fas fa-sync-alt"></i>
-                        </button>
-                        <button class="action-btn" title="تنزيل">
-                            <i class="fas fa-download"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <table class="report-table">
-                    <thead>
-                        <tr>
-                            <th>اسم المستخدم</th>
-                            <th>القسم</th>
-                            <th>الوقت</th>
-                            <th>عدد الصفحات</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>محمد عبدالله</td>
-                            <td>البيانات</td>
-                            <td>09:15</td>
-                            <td>5</td>
-                        </tr>
-                        <tr>
-                            <td>فاطمة الزهراء</td>
-                            <td>الموارد البشرية</td>
-                            <td>10:30</td>
-                            <td>12</td>
-                        </tr>
-                        <tr>
-                            <td>يوسف الشامي</td>
-                            <td>تكنولوجيا المعلومات</td>
-                            <td>11:45</td>
-                            <td>3</td>
-                        </tr>
-                        <tr>
-                            <td>نورة الأحمد</td>
-                            <td>المالية</td>
-                            <td>13:20</td>
-                            <td>8</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-            
-            <!-- Today's Copy Report Card -->
-            <div class="report-card">
-                <div class="report-header">
-                    <h2>
-                        <i class="fas fa-copy"></i>
-                        تقرير نسخ اليوم
-                    </h2>
-                    <div class="actions">
-                        <button class="action-btn" title="تحديث">
-                            <i class="fas fa-sync-alt"></i>
-                        </button>
-                        <button class="action-btn" title="تنزيل">
-                            <i class="fas fa-download"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="empty-state">
-                    <i class="fas fa-search"></i>
-                    <p>لا يوجد بيانات</p>
-                    <p>لم يتم تسجيل أي نسخات اليوم</p>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Activity Stats Section -->
-        <div class="activity-section">
-            <h3 class="activity-title">ملخص النشاط</h3>
-            <div class="stats-container">
                 <div class="stat-card">
-                    <div class="stat-icon orange-bg">
-                        <i class="fas fa-file-alt"></i>
+                    <div class="stat-content">
+                        <div class="stat-number">8</div>
+                        <div class="stat-label">المستخدمين النشطين</div>
                     </div>
-                    <div class="stat-info">
-                        <h4>78</h4>
-                        <p>إجمالي الصفحات</p>
-                    </div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon green-bg">
+                    <div class="stat-icon purple">
                         <i class="fas fa-users"></i>
                     </div>
-                    <div class="stat-info">
-                        <h4>8</h4>
-                        <p>المستخدمين النشطين</p>
-                    </div>
                 </div>
+                
                 <div class="stat-card">
-                    <div class="stat-icon purple-bg">
+                    <div class="stat-content">
+                        <div class="stat-number">0</div>
+                        <div class="stat-label">إجمالي النسخ اليوم</div>
+                    </div>
+                    <div class="stat-icon blue">
                         <i class="fas fa-copy"></i>
                     </div>
-                    <div class="stat-info">
-                        <h4>0</h4>
-                        <p>إجمالي النسخ اليوم</p>
-                    </div>
                 </div>
+                
                 <div class="stat-card">
-                    <div class="stat-icon blue-bg">
-                        <i class="fas fa-print"></i>
+                    <div class="stat-content">
+                        <div class="stat-number">28</div>
+                        <div class="stat-label">إجمالي الطباعة اليوم</div>
                     </div>
-                    <div class="stat-info">
-                        <h4>28</h4>
-                        <p>إجمالي الطباعة اليوم</p>
+                    <div class="stat-icon cyan">
+                        <i class="fas fa-print"></i>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>
-        $(document).ready(function() {
-            // Inicializar datepickers
-            // Aquí se implementaría con bibliotecas como flatpickr o bootstrap-datepicker
-            
-            // Manejar clic en el botón de búsqueda
-            $('.search-btn').click(function() {
-                console.log('Búsqueda iniciada');
-                // Implementar búsqueda
+        document.addEventListener('DOMContentLoaded', function() {
+            // Search functionality
+            document.querySelector('.search-btn').addEventListener('click', function() {
+                console.log('Search initiated');
             });
-            
-            // Manejar clic en botones de actualización
-            $('.fa-sync-alt').parent().click(function() {
-                console.log('Actualizando informe');
-                // Implementar actualización
-            });
-            
-            // Manejar clic en botones de descarga
-            $('.fa-download').parent().click(function() {
-                console.log('Descargando informe');
-                // Implementar descarga
+
+            // Action buttons functionality
+            document.querySelectorAll('.action-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const icon = this.querySelector('i');
+                    if (icon.classList.contains('fa-download')) {
+                        console.log('Download report');
+                    } else if (icon.classList.contains('fa-expand')) {
+                        console.log('Expand table');
+                    } else if (icon.classList.contains('fa-print')) {
+                        console.log('Print report');
+                    } else if (icon.classList.contains('fa-copy')) {
+                        console.log('Copy report');
+                    }
+                });
             });
         });
     </script>

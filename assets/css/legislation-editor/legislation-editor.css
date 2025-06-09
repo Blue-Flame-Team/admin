@@ -312,40 +312,531 @@ html, body {
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+
+/* Large Tablets - 992px to 1199px */
+@media (max-width: 1199px) and (min-width: 992px) {
     .main-container {
-        border-radius: 0;
-        box-shadow: none;
+        max-width: 960px;
+        margin: 0 16px;
     }
     
     .content-container {
-        padding: 15px;
+        padding: 24px;
+    }
+    
+    .breadcrumb {
+        padding: 12px 16px;
+    }
+}
+
+/* Small Tablets - 768px to 991px */
+@media (max-width: 991px) and (min-width: 768px) {
+    .main-container {
+        max-width: 720px;
+        margin: 0 12px;
+        border-radius: 8px;
+    }
+    
+    .content-container {
+        padding: 20px;
+    }
+    
+    .breadcrumb {
+        padding: 10px 16px;
+        font-size: 12px;
+    }
+    
+    .page-title {
+        font-size: 22px;
     }
     
     .header-row {
         flex-direction: column;
         align-items: flex-start;
-        gap: 15px;
+        gap: 16px;
+        margin-bottom: 20px;
     }
     
     .header-actions {
         width: 100%;
-        justify-content: space-between;
+        justify-content: flex-start;
+        gap: 12px;
+    }
+    
+    .preview-btn, .save-btn {
+        padding: 10px 16px;
+        font-size: 14px;
     }
     
     .options-row {
         flex-direction: column;
-        gap: 15px;
+        gap: 16px;
+    }
+    
+    .editor-toolbar {
+        padding: 8px 12px;
+        gap: 4px;
+    }
+    
+    .toolbar-btn {
+        width: 32px;
+        height: 32px;
+    }
+    
+    .editor-content {
+        min-height: 250px;
+        padding: 12px;
+    }
+    
+    .additional-options {
+        padding: 16px;
+        margin-bottom: 20px;
     }
     
     .form-actions {
+        flex-direction: row;
+        justify-content: space-between;
         flex-wrap: wrap;
-        gap: 10px;
+        gap: 12px;
+    }
+}
+
+/* Large Mobile - 576px to 767px */
+@media (max-width: 767px) and (min-width: 576px) {
+    .main-container {
+        max-width: 540px;
+        margin: 0 8px;
+        border-radius: 6px;
+    }
+    
+    .content-container {
+        padding: 16px;
+    }
+    
+    .breadcrumb {
+        padding: 8px 12px;
+        font-size: 11px;
+        flex-wrap: wrap;
+    }
+    
+    .page-title {
+        font-size: 20px;
+        margin-bottom: 8px;
+    }
+    
+    .header-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+        margin-bottom: 16px;
+    }
+    
+    .header-actions {
+        display: flex;
+        width: 100%;
+        gap: 8px;
+    }
+    
+    .preview-btn, .save-btn {
+        flex: 1;
+        padding: 12px;
+        font-size: 13px;
+        justify-content: center;
+    }
+    
+    .form-group {
+        margin-bottom: 16px;
+    }
+    
+    .form-group label {
+        font-size: 13px;
+        margin-bottom: 6px;
+    }
+    
+    .form-control {
+        padding: 12px;
+        font-size: 14px;
+        border-radius: 4px;
+    }
+    
+    .editor-container {
+        margin-bottom: 20px;
+        border-radius: 4px;
+    }
+    
+    .editor-toolbar {
+        padding: 6px 8px;
+        gap: 3px;
+        flex-wrap: wrap;
+    }
+    
+    .toolbar-btn {
+        width: 28px;
+        height: 28px;
+        font-size: 12px;
+    }
+    
+    .editor-content {
+        min-height: 200px;
+        padding: 10px;
+        font-size: 13px;
+    }
+    
+    .additional-options {
+        padding: 12px;
+        margin-bottom: 16px;
+        border-radius: 4px;
+    }
+    
+    .additional-options h3 {
+        font-size: 14px;
+        margin-bottom: 12px;
+    }
+    
+    .options-row {
+        flex-direction: column;
+        gap: 12px;
+        margin-bottom: 12px;
+    }
+    
+    .option-group label {
+        font-size: 12px;
+        margin-bottom: 4px;
+    }
+    
+    .form-select, .form-control {
+        padding: 10px 12px;
+        font-size: 13px;
+    }
+    
+    .date-input input {
+        padding-left: 36px;
+        font-size: 13px;
+    }
+    
+    .date-input i {
+        left: 12px;
+        font-size: 13px;
+    }
+    
+    .select-arrow {
+        left: 12px;
+        font-size: 11px;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+        gap: 8px;
+        margin-top: 20px;
     }
     
     .cancel-btn, .delete-btn, .save-btn {
-        flex: 1;
-        text-align: center;
+        width: 100%;
+        padding: 12px;
+        font-size: 13px;
+        display: flex;
+        align-items: center;
         justify-content: center;
+    }
+}
+
+/* Small Mobile - Less than 576px */
+@media (max-width: 575px) {
+    .main-container {
+        width: 100%;
+        margin: 0 4px;
+        border-radius: 0;
+        box-shadow: none;
+    }
+    
+    .content-container {
+        padding: 12px;
+    }
+    
+    .breadcrumb {
+        padding: 6px 8px;
+        font-size: 10px;
+        flex-wrap: wrap;
+        gap: 2px;
+    }
+    
+    .breadcrumb a, .breadcrumb span {
+        margin: 0 1px;
+    }
+    
+    .page-title {
+        font-size: 18px;
+        margin-bottom: 6px;
+        text-align: center;
+    }
+    
+    .header-row {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+        margin-bottom: 12px;
+    }
+    
+    .header-actions {
+        display: flex;
+        width: 100%;
+        gap: 6px;
+    }
+    
+    .preview-btn, .save-btn {
+        flex: 1;
+        padding: 10px 8px;
+        font-size: 12px;
+        justify-content: center;
+    }
+    
+    .preview-btn i, .save-btn i {
+        margin-left: 3px;
+        font-size: 12px;
+    }
+    
+    .form-group {
+        margin-bottom: 12px;
+    }
+    
+    .form-group label {
+        font-size: 12px;
+        margin-bottom: 4px;
+    }
+    
+    .form-control {
+        padding: 10px;
+        font-size: 13px;
+        border-radius: 3px;
+    }
+    
+    .editor-container {
+        margin-bottom: 16px;
+        border-radius: 3px;
+    }
+    
+    .editor-toolbar {
+        padding: 4px 6px;
+        gap: 2px;
+        flex-wrap: wrap;
+    }
+    
+    .toolbar-btn {
+        width: 26px;
+        height: 26px;
+        font-size: 11px;
+        border-radius: 2px;
+    }
+    
+    .editor-content {
+        min-height: 180px;
+        padding: 8px;
+        font-size: 12px;
+        line-height: 1.5;
+    }
+    
+    .additional-options {
+        padding: 10px;
+        margin-bottom: 12px;
+        border-radius: 3px;
+    }
+    
+    .additional-options h3 {
+        font-size: 13px;
+        margin-bottom: 10px;
+    }
+    
+    .options-row {
+        flex-direction: column;
+        gap: 10px;
+        margin-bottom: 10px;
+    }
+    
+    .option-group label {
+        font-size: 11px;
+        margin-bottom: 3px;
+    }
+    
+    .form-select, .option-group .form-control {
+        padding: 8px 10px;
+        font-size: 12px;
+        border-radius: 3px;
+    }
+    
+    .date-input input {
+        padding: 8px 32px 8px 10px;
+        font-size: 12px;
+    }
+    
+    .date-input i {
+        left: 10px;
+        font-size: 12px;
+    }
+    
+    .select-arrow {
+        left: 10px;
+        font-size: 10px;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+        gap: 6px;
+        margin-top: 16px;
+    }
+    
+    .cancel-btn, .delete-btn, .save-btn {
+        width: 100%;
+        padding: 10px;
+        font-size: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 3px;
+    }
+    
+    .delete-btn i {
+        margin-left: 3px;
+        font-size: 12px;
+    }
+}
+
+/* Extra Small Mobile - Less than 400px */
+@media (max-width: 399px) {
+    .main-container {
+        margin: 0 2px;
+    }
+    
+    .content-container {
+        padding: 8px;
+    }
+    
+    .breadcrumb {
+        padding: 4px 6px;
+        font-size: 9px;
+    }
+    
+    .page-title {
+        font-size: 16px;
+    }
+    
+    .header-actions {
+        gap: 4px;
+    }
+    
+    .preview-btn, .save-btn {
+        padding: 8px 6px;
+        font-size: 11px;
+    }
+    
+    .form-control {
+        padding: 8px;
+        font-size: 12px;
+    }
+    
+    .editor-toolbar {
+        padding: 3px 4px;
+        gap: 1px;
+    }
+    
+    .toolbar-btn {
+        width: 24px;
+        height: 24px;
+        font-size: 10px;
+    }
+    
+    .editor-content {
+        min-height: 150px;
+        padding: 6px;
+        font-size: 11px;
+    }
+    
+    .additional-options {
+        padding: 8px;
+        margin-bottom: 10px;
+    }
+    
+    .additional-options h3 {
+        font-size: 12px;
+        margin-bottom: 8px;
+    }
+    
+    .options-row {
+        gap: 8px;
+        margin-bottom: 8px;
+    }
+    
+    .option-group label {
+        font-size: 10px;
+        margin-bottom: 2px;
+    }
+    
+    .form-select, .option-group .form-control {
+        padding: 6px 8px;
+        font-size: 11px;
+    }
+    
+    .date-input input {
+        padding: 6px 28px 6px 8px;
+        font-size: 11px;
+    }
+    
+    .date-input i {
+        left: 8px;
+        font-size: 11px;
+    }
+    
+    .form-actions {
+        gap: 4px;
+        margin-top: 12px;
+    }
+    
+    .cancel-btn, .delete-btn, .save-btn {
+        padding: 8px;
+        font-size: 11px;
+    }
+}
+
+/* Touch Device Optimizations */
+@media (pointer: coarse) {
+    .form-control,
+    .form-select,
+    .preview-btn,
+    .save-btn,
+    .cancel-btn,
+    .delete-btn,
+    .toolbar-btn {
+        min-height: 44px;
+    }
+    
+    .toolbar-btn {
+        min-width: 44px;
+    }
+}
+
+/* Landscape Orientation on Mobile */
+@media (max-width: 991px) and (orientation: landscape) and (max-height: 500px) {
+    .content-container {
+        padding: 12px;
+    }
+    
+    .header-row {
+        margin-bottom: 12px;
+    }
+    
+    .page-title {
+        font-size: 16px;
+    }
+    
+    .editor-content {
+        min-height: 120px;
+    }
+    
+    .additional-options {
+        padding: 10px;
+        margin-bottom: 12px;
+    }
+    
+    .form-actions {
+        margin-top: 12px;
     }
 }

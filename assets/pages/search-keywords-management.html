@@ -1,531 +1,725 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>إدارة كلمات البحث</title>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Tajawal', sans-serif;
         }
-        
+
         body {
-            background-color: #F5F7FA;
+            font-family: 'Cairo', sans-serif;
+            background-color: #f8f9fa;
             color: #333;
             direction: rtl;
-            padding: 20px;
+            line-height: 1.6;
         }
-        
-        .card {
-            background-color: white;
-            border-radius: 12px;
-            box-shadow: 0 1px 8px rgba(0, 0, 0, 0.05);
-            overflow: hidden;
+
+        .container {
+            max-width: 1200px;
             margin: 0 auto;
+            padding: 15px;
         }
-        
-        .card-header {
+
+        /* Header */
+        .page-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px;
+            margin-bottom: 25px;
+            padding: 0 5px;
         }
-        
-        .card-title {
-            font-size: 18px;
+
+        .page-title {
+            font-size: 24px;
             font-weight: 600;
             color: #333;
         }
-        
-        /* Toggle Switch */
-        .toggle-container {
+
+        .dark-mode-toggle {
             display: flex;
             align-items: center;
+            gap: 8px;
+            color: #666;
+            font-size: 13px;
         }
-        
+
         .toggle-switch {
             position: relative;
-            display: inline-block;
-            width: 50px;
-            height: 24px;
-            margin-right: 10px;
-        }
-        
-        .toggle-switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-        
-        .slider {
-            position: absolute;
+            width: 45px;
+            height: 22px;
+            background: #ddd;
+            border-radius: 11px;
             cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            transition: .4s;
-            border-radius: 34px;
+            transition: all 0.3s ease;
         }
-        
-        .slider:before {
+
+        .toggle-switch.active {
+            background: #4CAF50;
+        }
+
+        .toggle-slider {
             position: absolute;
-            content: "";
-            height: 16px;
-            width: 16px;
-            right: 4px;
-            bottom: 4px;
-            background-color: white;
-            transition: .4s;
+            top: 2px;
+            right: 2px;
+            width: 18px;
+            height: 18px;
+            background: white;
             border-radius: 50%;
+            transition: all 0.3s ease;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.2);
         }
-        
-        input:checked + .slider {
-            background-color: #2196F3;
+
+        .toggle-switch.active .toggle-slider {
+            transform: translateX(-23px);
         }
-        
-        input:checked + .slider:before {
-            transform: translateX(-26px);
-        }
-        
-        .toggle-label {
-            color: #666;
-            font-size: 14px;
-        }
-        
-        /* Search and Filter Area */
-        .search-area {
-            background-color: #f8f9fa;
-            padding: 20px;
-            border-radius: 8px;
+
+        /* Controls Section */
+        .controls-section {
+            background: white;
+            border-radius: 12px;
+            padding: 15px 25px;
             margin-bottom: 20px;
-        }
-        
-        .search-container {
+            box-shadow: 0 1px 4px rgba(0,0,0,0.08);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 15px;
+            gap: 20px;
+            flex-wrap: wrap;
         }
-        
-        .search-left {
+
+        .left-controls {
             display: flex;
+            gap: 12px;
             align-items: center;
         }
-        
-        .filter-btn {
-            background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            padding: 8px 15px;
-            margin-left: 10px;
-            font-size: 14px;
+
+        .filter-btn, .export-btn, .add-btn {
+            padding: 8px 16px;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            background: #f8f9fa;
             cursor: pointer;
+            font-family: 'Cairo', sans-serif;
+            font-size: 13px;
+            transition: all 0.2s ease;
             display: flex;
             align-items: center;
+            gap: 6px;
+            font-weight: 500;
         }
-        
-        .filter-btn i {
-            margin-right: 5px;
+
+        .filter-btn:hover, .export-btn:hover {
+            border-color: #c0c0c0;
+            background: #f0f0f0;
         }
-        
+
+        .add-btn {
+            background: #4a90e2;
+            color: white;
+            border-color: #4a90e2;
+        }
+
+        .add-btn:hover {
+            background: #357abd;
+            border-color: #357abd;
+        }
+
+        .search-box {
+            position: relative;
+            min-width: 280px;
+        }
+
         .search-input {
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            padding: 8px 12px;
-            width: 250px;
-            font-size: 14px;
+            width: 100%;
+            padding: 8px 35px 8px 12px;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            font-size: 13px;
+            font-family: 'Cairo', sans-serif;
+            background: #f8f9fa;
         }
-        
+
+        .search-input:focus {
+            outline: none;
+            border-color: #4a90e2;
+            background: white;
+            box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.1);
+        }
+
         .search-input::placeholder {
-            color: #aaa;
+            color: #999;
+            font-size: 13px;
         }
-        
+
         .search-icon {
-            color: #aaa;
             position: absolute;
             right: 10px;
             top: 50%;
             transform: translateY(-50%);
+            color: #999;
+            font-size: 13px;
         }
-        
-        .actions-container {
-            display: flex;
-            align-items: center;
+
+        /* Table Section */
+        .table-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+            margin-bottom: 20px;
         }
-        
-        .add-btn {
-            background-color: #0D6EFD;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            padding: 8px 15px;
-            font-size: 14px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            margin-left: 10px;
-        }
-        
-        .add-btn i {
-            margin-left: 5px;
-        }
-        
-        .export-btn {
-            background-color: #fff;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            padding: 8px 15px;
-            font-size: 14px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            color: #333;
-        }
-        
-        .export-btn i {
-            margin-left: 5px;
-            color: #0D6EFD;
-        }
-        
-        /* Table Styles */
-        .keywords-list-title {
-            font-size: 16px;
+
+        .table-title {
+            padding: 20px;
+            font-size: 18px;
             font-weight: 600;
-            margin-bottom: 15px;
-            padding: 0 20px;
+            color: #333;
+            border-bottom: 1px solid #eee;
+            text-align: right;
         }
-        
-        table {
+
+        .table {
             width: 100%;
             border-collapse: collapse;
         }
-        
-        th {
-            text-align: right;
-            padding: 12px 20px;
-            border-bottom: 1px solid #eee;
+
+        .table th {
+            background: #f8f9fa;
+            padding: 15px 10px;
+            text-align: center;
             font-weight: 600;
             color: #333;
-            font-size: 14px;
-            background-color: #f8f9fa;
-        }
-        
-        td {
-            padding: 12px 20px;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid #dee2e6;
             font-size: 14px;
         }
-        
-        tbody tr:hover {
-            background-color: #f9f9f9;
+
+        .table td {
+            padding: 15px 10px;
+            text-align: center;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 14px;
         }
-        
-        .btn-edit, .btn-delete {
-            background: none;
+
+        .table tbody tr:hover {
+            background: #f8f9fa;
+        }
+
+        .keyword-cell {
+            text-align: right !important;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .search-count {
+            font-weight: 600;
+            color: #007bff;
+        }
+
+        .search-result {
+            font-weight: 500;
+        }
+
+        .search-type {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        .type-general { background: #e3f2fd; color: #1976d2; }
+        .type-services { background: #e8f5e8; color: #388e3c; }
+        .type-documents { background: #fff3e0; color: #f57c00; }
+        .type-realestate { background: #f3e5f5; color: #7b1fa2; }
+        .type-medical { background: #ffebee; color: #d32f2f; }
+        .type-education { background: #e1f5fe; color: #0288d1; }
+        .type-health { background: #e8f5e8; color: #2e7d32; }
+
+        .attachments-count {
+            background: #007bff;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .action-btn {
+            width: 32px;
+            height: 32px;
             border: none;
+            border-radius: 6px;
             cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
             font-size: 14px;
-            padding: 5px;
         }
-        
-        .btn-edit {
-            color: #0D6EFD;
+
+        .edit-btn {
+            background: #e3f2fd;
+            color: #1976d2;
         }
-        
-        .btn-delete {
-            color: #DC3545;
+
+        .edit-btn:hover {
+            background: #bbdefb;
         }
-        
+
+        .delete-btn {
+            background: #ffebee;
+            color: #d32f2f;
+        }
+
+        .delete-btn:hover {
+            background: #ffcdd2;
+        }
+
         /* Pagination */
         .pagination-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 20px;
-            border-top: 1px solid #eee;
+            margin-top: 20px;
         }
-        
+
         .pagination {
             display: flex;
             align-items: center;
+            gap: 8px;
         }
-        
-        .page-link {
-            width: 30px;
-            height: 30px;
+
+        .pagination-btn {
+            width: 35px;
+            height: 35px;
+            border: 1px solid #dee2e6;
+            background: white;
+            border-radius: 6px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 3px;
-            border-radius: 4px;
-            color: #666;
-            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.2s ease;
             font-size: 14px;
+            font-weight: 500;
+            color: #666;
         }
-        
-        .page-link.active {
-            background-color: #0D6EFD;
+
+        .pagination-btn:hover {
+            border-color: #007bff;
+            color: #007bff;
+        }
+
+        .pagination-btn.active {
+            background: #007bff;
             color: white;
+            border-color: #007bff;
         }
-        
-        .page-text {
-            color: #666;
+
+        .pagination-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .result-info {
             font-size: 14px;
-            margin-right: 10px;
+            color: #666;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .controls-section {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 12px;
+                padding: 12px 20px;
+            }
+
+            .left-controls {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .search-box {
+                min-width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 8px;
+            }
+
+            .page-header {
+                flex-direction: column;
+                gap: 12px;
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            .page-title {
+                font-size: 20px;
+            }
+
+            .controls-section {
+                padding: 10px 15px;
+            }
+
+            .filter-btn, .export-btn, .add-btn {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+
+            .search-input {
+                padding: 6px 30px 6px 10px;
+                font-size: 12px;
+            }
+
+            .table-container {
+                overflow-x: auto;
+            }
+
+            .table {
+                min-width: 800px;
+            }
+
+            .pagination-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .pagination {
+                justify-content: center;
+            }
         }
     </style>
 </head>
 
 <body>
-    <div class="card">
-        <!-- Header with title and dark mode toggle -->
-        <div class="card-header">
-            <h2 class="card-title">إدارة كلمات البحث</h2>
-            <div class="toggle-container">
-                <label class="toggle-switch">
-                    <input type="checkbox">
-                    <span class="slider"></span>
-                </label>
-                <span class="toggle-label">الوضع المظلم</span>
-            </div>
-        </div>
-        
-        <!-- Search and Filter Area -->
-        <div class="search-area">
-            <div class="search-container">
-                <div class="search-left">
-                    <button class="filter-btn">
-                        <i class="fas fa-filter"></i>
-                        تصفية
-                    </button>
-                    <div style="position: relative;">
-                        <input type="text" class="search-input" placeholder="بحث عن كلمات">
-                        <i class="fas fa-search search-icon"></i>
-                    </div>
-                </div>
-                <div class="actions-container">
-                    <button class="add-btn">
-                        <i class="fas fa-plus"></i>
-                        إضافة كلمة بحث
-                    </button>
-                    <button class="export-btn">
-                        <i class="fas fa-file-export"></i>
-                        تصدير البيانات
-                    </button>
+    <div class="container">
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1 class="page-title">إدارة كلمات البحث</h1>
+            <div class="dark-mode-toggle">
+                <span>الوضع المظلم</span>
+                <div class="toggle-switch" id="darkModeToggle">
+                    <div class="toggle-slider"></div>
                 </div>
             </div>
         </div>
-        
-        <!-- Keywords List Title -->
-        <h3 class="keywords-list-title">قائمة كلمات البحث</h3>
-        
-        <!-- Keywords Table -->
-        <table>
-            <thead>
-                <tr>
-                    <th>كلمة البحث</th>
-                    <th>عدد مرات البحث</th>
-                    <th>نتيجة البحث</th>
-                    <th>نوع البحث</th>
-                    <th>مرفقات الكلمة</th>
-                    <th>تحليل وإضافة ملاحظات</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>خدمات حكومية</td>
-                    <td>1,245</td>
-                    <td>28</td>
-                    <td>عام</td>
-                    <td>2 <i class="fas fa-paperclip"></i></td>
-                    <td>
-                        <button class="btn-edit"><i class="fas fa-pen"></i></button>
-                        <button class="btn-delete"><i class="fas fa-trash"></i></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>تجديد الإقامة</td>
-                    <td>987</td>
-                    <td>15</td>
-                    <td>خدمات</td>
-                    <td>1 <i class="fas fa-paperclip"></i></td>
-                    <td>
-                        <button class="btn-edit"><i class="fas fa-pen"></i></button>
-                        <button class="btn-delete"><i class="fas fa-trash"></i></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>استخراج شهادة ميلاد</td>
-                    <td>856</td>
-                    <td>12</td>
-                    <td>وثائق</td>
-                    <td>3 <i class="fas fa-paperclip"></i></td>
-                    <td>
-                        <button class="btn-edit"><i class="fas fa-pen"></i></button>
-                        <button class="btn-delete"><i class="fas fa-trash"></i></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>تسجيل عقار</td>
-                    <td>743</td>
-                    <td>8</td>
-                    <td>عقارات</td>
-                    <td>0 <i class="fas fa-paperclip"></i></td>
-                    <td>
-                        <button class="btn-edit"><i class="fas fa-pen"></i></button>
-                        <button class="btn-delete"><i class="fas fa-trash"></i></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>تجديد رخصة القيادة</td>
-                    <td>692</td>
-                    <td>10</td>
-                    <td>مرور</td>
-                    <td>1 <i class="fas fa-paperclip"></i></td>
-                    <td>
-                        <button class="btn-edit"><i class="fas fa-pen"></i></button>
-                        <button class="btn-delete"><i class="fas fa-trash"></i></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>فتح حساب بنكي</td>
-                    <td>587</td>
-                    <td>9</td>
-                    <td>بنوك</td>
-                    <td>2 <i class="fas fa-paperclip"></i></td>
-                    <td>
-                        <button class="btn-edit"><i class="fas fa-pen"></i></button>
-                        <button class="btn-delete"><i class="fas fa-trash"></i></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>استخراج جواز سفر</td>
-                    <td>542</td>
-                    <td>7</td>
-                    <td>وثائق</td>
-                    <td>1 <i class="fas fa-paperclip"></i></td>
-                    <td>
-                        <button class="btn-edit"><i class="fas fa-pen"></i></button>
-                        <button class="btn-delete"><i class="fas fa-trash"></i></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>تسجيل طفل في المدرسة</td>
-                    <td>498</td>
-                    <td>11</td>
-                    <td>تعليم</td>
-                    <td>2 <i class="fas fa-paperclip"></i></td>
-                    <td>
-                        <button class="btn-edit"><i class="fas fa-pen"></i></button>
-                        <button class="btn-delete"><i class="fas fa-trash"></i></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>حجز موعد طبي</td>
-                    <td>456</td>
-                    <td>14</td>
-                    <td>صحة</td>
-                    <td>0 <i class="fas fa-paperclip"></i></td>
-                    <td>
-                        <button class="btn-edit"><i class="fas fa-pen"></i></button>
-                        <button class="btn-delete"><i class="fas fa-trash"></i></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>دفع فواتير الكهرباء</td>
-                    <td>423</td>
-                    <td>6</td>
-                    <td>خدمات</td>
-                    <td>1 <i class="fas fa-paperclip"></i></td>
-                    <td>
-                        <button class="btn-edit"><i class="fas fa-pen"></i></button>
-                        <button class="btn-delete"><i class="fas fa-trash"></i></button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-        
+
+        <!-- Controls Section -->
+        <div class="controls-section">
+            <div class="left-controls">
+                <button class="filter-btn" id="filterBtn">
+                    <i class="fas fa-filter"></i>
+                    تصفية
+                </button>
+                <button class="export-btn" id="exportBtn">
+                    <i class="fas fa-download"></i>
+                    تصدير البيانات
+                </button>
+                <button class="add-btn" id="addBtn">
+                    <i class="fas fa-plus"></i>
+                    إضافة كلمة بحث
+                </button>
+            </div>
+            <div class="search-box">
+                <input type="text" class="search-input" placeholder="بحث عن كلمات...">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+        </div>
+
+        <!-- Table Section -->
+        <div class="table-container">
+            <div class="table-title">قائمة كلمات البحث</div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>كلمة البحث</th>
+                        <th>عدد مرات البحث</th>
+                        <th>نتيجة البحث</th>
+                        <th>نوع البحث</th>
+                        <th>مرفقات الكلمة</th>
+                        <th>تحليل وإضافة مدخلات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="keyword-cell">خدمات حكومية</td>
+                        <td class="search-count">1245</td>
+                        <td class="search-result">28</td>
+                        <td><span class="search-type type-general">عام</span></td>
+                        <td><span class="attachments-count"><i class="fas fa-paperclip"></i> 2</span></td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="action-btn edit-btn" title="تعديل">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="action-btn delete-btn" title="حذف">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="keyword-cell">تجديد الرقائق</td>
+                        <td class="search-count">987</td>
+                        <td class="search-result">15</td>
+                        <td><span class="search-type type-services">خدمات</span></td>
+                        <td><span class="attachments-count"><i class="fas fa-paperclip"></i> 1</span></td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="action-btn edit-btn" title="تعديل">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="action-btn delete-btn" title="حذف">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="keyword-cell">استخراج شهادة ميلاد</td>
+                        <td class="search-count">856</td>
+                        <td class="search-result">12</td>
+                        <td><span class="search-type type-documents">وثائق</span></td>
+                        <td><span class="attachments-count"><i class="fas fa-paperclip"></i> 3</span></td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="action-btn edit-btn" title="تعديل">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="action-btn delete-btn" title="حذف">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="keyword-cell">تسجيل عقار</td>
+                        <td class="search-count">743</td>
+                        <td class="search-result">8</td>
+                        <td><span class="search-type type-realestate">عقارات</span></td>
+                        <td><span class="attachments-count"><i class="fas fa-paperclip"></i> 0</span></td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="action-btn edit-btn" title="تعديل">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="action-btn delete-btn" title="حذف">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="keyword-cell">تجديد رخصة القيادة</td>
+                        <td class="search-count">692</td>
+                        <td class="search-result">10</td>
+                        <td><span class="search-type type-services">مرور</span></td>
+                        <td><span class="attachments-count"><i class="fas fa-paperclip"></i> 1</span></td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="action-btn edit-btn" title="تعديل">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="action-btn delete-btn" title="حذف">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="keyword-cell">فتح حساب بنكي</td>
+                        <td class="search-count">587</td>
+                        <td class="search-result">9</td>
+                        <td><span class="search-type type-medical">بنوك</span></td>
+                        <td><span class="attachments-count"><i class="fas fa-paperclip"></i> 2</span></td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="action-btn edit-btn" title="تعديل">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="action-btn delete-btn" title="حذف">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="keyword-cell">استخراج جواز سفر</td>
+                        <td class="search-count">542</td>
+                        <td class="search-result">7</td>
+                        <td><span class="search-type type-documents">وثائق</span></td>
+                        <td><span class="attachments-count"><i class="fas fa-paperclip"></i> 1</span></td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="action-btn edit-btn" title="تعديل">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="action-btn delete-btn" title="حذف">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="keyword-cell">تسجيل طفل في المدرسة</td>
+                        <td class="search-count">498</td>
+                        <td class="search-result">11</td>
+                        <td><span class="search-type type-education">تعليم</span></td>
+                        <td><span class="attachments-count"><i class="fas fa-paperclip"></i> 2</span></td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="action-btn edit-btn" title="تعديل">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="action-btn delete-btn" title="حذف">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="keyword-cell">حجز موعد طبي</td>
+                        <td class="search-count">456</td>
+                        <td class="search-result">14</td>
+                        <td><span class="search-type type-health">صحة</span></td>
+                        <td><span class="attachments-count"><i class="fas fa-paperclip"></i> 0</span></td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="action-btn edit-btn" title="تعديل">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="action-btn delete-btn" title="حذف">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="keyword-cell">دفع فواتير الكهرباء</td>
+                        <td class="search-count">423</td>
+                        <td class="search-result">6</td>
+                        <td><span class="search-type type-services">خدمات</span></td>
+                        <td><span class="attachments-count"><i class="fas fa-paperclip"></i> 1</span></td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="action-btn edit-btn" title="تعديل">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="action-btn delete-btn" title="حذف">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
         <!-- Pagination -->
         <div class="pagination-container">
-            <div>
-                <span>نتيجة</span>
-            </div>
+            <div class="result-info">نتيجة</div>
             <div class="pagination">
-                <a href="#" class="page-link">التالي</a>
-                <a href="#" class="page-link">3</a>
-                <a href="#" class="page-link">2</a>
-                <a href="#" class="page-link active">1</a>
-                <a href="#" class="page-link">السابق</a>
+                <button class="pagination-btn">التالي</button>
+                <button class="pagination-btn">3</button>
+                <button class="pagination-btn">2</button>
+                <button class="pagination-btn active">1</button>
+                <button class="pagination-btn">السابق</button>
             </div>
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        $(document).ready(function() {
-            // Dark Mode Toggle
-            const darkModeToggle = $(".toggle-switch input");
-            
-            darkModeToggle.on('change', function() {
-                if (this.checked) {
-                    $('body').css('background-color', '#222');
-                    $('.card').css('background-color', '#333');
-                    $('.card-title').css('color', '#fff');
-                    $('td, th').css('color', '#fff');
-                    $('td, th').css('border-color', '#444');
-                    $('.search-area').css('background-color', '#444');
-                } else {
-                    $('body').css('background-color', '#F5F7FA');
-                    $('.card').css('background-color', '#fff');
-                    $('.card-title').css('color', '#333');
-                    $('td').css('color', '#333');
-                    $('td, th').css('border-color', '#eee');
-                    $('.search-area').css('background-color', '#f8f9fa');
-                }
+        document.addEventListener('DOMContentLoaded', function() {
+            // Dark mode toggle
+            const darkModeToggle = document.getElementById('darkModeToggle');
+            darkModeToggle.addEventListener('click', function() {
+                this.classList.toggle('active');
+                document.body.classList.toggle('dark-mode');
             });
-            
-            // Edit buttons
-            $('.btn-edit').on('click', function() {
-                const row = $(this).closest('tr');
-                const keyword = row.find('td:first').text();
-                alert(`تعديل الكلمة: ${keyword}`);
+
+            // Search functionality
+            const searchInput = document.querySelector('.search-input');
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                const tableRows = document.querySelectorAll('.table tbody tr');
+                
+                tableRows.forEach(row => {
+                    const keyword = row.querySelector('.keyword-cell').textContent.toLowerCase();
+                    if (keyword.includes(searchTerm)) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
             });
-            
-            // Delete buttons
-            $('.btn-delete').on('click', function() {
-                const row = $(this).closest('tr');
-                const keyword = row.find('td:first').text();
-                if (confirm(`هل أنت متأكد من حذف الكلمة: ${keyword}؟`)) {
-                    row.fadeOut(300, function() {
-                        $(this).remove();
-                    });
-                }
+
+            // Filter button
+            document.getElementById('filterBtn').addEventListener('click', function() {
+                alert('تم فتح نافذة التصفية');
             });
-            
-            // Add Keyword Button
-            $('.add-btn').on('click', function() {
+
+            // Export button
+            document.getElementById('exportBtn').addEventListener('click', function() {
+                alert('تم تصدير البيانات');
+            });
+
+            // Add button
+            document.getElementById('addBtn').addEventListener('click', function() {
                 alert('إضافة كلمة بحث جديدة');
             });
-            
-            // Export Button
-            $('.export-btn').on('click', function() {
-                alert('جاري تصدير البيانات...');
+
+            // Edit buttons
+            document.querySelectorAll('.edit-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const row = this.closest('tr');
+                    const keyword = row.querySelector('.keyword-cell').textContent;
+                    alert(`تعديل كلمة البحث: ${keyword}`);
+                });
             });
-            
-            // Pagination links
-            $('.page-link').on('click', function(e) {
-                e.preventDefault();
-                $('.page-link').removeClass('active');
-                $(this).addClass('active');
+
+            // Delete buttons
+            document.querySelectorAll('.delete-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const row = this.closest('tr');
+                    const keyword = row.querySelector('.keyword-cell').textContent;
+                    if (confirm(`هل أنت متأكد من حذف كلمة البحث: ${keyword}؟`)) {
+                        row.remove();
+                        alert('تم حذف كلمة البحث');
+                    }
+                });
+            });
+
+            // Pagination
+            document.querySelectorAll('.pagination-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    if (!this.classList.contains('active') && !this.disabled) {
+                        document.querySelector('.pagination-btn.active').classList.remove('active');
+                        this.classList.add('active');
+                    }
+                });
             });
         });
     </script>
 </body>
+
 </html>

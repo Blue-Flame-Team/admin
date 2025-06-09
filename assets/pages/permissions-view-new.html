@@ -4,185 +4,435 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>إدارة الصلاحيات</title>
-    <link rel="stylesheet" href="../../css/style.css">
-    <link rel="stylesheet" href="../../css/mobile-additions.css">
-    <link rel="stylesheet" href="../../css/size-fixes.css">
-    <link rel="stylesheet" href="../css/permissions/view-permissions.css">
-    <link rel="stylesheet" href="../../css/unified-styles.css">
-    <link rel="stylesheet" href="../../css/design-enhancements.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            direction: rtl;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header Section */
+        .page-header {
+            background: white;
+            border-radius: 8px;
+            padding: 20px 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .page-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1e293b;
+            margin: 0;
+        }
+
+        .add-btn {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s;
+            font-family: 'Cairo', Arial, sans-serif;
+        }
+
+        .add-btn:hover {
+            background: #2563eb;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(59, 130, 246, 0.3);
+        }
+
+        /* Table Container */
+        .table-container {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Table Styles */
+        .permissions-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        .permissions-table thead {
+            background: #475569;
+            color: white;
+        }
+
+        .permissions-table th {
+            padding: 15px 20px;
+            text-align: center;
+            font-weight: 500;
+            font-size: 14px;
+            border: none;
+        }
+
+        .permissions-table tbody tr {
+            background: white;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .permissions-table tbody tr:hover {
+            background: #f8fafc;
+        }
+
+        .permissions-table td {
+            padding: 15px 20px;
+            text-align: center;
+            color: #374151;
+            border: none;
+        }
+
+        /* Action Buttons */
+        .action-btn {
+            width: 32px;
+            height: 32px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            transition: all 0.2s;
+        }
+
+        .edit-btn {
+            background: transparent;
+            color: #3b82f6;
+        }
+
+        .edit-btn:hover {
+            background: #eff6ff;
+            color: #2563eb;
+        }
+
+        .delete-btn {
+            background: transparent;
+            color: #ef4444;
+        }
+
+        .delete-btn:hover {
+            background: #fef2f2;
+            color: #dc2626;
+        }
+
+        /* Pagination */
+        .pagination-controls {
+            background: white;
+            padding: 20px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .page-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        .display-count {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .display-count select {
+            padding: 6px 10px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            font-size: 14px;
+            font-family: 'Cairo', Arial, sans-serif;
+        }
+
+        .jump-to-page {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .jump-to-page input {
+            width: 60px;
+            padding: 6px 8px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            text-align: center;
+            font-size: 14px;
+            font-family: 'Cairo', Arial, sans-serif;
+        }
+
+        .pagination-numbers {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .page-item {
+            padding: 8px 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+            color: #374151;
+            text-decoration: none;
+            font-size: 14px;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 36px;
+            height: 36px;
+        }
+
+        .page-item:hover {
+            background: #f3f4f6;
+            border-color: #9ca3af;
+        }
+
+        .page-item.active {
+            background: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
+        }
+
+        .page-item.page-arrow {
+            background: white;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 10px;
+            }
+
+            .page-header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .permissions-table {
+                font-size: 12px;
+            }
+
+            .permissions-table th,
+            .permissions-table td {
+                padding: 10px 8px;
+            }
+
+            .pagination-controls {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .page-info {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <!-- Main Content -->
-        <main class="main-content">
-            <div class="permissions-card">
-            <!-- Header Section -->
-            <div class="card-header">
-                <h1 class="card-title">إدارة الصلاحيات</h1>
-                <button class="add-btn">
-                    <i class="fas fa-plus"></i>
-                    <span>إضافة صلاحية</span>
-                </button>
-            </div>
-            
+        <!-- Header Section -->
+        <div class="page-header">
+            <button class="add-btn">
+                <i class="fas fa-plus"></i>
+                <span>إضافة صلاحية</span>
+            </button>
+            <h1 class="page-title">إدارة الصلاحيات</h1>
+        </div>
+        
+        <!-- Table Container -->
+        <div class="table-container">
             <!-- Permissions Table -->
             <table class="permissions-table">
                 <thead>
                     <tr>
-                        <th class="sequence-cell">الرقم التسلسلي</th>
+                        <th>الرقم التسلسلي</th>
                         <th>الاسم</th>
-                        <th>الاسم العربي</th>
+                        <th>الاسم بالعربي</th>
                         <th>تعديل</th>
                         <th>حذف</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td class="sequence-cell">١</td>
+                        <td>١</td>
                         <td>LOGIN1</td>
                         <td>تسجيل الدخول</td>
-                        <td class="action-cell">
+                        <td>
                             <button class="action-btn edit-btn">
                                 <i class="fas fa-pen"></i>
                             </button>
                         </td>
-                        <td class="action-cell">
+                        <td>
                             <button class="action-btn delete-btn">
                                 <i class="fas fa-trash"></i>
                             </button>
                         </td>
                     </tr>
                     <tr>
-                        <td class="sequence-cell">٢</td>
+                        <td>٢</td>
                         <td>VIEW_DASHBOARD</td>
                         <td>عرض لوحة التحكم</td>
-                        <td class="action-cell">
+                        <td>
                             <button class="action-btn edit-btn">
                                 <i class="fas fa-pen"></i>
                             </button>
                         </td>
-                        <td class="action-cell">
+                        <td>
                             <button class="action-btn delete-btn">
                                 <i class="fas fa-trash"></i>
                             </button>
                         </td>
                     </tr>
                     <tr>
-                        <td class="sequence-cell">٣</td>
+                        <td>٣</td>
                         <td>MANAGE_USERS</td>
                         <td>إدارة المستخدمين</td>
-                        <td class="action-cell">
+                        <td>
                             <button class="action-btn edit-btn">
                                 <i class="fas fa-pen"></i>
                             </button>
                         </td>
-                        <td class="action-cell">
+                        <td>
                             <button class="action-btn delete-btn">
                                 <i class="fas fa-trash"></i>
                             </button>
                         </td>
                     </tr>
                     <tr>
-                        <td class="sequence-cell">٤</td>
+                        <td>٤</td>
                         <td>EDIT_SETTINGS</td>
                         <td>تعديل الإعدادات</td>
-                        <td class="action-cell">
+                        <td>
                             <button class="action-btn edit-btn">
                                 <i class="fas fa-pen"></i>
                             </button>
                         </td>
-                        <td class="action-cell">
+                        <td>
                             <button class="action-btn delete-btn">
                                 <i class="fas fa-trash"></i>
                             </button>
                         </td>
                     </tr>
                     <tr>
-                        <td class="sequence-cell">٥</td>
+                        <td>٥</td>
                         <td>VIEW_REPORTS</td>
                         <td>عرض التقارير</td>
-                        <td class="action-cell">
+                        <td>
                             <button class="action-btn edit-btn">
                                 <i class="fas fa-pen"></i>
                             </button>
                         </td>
-                        <td class="action-cell">
+                        <td>
                             <button class="action-btn delete-btn">
                                 <i class="fas fa-trash"></i>
                             </button>
                         </td>
                     </tr>
                     <tr>
-                        <td class="sequence-cell">٦</td>
+                        <td>٦</td>
                         <td>EXPORT_DATA</td>
                         <td>تصدير البيانات</td>
-                        <td class="action-cell">
+                        <td>
                             <button class="action-btn edit-btn">
                                 <i class="fas fa-pen"></i>
                             </button>
                         </td>
-                        <td class="action-cell">
+                        <td>
                             <button class="action-btn delete-btn">
                                 <i class="fas fa-trash"></i>
                             </button>
                         </td>
                     </tr>
                     <tr>
-                        <td class="sequence-cell">٧</td>
+                        <td>٧</td>
                         <td>MANAGE_ROLES</td>
                         <td>إدارة الأدوار</td>
-                        <td class="action-cell">
+                        <td>
                             <button class="action-btn edit-btn">
                                 <i class="fas fa-pen"></i>
                             </button>
                         </td>
-                        <td class="action-cell">
+                        <td>
                             <button class="action-btn delete-btn">
                                 <i class="fas fa-trash"></i>
                             </button>
                         </td>
                     </tr>
                     <tr>
-                        <td class="sequence-cell">٨</td>
+                        <td>٨</td>
                         <td>SYSTEM_BACKUP</td>
                         <td>نسخ احتياطي للنظام</td>
-                        <td class="action-cell">
+                        <td>
                             <button class="action-btn edit-btn">
                                 <i class="fas fa-pen"></i>
                             </button>
                         </td>
-                        <td class="action-cell">
+                        <td>
                             <button class="action-btn delete-btn">
                                 <i class="fas fa-trash"></i>
                             </button>
                         </td>
                     </tr>
                     <tr>
-                        <td class="sequence-cell">٩</td>
+                        <td>٩</td>
                         <td>API_ACCESS</td>
-                        <td>الوصول إلى API واجهة برمجة التطبيقات</td>
-                        <td class="action-cell">
+                        <td>الوصول إلى واجهة برمجة التطبيقات</td>
+                        <td>
                             <button class="action-btn edit-btn">
                                 <i class="fas fa-pen"></i>
                             </button>
                         </td>
-                        <td class="action-cell">
+                        <td>
                             <button class="action-btn delete-btn">
                                 <i class="fas fa-trash"></i>
                             </button>
                         </td>
                     </tr>
                     <tr>
-                        <td class="sequence-cell">١٠</td>
+                        <td>١٠</td>
                         <td>AUDIT_LOGS</td>
                         <td>سجلات التدقيق</td>
-                        <td class="action-cell">
+                        <td>
                             <button class="action-btn edit-btn">
                                 <i class="fas fa-pen"></i>
                             </button>
                         </td>
-                        <td class="action-cell">
+                        <td>
                             <button class="action-btn delete-btn">
                                 <i class="fas fa-trash"></i>
                             </button>
@@ -197,11 +447,12 @@
                     <div class="display-count">
                         <span>عرض</span>
                         <select>
-                            <option>10</option>
-                            <option>25</option>
-                            <option>50</option>
-                            <option>100</option>
+                            <option>١٠</option>
+                            <option>٢٥</option>
+                            <option>٥٠</option>
+                            <option>١٠٠</option>
                         </select>
+                        <span>صفحة</span>
                     </div>
                     
                     <div class="jump-to-page">
@@ -218,101 +469,69 @@
                     <a href="#" class="page-item page-arrow"><i class="fas fa-chevron-left"></i></a>
                 </div>
             </div>
-            </div>
-        </main>
+        </div>
     </div>
     
-    <script src="../js/jquery.min.js"></script>
-    <script src="../../js/template-loader.js"></script>
     <script>
-        $(document).ready(function() {
+        document.addEventListener('DOMContentLoaded', function() {
             // Add Permission Button
-            $('.add-btn').on('click', function() {
-                window.location.href = 'permissions-add-edit.html';
+            document.querySelector('.add-btn').addEventListener('click', function() {
+                window.location.href = 'permissions-add-edit-new.html';
             });
             
-            // Edit Button
-            $('.edit-btn').on('click', function() {
-                const row = $(this).closest('tr');
-                const permissionName = row.find('td:nth-child(2)').text();
-                window.location.href = `permissions-add-edit.html?edit=${permissionName}`;
+            // Edit Buttons
+            document.querySelectorAll('.edit-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const row = this.closest('tr');
+                    const permissionName = row.querySelector('td:nth-child(2)').textContent;
+                    window.location.href = `permissions-add-edit-new.html?edit=${permissionName}`;
+                });
             });
             
-            // Delete Button
-            $('.delete-btn').on('click', function() {
-                const row = $(this).closest('tr');
-                const permissionName = row.find('td:nth-child(2)').text();
-                if (confirm(`هل أنت متأكد من رغبتك في حذف صلاحية "${permissionName}"؟`)) {
-                    // Delete logic would go here
-                    console.log(`Deleting permission: ${permissionName}`);
-                    row.remove();
-                }
+            // Delete Buttons
+            document.querySelectorAll('.delete-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const row = this.closest('tr');
+                    const permissionName = row.querySelector('td:nth-child(2)').textContent;
+                    const arabicName = row.querySelector('td:nth-child(3)').textContent;
+                    
+                    if (confirm(`هل أنت متأكد من رغبتك في حذف صلاحية "${arabicName}"؟`)) {
+                        // Delete logic would go here
+                        console.log(`Deleting permission: ${permissionName}`);
+                        row.remove();
+                        
+                        // Show success message
+                        alert('تم حذف الصلاحية بنجاح');
+                    }
+                });
             });
             
             // Pagination
-            $('.page-item').on('click', function(e) {
-                e.preventDefault();
-                $('.page-item').removeClass('active');
-                if (!$(this).hasClass('page-arrow')) {
-                    $(this).addClass('active');
-                }
-                // Logic for page change would go here
+            document.querySelectorAll('.page-item').forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    if (!this.classList.contains('page-arrow')) {
+                        document.querySelectorAll('.page-item').forEach(p => p.classList.remove('active'));
+                        this.classList.add('active');
+                    }
+                    // Logic for page change would go here
+                });
             });
             
             // Display Count Change
-            $('.display-count select').on('change', function() {
+            document.querySelector('.display-count select').addEventListener('change', function() {
+                console.log(`Items per page: ${this.value}`);
                 // Logic for changing items per page would go here
-                console.log(`Items per page: ${$(this).val()}`);
             });
             
             // Jump to Page
-            $('.jump-to-page input').on('keyup', function(e) {
+            document.querySelector('.jump-to-page input').addEventListener('keyup', function(e) {
                 if (e.key === 'Enter') {
-                    const page = $(this).val();
-                    // Logic for jumping to specific page would go here
+                    const page = this.value;
                     console.log(`Jump to page: ${page}`);
+                    // Logic for jumping to specific page would go here
                 }
             });
-        });
-    </script>
-    <script>
-        // Mark this page as active in the menu
-        document.addEventListener('DOMContentLoaded', function() {
-            // This will be called after template-loader.js has loaded the templates
-            setTimeout(function() {
-                // Mark active items in sidebar and navigation
-                const permissionsLinks = document.querySelectorAll('a[href*="permissions-view-new.html"]');
-                permissionsLinks.forEach(link => {
-                    const parentLi = link.closest('li');
-                    if (parentLi) {
-                        parentLi.classList.add('active');
-                    }
-                    
-                    // If this is in a dropdown, open the parent dropdown
-                    const parentDropdown = link.closest('.menu-item-has-children');
-                    if (parentDropdown) {
-                        parentDropdown.classList.add('open');
-                        const subMenu = parentDropdown.querySelector('.sub-menu');
-                        if (subMenu) {
-                            subMenu.style.maxHeight = subMenu.scrollHeight + 'px';
-                        }
-                    }
-                });
-                
-                // Fix add button link
-                document.querySelector('.add-btn').addEventListener('click', function() {
-                    window.location.href = 'permissions-add-edit-new.html';
-                });
-                
-                // Fix edit buttons links
-                document.querySelectorAll('.edit-btn').forEach(btn => {
-                    btn.addEventListener('click', function() {
-                        const row = this.closest('tr');
-                        const permissionName = row.querySelector('td:nth-child(2)').textContent;
-                        window.location.href = `permissions-add-edit-new.html?edit=${permissionName}`;
-                    });
-                });
-            }, 500); // Small delay to ensure templates are loaded
         });
     </script>
 </body>

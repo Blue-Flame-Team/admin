@@ -4,43 +4,53 @@
 
 document.addEventListener('DOMContentLoaded', function() {
     // Elements
-    const dropZone = document.getElementById('dropZone');
+    const uploadArea = document.querySelector('.upload-area');
     const fileInput = document.getElementById('fileInput');
-    const uploadButton = document.getElementById('uploadButton');
+    const uploadButton = document.querySelector('.upload-button');
     
     // Initially disable the upload button
-    uploadButton.disabled = true;
+    if (uploadButton) {
+        uploadButton.disabled = true;
+    }
     
-    // Click on drop zone to trigger file input
-    dropZone.addEventListener('click', function() {
-        fileInput.click();
-    });
-    
-    // Handle file selection
-    fileInput.addEventListener('change', function() {
-        handleFiles(this.files);
-    });
-    
-    // Prevent default drag behaviors
-    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-        dropZone.addEventListener(eventName, preventDefaults, false);
-        document.body.addEventListener(eventName, preventDefaults, false);
-    });
-    
-    // Highlight drop zone when item is dragged over it
-    ['dragenter', 'dragover'].forEach(eventName => {
-        dropZone.addEventListener(eventName, highlight, false);
-    });
-    
-    ['dragleave', 'drop'].forEach(eventName => {
-        dropZone.addEventListener(eventName, unhighlight, false);
-    });
-    
-    // Handle dropped files
-    dropZone.addEventListener('drop', handleDrop, false);
+    if (uploadArea && fileInput) {
+        // Click on upload area to trigger file input
+        uploadArea.addEventListener('click', function() {
+            fileInput.click();
+        });
+        
+        // Handle file selection
+        fileInput.addEventListener('change', function() {
+            if (this.files.length > 0) {
+                uploadButton.disabled = false;
+            } else {
+                uploadButton.disabled = true;
+            }
+        });
+        
+        // Prevent default drag behaviors
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            uploadArea.addEventListener(eventName, preventDefaults, false);
+            document.body.addEventListener(eventName, preventDefaults, false);
+        });
+        
+        // Highlight drop zone when item is dragged over it
+        ['dragenter', 'dragover'].forEach(eventName => {
+            uploadArea.addEventListener(eventName, highlight, false);
+        });
+        
+        ['dragleave', 'drop'].forEach(eventName => {
+            uploadArea.addEventListener(eventName, unhighlight, false);
+        });
+        
+        // Handle dropped files
+        uploadArea.addEventListener('drop', handleDrop, false);
+    }
     
     // Handle upload button click
-    uploadButton.addEventListener('click', uploadFiles);
+    if (uploadButton) {
+        uploadButton.addEventListener('click', uploadFiles);
+    }
     
     // Helper functions
     function preventDefaults(e) {
@@ -49,11 +59,13 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     function highlight() {
-        dropZone.classList.add('drag-over');
+        uploadArea.classList.add('drag-over');
+        uploadArea.style.borderColor = '#0D6EFD';
     }
     
     function unhighlight() {
-        dropZone.classList.remove('drag-over');
+        uploadArea.classList.remove('drag-over');
+        uploadArea.style.borderColor = '#DEE2E6';
     }
     
     function handleDrop(e) {

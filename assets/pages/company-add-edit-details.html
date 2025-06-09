@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إضافة وتعديل تفاصيل شركة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            direction: rtl;
+        }
+
+        /* Header */
+        .header {
+            background: white;
+            padding: 12px 30px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #e8eaed;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            min-width: 200px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-image {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: #202124;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .header-center {
+            flex: 1;
+            max-width: 600px;
+            margin: 0 40px;
+        }
+
+        .search-bar {
+            position: relative;
+            width: 100%;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 45px 12px 20px;
+            border: 1px solid #dadce0;
+            border-radius: 25px;
+            font-size: 14px;
+            background: #f8f9fa;
+            transition: all 0.3s ease;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #1a73e8;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.1);
+        }
+
+        .search-input::placeholder {
+            color: #9aa0a6;
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #5f6368;
+            font-size: 16px;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            min-width: 200px;
+            justify-content: flex-end;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #202124;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .header-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #5f6368;
+            border: 1px solid transparent;
+        }
+
+        .header-icon:hover {
+            background: #e8eaed;
+            color: #202124;
+            transform: translateY(-1px);
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+            font-size: 14px;
+            color: #5f6368;
+        }
+
+        .breadcrumb a {
+            color: #5f6368;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: #1a73e8;
+        }
+
+        .breadcrumb-separator {
+            color: #9aa0a6;
+            margin: 0 5px;
+        }
+
+        .breadcrumb .current {
+            color: #202124;
+            font-weight: 500;
+        }
+
+        /* Page Header */
+        .page-header {
+            margin-bottom: 30px;
+        }
+
+        .page-title {
+            font-size: 32px;
+            font-weight: 600;
+            color: #202124;
+            margin-bottom: 8px;
+        }
+
+        .page-description {
+            font-size: 16px;
+            color: #5f6368;
+            line-height: 1.5;
+        }
+
+        /* Form Sections */
+        .form-section {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #202124;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #e8eaed;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-label {
+            font-size: 14px;
+            font-weight: 500;
+            color: #202124;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .required {
+            color: #ea4335;
+        }
+
+        .form-input {
+            padding: 12px 16px;
+            border: 1px solid #dadce0;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: 'Cairo', sans-serif;
+            transition: all 0.2s ease;
+            background: white;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #1a73e8;
+            box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.1);
+        }
+
+        .form-select {
+            padding: 12px 16px;
+            border: 1px solid #dadce0;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: 'Cairo', sans-serif;
+            background: white;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .form-select:focus {
+            outline: none;
+            border-color: #1a73e8;
+            box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.1);
+        }
+
+        .form-description {
+            font-size: 12px;
+            color: #5f6368;
+            margin-top: 4px;
+            line-height: 1.4;
+        }
+
+        /* Checkbox Options */
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .checkbox-input {
+            width: 18px;
+            height: 18px;
+            border: 2px solid #dadce0;
+            border-radius: 4px;
+            cursor: pointer;
+            position: relative;
+            appearance: none;
+            transition: all 0.2s ease;
+        }
+
+        .checkbox-input:checked {
+            background: #1a73e8;
+            border-color: #1a73e8;
+        }
+
+        .checkbox-input:checked::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .checkbox-label {
+            font-size: 14px;
+            color: #202124;
+            cursor: pointer;
+        }
+
+        /* Form Actions */
+        .form-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: flex-start;
+            margin-top: 30px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: 'Cairo', sans-serif;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: #1a73e8;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #1557b0;
+            box-shadow: 0 2px 8px rgba(26,115,232,0.3);
+        }
+
+        .btn-secondary {
+            background: #f8f9fa;
+            color: #5f6368;
+            border: 1px solid #dadce0;
+        }
+
+        .btn-secondary:hover {
+            background: #e8eaed;
+            color: #202124;
+        }
+
+        /* Responsive Design - Comprehensive Mobile Optimization */
+        @media (max-width: 991px) {
+            .header {
+                padding: 10px 15px;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            .header-right {
+                min-width: auto;
+            }
+
+            .header-center {
+                order: 3;
+                width: 100%;
+                margin: 0;
+            }
+
+            .header-left {
+                min-width: auto;
+            }
+
+            .search-input {
+                padding: 10px 40px 10px 15px;
+            }
+
+            .main-content {
+                padding: 20px 15px;
+            }
+
+            .page-title {
+                font-size: 24px;
+            }
+
+            .page-description {
+                font-size: 14px;
+            }
+
+            .form-section {
+                padding: 20px;
+                margin-bottom: 20px;
+            }
+
+            .section-title {
+                font-size: 16px;
+                margin-bottom: 15px;
+                padding-bottom: 10px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 15px;
+                margin-bottom: 15px;
+            }
+
+            .form-input,
+            .form-select {
+                min-height: 44px;
+            }
+
+            .form-actions {
+                flex-direction: column;
+                gap: 10px;
+                margin-top: 20px;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+                min-height: 44px;
+            }
+
+            .breadcrumb {
+                font-size: 13px;
+                flex-wrap: wrap;
+                margin-bottom: 15px;
+            }
+
+            .checkbox-group {
+                gap: 10px;
+            }
+
+            .checkbox-item {
+                padding: 5px 0;
+            }
+        }
+
+        /* Small Mobile Devices */
+        @media (max-width: 576px) {
+            .header {
+                padding: 8px 12px;
+            }
+
+            .logo-image {
+                width: 40px;
+                height: 40px;
+                font-size: 16px;
+            }
+
+            .main-content {
+                padding: 15px 12px;
+            }
+
+            .form-section {
+                padding: 15px;
+                border-radius: 8px;
+            }
+
+            .page-title {
+                font-size: 20px;
+                margin-bottom: 5px;
+            }
+
+            .page-description {
+                font-size: 13px;
+            }
+
+            .section-title {
+                font-size: 15px;
+            }
+
+            .form-label {
+                font-size: 13px;
+            }
+
+            .form-input,
+            .form-select {
+                font-size: 13px;
+                padding: 10px 12px;
+            }
+
+            .form-description {
+                font-size: 11px;
+            }
+
+            .checkbox-label {
+                font-size: 13px;
+            }
+
+            .btn {
+                padding: 10px 20px;
+                font-size: 13px;
+            }
+        }
+
+        /* Landscape Mode */
+        @media (max-width: 991px) and (orientation: landscape) {
+            .header {
+                position: sticky;
+                top: 0;
+                z-index: 1000;
+            }
+
+            .main-content {
+                padding-top: 15px;
+            }
+
+            .form-section {
+                margin-bottom: 15px;
+            }
+        }
+
+        /* Touch Device Optimization */
+        @media (hover: none) and (pointer: coarse) {
+            .form-input,
+            .form-select,
+            .btn,
+            .checkbox-input {
+                cursor: pointer;
+                -webkit-tap-highlight-color: transparent;
+            }
+
+            .form-input:focus,
+            .form-select:focus {
+                outline: none;
+                border-color: #1a73e8;
+                box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.2);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="header-right">
+            <a href="#" class="logo">
+                <div class="logo-image">ال</div>
+            </a>
+        </div>
+
+        <div class="header-center">
+            <div class="search-bar">
+                <input type="text" class="search-input" placeholder="بحث...">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+        </div>
+
+        <div class="header-left">
+            <div class="user-info">أحمد محمد</div>
+            <div class="header-icon">
+                <i class="fas fa-search"></i>
+            </div>
+            <div class="header-icon">
+                <i class="fas fa-user"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Breadcrumb -->
+        <nav class="breadcrumb">
+            <a href="#">الرئيسية</a>
+            <span class="breadcrumb-separator">›</span>
+            <a href="#">إدارة الحقول</a>
+            <span class="breadcrumb-separator">›</span>
+            <span class="current">إضافة حقل جديد</span>
+        </nav>
+
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1 class="page-title">إضافة حقل جديد</h1>
+            <p class="page-description">قم بتكوين حقل مختص جديد لإضافته إلى النموذج أو قاعدة البيانات</p>
+        </div>
+
+        <!-- General Information Section -->
+        <div class="form-section">
+            <h2 class="section-title">معلومات عامة</h2>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label">
+                        اسم الحقل <span class="required">*</span>
+                    </label>
+                    <input type="text" class="form-input" placeholder="يجب أن يكون اسم الحقل فريد ولا يحتوي على مسافات أو أحرف خاصة">
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">
+                        نسمية الحقل <span class="required">*</span>
+                    </label>
+                    <input type="text" class="form-input" placeholder="سيتم عرض هذه النسمية للمستخدمين في النموذج">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label">الطول</label>
+                    <input type="text" class="form-input">
+                    <div class="form-description">الحد الأقصى عدد الأحرف المسموح بها للنموذج محدد</div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">
+                        نوع البيانات <span class="required">*</span>
+                    </label>
+                    <select class="form-select">
+                        <option>اختر نوع البيانات</option>
+                        <option>نص</option>
+                        <option>رقم</option>
+                        <option>تاريخ</option>
+                        <option>اختيار من متعدد</option>
+                    </select>
+                    <div class="form-description">نوع البيانات الذي سيتم تخزينه في هذا الحقل</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Field Properties Section -->
+        <div class="form-section">
+            <h2 class="section-title">خصائص الحقل</h2>
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label">
+                        نوع عنصر النموذج <span class="required">*</span>
+                    </label>
+                    <select class="form-select">
+                        <option>اختر نوع عنصر النموذج</option>
+                        <option>حقل نصي</option>
+                        <option>منطقة نص</option>
+                        <option>قائمة منسدلة</option>
+                        <option>اختيار متعدد</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">الطول</label>
+                    <input type="text" class="form-input">
+                    <div class="form-description">حجم سيتم عرض هذا الحقل في النموذج</div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label class="form-label">اختر الحقل المستهدف</label>
+                    <select class="form-select">
+                        <option>حقل مطلوب</option>
+                        <option>حقل اختياري</option>
+                    </select>
+                    <div class="form-description">هذا الحقل سيظهر بحسب الحقل في الجدول المرتبط مخصص</div>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">الفئة</label>
+                    <select class="form-select">
+                        <option>اختر الفئة</option>
+                        <option>فئة أساسية</option>
+                        <option>فئة متقدمة</option>
+                    </select>
+                    <div class="form-description">فئة الحقل للتنظيم الحقول في مجموعات</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Display Options Section -->
+        <div class="form-section">
+            <h2 class="section-title">خيارات العرض</h2>
+            
+            <div class="checkbox-group">
+                <div class="checkbox-item">
+                    <input type="checkbox" class="checkbox-input" id="show-search">
+                    <label for="show-search" class="checkbox-label">إظهار في نموذج البحث</label>
+                </div>
+                
+                <div class="checkbox-item">
+                    <input type="checkbox" class="checkbox-input" id="allow-date">
+                    <label for="allow-date" class="checkbox-label">السماح بالتاريخ</label>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form Actions -->
+        <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-save"></i>
+                حفظ الحقل
+            </button>
+            <button type="button" class="btn btn-secondary">
+                إلغاء
+            </button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Form validation
+            const form = document.querySelector('form');
+            const requiredFields = document.querySelectorAll('.form-input[required], .form-select[required]');
+            
+            // Handle form submission
+            document.querySelector('.btn-primary').addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                let isValid = true;
+                const requiredInputs = document.querySelectorAll('.form-label .required');
+                
+                requiredInputs.forEach(req => {
+                    const formGroup = req.closest('.form-group');
+                    const input = formGroup.querySelector('.form-input, .form-select');
+                    
+                    if (!input.value.trim()) {
+                        input.style.borderColor = '#ea4335';
+                        isValid = false;
+                    } else {
+                        input.style.borderColor = '#dadce0';
+                    }
+                });
+                
+                if (isValid) {
+                    alert('تم حفظ البيانات بنجاح!');
+                } else {
+                    alert('يرجى ملء جميع الحقول المطلوبة');
+                }
+            });
+
+            // Handle cancel button
+            document.querySelector('.btn-secondary').addEventListener('click', function() {
+                if (confirm('هل أنت متأكد من إلغاء العملية؟ سيتم فقدان جميع البيانات المدخلة.')) {
+                    window.history.back();
+                }
+            });
+
+            // Clear validation on input
+            document.querySelectorAll('.form-input, .form-select').forEach(input => {
+                input.addEventListener('input', function() {
+                    this.style.borderColor = '#dadce0';
+                });
+            });
+        });
+    </script>
+</body>
+</html> 

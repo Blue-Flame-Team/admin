@@ -3,124 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CMS - صفحة إدارة الملفات</title>
+    <title>رفع الملفات</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/file-management/file-management.css">
     <script src="../js/file-management.js" defer></script>
 </head>
 <body>
-    <div class="main-container">
-        <div class="file-management-container">
-            <div class="header-section">
-                <h1>إدارة الملفات</h1>
-                <p class="subtitle">قم برفع وإدارة ملفاتك بسهولة</p>
+    <div class="page-container">
+        <div class="page-header">
+            <h1>إدارة الملفات</h1>
+            <p class="subtitle">قم برفع وإدارة ملفاتك بسهولة</p>
+        </div>
+
+        <div class="upload-section section-spacing">
+            <div class="card">
+                <div class="card-header">
+                    <h2>رفع الملفات</h2>
+                </div>
+                <div class="card-body">
+                    <div class="file-selection">
+                        <button class="btn btn-select">
+                            <i class="fas fa-paperclip"></i>
+                            اختيار ملف
+                        </button>
+                        <div class="file-status">
+                            <span>لم يتم اختيار ملف</span>
+                            <span>(ميجابايت)</span>
+                        </div>
+                    </div>
+                    <div class="upload-actions">
+                        <button class="btn btn-upload" disabled>رفع</button>
+                    </div>
+                </div>
+                <input type="file" id="fileInput" hidden>
+            </div>
+        </div>
+
+        <div class="storage-card section-spacing">
+            <div class="storage-header">
+                <div class="header-right">
+                    <h2>معلومات التخزين</h2>
+                    <div class="storage-title">المساحة المستخدمة</div>
+                </div>
+                <div class="storage-percent">30%</div>
             </div>
             
-            <div class="content-section">
-                <!-- File Upload Section -->
-                <div class="card">
-                    <div class="card-header">
-                        <h2>رفع الملفات</h2>
-                    </div>
-                    <div class="card-body">
-                        <div class="file-upload-area">
-                            <div class="file-status">
-                                <span id="file-status-text">لم يتم اختيار ملف</span>
-                                <span id="file-size" class="file-size">(ميجابايت)</span>
-                            </div>
-                            <div class="upload-actions">
-                                <button class="btn btn-primary" id="select-file-btn">
-                                    <i class="fas fa-paperclip"></i>
-                                    اختيار ملف
+            <div class="progress-bar">
+                <div class="progress"></div>
+            </div>
+            
+            <div class="storage-info">
+                <div class="storage-text">
+                    <span>أنت تستخدم</span>
+                    <span>2</span>
+                    <span>(جيجابايت)</span>
+                </div>
+                <div class="storage-icon">
+                    <i class="fas fa-desktop"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recent Files Section -->
+        <div class="card">
+            <div class="card-header">
+                <h2>الملفات الأخيرة</h2>
+            </div>
+            <div class="recent-files section-spacing">
+                <h2>الملفات الأخيرة</h2>
+                
+                <table class="files-table">
+                    <thead>
+                        <tr>
+                            <th>اسم الملف</th>
+                            <th>النوع</th>
+                            <th>الحجم</th>
+                            <th>تاريخ الرفع</th>
+                            <th>الإجراءات</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>pdf</td>
+                            <td>PDF</td>
+                            <td>ميجابايت</td>
+                            <td>2025</td>
+                            <td class="actions">
+                                <button class="action-btn" title="حذف">
+                                    <i class="fas fa-trash"></i>
                                 </button>
-                                <input type="file" id="file-input" hidden>
-                            </div>
-                        </div>
-                        <button class="btn btn-upload" id="upload-btn" disabled>
-                            <i class="fas fa-upload"></i>
-                            رفع ملف
-                        </button>
-                    </div>
-                </div>
-                
-                <!-- Storage Information Section -->
-                <div class="card">
-                    <div class="card-header">
-                        <h2>معلومات التخزين</h2>
-                    </div>
-                    <div class="card-body">
-                        <div class="storage-info">
-                            <div class="storage-label">
-                                <span>المساحة المستخدمة</span>
-                            </div>
-                            <div class="progress-bar-container">
-                                <div class="progress-bar" style="width: 30%"></div>
-                            </div>
-                            <div class="storage-details">
-                                <span class="storage-used">أنت تستخدم 3 جيجابايت</span>
-                                <span class="storage-total">5 جيجابايت</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Recent Files Section -->
-                <div class="card">
-                    <div class="card-header">
-                        <h2>الملفات الأخيرة</h2>
-                    </div>
-                    <div class="card-body">
-                        <div class="files-table-container">
-                            <table class="files-table">
-                                <thead>
-                                    <tr>
-                                        <th>اسم الملف</th>
-                                        <th>النوع</th>
-                                        <th>الحجم</th>
-                                        <th>تاريخ الرفع</th>
-                                        <th>الإجراءات</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>pdf</td>
-                                        <td>PDF</td>
-                                        <td>ميجابايت</td>
-                                        <td>2025</td>
-                                        <td class="actions-cell">
-                                            <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
-                                            <button class="action-btn download-btn"><i class="fas fa-download"></i></button>
-                                            <button class="action-btn share-btn"><i class="fas fa-share-alt"></i></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>png</td>
-                                        <td>PNG</td>
-                                        <td>ميجابايت</td>
-                                        <td>2025</td>
-                                        <td class="actions-cell">
-                                            <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
-                                            <button class="action-btn download-btn"><i class="fas fa-download"></i></button>
-                                            <button class="action-btn share-btn"><i class="fas fa-share-alt"></i></button>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>pptx</td>
-                                        <td>PPTX</td>
-                                        <td>ميجابايت</td>
-                                        <td>2025</td>
-                                        <td class="actions-cell">
-                                            <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
-                                            <button class="action-btn download-btn"><i class="fas fa-download"></i></button>
-                                            <button class="action-btn share-btn"><i class="fas fa-share-alt"></i></button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
+                                <button class="action-btn" title="تحميل">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                                <button class="action-btn" title="عرض">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>png</td>
+                            <td>PNG</td>
+                            <td>ميجابايت</td>
+                            <td>2025</td>
+                            <td class="actions">
+                                <button class="action-btn" title="حذف">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                                <button class="action-btn" title="تحميل">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                                <button class="action-btn" title="عرض">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>pptx</td>
+                            <td>PPTX</td>
+                            <td>ميجابايت</td>
+                            <td>2025</td>
+                            <td class="actions">
+                                <button class="action-btn"><i class="fas fa-trash"></i></button>
+                                <button class="action-btn"><i class="fas fa-download"></i></button>
+                                <button class="action-btn"><i class="fas fa-eye"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>

@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>صفحة الإعلانات / الإعلانات المصورة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/mobile-additions.css">
     <link rel="stylesheet" href="../css/size-fixes.css">
     <link rel="stylesheet" href="../css/advertisements/banners.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <div class="container">
@@ -31,6 +32,7 @@
                     <label class="form-label">صورة</label>
                     <div class="image-preview" id="image-drop-area">
                         <i class="fas fa-image"></i>
+                        <p class="preview-text" style="margin: 10px 0 0 0; font-size: 0.9rem; color: #7f8c8d;">اسحب الصورة هنا أو انقر للاختيار</p>
                     </div>
                     <input type="file" id="banner-image" style="display: none;" accept="image/*">
                 </div>
@@ -40,7 +42,7 @@
         </div>
     </div>
     
-    <div class="page-footer"></div>
+    <!-- <div class="page-footer"></div> -->
     
     <script src="../js/jquery.min.js"></script>
     <script>
@@ -128,7 +130,7 @@
                 alert('تم تحميل الإعلان بنجاح');
                 
                 // Reset form for next upload
-                dropArea.html('<i class="fas fa-image"></i>');
+                dropArea.html('<i class="fas fa-image"></i><p class="preview-text" style="margin: 10px 0 0 0; font-size: 0.9rem; color: #7f8c8d;">اسحب الصورة هنا أو انقر للاختيار</p>');
                 fileInput.val('');
             });
         });

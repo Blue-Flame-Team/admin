@@ -3,209 +3,211 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>موسوعة الأنظمة (للتشريعات)– صفحة إضافة وتعديل بيانات ملف</title>
+    <title>إضافة مستند جديد</title>
     <link rel="stylesheet" href="../css/legislation/legislation.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
-    <script src="../js/legislation.js" defer></script>
 </head>
 <body>
     <div class="main-container">
-        <!-- Breadcrumb Navigation -->
-        <div class="breadcrumb">
-            <a href="#">الرئيسية</a>
-            <span>›</span>
-            <a href="#">إدارة المحتوى</a>
-            <span>›</span>
-            <a href="#">موسوعة الأنظمة</a>
-            <span>›</span>
-            <a href="#">إضافة مستند جديد</a>
-        </div>
-
-        <!-- Content Container -->
-        <div class="content-container">
-            <div class="document-icon">
-                <i class="far fa-file-alt"></i>
-            </div>
-            
-            <div class="content-header">
-                <h1>إضافة مستند جديد</h1>
+        <!-- Page Header -->
+        <div class="page-header">
+            <nav class="breadcrumb">
+                <a href="#" class="breadcrumb-item">الرئيسية</a>
+                <i class="fas fa-chevron-left breadcrumb-separator"></i>
+                <a href="#" class="breadcrumb-item">إدارة المحتوى</a>
+                <i class="fas fa-chevron-left breadcrumb-separator"></i>
+                <a href="#" class="breadcrumb-item">المستندات</a>
+                <i class="fas fa-chevron-left breadcrumb-separator"></i>
+                <span class="breadcrumb-item">إضافة مستند جديد</span>
+            </nav>
+            <div class="page-title-section">
+                <h1 class="page-title">إضافة مستند جديد</h1>
                 <div class="table-info">
-                    <span class="label">اسم الجدول:</span>
-                    <span class="value">TableOrder</span>
+                    <div class="table-name">اسم الجدول: <span>TableOrder</span></div>
+                    <div class="table-status">مجاني</div>
                 </div>
             </div>
+        </div>
 
-            <!-- Form Container -->
-            <div class="form-container">
-                <form id="documentForm">
-                    <!-- Top Row: Title fields -->
-                    <div class="form-row">
-                        <div class="form-group full-width">
-                            <label for="documentTitle">العنوان</label>
-                            <input type="text" id="documentTitle" class="form-control" placeholder="أدخل عنوان المستند">
+        <div class="content-container">
+            <form class="form-container">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>العنوان</label>
+                        <input type="text" class="form-input" placeholder="ادخل عنوان المستند">
+                    </div>
+                    <div class="form-group">
+                        <label>تاريخ المستند</label>
+                        <div class="date-input">
+                            <input type="text" class="form-input" placeholder="mm/dd/yyyy">
+                            <i class="far fa-calendar"></i>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Date & ID Fields Row -->
-                    <div class="form-row">
-                        <div class="form-group half-width">
-                            <label for="documentDate">تاريخ المستند</label>
-                            <div class="date-input">
-                                <input type="text" id="documentDate" class="form-control" placeholder="mm/dd/yyyy">
-                                <i class="far fa-calendar"></i>
-                            </div>
-                        </div>
-                        <div class="form-group half-width">
-                            <label for="documentNumber">رقم المستند</label>
-                            <input type="text" id="documentNumber" class="form-control" placeholder="أدخل رقم المستند">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>رقم المستند</label>
+                        <input type="text" class="form-input" placeholder="ادخل رقم المستند">
+                    </div>
+                    <div class="form-group">
+                        <label>تاريخ التنفيذ</label>
+                        <div class="date-input">
+                            <input type="text" class="form-input" placeholder="mm/dd/yyyy">
+                            <i class="far fa-calendar"></i>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Implementation Date & Link Row -->
-                    <div class="form-row">
-                        <div class="form-group half-width">
-                            <label for="implementationDate">تاريخ التنفيذ</label>
-                            <div class="date-input">
-                                <input type="text" id="implementationDate" class="form-control" placeholder="mm/dd/yyyy">
-                                <i class="far fa-calendar"></i>
-                            </div>
-                        </div>
-                        <div class="form-group half-width">
-                            <label for="documentLink">رابط المستند</label>
-                            <div class="link-input">
-                                <input type="text" id="documentLink" class="form-control" placeholder="أدخل رابط المستند">
-                                <i class="fas fa-link"></i>
-                            </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>رابط المستند</label>
+                        <div class="link-input">
+                            <input type="text" class="form-input" placeholder="ادخل رابط المستند">
+                            <i class="fas fa-link"></i>
                         </div>
                     </div>
-
-                    <!-- Return Date & Source Row -->
-                    <div class="form-row">
-                        <div class="form-group half-width">
-                            <label for="returnDate">تاريخ العودة</label>
-                            <div class="date-input">
-                                <input type="text" id="returnDate" class="form-control" placeholder="mm/dd/yyyy">
-                                <i class="far fa-calendar"></i>
-                            </div>
-                        </div>
-                        <div class="form-group half-width">
-                            <label for="sourceName">اسم المصدر</label>
-                            <input type="text" id="sourceName" class="form-control" placeholder="أدخل اسم المصدر">
+                    <div class="form-group">
+                        <label>تاريخ العودة</label>
+                        <div class="date-input">
+                            <input type="text" class="form-input" placeholder="mm/dd/yyyy">
+                            <i class="far fa-calendar"></i>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Additional Options Section -->
-                    <div class="additional-options">
-                        <h3>خيارات إضافية</h3>
-                        <div class="checkbox-group">
-                            <label class="checkbox-label">
-                                <input type="checkbox" id="nonGovernmental">
-                                <span class="checkbox-custom"></span>
-                                <span class="checkbox-text">موقع غير حكومي</span>
-                            </label>
-                        </div>
-                        <div class="checkbox-group">
-                            <label class="checkbox-label">
-                                <input type="checkbox" id="englishTranslation">
-                                <span class="checkbox-custom"></span>
-                                <span class="checkbox-text">الترجمة الإنجليزية متوفرة</span>
-                            </label>
-                        </div>
-                        <div class="checkbox-group">
-                            <label class="checkbox-label">
-                                <input type="checkbox" id="translatedTextLink">
-                                <span class="checkbox-custom"></span>
-                                <span class="checkbox-text">رابط النص المترجم</span>
-                            </label>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>اسم المصدر</label>
+                        <input type="text" class="form-input" placeholder="ادخل اسم المصدر">
+                    </div>
+                </div>
+
+                <div class="additional-options">
+                    <h3>خيارات إضافية</h3>
+                    <div class="checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox">
+                            <span class="checkbox-text">موقع غير حكومي</span>
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox">
+                            <span class="checkbox-text">الترجمة الإنجليزية متوفرة</span>
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox">
+                            <span class="checkbox-text">رابط النص المترجم</span>
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-row three-columns">
+                    <div class="form-group">
+                        <label for="vision-select">خيار الرؤية</label>
+                        <div class="select-dropdown">
+                            <select id="vision-select">
+                                <option value="" selected>اختر خيار الرؤية</option>
+                            </select>
                         </div>
                     </div>
-
-                    <!-- Document Type Dropdowns -->
-                    <div class="form-row">
-                        <div class="form-group third-width">
-                            <label for="documentType">نوع المستند</label>
-                            <div class="select-dropdown">
-                                <select id="documentType" class="form-control dropdown">
-                                    <option value="" selected disabled>اختر نوع المستند</option>
-                                </select>
-                                <i class="fas fa-chevron-down"></i>
-                            </div>
-                        </div>
-                        <div class="form-group third-width">
-                            <label for="displayType">نوع العرض في البحث</label>
-                            <div class="select-dropdown">
-                                <select id="displayType" class="form-control dropdown">
-                                    <option value="" selected disabled>اختر نوع العرض</option>
-                                </select>
-                                <i class="fas fa-chevron-down"></i>
-                            </div>
-                        </div>
-                        <div class="form-group third-width">
-                            <label for="visionOption">خيار الرؤية</label>
-                            <div class="select-dropdown">
-                                <select id="visionOption" class="form-control dropdown">
-                                    <option value="" selected disabled>اختر خيار الرؤية</option>
-                                </select>
-                                <i class="fas fa-chevron-down"></i>
-                            </div>
+                    <div class="form-group">
+                        <label for="display-type">نوع العرض في البحث</label>
+                        <div class="select-dropdown">
+                            <select id="display-type">
+                                <option value="" selected>اختر نوع العرض</option>
+                            </select>
                         </div>
                     </div>
-
-                    <!-- File Upload Section -->
-                    <div class="file-upload-section">
-                        <h3>تحميل الملف</h3>
-                        <div class="file-upload-container">
-                            <div class="file-upload-area">
-                                <i class="fas fa-cloud-upload-alt"></i>
-                                <p class="upload-text">اسحب وأفلت الملفات هنا أو انقر للاختيار</p>
-                                <p class="file-types">PDF, DOC, DOCX, XLS, XLSX, PPT, PPTX, TXT, ZIP, RAR</p>
-                                <input type="file" id="fileUpload" class="file-input" multiple>
-                            </div>
+                    <div class="form-group">
+                        <label for="document-type">نوع المستند</label>
+                        <div class="select-dropdown">
+                            <select id="document-type">
+                                <option value="" selected>اختر نوع المستند</option>
+                            </select>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Related Documents Section -->
-                    <div class="related-documents">
-                        <div class="section-header">
-                            <h3>المستندات ذات الصلة</h3>
-                            <button type="button" class="add-related-btn">
-                                <i class="fas fa-plus"></i>
-                                <span>إضافة مستند مرتبط</span>
-                            </button>
-                        </div>
-                        <div class="documents-list">
-                            <div class="document-item">
-                                <i class="far fa-file-alt"></i>
-                                <div class="document-info">
-                                    <h4>اتفاقية التعاون مع وزارة التعليم</h4>
-                                    <span class="document-year">2025</span>
+                <div class="file-upload-section">
+                    <h3>تحميل الملف</h3>
+                    <div class="file-upload">
+                        <input type="file" class="file-input" hidden>
+                        <i class="fas fa-cloud-upload-alt"></i>
+                        <span class="file-upload-text">اسحب وأفلت الملفات هنا أو انقر للاختيار</span>
+                        <span class="file-formats">PDF, DOC, DOCX, XLS, XLSX, PPT, PPTX, TXT, ZIP, RAR</span>
+                    </div>
+                </div>
+
+                <div class="related-documents">
+                    <div class="related-documents-header">
+                        <h3>المستندات ذات الصلة</h3>
+                        <a href="#" class="add-related-doc">
+                            <i class="fas fa-plus"></i>
+                            <span>إضافة مستند مرتبط</span>
+                        </a>
+                    </div>
+                    <div class="document-list">
+                        <div class="document-item">
+                            <div class="document-info">
+                                <div class="document-icon">
+                                    <i class="far fa-file-alt"></i>
+                                </div>
+                                <div class="document-details">
+                                    <div class="document-title">اتفاقية التعاون مع وزارة التعليم</div>
+                                    <div class="document-date">2025</div>
                                 </div>
                             </div>
-                            <div class="document-item">
-                                <i class="far fa-file-alt"></i>
-                                <div class="document-info">
-                                    <h4>اتفاقية التعاون مع وزارة التعليم</h4>
-                                    <span class="document-year">2025</span>
+                            <div class="document-actions">
+                                <button type="button">
+                                    <i class="far fa-trash-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="document-item">
+                            <div class="document-info">
+                                <div class="document-icon">
+                                    <i class="far fa-file-alt"></i>
+                                </div>
+                                <div class="document-details">
+                                    <div class="document-title">اتفاقية التعاون مع وزارة التعليم</div>
+                                    <div class="document-date">2025</div>
                                 </div>
                             </div>
-                            <div class="document-item">
-                                <i class="far fa-file-alt"></i>
-                                <div class="document-info">
-                                    <h4>مذكرة تفاهم مع جامعة الملك سعود</h4>
-                                    <span class="document-year">2025</span>
+                            <div class="document-actions">
+                                <button type="button">
+                                    <i class="far fa-trash-alt"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="document-item">
+                            <div class="document-info">
+                                <div class="document-icon">
+                                    <i class="far fa-file-alt"></i>
                                 </div>
+                                <div class="document-details">
+                                    <div class="document-title">مذكرة تفاهم مع جامعة الملك سعود</div>
+                                    <div class="document-date">2025</div>
+                                </div>
+                            </div>
+                            <div class="document-actions">
+                                <button type="button">
+                                    <i class="far fa-trash-alt"></i>
+                                </button>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Submit Button -->
-                    <div class="form-actions">
-                        <button type="submit" class="btn-add">
-                            <span>إضافة</span>
-                        </button>
-                    </div>
-                </form>
+                </div>
+                <!-- Submit Button -->
+                <div class="form-actions">
+                    <button type="submit" class="btn-add">
+                        <span>إضافة</span>
+                    </button>
+                </div>
+            </form>
             </div>
         </div>
     </div>

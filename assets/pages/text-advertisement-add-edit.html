@@ -3,318 +3,1620 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>صفحة الإعلانات / الإعلانات النصية / صفحة إضافة وتعديل إعلان نصي</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/mobile-additions.css">
-    <link rel="stylesheet" href="../css/size-fixes.css">
-    <link rel="stylesheet" href="../css/advertisements/text-advertisement-add-edit.css">
+    <title>إدارة الإعلانات</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            direction: rtl;
+        }
+
+        /* Header */
+        .header {
+            background: white;
+            padding: 15px 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .notification-icon {
+            position: relative;
+        }
+
+        .notification-icon .badge {
+            position: absolute;
+            top: -8px;
+            left: -8px;
+            background: #007bff;
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .user-info img {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: #dee2e6;
+        }
+
+        /* Navigation in center */
+        .nav-center {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-center a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-center a.active {
+            color: #007bff;
+            background: rgba(0,123,255,0.1);
+        }
+
+        .nav-center a:hover {
+            color: #007bff;
+        }
+
+        /* Header title */
+        .header-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #333;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            padding: 15px 30px;
+            background: white;
+            border-bottom: 1px solid #dee2e6;
+            font-size: 14px;
+        }
+
+        .breadcrumb a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .breadcrumb span {
+            color: #666;
+            margin: 0 8px;
+        }
+
+        /* Main Content */
+        .main-container {
+            padding: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .page-header {
+            margin-bottom: 30px;
+        }
+
+        .page-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #333;
+            text-align: right;
+        }
+
+        /* Settings Section */
+        .settings-section {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 30px;
+            margin-bottom: 30px;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 25px;
+            text-align: right;
+        }
+
+        /* Form Grid */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            align-items: end;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-label {
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .form-control, .form-select {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: 'Cairo', sans-serif;
+            text-align: center;
+        }
+
+        .form-control:focus, .form-select:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
+        }
+
+        /* Radio buttons */
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .radio-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .radio-input {
+            width: 18px;
+            height: 18px;
+            margin: 0;
+        }
+
+        .radio-label {
+            font-size: 14px;
+            color: #333;
+            cursor: pointer;
+            margin: 0;
+        }
+
+        /* Current Ads Section */
+        .current-ads-section {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 30px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .ads-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .search-controls {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .search-box {
+            position: relative;
+        }
+
+        .search-input {
+            padding: 8px 35px 8px 15px;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            font-size: 14px;
+            width: 200px;
+            background: #f8f9fa;
+        }
+
+        .search-btn {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #666;
+            cursor: pointer;
+        }
+
+        .filter-btn {
+            padding: 8px 16px;
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+            color: #333;
+        }
+
+        /* Table Styles */
+        .ads-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .ads-table th,
+        .ads-table td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #dee2e6;
+            font-size: 14px;
+        }
+
+        .ads-table th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #495057;
+        }
+
+        .ads-table tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        .status-badge {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .status-electronics {
+            background: #e7f3ff;
+            color: #0066cc;
+        }
+
+        .status-red {
+            background: #ffe7e7;
+            color: #cc0000;
+        }
+
+        .status-green {
+            background: #e7ffe7;
+            color: #00aa00;
+        }
+
+        .status-yellow {
+            background: #fff3cd;
+            color: #cc8800;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 5px;
+            justify-content: center;
+        }
+
+        .action-btn {
+            padding: 6px 8px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        .edit-btn {
+            background: #007bff;
+            color: white;
+        }
+
+        .delete-btn {
+            background: #dc3545;
+            color: white;
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .pagination-info {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .pagination-controls {
+            display: flex;
+            gap: 5px;
+        }
+
+        .pagination-btn {
+            padding: 8px 12px;
+            border: 1px solid #dee2e6;
+            background: white;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .pagination-btn.active {
+            background: #007bff;
+            color: white;
+            border-color: #007bff;
+        }
+
+        .pagination-btn:hover:not(.active) {
+            background: #f8f9fa;
+        }
+
+        /* Add New Ad Section */
+        .add-ad-section {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 30px;
+            margin-top: 30px;
+        }
+
+        .add-ad-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 25px;
+            text-align: right;
+        }
+
+        /* Two Column Layout */
+        .add-ad-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .right-section {
+            order: 1;
+        }
+
+        .left-section {
+            order: 2;
+        }
+
+        .add-form-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .add-form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .add-form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .add-form-label {
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 8px;
+            text-align: right;
+        }
+
+        .required {
+            color: #dc3545;
+        }
+
+        .add-form-input {
+            padding: 12px 15px;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: 'Cairo', sans-serif;
+            height: 42px;
+            box-sizing: border-box;
+        }
+
+        .add-form-input:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
+        }
+
+        /* URL Input with Icon */
+        .url-input-container {
+            position: relative;
+            width: 584px;
+        }
+
+        .url-input-container .add-form-input {
+            padding-right: 40px;
+            width: 100%;
+        }
+
+        .url-input-container .url-icon {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* Date inputs */
+        .date-inputs {
+            display: grid;
+            grid-template-columns: 280px 280px;
+            gap: 15px;
+            justify-content: start;
+        }
+
+        .date-inputs .add-form-input {
+            height: 44px;
+            width: 100%;
+        }
+
+        /* Toggle Switch */
+        .toggle-section {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 25px;
+            padding: 0 10px;
+        }
+
+        .toggle-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .toggle-label {
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 50px;
+            height: 24px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 24px;
+        }
+
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked + .toggle-slider {
+            background-color: #007bff;
+        }
+
+        input:checked + .toggle-slider:before {
+            transform: translateX(26px);
+        }
+
+        /* Display Rate Slider */
+        .display-rate-section {
+            margin-bottom: 25px;
+        }
+
+        .display-rate-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .display-rate-label {
+            font-size: 14px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .display-rate-value {
+            font-size: 14px;
+            font-weight: 600;
+            color: #007bff;
+        }
+
+        .slider-container {
+            position: relative;
+            width: 100%;
+        }
+
+        .display-rate-slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 8px;
+            border-radius: 5px;
+            background: #e9ecef;
+            outline: none;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .display-rate-slider:hover {
+            opacity: 1;
+        }
+
+        .display-rate-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #007bff;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .display-rate-slider::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #007bff;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        /* Slider track styling */
+        .display-rate-slider::-webkit-slider-track {
+            width: 100%;
+            height: 8px;
+            cursor: pointer;
+            background: linear-gradient(to right, #007bff 0%, #007bff var(--slider-progress, 50%), #e9ecef var(--slider-progress, 50%), #e9ecef 100%);
+            border-radius: 5px;
+        }
+
+        .display-rate-slider::-moz-range-track {
+            width: 100%;
+            height: 8px;
+            cursor: pointer;
+            background: #e9ecef;
+            border-radius: 5px;
+        }
+
+        .display-rate-slider::-moz-range-progress {
+            background: #007bff;
+            height: 8px;
+            border-radius: 5px;
+        }
+
+        /* Upload Area */
+        .upload-section {
+            margin-bottom: 25px;
+        }
+
+        .upload-area {
+            border: 2px dashed #dee2e6;
+            border-radius: 8px;
+            padding: 100px 20px;
+            text-align: center;
+            background: #f8f9fa;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .upload-area:hover {
+            border-color: #007bff;
+            background: #f0f8ff;
+        }
+
+        .upload-icon {
+            font-size: 5rem;
+            color: #007bff;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .upload-text {
+            font-size: 16px;
+            color: #666;
+            margin: 0;
+            font-weight: 400;
+        }
+
+        /* Processing Section */
+        .processing-section {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .processing-title {
+            font-size: 16px;
+            color: #666;
+            font-weight: 500;
+        }
+
+        /* Keywords Section */
+        .keywords-section {
+            margin-bottom: 25px;
+        }
+
+        .keywords-input-container {
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .keywords-input {
+            width: 100%;
+            padding: 12px 50px 12px 15px;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .keywords-input:focus {
+            outline: none;
+            border-color: #007bff;
+            box-shadow: 0 0 0 2px rgba(0,123,255,0.25);
+        }
+
+        .keywords-add-btn {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #007bff;
+            cursor: pointer;
+            padding: 8px;
+            font-size: 16px;
+        }
+
+        .keywords-add-btn:hover {
+            color: #0056b3;
+        }
+
+        .keywords-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .keyword-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 20px;
+            padding: 8px 15px;
+            font-size: 13px;
+            color: #333;
+        }
+
+        .keyword-remove {
+            background: none;
+            border: none;
+            color: #666;
+            cursor: pointer;
+            font-size: 16px;
+            line-height: 1;
+            padding: 0;
+            margin: 0;
+        }
+
+        .keyword-remove:hover {
+            color: #dc3545;
+        }
+
+        /* Checkbox */
+        .checkbox-section {
+            margin-bottom: 30px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .checkbox-input {
+            width: 18px;
+            height: 18px;
+            accent-color: #007bff;
+        }
+
+        .checkbox-label {
+            font-size: 14px;
+            color: #333;
+            cursor: pointer;
+        }
+
+        /* Action Buttons */
+        .add-form-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: flex-start;
+        }
+
+        .action-btn-primary {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .action-btn-secondary {
+            background: #6c757d;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .action-btn-primary:hover {
+            background: #0056b3;
+        }
+
+        .action-btn-secondary:hover {
+            background: #545b62;
+        }
+
+        /* Focus States for Better Accessibility */
+        @media (max-width: 767px) {
+            .form-control:focus,
+            .form-select:focus,
+            .add-form-input:focus,
+            .action-btn-primary:focus,
+            .action-btn-secondary:focus {
+                outline: 2px solid #007bff;
+                outline-offset: 2px;
+            }
+
+            .nav-center a:focus {
+                outline: 2px solid #007bff;
+                outline-offset: -2px;
+            }
+        }
+
+        /* Responsive Design - Comprehensive Mobile Optimization */
+        @media (max-width: 991px) {
+            .main-container {
+                padding: 15px;
+                max-width: 100%;
+            }
+
+            .header {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px;
+            }
+
+            .header-title {
+                font-size: 1.25rem;
+            }
+
+            .nav-center {
+                order: -1;
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+                width: 100%;
+            }
+
+            .nav-center a {
+                padding: 6px 12px;
+                font-size: 14px;
+            }
+
+            .header-left {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .settings-section,
+            .current-ads-section,
+            .add-ad-section {
+                padding: 15px;
+            }
+
+            .section-header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .search-controls {
+                flex-direction: column;
+                gap: 10px;
+                width: 100%;
+            }
+
+            .search-box {
+                width: 100%;
+            }
+
+            .search-input {
+                width: 100%;
+            }
+
+            /* Table to Cards Conversion */
+            .ads-table {
+                border: 0;
+            }
+
+            .ads-table thead {
+                display: none;
+            }
+
+            .ads-table tr {
+                margin-bottom: 15px;
+                display: block;
+                border: 1px solid #dee2e6;
+                border-radius: 8px;
+                padding: 15px;
+            }
+
+            .ads-table td {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 8px 0;
+                text-align: right;
+                border: none;
+                border-bottom: 1px solid #eee;
+            }
+
+            .ads-table td:last-child {
+                border-bottom: none;
+            }
+
+            .ads-table td::before {
+                content: attr(data-label);
+                font-weight: 600;
+                margin-left: 10px;
+            }
+
+            .add-ad-content {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .right-section {
+                order: 2;
+            }
+
+            .left-section {
+                order: 1;
+            }
+
+            .url-input-container {
+                width: 100%;
+            }
+
+            .date-inputs {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .add-form-actions {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .action-btn-primary,
+            .action-btn-secondary {
+                width: 100%;
+                min-height: 44px;
+            }
+
+            .upload-area {
+                padding: 30px 15px;
+                min-height: 150px;
+            }
+
+            .upload-icon {
+                font-size: 3rem;
+            }
+
+            .keywords-tags {
+                gap: 6px;
+            }
+
+            .pagination {
+                flex-direction: column;
+                gap: 10px;
+                align-items: center;
+            }
+
+            .pagination-controls {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        /* Very Small Mobile */
+        @media (max-width: 576px) {
+            .main-container {
+                padding: 10px;
+            }
+
+            .header-title {
+                font-size: 1.1rem;
+            }
+
+            .nav-center a {
+                font-size: 12px;
+                padding: 5px 8px;
+            }
+
+            .section-title,
+            .ads-title,
+            .add-ad-title {
+                font-size: 1rem;
+            }
+
+            .form-label,
+            .add-form-label {
+                font-size: 13px;
+            }
+
+            .form-control,
+            .form-select,
+            .add-form-input {
+                font-size: 13px;
+                padding: 8px 12px;
+            }
+
+            .upload-area {
+                padding: 20px 10px;
+                min-height: 120px;
+            }
+
+            .upload-icon {
+                font-size: 2.5rem;
+            }
+
+            .upload-text {
+                font-size: 12px;
+            }
+        }
+
+        /* Landscape Mode Optimization */
+        @media (max-width: 991px) and (orientation: landscape) {
+            .header {
+                position: sticky;
+                top: 0;
+                z-index: 1000;
+                background: white;
+            }
+
+            .nav-center {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                padding-bottom: 5px;
+            }
+
+            .nav-center::-webkit-scrollbar {
+                height: 3px;
+            }
+
+            .nav-center::-webkit-scrollbar-thumb {
+                background: rgba(0,0,0,0.2);
+                border-radius: 3px;
+            }
+
+            .upload-area {
+                min-height: 120px;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <div class="main-content">
-            <!-- Header -->
-            <div class="header">
-                <div class="header-right">
-                    <div class="notification-icon">
-                        <span class="badge">1</span>
-                        <i class="fas fa-bell"></i>
-                    </div>
-                    <div class="user-info">
-                        <span>أحمد جديد</span>
-                        <img src="../img/user-avatar.png" alt="User Avatar" class="avatar">
-                    </div>
-                </div>
-            </div>
-
-            <!-- Main Content -->
-            <div class="breadcrumb">
-                <a href="#" class="breadcrumb-item">الرئيسية</a>
-                <span class="breadcrumb-separator">/</span>
-                <a href="#" class="breadcrumb-item">الإعلانات</a>
-                <span class="breadcrumb-separator">/</span>
-                <span class="breadcrumb-item active">إضافة مؤسسة جديدة</span>
-            </div>
-
-            <div class="content-card">
-                <!-- Form Header -->
-                <div class="form-header">
-                    <h1 class="page-title">إضافة/تحرير ملف المؤسسة</h1>
-                </div>
-
-                <!-- Form Content -->
-                <form id="institutionForm" class="add-edit-form">
-                    <!-- Basic Information Section -->
-                    <div class="form-section">
-                        <div class="section-header">
-                            <h2 class="section-title">
-                                <i class="fas fa-info-circle"></i>
-                                المعلومات الأساسية
-                            </h2>
-                        </div>
-                        <div class="form-group">
-                            <label for="name">الاسم <span class="required">*</span></label>
-                            <input type="text" id="name" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">البريد الإلكتروني <span class="required">*</span></label>
-                            <input type="email" id="email" class="form-control" value="example@domain.com" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="website">الموقع الإلكتروني</label>
-                            <input type="url" id="website" class="form-control" value="https://example.com">
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">الهاتف</label>
-                            <input type="tel" id="phone" class="form-control" dir="ltr">
-                        </div>
-                        <div class="form-group">
-                            <label for="activityType">نوع النشاط</label>
-                            <select id="activityType" class="form-control">
-                                <option value="" selected disabled>-</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="date">تاريخ الإنشاء</label>
-                            <input type="date" id="date" class="form-control" dir="ltr">
-                        </div>
-                        <div class="form-group">
-                            <label for="description">السيرة الذاتية</label>
-                            <textarea id="description" class="form-control" rows="4" placeholder="نبذة عن المؤسسة"></textarea>
-                        </div>
-                    </div>
-
-                    <!-- Classification Section -->
-                    <div class="form-section">
-                        <div class="section-header">
-                            <h2 class="section-title">
-                                <i class="fas fa-tags"></i>
-                                التصنيف
-                            </h2>
-                        </div>
-                        <div class="form-group">
-                            <label for="categoryId">رقم تصنيف المؤسسات</label>
-                            <input type="text" id="categoryId" class="form-control" readonly>
-                        </div>
-                        <div class="form-group">
-                            <label for="endDate">انتهاء الفترة الزمنية</label>
-                            <select id="endDate" class="form-control">
-                                <option value="" selected disabled>-</option>
-                                <option value="never">أبداً (الفترة الزمنية غير محددة)</option>
-                                <option value="custom">تحديد تاريخ الانتهاء الزمني</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <!-- Payment Information Section -->
-                    <div class="form-section">
-                        <div class="section-header">
-                            <h2 class="section-title">
-                                <i class="fas fa-credit-card"></i>
-                                إعدادات الاشتراك
-                            </h2>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group half-width">
-                                <label for="paymentType">نوع الدفعة والاشتراك</label>
-                                <select id="paymentType" class="form-control">
-                                    <option value="monthly">شهري (mm/dd/yyyy)</option>
-                                    <option value="yearly">سنوي (mm/dd/yyyy)</option>
-                                </select>
-                            </div>
-                            <div class="form-group half-width">
-                                <label for="paymentDate">تاريخ الدفع</label>
-                                <input type="date" id="paymentDate" class="form-control" dir="ltr">
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="uploadLogo">رفع صورة</label>
-                            <div class="upload-area" id="uploadLogoArea">
-                                <div class="upload-message">
-                                    <i class="fas fa-cloud-upload-alt upload-icon"></i>
-                                    <p class="upload-text">اسحب وأفلت الصورة هنا</p>
-                                    <p class="upload-subtext">أو</p>
-                                    <label for="uploadLogo" class="upload-button-label">تصفح الملفات</label>
-                                    <input type="file" id="uploadLogo" class="upload-input" accept="image/*" hidden>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="form-group switch-group">
-                            <label class="switch-label">عرض على الصفحة الرئيسية</label>
-                            <label class="switch">
-                                <input type="checkbox" id="showOnHomepage">
-                                <span class="slider round"></span>
-                            </label>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="homePageSettings">إعدادات الصفحة</label>
-                            <select id="homePageSettings" class="form-control" disabled>
-                                <option value="default">-</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <!-- Action Buttons -->
-                    <div class="form-actions">
-                        <button type="button" class="btn-secondary" id="cancelBtn">إلغاء</button>
-                        <button type="button" class="btn-secondary" id="resetBtn">إعادة تعيين</button>
-                        <button type="submit" class="btn-primary" id="saveBtn">حفظ</button>
-                    </div>
-                </form>
-            </div>
+    <!-- Header -->
+    <div class="header">
+        <div class="header-title">لوحة التحكم</div>
+        
+        <div class="nav-center">
+            <a href="#">الرئيسية</a>
+            <a href="#" class="active">إدارة الإعلانات</a>
+            <a href="#">المستخدمين</a>
+            <a href="#">التقارير</a>
         </div>
-
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <div class="sidebar-menu">
-                <a href="#" class="sidebar-item">
-                    <i class="fas fa-user"></i>
-                    <span>المستخدمين</span>
-                </a>
-                <a href="#" class="sidebar-item active">
-                    <i class="fas fa-ad"></i>
-                    <span>الإعلانات</span>
-                </a>
-                <a href="#" class="sidebar-item">
-                    <i class="fas fa-cog"></i>
-                    <span>الإعدادات</span>
-                </a>
+        
+        <div class="header-left">
+            <div class="notification-icon">
+                <i class="fas fa-bell" style="font-size: 1.2rem; color: #666;"></i>
+                <span class="badge">1</span>
+            </div>
+            <div class="user-info">
+                <span>أحمد محمد</span>
+                <div style="width: 35px; height: 35px; background: #dee2e6; border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                    <i class="fas fa-user" style="color: #666;"></i>
+                </div>
             </div>
         </div>
     </div>
 
-    <script src="../js/jquery.min.js"></script>
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <a href="#">الرئيسية</a>
+        <span>&lt;</span>
+        <span>إدارة الإعلانات</span>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-container">
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1 class="page-title">إدارة الإعلانات</h1>
+        </div>
+
+        <!-- Settings Section -->
+        <div class="settings-section">
+            <h2 class="section-title">إعدادات موضع الإعلان</h2>
+            
+            <div class="form-grid">
+                <!-- القسم -->
+                <div class="form-group">
+                    <label class="form-label">القسم</label>
+                    <select class="form-select">
+                        <option>أذين الصفحة</option>
+                        <option>رأس الصفحة</option>
+                        <option>وسط الصفحة</option>
+                        <option>أسفل الصفحة</option>
+                    </select>
+                </div>
+
+                <!-- سلوك الوحدة -->
+                <div class="form-group">
+                    <label class="form-label">سلوك الوحدة</label>
+                    <div class="radio-group">
+                        <div class="radio-item">
+                            <input type="radio" id="fixed-unit" name="behavior" class="radio-input" checked>
+                            <label for="fixed-unit" class="radio-label">فقس الوحدة</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="new-duration" name="behavior" class="radio-input">
+                            <label for="new-duration" class="radio-label">المدة جديدة</label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- العرض -->
+                <div class="form-group">
+                    <label class="form-label">العرض</label>
+                    <select class="form-select">
+                        <option>300</option>
+                        <option>250</option>
+                        <option>350</option>
+                        <option>400</option>
+                    </select>
+                </div>
+
+                <!-- الارتفاع -->
+                <div class="form-group">
+                    <label class="form-label">الارتفاع</label>
+                    <select class="form-select">
+                        <option>250</option>
+                        <option>200</option>
+                        <option>300</option>
+                        <option>350</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Current Ads Section -->
+        <div class="current-ads-section">
+            <div class="section-header">
+                <h2 class="ads-title">الإعلانات الحالية</h2>
+                <div class="search-controls">
+                    <div class="search-box">
+                        <input type="text" class="search-input" placeholder="بحث...">
+                        <button class="search-btn">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                    <button class="filter-btn">جميع الأقسام</button>
+                </div>
+            </div>
+
+            <table class="ads-table">
+                <thead>
+                    <tr>
+                        <th>صورة</th>
+                        <th>الرابط</th>
+                        <th>النص البديل</th>
+                        <th>معدل العرض</th>
+                        <th>الحالة المشاهدة</th>
+                        <th>تاريخ البدء</th>
+                        <th>تاريخ الانتهاء</th>
+                        <th>إجراءات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td data-label="صورة">-</td>
+                        <td data-label="الرابط">https://example.com/promo-spring</td>
+                        <td data-label="النص البديل">عروض الربيع للإلكترونيات</td>
+                        <td data-label="معدل العرض">75%</td>
+                        <td data-label="الحالة المشاهدة"><span class="status-badge status-electronics">إلكترونيات</span></td>
+                        <td data-label="تاريخ البدء">أبريل 2025</td>
+                        <td data-label="تاريخ الانتهاء">2025</td>
+                        <td data-label="إجراءات">
+                            <div class="action-buttons">
+                                <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
+                                <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-label="صورة">-</td>
+                        <td data-label="الرابط">https://example.com/fashion-summer</td>
+                        <td data-label="النص البديل">شركة الضيف الجديدة</td>
+                        <td data-label="معدل العرض">60%</td>
+                        <td data-label="الحالة المشاهدة"><span class="status-badge status-red">أزياء</span></td>
+                        <td data-label="تاريخ البدء">2025</td>
+                        <td data-label="تاريخ الانتهاء">2025</td>
+                        <td data-label="إجراءات">
+                            <div class="action-buttons">
+                                <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
+                                <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-label="صورة">-</td>
+                        <td data-label="الرابط">https://example.com/food-delivery</td>
+                        <td data-label="النص البديل">% على البوضيل</td>
+                        <td data-label="معدل العرض">90%</td>
+                        <td data-label="الحالة المشاهدة"><span class="status-badge status-green">مطاعم</span></td>
+                        <td data-label="تاريخ البدء">أبريل 2025</td>
+                        <td data-label="تاريخ الانتهاء">2025</td>
+                        <td data-label="إجراءات">
+                            <div class="action-buttons">
+                                <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
+                                <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td data-label="صورة">-</td>
+                        <td data-label="الرابط">https://example.com/travel-deals</td>
+                        <td data-label="النص البديل">عروض السفر الصيفية</td>
+                        <td data-label="معدل العرض">50%</td>
+                        <td data-label="الحالة المشاهدة"><span class="status-badge status-yellow">سفر</span></td>
+                        <td data-label="تاريخ البدء">أغسطس 2025</td>
+                        <td data-label="تاريخ الانتهاء">2025</td>
+                        <td data-label="إجراءات">
+                            <div class="action-buttons">
+                                <button class="action-btn edit-btn"><i class="fas fa-edit"></i></button>
+                                <button class="action-btn delete-btn"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="pagination">
+                <div class="pagination-info">إجمالي</div>
+                <div class="pagination-controls">
+                    <button class="pagination-btn">&lt;</button>
+                    <button class="pagination-btn">3</button>
+                    <button class="pagination-btn">2</button>
+                    <button class="pagination-btn active">1</button>
+                    <button class="pagination-btn">&gt;</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Add New Ad Section -->
+        <div class="add-ad-section">
+            <h2 class="add-ad-title">إضافة إعلان جديد</h2>
+            
+            <div class="add-ad-content">
+                <!-- Right Section - Upload Area -->
+                <div class="right-section">
+                    <!-- Upload Area -->
+                    <div class="upload-section">
+                        <div class="upload-area" id="uploadArea">
+                            <i class="fas fa-image upload-icon"></i>
+                            <p class="upload-text">اسحب وأفلت الصورة هنا</p>
+                            <input type="file" id="imageUpload" style="display: none;" accept="image/*">
+                        </div>
+                    </div>
+
+                    <!-- Processing Section -->
+                    <div class="processing-section">
+                        <p class="processing-title">ستظهر معاينة الإعلان هنا</p>
+                    </div>
+                </div>
+
+                <!-- Left Section - Form -->
+                <div class="left-section">
+                    <form id="addAdForm">
+                        <!-- URL and Alt Text -->
+                        <div class="add-form-grid">
+                            <div class="add-form-group">
+                                <label class="add-form-label">الرابط <span class="required">*</span></label>
+                                <div class="url-input-container">
+                                    <input type="url" class="add-form-input" placeholder="https://example.com" value="https://example.com">
+                                    <i class="fas fa-link url-icon"></i>
+                                </div>
+                            </div>
+                            
+                            <div class="add-form-group">
+                                <label class="add-form-label">النص البديل <span class="required">*</span></label>
+                                <input type="text" class="add-form-input" placeholder="وصف الإعلان">
+                            </div>
+                        </div>
+
+                        <!-- Date Range -->
+                        <div class="add-form-group full-width">
+                            <div class="date-inputs">
+                                <div>
+                                    <label class="add-form-label">تاريخ البدء <span class="required">*</span></label>
+                                    <input type="text" class="add-form-input" placeholder="mm/dd/yyyy">
+                                </div>
+                                <div>
+                                    <label class="add-form-label">تاريخ الانتهاء <span class="required">*</span></label>
+                                    <input type="text" class="add-form-input" placeholder="mm/dd/yyyy">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Display Rate Slider -->
+                        <div class="display-rate-section">
+                            <div class="display-rate-header">
+                                <span class="display-rate-label">معدل العرض:</span>
+                                <span class="display-rate-value" id="displayRateValue">%</span>
+                            </div>
+                            <div class="slider-container">
+                                <input type="range" min="0" max="100" value="50" class="display-rate-slider" id="displayRateSlider">
+                            </div>
+                        </div>
+
+                        <!-- Toggle Switch for Hidden -->
+                        <div class="toggle-section">
+                            <div class="toggle-row">
+                                <span class="toggle-label">مخفية</span>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="hiddenToggle">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Keywords Section -->
+                        <div class="keywords-section">
+                            <label class="add-form-label">الكلمات المفتاحية</label>
+                            <div class="keywords-input-container">
+                                <input type="text" class="keywords-input" placeholder="أضف كلمات مفتاحية متنوعة.." id="keywordsInput">
+                                <button type="button" class="keywords-add-btn" id="addKeywordBtn">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                            <div class="keywords-tags" id="keywordsTags">
+                                <span class="keyword-tag">
+                                    عروض
+                                    <button type="button" class="keyword-remove">&times;</button>
+                                </span>
+                                <span class="keyword-tag">
+                                    تسوق
+                                    <button type="button" class="keyword-remove">&times;</button>
+                                </span>
+                            </div>
+                        </div>
+
+                        <!-- Checkbox -->
+                        <div class="checkbox-section">
+                            <div class="checkbox-item">
+                                <input type="checkbox" class="checkbox-input" id="visitorOnly">
+                                <label for="visitorOnly" class="checkbox-label">تفعيل الإعلان فقط للزوار</label>
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="add-form-actions">
+                            <button type="submit" class="action-btn-primary">إضافة إعلان</button>
+                            <button type="button" class="action-btn-secondary">إلغاء</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
-        $(document).ready(function() {
-            // Toggle form fields based on selection
-            $('#endDate').on('change', function() {
-                if ($(this).val() === 'custom') {
-                    // Show date picker for custom end date
-                    // Implementation would go here
-                }
+        document.addEventListener('DOMContentLoaded', function() {
+            // Radio button interactions
+            document.querySelectorAll('.radio-label').forEach(label => {
+                label.addEventListener('click', function() {
+                    const radioId = this.getAttribute('for');
+                    const radio = document.getElementById(radioId);
+                    if (radio) {
+                        radio.checked = true;
+                    }
+                });
             });
 
-            $('#showOnHomepage').on('change', function() {
-                const isChecked = $(this).prop('checked');
-                $('#homePageSettings').prop('disabled', !isChecked);
-            });
+            // Search functionality
+            const searchInput = document.querySelector('.search-input');
+            const searchBtn = document.querySelector('.search-btn');
+            const tableRows = document.querySelectorAll('.ads-table tbody tr');
 
-            // File upload handling
-            $('#uploadLogo').on('change', function(e) {
-                if (e.target.files.length > 0) {
-                    const file = e.target.files[0];
-                    const reader = new FileReader();
-                    
-                    reader.onload = function(e) {
-                        // Create image preview
-                        const imgPreview = `<div class="uploaded-image-container">
-                            <img src="${e.target.result}" class="uploaded-image">
-                            <button type="button" class="remove-image-btn"><i class="fas fa-times"></i></button>
-                        </div>`;
-                        
-                        // Update upload area with preview
-                        $('#uploadLogoArea .upload-message').hide();
-                        $('#uploadLogoArea').append(imgPreview);
-                    };
-                    
-                    reader.readAsDataURL(file);
-                }
-            });
-
-            // Remove uploaded image
-            $(document).on('click', '.remove-image-btn', function() {
-                $(this).closest('.uploaded-image-container').remove();
-                $('#uploadLogo').val('');
-                $('#uploadLogoArea .upload-message').show();
-            });
-
-            // Drag and drop functionality
-            const uploadArea = document.getElementById('uploadLogoArea');
-            
-            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
-                uploadArea.addEventListener(eventName, preventDefaults, false);
-            });
-            
-            function preventDefaults(e) {
-                e.preventDefault();
-                e.stopPropagation();
-            }
-            
-            ['dragenter', 'dragover'].forEach(eventName => {
-                uploadArea.addEventListener(eventName, highlight, false);
-            });
-            
-            ['dragleave', 'drop'].forEach(eventName => {
-                uploadArea.addEventListener(eventName, unhighlight, false);
-            });
-            
-            function highlight() {
-                uploadArea.classList.add('highlight');
-            }
-            
-            function unhighlight() {
-                uploadArea.classList.remove('highlight');
-            }
-            
-            uploadArea.addEventListener('drop', handleDrop, false);
-            
-            function handleDrop(e) {
-                const dt = e.dataTransfer;
-                const files = dt.files;
+            function performSearch() {
+                const searchTerm = searchInput.value.toLowerCase();
                 
-                if (files.length > 0) {
-                    const file = files[0];
-                    const reader = new FileReader();
-                    
-                    reader.onload = function(e) {
-                        const imgPreview = `<div class="uploaded-image-container">
-                            <img src="${e.target.result}" class="uploaded-image">
-                            <button type="button" class="remove-image-btn"><i class="fas fa-times"></i></button>
-                        </div>`;
-                        
-                        $('#uploadLogoArea .upload-message').hide();
-                        $('#uploadLogoArea').append(imgPreview);
-                    };
-                    
-                    reader.readAsDataURL(file);
-                }
+                tableRows.forEach(row => {
+                    const text = row.textContent.toLowerCase();
+                    if (text.includes(searchTerm)) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
             }
 
-            // Form Submission
-            $('#institutionForm').on('submit', function(e) {
-                e.preventDefault();
-                
-                // Form validation
-                if (!$('#name').val() || !$('#email').val()) {
-                    alert('الرجاء ملء جميع الحقول المطلوبة');
-                    return;
-                }
-                
-                // Submit form data (would be implemented with actual API)
-                console.log('Form submitted successfully');
-                // Redirect back to listing page after success
-                // window.location.href = 'text-advertisements-view.html';
+            searchInput.addEventListener('input', performSearch);
+            searchBtn.addEventListener('click', performSearch);
+
+            // Filter button
+            document.querySelector('.filter-btn').addEventListener('click', function() {
+                // Reset search
+                searchInput.value = '';
+                tableRows.forEach(row => {
+                    row.style.display = '';
+                });
             });
+
+            // Edit button actions
+            document.querySelectorAll('.edit-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    alert('تعديل الإعلان');
+                });
+            });
+
+            // Delete button actions
+            document.querySelectorAll('.delete-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    if (confirm('هل أنت متأكد من حذف هذا الإعلان؟')) {
+                        const row = this.closest('tr');
+                        row.remove();
+                    }
+                });
+            });
+
+            // Pagination
+            document.querySelectorAll('.pagination-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    if (!this.classList.contains('active')) {
+                        document.querySelector('.pagination-btn.active').classList.remove('active');
+                        this.classList.add('active');
+                    }
+                });
+            });
+
+            // Add New Ad Section functionality
+            // Display Rate Slider functionality
+            const displayRateSlider = document.getElementById('displayRateSlider');
+            const displayRateValue = document.getElementById('displayRateValue');
             
+            if (displayRateSlider && displayRateValue) {
+                // Initialize display
+                displayRateValue.textContent = displayRateSlider.value + '%';
+                
+                // Update CSS custom property for track styling
+                displayRateSlider.style.setProperty('--slider-progress', displayRateSlider.value + '%');
+                
+                displayRateSlider.addEventListener('input', function() {
+                    displayRateValue.textContent = this.value + '%';
+                    // Update track progress
+                    this.style.setProperty('--slider-progress', this.value + '%');
+                });
+            }
+
+            // Upload area functionality
+            const uploadArea = document.getElementById('uploadArea');
+            const imageUpload = document.getElementById('imageUpload');
+            
+            if (uploadArea && imageUpload) {
+                uploadArea.addEventListener('click', function() {
+                    imageUpload.click();
+                });
+
+                imageUpload.addEventListener('change', function(e) {
+                    if (e.target.files.length > 0) {
+                        const file = e.target.files[0];
+                        uploadArea.innerHTML = `
+                            <i class="fas fa-check-circle upload-icon" style="color: #28a745;"></i>
+                            <p class="upload-text">تم اختيار: ${file.name}</p>
+                        `;
+                    }
+                });
+
+                // Drag and drop functionality
+                ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                    uploadArea.addEventListener(eventName, preventDefaults, false);
+                });
+
+                function preventDefaults(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+
+                uploadArea.addEventListener('drop', function(e) {
+                    const files = e.dataTransfer.files;
+                    if (files.length > 0) {
+                        const file = files[0];
+                        uploadArea.innerHTML = `
+                            <i class="fas fa-check-circle upload-icon" style="color: #28a745;"></i>
+                            <p class="upload-text">تم اختيار: ${file.name}</p>
+                        `;
+                    }
+                });
+            }
+
+            // Keywords functionality
+            const keywordsInput = document.getElementById('keywordsInput');
+            const addKeywordBtn = document.getElementById('addKeywordBtn');
+            const keywordsTags = document.getElementById('keywordsTags');
+
+            if (addKeywordBtn && keywordsInput && keywordsTags) {
+                addKeywordBtn.addEventListener('click', function() {
+                    const keyword = keywordsInput.value.trim();
+                    if (keyword) {
+                        const tag = document.createElement('span');
+                        tag.className = 'keyword-tag';
+                        tag.innerHTML = `
+                            ${keyword}
+                            <button type="button" class="keyword-remove">&times;</button>
+                        `;
+                        keywordsTags.appendChild(tag);
+                        keywordsInput.value = '';
+                    }
+                });
+
+                keywordsInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        e.preventDefault();
+                        addKeywordBtn.click();
+                    }
+                });
+            }
+
+            // Remove keyword tags
+            document.addEventListener('click', function(e) {
+                if (e.target.classList.contains('keyword-remove')) {
+                    e.target.closest('.keyword-tag').remove();
+                }
+            });
+
+            // Form submission
+            const addAdForm = document.getElementById('addAdForm');
+            if (addAdForm) {
+                addAdForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Basic validation
+                    const url = this.querySelector('input[type="url"]').value;
+                    const altText = this.querySelector('input[placeholder="وصف الإعلان"]').value;
+                    
+                    if (!url || !altText) {
+                        alert('الرجاء ملء جميع الحقول المطلوبة');
+                        return;
+                    }
+                    
+                    alert('تم إضافة الإعلان بنجاح!');
+                    // Reset form or redirect as needed
+                });
+            }
+
             // Cancel button
-            $('#cancelBtn').on('click', function() {
-                if (confirm('هل أنت متأكد من إلغاء العملية؟ سيتم فقدان التغييرات.')) {
-                    window.location.href = 'text-advertisements-view.html';
-                }
-            });
-            
-            // Reset button
-            $('#resetBtn').on('click', function() {
-                if (confirm('هل أنت متأكد من إعادة تعيين جميع الحقول؟')) {
-                    $('#institutionForm')[0].reset();
-                    $('.uploaded-image-container').remove();
-                    $('#uploadLogoArea .upload-message').show();
-                    $('#homePageSettings').prop('disabled', true);
-                }
-            });
+            const cancelBtn = document.querySelector('.action-btn-secondary');
+            if (cancelBtn) {
+                cancelBtn.addEventListener('click', function() {
+                    if (confirm('هل أنت متأكد من إلغاء إضافة الإعلان؟')) {
+                        document.getElementById('addAdForm').reset();
+                        // Reset upload area
+                        if (uploadArea) {
+                            uploadArea.innerHTML = `
+                                <i class="fas fa-image upload-icon"></i>
+                                <p class="upload-text">اسحب وأفلت الصورة هنا</p>
+                            `;
+                        }
+                    }
+                });
+            }
         });
     </script>
 </body>

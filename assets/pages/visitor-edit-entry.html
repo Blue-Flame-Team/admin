@@ -4,360 +4,824 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>إدارة سجل الزوار</title>
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Tajawal', sans-serif;
         }
-        
+
         body {
-            background-color: #f0f2f5;
+            font-family: 'Cairo', Arial, sans-serif;
+            background-color: #f8f9fa;
             color: #333;
             direction: rtl;
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
+            padding: 0;
+            margin: 0;
+        }
+
+        .container {
+            max-width: none;
+            width: 100%;
             padding: 20px;
         }
-        
-        .container {
-            max-width: 800px;
-            width: 100%;
-        }
-        
-        .header {
+
+        /* Header */
+        .page-header {
+            background: white;
+            border-radius: 0;
+            padding: 0 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 12px;
-            background-color: white;
-            border-radius: 12px;
-            margin-bottom: 20px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            width: 100%;
+            height: 73px;
+            position: relative;
         }
-        
-        .header h1 {
+
+        .page-title {
             font-size: 18px;
             font-weight: 600;
-            color: #333;
+            color: #1e293b;
             margin: 0;
+            margin-right: 0;
+            text-align: right;
         }
-        
+
         .user-icon {
-            width: 34px;
-            height: 34px;
+            width: 36px;
+            height: 36px;
             border-radius: 50%;
-            background-color: #f6f6f6;
+            background: #f1f5f9;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #666;
+            color: #64748b;
         }
-        
-        .content-card {
-            background-color: white;
-            border-radius: 12px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            padding: 20px;
-            margin-bottom: 20px;
+
+        /* Main Content */
+        .main-content {
+            background: white;
+            border-radius: 8px;
+            padding: 30px;
+            margin: 0 auto 20px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            max-width: 1000px;
         }
-        
+
+        /* Message Info Grid */
         .message-info {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px 60px;
             margin-bottom: 30px;
         }
-        
-        .info-item {
+
+        .info-group {
             display: flex;
             flex-direction: column;
         }
-        
+
         .info-label {
-            color: #888;
             font-size: 14px;
+            color: #64748b;
             margin-bottom: 8px;
-        }
-        
-        .info-value {
             font-weight: 500;
-            color: #333;
         }
-        
+
+        .info-value {
+            font-size: 16px;
+            color: #1e293b;
+            font-weight: 500;
+        }
+
         .info-value.email {
-            color: #5B76E8;
+            color: #3b82f6;
             text-decoration: none;
         }
-        
+
+        .info-value.email:hover {
+            text-decoration: underline;
+        }
+
+        /* Status Badge */
         .status-badge {
             display: inline-block;
-            padding: 4px 10px;
-            border-radius: 20px;
+            padding: 6px 12px;
+            border-radius: 15px;
             font-size: 12px;
             font-weight: 500;
+            background: #fef3c7;
+            color: #d97706;
+            border: 1px solid #fed7aa;
         }
-        
-        .status-pending {
-            background-color: #FFF8E1;
-            color: #F5A623;
+
+        /* Message Content */
+        .message-section {
+            margin-bottom: 30px;
         }
-        
-        .status-approved {
-            background-color: #E8F5E9;
-            color: #4CAF50;
+
+        .message-content {
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 20px;
+            line-height: 1.8;
+            color: #374151;
+            font-size: 15px;
+            margin-top: 15px;
         }
-        
-        .message-text {
-            color: #333;
-            line-height: 1.6;
-            margin: 15px 0 30px;
-            text-align: justify;
-        }
-        
+
+        /* Reply Section */
         .reply-section {
-            margin-top: 20px;
+            margin-bottom: 30px;
         }
-        
+
         .reply-textarea {
             width: 100%;
-            height: 120px;
-            border: 1px solid #e0e0e0;
+            min-height: 120px;
+            border: 2px solid #e5e7eb;
             border-radius: 8px;
             padding: 15px;
-            resize: none;
-            margin-bottom: 15px;
-            font-family: 'Tajawal', sans-serif;
+            font-family: 'Cairo', Arial, sans-serif;
             font-size: 14px;
+            line-height: 1.6;
+            resize: vertical;
+            outline: none;
+            transition: border-color 0.3s;
+            margin-top: 10px;
         }
-        
+
+        .reply-textarea:focus {
+            border-color: #3b82f6;
+        }
+
         .reply-textarea::placeholder {
-            color: #bbb;
+            color: #9ca3af;
         }
-        
-        .action-control {
+
+        /* Action Controls */
+        .action-controls {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-top: 20px;
         }
-        
+
         .visibility-control {
             display: flex;
             align-items: center;
+            gap: 10px;
         }
-        
+
         .visibility-label {
-            margin-left: 10px;
             font-size: 14px;
-            color: #666;
+            color: #374151;
+            font-weight: 500;
         }
-        
-        .switch {
+
+        /* Toggle Switch */
+        .toggle-switch {
             position: relative;
-            display: inline-block;
-            width: 40px;
-            height: 20px;
+            width: 44px;
+            height: 24px;
         }
-        
-        .switch input {
+
+        .toggle-switch input {
             opacity: 0;
             width: 0;
             height: 0;
         }
-        
-        .slider {
+
+        .toggle-slider {
             position: absolute;
             cursor: pointer;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: #ccc;
-            transition: .4s;
-            border-radius: 34px;
+            background-color: #d1d5db;
+            transition: 0.4s;
+            border-radius: 24px;
         }
-        
-        .slider:before {
+
+        .toggle-slider:before {
             position: absolute;
             content: "";
-            height: 16px;
-            width: 16px;
-            left: 2px;
-            bottom: 2px;
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
             background-color: white;
-            transition: .4s;
+            transition: 0.4s;
             border-radius: 50%;
         }
-        
-        input:checked + .slider {
-            background-color: #5B76E8;
+
+        input:checked + .toggle-slider {
+            background-color: #3b82f6;
         }
-        
-        input:checked + .slider:before {
+
+        input:checked + .toggle-slider:before {
             transform: translateX(20px);
         }
-        
+
+        /* Action Buttons */
         .action-buttons {
             display: flex;
             gap: 10px;
         }
-        
+
         .btn {
-            padding: 8px 15px;
+            padding: 10px 20px;
             border-radius: 6px;
-            border: none;
-            cursor: pointer;
             font-size: 14px;
             font-weight: 500;
+            cursor: pointer;
             transition: all 0.2s;
+            border: none;
+            font-family: 'Cairo', Arial, sans-serif;
         }
-        
-        .btn-primary {
-            background-color: #5B46E8;
+
+        .btn-cancel {
+            background: #f1f5f9;
+            color: #64748b;
+            border: 1px solid #e2e8f0;
+        }
+
+        .btn-cancel:hover {
+            background: #e2e8f0;
+        }
+
+        .btn-send {
+            background: #3b82f6;
             color: white;
         }
-        
-        .btn-primary:hover {
-            background-color: #4937c8;
+
+        .btn-send:hover {
+            background: #2563eb;
         }
-        
-        .btn-secondary {
-            background-color: #f5f5f5;
-            color: #333;
+
+        /* Pending Messages Section */
+        .pending-section {
+            background: white;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            max-width: 1000px;
+            margin: 0 auto;
         }
-        
-        .btn-secondary:hover {
-            background-color: #e8e8e8;
-        }
-        
-        .messages-table-section {
-            background-color: white;
-            border-radius: 12px;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            padding: 20px;
-        }
-        
+
         .section-title {
             font-size: 16px;
             font-weight: 600;
+            color: #1e293b;
             margin-bottom: 20px;
-            color: #333;
         }
-        
+
+        /* Table */
         .messages-table {
             width: 100%;
             border-collapse: collapse;
         }
-        
+
         .messages-table th {
-            text-align: right;
-            padding: 10px;
+            background: #f8fafc;
+            padding: 12px 15px;
+            text-align: center;
             font-weight: 500;
-            color: #666;
             font-size: 14px;
-            border-bottom: 1px solid #eee;
+            color: #64748b;
+            border-bottom: 1px solid #e5e7eb;
         }
-        
+
         .messages-table td {
-            padding: 10px;
+            padding: 15px;
+            text-align: center;
             font-size: 14px;
-            border-bottom: 1px solid #eee;
+            color: #374151;
+            border-bottom: 1px solid #f1f5f9;
         }
-        
-        .eye-btn {
-            color: #5B46E8;
+
+        .messages-table tbody tr:hover {
+            background: #f8fafc;
+        }
+
+        .view-icon {
+            color: #3b82f6;
+            font-size: 16px;
             cursor: pointer;
-            width: 24px;
-            height: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            margin: 0 auto;
+            transition: color 0.2s;
+        }
+
+        .view-icon:hover {
+            color: #2563eb;
+        }
+
+        .status-pending {
+            background: #fef3c7;
+            color: #d97706;
+            border: 1px solid #fed7aa;
+        }
+
+        .status-completed {
+            background: #dcfce7;
+            color: #16a34a;
+            border: 1px solid #bbf7d0;
+        }
+
+        /* Responsive Design - Comprehensive Mobile Optimization */
+        
+        /* Tablet and small desktop screens */
+        @media (max-width: 1199px) and (min-width: 992px) {
+            .container {
+                padding: 16px;
+            }
+            
+            .main-content,
+            .pending-section {
+                max-width: 900px;
+            }
+        }
+
+        /* Tablet screens */
+        @media (max-width: 991px) and (min-width: 768px) {
+            .container {
+                padding: 12px;
+            }
+
+            .page-header {
+                padding: 0 20px;
+            }
+
+            .main-content,
+            .pending-section {
+                padding: 25px;
+                max-width: 100%;
+            }
+
+            .message-info {
+                gap: 25px 40px;
+            }
+
+            .btn {
+                min-height: 44px; /* Touch-friendly sizing */
+                padding: 12px 24px;
+            }
+
+            .reply-textarea {
+                min-height: 100px;
+            }
+        }
+
+        /* Mobile landscape and small tablets */
+        @media (max-width: 767px) and (min-width: 576px) {
+            .container {
+                padding: 8px;
+            }
+
+            .page-header {
+                height: 65px;
+                padding: 0 16px;
+                border-radius: 8px;
+                margin-bottom: 16px;
+            }
+
+            .page-title {
+                font-size: 17px;
+            }
+
+            .user-icon {
+                width: 34px;
+                height: 34px;
+            }
+
+            .main-content,
+            .pending-section {
+                padding: 20px;
+                border-radius: 8px;
+                margin-bottom: 16px;
+            }
+
+            .message-info {
+                grid-template-columns: 1fr;
+                gap: 18px;
+            }
+
+            .action-controls {
+                flex-direction: column;
+                gap: 16px;
+                align-items: stretch;
+            }
+
+            .action-buttons {
+                justify-content: center;
+                width: 100%;
+            }
+
+            .btn {
+                min-height: 44px;
+                flex: 1;
+                max-width: 200px;
+            }
+
+            /* Make table responsive - convert to cards */
+            .messages-table,
+            .messages-table thead,
+            .messages-table tbody,
+            .messages-table th,
+            .messages-table td,
+            .messages-table tr {
+                display: block;
+            }
+
+            .messages-table thead tr {
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+
+            .messages-table tr {
+                border: 1px solid #e5e7eb;
+                border-radius: 8px;
+                margin-bottom: 12px;
+                padding: 16px;
+                background: #fafbfc;
+            }
+
+            .messages-table td {
+                border: none;
+                position: relative;
+                padding: 8px 0;
+                text-align: right;
+                border-bottom: 1px solid #f1f5f9;
+            }
+
+            .messages-table td:last-child {
+                border-bottom: none;
+                text-align: center;
+                padding-top: 12px;
+            }
+
+            .messages-table td:before {
+                content: attr(data-label) ": ";
+                font-weight: 600;
+                color: #64748b;
+                display: inline-block;
+                width: 100px;
+                margin-left: 10px;
+            }
+
+            .messages-table td:last-child:before {
+                content: "";
+                display: none;
+            }
+        }
+
+        /* Mobile portrait */
+        @media (max-width: 575px) {
+            .container {
+                padding: 4px;
+            }
+
+            .page-header {
+                height: 60px;
+                padding: 0 12px;
+                border-radius: 6px;
+                margin-bottom: 12px;
+            }
+
+            .page-title {
+                font-size: 16px;
+            }
+
+            .user-icon {
+                width: 32px;
+                height: 32px;
+            }
+
+            .main-content,
+            .pending-section {
+                padding: 16px;
+                border-radius: 6px;
+                margin-bottom: 12px;
+            }
+
+            .message-info {
+                gap: 16px;
+            }
+
+            .info-label {
+                font-size: 13px;
+                margin-bottom: 6px;
+            }
+
+            .info-value {
+                font-size: 15px;
+            }
+
+            .message-content {
+                padding: 16px;
+                font-size: 14px;
+                line-height: 1.7;
+            }
+
+            .reply-textarea {
+                min-height: 80px;
+                padding: 12px;
+                font-size: 14px;
+            }
+
+            .action-controls {
+                flex-direction: column;
+                gap: 16px;
+                align-items: stretch;
+            }
+
+            .visibility-control {
+                justify-content: space-between;
+                padding: 12px;
+                background: #f8fafc;
+                border-radius: 6px;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+                gap: 12px;
+                width: 100%;
+            }
+
+            .btn {
+                width: 100%;
+                min-height: 48px;
+                font-size: 15px;
+                padding: 14px;
+            }
+
+            .section-title {
+                font-size: 15px;
+                margin-bottom: 16px;
+            }
+
+            .messages-table tr {
+                padding: 12px;
+                margin-bottom: 10px;
+            }
+
+            .messages-table td {
+                padding: 6px 0;
+                font-size: 13px;
+            }
+
+            .messages-table td:before {
+                font-size: 12px;
+                width: 80px;
+                margin-left: 8px;
+            }
+
+            .view-icon {
+                font-size: 18px;
+                padding: 8px;
+            }
+        }
+
+        /* Very small mobile devices */
+        @media (max-width: 400px) {
+            .container {
+                padding: 2px;
+            }
+
+            .page-header {
+                height: 55px;
+                padding: 0 10px;
+                margin-bottom: 8px;
+            }
+
+            .page-title {
+                font-size: 15px;
+            }
+
+            .user-icon {
+                width: 30px;
+                height: 30px;
+            }
+
+            .main-content,
+            .pending-section {
+                padding: 12px;
+                margin-bottom: 8px;
+            }
+
+            .message-info {
+                gap: 14px;
+            }
+
+            .info-label {
+                font-size: 12px;
+                margin-bottom: 5px;
+            }
+
+            .info-value {
+                font-size: 14px;
+            }
+
+            .message-content {
+                padding: 12px;
+                font-size: 13px;
+            }
+
+            .reply-textarea {
+                min-height: 70px;
+                padding: 10px;
+                font-size: 13px;
+            }
+
+            .btn {
+                min-height: 44px;
+                font-size: 14px;
+                padding: 12px;
+            }
+
+            .messages-table tr {
+                padding: 10px;
+                margin-bottom: 8px;
+            }
+
+            .messages-table td {
+                font-size: 12px;
+            }
+
+            .messages-table td:before {
+                font-size: 11px;
+                width: 70px;
+                margin-left: 6px;
+            }
+        }
+
+        /* Landscape orientation optimization for mobile */
+        @media (max-width: 767px) and (orientation: landscape) {
+            .container {
+                padding: 8px;
+            }
+
+            .page-header {
+                height: 50px;
+                padding: 0 12px;
+            }
+
+            .page-title {
+                font-size: 15px;
+            }
+
+            .main-content,
+            .pending-section {
+                padding: 16px;
+            }
+
+            .message-info {
+                grid-template-columns: 1fr 1fr;
+                gap: 16px 20px;
+            }
+
+            .reply-textarea {
+                min-height: 60px;
+            }
+
+            .action-controls {
+                flex-direction: row;
+                gap: 16px;
+            }
+
+            .action-buttons {
+                flex-direction: row;
+                gap: 10px;
+            }
+
+            .btn {
+                min-height: 40px;
+                font-size: 13px;
+            }
+        }
+
+        /* Print styles */
+        @media print {
+            .container {
+                padding: 0;
+            }
+
+            .page-header {
+                box-shadow: none;
+                border-bottom: 1px solid #000;
+            }
+
+            .main-content,
+            .pending-section {
+                box-shadow: none;
+                border: 1px solid #ccc;
+            }
+
+            .action-controls {
+                display: none;
+            }
+        }
+
+        /* Focus states for better accessibility */
+        @media (max-width: 767px) {
+            .reply-textarea:focus,
+            .btn:focus {
+                outline: 2px solid #3b82f6;
+                outline-offset: 2px;
+            }
+
+            .toggle-switch input:focus + .toggle-slider {
+                box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+            }
+
+            .view-icon:focus {
+                outline: 2px solid #3b82f6;
+                outline-offset: 2px;
+                border-radius: 4px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Header -->
-        <header class="header">
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1 class="page-title">إدارة سجل الزوار</h1>
             <div class="user-icon">
                 <i class="fas fa-user"></i>
             </div>
-            <h1>إدارة سجل الزوار</h1>
-        </header>
+        </div>
 
-        <!-- Content Card -->
-        <div class="content-card">
-            <!-- User Information Grid -->
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Message Information -->
             <div class="message-info">
-                <div class="info-item">
+                <div class="info-group">
                     <div class="info-label">الاسم</div>
                     <div class="info-value">محمد عبد الرحمن</div>
                 </div>
-                
-                <div class="info-item">
-                    <div class="info-label">البريد الإلكتروني</div>
-                    <a href="mailto:mohammed@example.com" class="info-value email">mohammed@example.com</a>
-                </div>
-                
-                <div class="info-item">
+
+                <div class="info-group">
                     <div class="info-label">تاريخ الإرسال</div>
                     <div class="info-value">صباحاً</div>
                 </div>
-                
-                <div class="info-item">
+
+                <div class="info-group">
+                    <div class="info-label">البريد الإلكتروني</div>
+                    <a href="mailto:mohammed@example.com" class="info-value email">mohammed@example.com</a>
+                </div>
+
+                <div class="info-group">
                     <div class="info-label">الحالة</div>
                     <div class="info-value">
-                        <span class="status-badge status-pending">بانتظار الرد</span>
+                        <span class="status-badge">بانتظار الرد</span>
                     </div>
                 </div>
             </div>
-            
-            <!-- Message Text -->
-            <div class="info-item">
+
+            <!-- Message Content -->
+            <div class="message-section">
                 <div class="info-label">الكلمة</div>
-                <div class="message-text">
+                <div class="message-content">
                     السلام عليكم ورحمة الله وبركاته.
                     <br><br>
                     أود أن أشكركم عن الخدمات الرائعة التي تقدمونها. لقد استفدت كثيرًا من موقعكم وأجد المحتوى مفيدًا للغاية. لدي بعض الاقتراحات التي قد تساعد في تحسين تجربة المستخدم:
                     <br><br>
-                    إضافة المزيد من الفيديوهات التعليمية حول كيفية استخدام المنصة<br>
-                    توفير خيارات إضافية للدفع الإلكتروني
+                    • إضافة المزيد من الفيديوهات التعليمية حول كيفية استخدام المنصة<br>
+                    • توفير خيارات إضافية للدفع الإلكتروني
                 </div>
             </div>
-            
+
             <!-- Reply Section -->
             <div class="reply-section">
                 <div class="info-label">رد من الإدارة</div>
                 <textarea class="reply-textarea" placeholder="اكتب ردك هنا..."></textarea>
                 
-                <!-- Action Controls -->
-                <div class="action-control">
-                    <!-- Visibility Toggle -->
+                <div class="action-controls">
                     <div class="visibility-control">
-                        <label class="switch">
-                            <input type="checkbox">
-                            <span class="slider"></span>
+                        <label class="toggle-switch">
+                            <input type="checkbox" checked>
+                            <span class="toggle-slider"></span>
                         </label>
                         <span class="visibility-label">ظاهر للعامة</span>
                     </div>
-                    
-                    <!-- Action Buttons -->
+
                     <div class="action-buttons">
-                        <button class="btn btn-secondary">إلغاء</button>
-                        <button class="btn btn-primary">إرسال الرد</button>
+                        <button class="btn btn-cancel">إلغاء</button>
+                        <button class="btn btn-send">إرسال الرد</button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- Messages Table Section -->
-        <div class="messages-table-section">
+        <!-- Pending Messages Section -->
+        <div class="pending-section">
             <h2 class="section-title">رسائل أخرى في الانتظار</h2>
             
             <table class="messages-table">
@@ -372,106 +836,90 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>أحمد محمود</td>
-                        <td>ahmed@example.com</td>
-                        <td>٢٠٢٥</td>
-                        <td>
+                        <td data-label="الاسم">أحمد محمود</td>
+                        <td data-label="البريد الإلكتروني">ahmed@example.com</td>
+                        <td data-label="التاريخ">٢٠٢٥</td>
+                        <td data-label="الحالة">
                             <span class="status-badge status-pending">بانتظار الرد</span>
                         </td>
-                        <td>
-                            <div class="eye-btn">
-                                <i class="fas fa-eye"></i>
-                            </div>
+                        <td data-label="الإجراءات">
+                            <i class="fas fa-eye view-icon"></i>
                         </td>
                     </tr>
                     <tr>
-                        <td>فاطمة علي</td>
-                        <td>fatima@example.com</td>
-                        <td>٢٠٢٥</td>
-                        <td>
-                            <span class="status-badge status-approved">تم الرد</span>
+                        <td data-label="الاسم">فاطمة علي</td>
+                        <td data-label="البريد الإلكتروني">fatima@example.com</td>
+                        <td data-label="التاريخ">٢٠٢٥</td>
+                        <td data-label="الحالة">
+                            <span class="status-badge status-completed">تم الرد</span>
                         </td>
-                        <td>
-                            <div class="eye-btn">
-                                <i class="fas fa-eye"></i>
-                            </div>
+                        <td data-label="الإجراءات">
+                            <i class="fas fa-eye view-icon"></i>
                         </td>
                     </tr>
                     <tr>
-                        <td>عبد الله حسن</td>
-                        <td>abdullah@example.com</td>
-                        <td>٢٠٢٥</td>
-                        <td>
+                        <td data-label="الاسم">عبد الله حسن</td>
+                        <td data-label="البريد الإلكتروني">abdullah@example.com</td>
+                        <td data-label="التاريخ">٢٠٢٥</td>
+                        <td data-label="الحالة">
                             <span class="status-badge status-pending">بانتظار الرد</span>
                         </td>
-                        <td>
-                            <div class="eye-btn">
-                                <i class="fas fa-eye"></i>
-                            </div>
+                        <td data-label="الإجراءات">
+                            <i class="fas fa-eye view-icon"></i>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
-        </div>
     </div>
-    
+
     <script>
-        // View Message Function for eye buttons
-        const eyeButtons = document.querySelectorAll('.eye-btn');
-        eyeButtons.forEach(btn => {
-            btn.addEventListener('click', function() {
-                window.location.href = 'visitor-edit-entry.html';
+        // Send Reply Button
+        document.querySelector('.btn-send').addEventListener('click', function() {
+            const replyText = document.querySelector('.reply-textarea').value.trim();
+            
+            if (replyText === '') {
+                alert('الرجاء كتابة رد قبل الإرسال');
+                return;
+            }
+            
+            alert('تم إرسال ردك بنجاح');
+            document.querySelector('.reply-textarea').value = '';
+            
+            setTimeout(() => {
+                window.location.href = 'visitor-log.html';
+            }, 1000);
+        });
+
+        // Cancel Button
+        document.querySelector('.btn-cancel').addEventListener('click', function() {
+            const replyText = document.querySelector('.reply-textarea').value.trim();
+            
+            if (replyText !== '') {
+                if (confirm('هل أنت متأكد من إلغاء الرد؟')) {
+                    window.location.href = 'visitor-log.html';
+                }
+            } else {
+                window.location.href = 'visitor-log.html';
+            }
+        });
+
+        // View Icons in Table
+        document.querySelectorAll('.view-icon').forEach(icon => {
+            icon.addEventListener('click', function() {
+                // Navigate to view message (same page for demo)
+                window.location.reload();
             });
         });
-        
-        // Toggle Visibility Function
-        const visibilityToggle = document.querySelector('.switch input');
-        if (visibilityToggle) {
-            visibilityToggle.addEventListener('change', function() {
-                if (this.checked) {
-                    console.log('الرسالة مرئية للعامة');
-                } else {
-                    console.log('الرسالة غير مرئية للعامة');
-                }
-            });
-        }
-        
-        // Send Reply Function
-        const sendReplyBtn = document.querySelector('.btn-primary');
-        const replyTextarea = document.querySelector('.reply-textarea');
-        
-        if (sendReplyBtn && replyTextarea) {
-            sendReplyBtn.addEventListener('click', function() {
-                const replyText = replyTextarea.value.trim();
-                if (replyText === '') {
-                    alert('الرجاء كتابة رد قبل الإرسال');
-                    return;
-                }
-                
-                alert('تم إرسال ردك بنجاح');
-                replyTextarea.value = '';
-                
-                setTimeout(function() {
-                    window.location.href = 'visitor-log.html';
-                }, 1000);
-            });
-        }
-        
-        // Cancel Reply Function
-        const cancelReplyBtn = document.querySelector('.btn-secondary');
-        if (cancelReplyBtn && replyTextarea) {
-            cancelReplyBtn.addEventListener('click', function() {
-                if (replyTextarea.value.trim() !== '') {
-                    if (confirm('هل أنت متأكد من إلغاء الرد؟')) {
-                        window.location.href = 'visitor-log.html';
-                    }
-                } else {
-                    window.location.href = 'visitor-log.html';
-                }
-            });
-        }
-    </script>
 
+        // Toggle Switch
+        document.querySelector('.toggle-switch input').addEventListener('change', function() {
+            if (this.checked) {
+                console.log('الرسالة مرئية للعامة');
+            } else {
+                console.log('الرسالة غير مرئية للعامة');
+            }
+        });
+    </script>
 </body>
 </html>

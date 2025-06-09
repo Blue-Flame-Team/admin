@@ -3,56 +3,895 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>صفحة الإعلانات / الإعلانات النصية</title>
-    <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="../css/mobile-additions.css">
-    <link rel="stylesheet" href="../css/size-fixes.css">
-    <link rel="stylesheet" href="../css/advertisements/text-advertisements.css">
+    <title>قائمة الشركات</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            direction: rtl;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            padding: 15px 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            height: 70px;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .notification-icon {
+            position: relative;
+            background: #ff6b6b;
+            color: white;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .notification-icon .badge {
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            background: #fff;
+            color: #ff6b6b;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+        }
+
+        .user-avatar {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background: #dee2e6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 280px;
+            background: white;
+            box-shadow: -2px 0 4px rgba(0,0,0,0.1);
+            padding: 90px 0 20px 0;
+            position: fixed;
+            right: 0;
+            top: 0;
+            height: 100vh;
+            border-left: 1px solid #e8eaed;
+        }
+
+        .sidebar-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            padding: 0 16px;
+        }
+
+        .sidebar-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 15px 20px;
+            text-decoration: none;
+            color: #5f6368;
+            font-size: 14px;
+            font-weight: 400;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            margin: 2px 0;
+        }
+
+        .sidebar-item:hover {
+            background: #f8f9fa;
+        }
+
+        .sidebar-item.active {
+            background: #e8f0fe;
+            color: #1a73e8;
+            font-weight: 500;
+        }
+
+        .sidebar-item i {
+            font-size: 20px;
+            width: 24px;
+            text-align: center;
+        }
+
+        /* Sidebar Icon Colors */
+        .sidebar-item:nth-child(1) i {
+            color: #1a73e8; /* Blue for dashboard */
+        }
+
+        .sidebar-item:nth-child(2) i {
+            color: #fbbc04; /* Yellow for users */
+        }
+
+        .sidebar-item:nth-child(3) i {
+            color: #4285f4; /* Blue for companies */
+        }
+
+        .sidebar-item:nth-child(4) i {
+            color: #9aa0a6; /* Gray for settings */
+        }
+
+        .sidebar-item.active i {
+            color: #1a73e8;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-right: 280px;
+            margin-top: 70px;
+            padding: 40px;
+        }
+
+        .content-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        /* Page Header */
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 40px;
+        }
+
+        .title-section h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .title-section p {
+            color: #666;
+            font-size: 16px;
+        }
+
+        .action-section {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn-primary {
+            background: #4285f4;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary:hover {
+            background: #3367d6;
+        }
+
+        /* Search and Filter Section */
+        .search-filter-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .search-box {
+            position: relative;
+            width: 350px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 50px 12px 20px;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            font-size: 15px;
+            background: #f8f9fa;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #4285f4;
+            box-shadow: 0 0 0 2px rgba(66,133,244,0.2);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+            font-size: 16px;
+        }
+
+        .filter-buttons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .filter-btn {
+            padding: 12px 20px;
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Cairo', sans-serif;
+            font-weight: 500;
+        }
+
+        .filter-btn:hover {
+            background: #e9ecef;
+        }
+
+        /* Table */
+        .table-container {
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #dee2e6;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .data-table th,
+        .data-table td {
+            padding: 18px 15px;
+            text-align: center;
+            border-bottom: 1px solid #dee2e6;
+            font-size: 14px;
+        }
+
+        .data-table th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #495057;
+            font-size: 15px;
+        }
+
+        .data-table tbody tr {
+            background: white;
+        }
+
+        .data-table tbody tr:hover {
+            background: #f9f9f9;
+        }
+
+        .checkbox-column {
+            width: 60px;
+        }
+
+        .serial-column {
+            width: 100px;
+        }
+
+        .name-column {
+            width: 280px;
+            text-align: right;
+        }
+
+        .email-column {
+            width: 220px;
+        }
+
+        .phone-column {
+            width: 120px;
+        }
+
+        .status-column {
+            width: 120px;
+        }
+
+        .actions-column {
+            width: 140px;
+        }
+
+        /* Status Badges */
+        .status-badge {
+            padding: 6px 14px;
+            border-radius: 16px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .status-badge.active {
+            background: #d4f6d4;
+            color: #2d7d2d;
+        }
+
+        .status-badge.pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-badge.inactive {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        /* Action Buttons */
+        .actions {
+            display: flex;
+            gap: 6px;
+            justify-content: center;
+        }
+
+        .action-btn {
+            width: 34px;
+            height: 34px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+        }
+
+        .action-btn.view {
+            background: #4285f4;
+            color: white;
+        }
+
+        .action-btn.edit {
+            background: #34a853;
+            color: white;
+        }
+
+        .action-btn.delete {
+            background: #ea4335;
+            color: white;
+        }
+
+        .action-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            padding: 30px 20px 20px;
+            background: white;
+        }
+
+        .pagination-btn {
+            padding: 10px 14px;
+            border: 1px solid #dee2e6;
+            background: white;
+            cursor: pointer;
+            border-radius: 6px;
+            font-size: 14px;
+            min-width: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .pagination-btn.active {
+            background: #4285f4;
+            color: white;
+            border-color: #4285f4;
+        }
+
+        .pagination-btn:hover:not(.active) {
+            background: #f8f9fa;
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .main-content {
+                padding: 30px 20px;
+            }
+            
+            .content-wrapper {
+                padding: 30px 20px;
+            }
+            
+            .sidebar {
+                width: 250px;
+            }
+            
+            .main-content {
+                margin-right: 250px;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .sidebar {
+                width: 220px;
+            }
+            
+            .main-content {
+                margin-right: 220px;
+                padding: 20px 15px;
+            }
+            
+            .content-wrapper {
+                padding: 25px 15px;
+            }
+            
+            .page-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .title-section h1 {
+                font-size: 1.8rem;
+            }
+            
+            .search-filter-section {
+                flex-direction: column;
+                gap: 15px;
+                align-items: stretch;
+            }
+            
+            .search-box {
+                width: 100%;
+            }
+            
+            .filter-buttons {
+                justify-content: flex-start;
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 10px 15px;
+                height: 60px;
+            }
+            
+            .sidebar {
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+                z-index: 1001;
+            }
+            
+            .sidebar.active {
+                transform: translateX(0);
+            }
+            
+            .mobile-menu-btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 40px;
+                height: 40px;
+                background: none;
+                border: none;
+                cursor: pointer;
+                color: #333;
+                font-size: 18px;
+            }
+            
+            .sidebar-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+                z-index: 1000;
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.3s ease;
+            }
+            
+            .sidebar-overlay.active {
+                opacity: 1;
+                visibility: visible;
+            }
+            
+            .main-content {
+                margin-right: 0;
+                margin-top: 60px;
+                padding: 15px 10px;
+            }
+            
+            .content-wrapper {
+                padding: 20px 15px;
+                border-radius: 8px;
+            }
+            
+            .title-section h1 {
+                font-size: 1.5rem;
+            }
+            
+            .title-section p {
+                font-size: 14px;
+            }
+            
+            .search-input {
+                padding: 10px 40px 10px 15px;
+                font-size: 14px;
+            }
+            
+            .filter-btn {
+                padding: 10px 15px;
+                font-size: 13px;
+            }
+            
+            /* Table improvements for mobile */
+            .table-container {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .data-table {
+                min-width: 700px;
+            }
+            
+            .data-table th,
+            .data-table td {
+                padding: 12px 8px;
+                font-size: 13px;
+            }
+            
+            .name-column {
+                min-width: 200px;
+            }
+            
+            .email-column {
+                min-width: 180px;
+            }
+            
+            .pagination {
+                padding: 20px 10px 15px;
+                flex-wrap: wrap;
+                gap: 5px;
+            }
+            
+            .pagination-btn {
+                padding: 8px 12px;
+                font-size: 13px;
+                min-width: 35px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .header {
+                padding: 8px 10px;
+                height: 55px;
+            }
+            
+            .user-info span {
+                display: none;
+            }
+            
+            .main-content {
+                margin-top: 55px;
+                padding: 10px 5px;
+            }
+            
+            .content-wrapper {
+                padding: 15px 10px;
+                border-radius: 6px;
+            }
+            
+            .title-section h1 {
+                font-size: 1.3rem;
+                margin-bottom: 5px;
+            }
+            
+            .title-section p {
+                font-size: 13px;
+            }
+            
+            .search-filter-section {
+                gap: 10px;
+            }
+            
+            .filter-buttons {
+                gap: 8px;
+            }
+            
+            .filter-btn {
+                padding: 8px 12px;
+                font-size: 12px;
+            }
+            
+            .filter-btn span {
+                display: none;
+            }
+            
+            .filter-btn i {
+                font-size: 14px;
+            }
+            
+            /* Card layout for very small screens */
+            .mobile-card-view {
+                display: block;
+            }
+            
+            .table-container.card-mode {
+                display: none;
+            }
+            
+            .mobile-card {
+                background: white;
+                border: 1px solid #dee2e6;
+                border-radius: 8px;
+                padding: 15px;
+                margin-bottom: 15px;
+                box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            }
+            
+            .mobile-card-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: flex-start;
+                margin-bottom: 10px;
+            }
+            
+            .mobile-card-title {
+                font-weight: 600;
+                font-size: 14px;
+                color: #333;
+                flex: 1;
+                margin-left: 10px;
+            }
+            
+            .mobile-card-id {
+                background: #f8f9fa;
+                color: #666;
+                padding: 2px 8px;
+                border-radius: 4px;
+                font-size: 11px;
+                font-weight: 600;
+            }
+            
+            .mobile-card-body {
+                margin-bottom: 12px;
+            }
+            
+            .mobile-card-row {
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 6px;
+                font-size: 13px;
+                align-items: center;
+            }
+            
+            .mobile-card-label {
+                color: #666;
+                font-weight: 500;
+                flex-shrink: 0;
+                margin-left: 10px;
+            }
+            
+            .mobile-card-value {
+                color: #333;
+                text-align: left;
+            }
+            
+            .mobile-card-actions {
+                display: flex;
+                gap: 6px;
+                justify-content: flex-end;
+                border-top: 1px solid #f0f0f0;
+                padding-top: 12px;
+            }
+            
+            .pagination {
+                justify-content: center;
+                padding: 15px 5px 10px;
+            }
+            
+            /* Hide table completely on small screens */
+            .table-container {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            .header {
+                padding: 8px;
+            }
+            
+            .content-wrapper {
+                padding: 12px 8px;
+            }
+            
+            .mobile-card {
+                padding: 12px;
+                margin-bottom: 12px;
+            }
+            
+            .action-btn {
+                width: 30px;
+                height: 30px;
+                font-size: 12px;
+            }
+        }
+        
+        /* Hidden elements for mobile */
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: flex !important;
+            }
+        }
+        
+        @media (min-width: 769px) {
+            .mobile-menu-btn {
+                display: none !important;
+            }
+            
+            .sidebar-overlay {
+                display: none !important;
+            }
+        }
+        
+        /* Mobile card view - hidden by default */
+        .mobile-card-view {
+            display: none;
+        }
+        
+        @media (max-width: 576px) {
+            .mobile-card-view {
+                display: block;
+            }
+            
+            .table-container:not(.card-mode) {
+                display: none;
+            }
+        }
+
+        /* Mobile menu button - hidden by default */
+        .mobile-menu-btn {
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <div class="main-content">
-            <!-- Header -->
-            <div class="header">
-                <div class="header-right">
-                    <div class="notification-icon">
-                        <span class="badge">1</span>
-                        <i class="fas fa-bell"></i>
-                    </div>
-                    <div class="user-info">
-                        <span>أحمد جديد</span>
-                        <img src="../img/user-avatar.png" alt="User Avatar" class="avatar">
+        <!-- Header -->
+        <div class="header">
+            <button class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="header-left">
+                <div class="notification-icon">
+                    <i class="fas fa-bell"></i>
+                    <span class="badge">1</span>
+                </div>
+                <div class="user-info">
+                    <span>أحمد محمد</span>
+                    <div class="user-avatar">
+                        <i class="fas fa-user" style="color: #666;"></i>
                     </div>
                 </div>
             </div>
+        </div>
 
-            <!-- Main Content -->
-            <div class="content-card">
-                <div class="card-header">
+        <!-- Sidebar Overlay for Mobile -->
+        <div class="sidebar-overlay"></div>
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-menu">
+                <a href="#" class="sidebar-item">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>لوحة التحكم</span>
+                </a>
+                <a href="#" class="sidebar-item">
+                    <i class="fas fa-users"></i>
+                    <span>المستخدمين</span>
+                </a>
+                <a href="#" class="sidebar-item active">
+                    <i class="fas fa-building"></i>
+                    <span>الشركات</span>
+                </a>
+                <a href="#" class="sidebar-item">
+                    <i class="fas fa-cog"></i>
+                    <span>الإعدادات</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="content-wrapper">
+                <!-- Page Header -->
+                <div class="page-header">
                     <div class="title-section">
-                        <h1 class="page-title">قائمة الإعلانات النصية</h1>
-                        <p class="page-description">إدارة جميع الإعلانات النصية المسجلة في النظام</p>
+                        <h1>قائمة الشركات</h1>
+                        <p>إدارة جميع الشركات المسجلة في النظام</p>
                     </div>
-                    <div class="action-button">
-                        <a href="advertisement-add-edit.html" class="btn-primary">
+                    <!-- <div class="action-section">
+                        <a href="#" class="btn-primary">
                             <i class="fas fa-plus"></i>
-                            إضافة إعلان
+                            لوحة التحكم
                         </a>
-                    </div>
+                    </div> -->
                 </div>
 
-                <!-- Search Box -->
-                <div class="search-section">
-                    <div class="search-box">
-                        <input type="text" placeholder="بحث..." class="search-input">
-                        <i class="fas fa-search search-icon"></i>
-                    </div>
-                    <div class="filter-dropdown">
-                        <button class="filter-button">
+                <!-- Search and Filter -->
+                <div class="search-filter-section">
+                    <div class="filter-buttons">
+                        <button class="filter-btn">
                             <i class="fas fa-filter"></i>
                             تصفية
                         </button>
+                        <button class="filter-btn">
+                            <i class="fas fa-th"></i>
+                            جدول مبسط
+                        </button>
+                    </div>
+                    <div class="search-box">
+                        <input type="text" class="search-input" placeholder="بحث...">
+                        <i class="fas fa-search search-icon"></i>
                     </div>
                 </div>
 
@@ -64,7 +903,7 @@
                                 <th class="checkbox-column">
                                     <input type="checkbox" id="selectAll">
                                 </th>
-                                <th class="serial-number">الرقم التسلسلي</th>
+                                <th class="serial-column">الرقم التسلسلي</th>
                                 <th class="name-column">الاسم</th>
                                 <th class="email-column">البريد الإلكتروني</th>
                                 <th class="phone-column">رقم الهاتف</th>
@@ -81,9 +920,9 @@
                                 <td>4567</td>
                                 <td><span class="status-badge active">نشط</span></td>
                                 <td class="actions">
-                                    <button class="action-btn delete"><i class="fas fa-trash-alt"></i></button>
-                                    <button class="action-btn edit"><i class="fas fa-edit"></i></button>
                                     <button class="action-btn view"><i class="fas fa-eye"></i></button>
+                                    <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                                    <button class="action-btn delete"><i class="fas fa-trash"></i></button>
                                 </td>
                             </tr>
                             <tr>
@@ -94,9 +933,9 @@
                                 <td>6543</td>
                                 <td><span class="status-badge active">نشط</span></td>
                                 <td class="actions">
-                                    <button class="action-btn delete"><i class="fas fa-trash-alt"></i></button>
-                                    <button class="action-btn edit"><i class="fas fa-edit"></i></button>
                                     <button class="action-btn view"><i class="fas fa-eye"></i></button>
+                                    <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                                    <button class="action-btn delete"><i class="fas fa-trash"></i></button>
                                 </td>
                             </tr>
                             <tr>
@@ -107,9 +946,9 @@
                                 <td>8901</td>
                                 <td><span class="status-badge pending">معلق</span></td>
                                 <td class="actions">
-                                    <button class="action-btn delete"><i class="fas fa-trash-alt"></i></button>
-                                    <button class="action-btn edit"><i class="fas fa-edit"></i></button>
                                     <button class="action-btn view"><i class="fas fa-eye"></i></button>
+                                    <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                                    <button class="action-btn delete"><i class="fas fa-trash"></i></button>
                                 </td>
                             </tr>
                             <tr>
@@ -120,131 +959,341 @@
                                 <td>5678</td>
                                 <td><span class="status-badge inactive">غير نشط</span></td>
                                 <td class="actions">
-                                    <button class="action-btn delete"><i class="fas fa-trash-alt"></i></button>
-                                    <button class="action-btn edit"><i class="fas fa-edit"></i></button>
                                     <button class="action-btn view"><i class="fas fa-eye"></i></button>
+                                    <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                                    <button class="action-btn delete"><i class="fas fa-trash"></i></button>
                                 </td>
                             </tr>
                             <tr>
                                 <td><input type="checkbox" class="row-checkbox"></td>
                                 <td>005</td>
-                                <td>مؤسسة الريادة للإنتاج</td>
+                                <td>مؤسسة الريادة للتجارة</td>
                                 <td>sales@leadership.com</td>
                                 <td>5432</td>
                                 <td><span class="status-badge active">نشط</span></td>
                                 <td class="actions">
-                                    <button class="action-btn delete"><i class="fas fa-trash-alt"></i></button>
-                                    <button class="action-btn edit"><i class="fas fa-edit"></i></button>
                                     <button class="action-btn view"><i class="fas fa-eye"></i></button>
+                                    <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                                    <button class="action-btn delete"><i class="fas fa-trash"></i></button>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
+
+                    <!-- Pagination -->
+                    <div class="pagination">
+                        <button class="pagination-btn"><i class="fas fa-chevron-right"></i></button>
+                        <button class="pagination-btn">5</button>
+                        <span style="color: #666;">...</span>
+                        <button class="pagination-btn">3</button>
+                        <button class="pagination-btn">2</button>
+                        <button class="pagination-btn active">1</button>
+                        <button class="pagination-btn"><i class="fas fa-chevron-left"></i></button>
+                    </div>
                 </div>
 
-                <!-- Pagination -->
-                <div class="pagination">
-                    <button class="pagination-btn prev"><i class="fas fa-chevron-right"></i></button>
-                    <button class="pagination-btn">5</button>
-                    <div class="pagination-dots">...</div>
-                    <button class="pagination-btn">3</button>
-                    <button class="pagination-btn">2</button>
-                    <button class="pagination-btn active">1</button>
-                    <button class="pagination-btn next"><i class="fas fa-chevron-left"></i></button>
-                </div>
-            </div>
-        </div>
+                <!-- Mobile Card View -->
+                <div class="mobile-card-view">
+                    <div class="mobile-card">
+                        <div class="mobile-card-header">
+                            <div class="mobile-card-title">شركة الخالد للتكنولوجيا</div>
+                            <div class="mobile-card-id">001</div>
+                        </div>
+                        <div class="mobile-card-body">
+                            <div class="mobile-card-row">
+                                <span class="mobile-card-label">البريد الإلكتروني:</span>
+                                <span class="mobile-card-value">info@gulftech.com</span>
+                            </div>
+                            <div class="mobile-card-row">
+                                <span class="mobile-card-label">رقم الهاتف:</span>
+                                <span class="mobile-card-value">4567</span>
+                            </div>
+                            <div class="mobile-card-row">
+                                <span class="mobile-card-label">الحالة:</span>
+                                <span class="status-badge active">نشط</span>
+                            </div>
+                        </div>
+                        <div class="mobile-card-actions">
+                            <button class="action-btn view"><i class="fas fa-eye"></i></button>
+                            <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                            <button class="action-btn delete"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
 
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <div class="sidebar-menu">
-                <a href="#" class="sidebar-item">
-                    <i class="fas fa-user"></i>
-                    <span>المستخدمين</span>
-                </a>
-                <a href="#" class="sidebar-item active">
-                    <i class="fas fa-ad"></i>
-                    <span>الإعلانات</span>
-                </a>
-                <a href="#" class="sidebar-item">
-                    <i class="fas fa-cog"></i>
-                    <span>الإعدادات</span>
-                </a>
+                    <div class="mobile-card">
+                        <div class="mobile-card-header">
+                            <div class="mobile-card-title">مجموعة الخليج للاستثمار</div>
+                            <div class="mobile-card-id">002</div>
+                        </div>
+                        <div class="mobile-card-body">
+                            <div class="mobile-card-row">
+                                <span class="mobile-card-label">البريد الإلكتروني:</span>
+                                <span class="mobile-card-value">contact@eliteinvest.com</span>
+                            </div>
+                            <div class="mobile-card-row">
+                                <span class="mobile-card-label">رقم الهاتف:</span>
+                                <span class="mobile-card-value">6543</span>
+                            </div>
+                            <div class="mobile-card-row">
+                                <span class="mobile-card-label">الحالة:</span>
+                                <span class="status-badge active">نشط</span>
+                            </div>
+                        </div>
+                        <div class="mobile-card-actions">
+                            <button class="action-btn view"><i class="fas fa-eye"></i></button>
+                            <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                            <button class="action-btn delete"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="mobile-card">
+                        <div class="mobile-card-header">
+                            <div class="mobile-card-title">شركة المستقبل للبرمجيات</div>
+                            <div class="mobile-card-id">003</div>
+                        </div>
+                        <div class="mobile-card-body">
+                            <div class="mobile-card-row">
+                                <span class="mobile-card-label">البريد الإلكتروني:</span>
+                                <span class="mobile-card-value">support@futuresoft.com</span>
+                            </div>
+                            <div class="mobile-card-row">
+                                <span class="mobile-card-label">رقم الهاتف:</span>
+                                <span class="mobile-card-value">8901</span>
+                            </div>
+                            <div class="mobile-card-row">
+                                <span class="mobile-card-label">الحالة:</span>
+                                <span class="status-badge pending">معلق</span>
+                            </div>
+                        </div>
+                        <div class="mobile-card-actions">
+                            <button class="action-btn view"><i class="fas fa-eye"></i></button>
+                            <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                            <button class="action-btn delete"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="mobile-card">
+                        <div class="mobile-card-header">
+                            <div class="mobile-card-title">دار الأمين للنشر</div>
+                            <div class="mobile-card-id">004</div>
+                        </div>
+                        <div class="mobile-card-body">
+                            <div class="mobile-card-row">
+                                <span class="mobile-card-label">البريد الإلكتروني:</span>
+                                <span class="mobile-card-value">info@horizonpublish.com</span>
+                            </div>
+                            <div class="mobile-card-row">
+                                <span class="mobile-card-label">رقم الهاتف:</span>
+                                <span class="mobile-card-value">5678</span>
+                            </div>
+                            <div class="mobile-card-row">
+                                <span class="mobile-card-label">الحالة:</span>
+                                <span class="status-badge inactive">غير نشط</span>
+                            </div>
+                        </div>
+                        <div class="mobile-card-actions">
+                            <button class="action-btn view"><i class="fas fa-eye"></i></button>
+                            <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                            <button class="action-btn delete"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="mobile-card">
+                        <div class="mobile-card-header">
+                            <div class="mobile-card-title">مؤسسة الريادة للتجارة</div>
+                            <div class="mobile-card-id">005</div>
+                        </div>
+                        <div class="mobile-card-body">
+                            <div class="mobile-card-row">
+                                <span class="mobile-card-label">البريد الإلكتروني:</span>
+                                <span class="mobile-card-value">sales@leadership.com</span>
+                            </div>
+                            <div class="mobile-card-row">
+                                <span class="mobile-card-label">رقم الهاتف:</span>
+                                <span class="mobile-card-value">5432</span>
+                            </div>
+                            <div class="mobile-card-row">
+                                <span class="mobile-card-label">الحالة:</span>
+                                <span class="status-badge active">نشط</span>
+                            </div>
+                        </div>
+                        <div class="mobile-card-actions">
+                            <button class="action-btn view"><i class="fas fa-eye"></i></button>
+                            <button class="action-btn edit"><i class="fas fa-edit"></i></button>
+                            <button class="action-btn delete"><i class="fas fa-trash"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Mobile Pagination -->
+                    <div class="pagination">
+                        <button class="pagination-btn"><i class="fas fa-chevron-right"></i></button>
+                        <button class="pagination-btn">5</button>
+                        <span style="color: #666;">...</span>
+                        <button class="pagination-btn">3</button>
+                        <button class="pagination-btn">2</button>
+                        <button class="pagination-btn active">1</button>
+                        <button class="pagination-btn"><i class="fas fa-chevron-left"></i></button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-    <script src="../js/jquery.min.js"></script>
     <script>
-        $(document).ready(function() {
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const sidebar = document.querySelector('.sidebar');
+            const sidebarOverlay = document.querySelector('.sidebar-overlay');
+
+            function toggleMobileMenu() {
+                sidebar.classList.toggle('active');
+                sidebarOverlay.classList.toggle('active');
+                document.body.style.overflow = sidebar.classList.contains('active') ? 'hidden' : '';
+            }
+
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+            }
+
+            if (sidebarOverlay) {
+                sidebarOverlay.addEventListener('click', toggleMobileMenu);
+            }
+
+            // Close mobile menu when clicking on sidebar items
+            const sidebarItems = document.querySelectorAll('.sidebar-item');
+            sidebarItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    if (window.innerWidth <= 768) {
+                        toggleMobileMenu();
+                    }
+                });
+            });
+
+            // Handle window resize
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 768) {
+                    sidebar.classList.remove('active');
+                    sidebarOverlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                }
+            });
+
             // Select all checkbox functionality
-            $('#selectAll').on('change', function() {
-                const isChecked = $(this).prop('checked');
-                $('.row-checkbox').prop('checked', isChecked);
-            });
+            const selectAllCheckbox = document.getElementById('selectAll');
+            const rowCheckboxes = document.querySelectorAll('.row-checkbox');
 
-            // Filter dropdown toggle
-            $('.filter-button').on('click', function() {
-                // Add filter dropdown functionality here
-                console.log('Filter button clicked');
-            });
-
-            // Action buttons functionality
-            $('.action-btn.view').on('click', function() {
-                const row = $(this).closest('tr');
-                const id = row.find('td:nth-child(2)').text();
-                console.log(`View advertisement with ID: ${id}`);
-                // Implement view functionality
-            });
-
-            $('.action-btn.edit').on('click', function() {
-                const row = $(this).closest('tr');
-                const id = row.find('td:nth-child(2)').text();
-                console.log(`Edit advertisement with ID: ${id}`);
-                // Redirect to edit page
-                window.location.href = `advertisement-add-edit.html?id=${id}&mode=edit`;
-            });
-
-            $('.action-btn.delete').on('click', function() {
-                const row = $(this).closest('tr');
-                const id = row.find('td:nth-child(2)').text();
-                const name = row.find('td:nth-child(3)').text();
-                
-                if(confirm(`هل أنت متأكد من حذف الإعلان "${name}"؟`)) {
-                    console.log(`Delete advertisement with ID: ${id}`);
-                    // Implement delete functionality
-                    row.fadeOut(300, function() {
-                        $(this).remove();
+            if (selectAllCheckbox) {
+                selectAllCheckbox.addEventListener('change', function() {
+                    rowCheckboxes.forEach(checkbox => {
+                        checkbox.checked = this.checked;
                     });
-                }
+                });
+            }
+
+            // Individual checkbox change
+            rowCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    const allChecked = Array.from(rowCheckboxes).every(cb => cb.checked);
+                    const someChecked = Array.from(rowCheckboxes).some(cb => cb.checked);
+                    
+                    if (selectAllCheckbox) {
+                        selectAllCheckbox.checked = allChecked;
+                        selectAllCheckbox.indeterminate = someChecked && !allChecked;
+                    }
+                });
             });
 
-            // Pagination functionality
-            $('.pagination-btn').not('.prev, .next').on('click', function() {
-                $('.pagination-btn').removeClass('active');
-                $(this).addClass('active');
-                // Implement page switching functionality
+            // Action buttons for table
+            document.querySelectorAll('.action-btn.view').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const row = this.closest('tr');
+                    if (row) {
+                        const id = row.cells[1].textContent;
+                        alert(`عرض الشركة رقم: ${id}`);
+                    } else {
+                        // Mobile card view
+                        const card = this.closest('.mobile-card');
+                        const id = card.querySelector('.mobile-card-id').textContent;
+                        alert(`عرض الشركة رقم: ${id}`);
+                    }
+                });
             });
 
-            $('.pagination-btn.prev').on('click', function() {
-                const currentActive = $('.pagination-btn.active');
-                const prevPage = currentActive.next('.pagination-btn:not(.next)');
-                if (prevPage.length) {
-                    currentActive.removeClass('active');
-                    prevPage.addClass('active');
-                    // Implement previous page functionality
-                }
+            document.querySelectorAll('.action-btn.edit').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const row = this.closest('tr');
+                    if (row) {
+                        const id = row.cells[1].textContent;
+                        alert(`تعديل الشركة رقم: ${id}`);
+                    } else {
+                        // Mobile card view
+                        const card = this.closest('.mobile-card');
+                        const id = card.querySelector('.mobile-card-id').textContent;
+                        alert(`تعديل الشركة رقم: ${id}`);
+                    }
+                });
             });
 
-            $('.pagination-btn.next').on('click', function() {
-                const currentActive = $('.pagination-btn.active');
-                const nextPage = currentActive.prev('.pagination-btn:not(.prev)');
-                if (nextPage.length) {
-                    currentActive.removeClass('active');
-                    nextPage.addClass('active');
-                    // Implement next page functionality
-                }
+            document.querySelectorAll('.action-btn.delete').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const row = this.closest('tr');
+                    if (row) {
+                        const id = row.cells[1].textContent;
+                        const name = row.cells[2].textContent;
+                        
+                        if (confirm(`هل أنت متأكد من حذف "${name}"؟`)) {
+                            row.remove();
+                            alert(`تم حذف الشركة: ${name}`);
+                        }
+                    } else {
+                        // Mobile card view
+                        const card = this.closest('.mobile-card');
+                        const id = card.querySelector('.mobile-card-id').textContent;
+                        const name = card.querySelector('.mobile-card-title').textContent;
+                        
+                        if (confirm(`هل أنت متأكد من حذف "${name}"؟`)) {
+                            card.remove();
+                            alert(`تم حذف الشركة: ${name}`);
+                        }
+                    }
+                });
             });
+
+            // Pagination
+            document.querySelectorAll('.pagination-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    if (!this.classList.contains('active') && !this.innerHTML.includes('chevron')) {
+                        const currentActive = document.querySelector('.pagination-btn.active');
+                        if (currentActive) {
+                            currentActive.classList.remove('active');
+                        }
+                        this.classList.add('active');
+                    }
+                });
+            });
+
+            // Search functionality
+            const searchInput = document.querySelector('.search-input');
+            if (searchInput) {
+                searchInput.addEventListener('input', function() {
+                    const searchTerm = this.value.toLowerCase();
+                    
+                    // Search in table
+                    const tableRows = document.querySelectorAll('tbody tr');
+                    tableRows.forEach(row => {
+                        const text = row.textContent.toLowerCase();
+                        row.style.display = text.includes(searchTerm) ? '' : 'none';
+                    });
+                    
+                    // Search in mobile cards
+                    const mobileCards = document.querySelectorAll('.mobile-card');
+                    mobileCards.forEach(card => {
+                        const text = card.textContent.toLowerCase();
+                        card.style.display = text.includes(searchTerm) ? '' : 'none';
+                    });
+                });
+            }
         });
     </script>
 </body>

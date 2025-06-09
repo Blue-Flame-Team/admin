@@ -4,85 +4,423 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>الإعدادات العامة</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="../css/settings/general-settings.css">
+    <title>إعدادات البريد الإلكتروني</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900;1000&display=swap');
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         
         body {
             font-family: 'Cairo', sans-serif;
-            background-color: #f8f9fa;
+            background: #f8f9fa;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            direction: rtl;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            padding: 50px 40px;
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            border: 1px solid #f0f0f0;
+        }
+
+        .title {
+            font-size: 28px;
+            font-weight: 600;
+            color: #333333;
+            margin-bottom: 35px;
+            letter-spacing: -0.3px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 20px;
+            margin-bottom: 25px;
+            text-align: right;
+            align-items: end;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-label {
+            font-size: 14px;
+            font-weight: 500;
+            color: #333333;
+            margin-bottom: 8px;
+        }
+
+        .form-input {
+            padding: 14px 16px;
+            border: 1px solid #e8e8e8;
+            border-radius: 8px;
+            font-size: 15px;
+            font-family: 'Cairo', sans-serif;
+            background: #f8f9fa;
+            transition: all 0.2s ease;
+            direction: rtl;
+            min-width: 300px;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #6366f1;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.08);
+        }
+
+        .form-input::placeholder {
+            color: #bbb;
+            font-size: 14px;
+        }
+
+        .form-input[readonly] {
+            background: #f0f0f0;
+            color: #666;
+        }
+
+        .change-btn {
+            background: #f8f9fa;
+            color: #333;
+            border: 1px solid #e8e8e8;
+            padding: 14px 24px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 500;
+            font-family: 'Cairo', sans-serif;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            white-space: nowrap;
+            height: fit-content;
+            min-width: 120px;
+        }
+
+        .change-btn:hover {
+            background: #e9ecef;
+            border-color: #dadce0;
+        }
+
+        .description-section {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 30px;
+            text-align: right;
+        }
+
+        .description {
+            font-size: 14px;
+            color: #8e8e93;
+            line-height: 1.6;
+            flex: 1;
+        }
+
+        .checkbox-wrapper {
+            display: flex;
+            align-items: center;
+            margin-top: 5px;
+        }
+
+        .checkbox-input {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #dadce0;
+            border-radius: 4px;
+            cursor: pointer;
+            position: relative;
+            appearance: none;
+            transition: all 0.2s ease;
+            background: white;
+        }
+
+        .checkbox-input:checked {
+            background: #6366f1;
+            border-color: #6366f1;
+        }
+
+        .checkbox-input:checked::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .submit-btn {
+            background: #6366f1;
+            color: white;
+            border: none;
+            padding: 16px 40px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 500;
+            font-family: 'Cairo', sans-serif;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .submit-btn:hover {
+            background: #5855eb;
+        }
+
+        .submit-btn:active {
+            transform: translateY(1px);
+        }
+
+        .success-message {
+            background: #ecfdf5;
+            border: 1px solid #a7f3d0;
+            color: #065f46;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .error-message {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            color: #991b1b;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .container {
+            animation: fadeInUp 0.4s ease-out;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 35px 25px;
+                margin: 10px;
+                max-width: 95%;
+            }
+
+            .title {
+                font-size: 24px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .form-input {
+                padding: 13px 14px;
+                font-size: 14px;
+                min-width: auto;
+            }
+
+            .change-btn {
+                padding: 13px 20px;
+                font-size: 14px;
+                width: 100%;
+                justify-self: stretch;
+                min-width: auto;
+            }
+
+            .submit-btn {
+                padding: 15px 30px;
+                font-size: 14px;
+                width: 100%;
+                justify-content: center;
+            }
+
+            .description-section {
+                flex-direction: column;
+                gap: 10px;
+                align-items: start;
+            }
+
+            .checkbox-wrapper {
+                margin-top: 0;
+                align-self: flex-end;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 30px 20px;
+            }
+
+            .title {
+                font-size: 22px;
+            }
+
+            .description {
+                font-size: 13px;
+            }
+
+            .form-row {
+                gap: 12px;
+            }
+
+            .change-btn {
+                padding: 12px 16px;
+                font-size: 13px;
+            }
         }
     </style>
 </head>
 
 <body>
-    <div class="container d-flex justify-content-center align-items-center min-vh-100">
-        <div class="card settings-card">
-            <div class="card-body p-4 p-md-5">
-                <div class="text-center mb-4">
-                    <h2 class="fw-bold">إعدادات عامة</h2>
-                </div>
+    <div class="container">
+        <div class="success-message" id="successMessage">
+            <i class="fas fa-check-circle"></i>
+            تم تحديث الإعدادات بنجاح!
+        </div>
 
-                <div class="settings-section">
-                    <h5 class="section-title">البريد الإلكتروني الخاص</h5>
-                    
-                    <div class="row mb-3">
-                        <div class="col-md-4">
-                            <label for="emailName" class="form-label">اسم البريد</label>
-                            <input type="text" class="form-control" id="emailName" value="اسم العميل">
-                        </div>
-                        <div class="col-md-8">
-                            <label for="emailAddress" class="form-label">البريد الإلكتروني</label>
-                            <input type="email" class="form-control" id="emailAddress" value="contact@mohammoon.com">
-                        </div>
-                    </div>
-                    
-                    <p class="settings-note">
-                        إرسال رسائل تذكير للمشتركين الذين انتهت مؤخراً فترة اشتراكاتهم
-                    </p>
-                    
-                    <div class="d-grid">
-                        <button type="button" id="updateSettingsBtn" class="btn btn-update">
-                            <i class="fas fa-sync-alt me-2"></i> تحديث
-                        </button>
-                    </div>
+        <div class="error-message" id="errorMessage">
+            <i class="fas fa-exclamation-circle"></i>
+            حدث خطأ! يرجى المحاولة مرة أخرى.
+        </div>
+
+        <h1 class="title">إعدادات البريد الإلكتروني</h1>
+
+        <form id="settingsForm">
+            <div class="form-row">
+                
+                <div class="form-group">
+                    <label class="form-label">البريد الإلكتروني الحالي</label>
+                    <input type="email" class="form-input" id="currentEmail" value="contact@mohamoon.com" readonly>
+                </div>
+                <button type="button" class="change-btn" id="changeBtn">غير البريد</button>
+            </div>
+
+            <div class="description-section">
+                <div class="description">
+                    إرسال رسالة تذكير لملاحق المشتركين الذين يقترب موعد انتهاء اشتراكهم
+                </div>
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" class="checkbox-input" id="reminderCheckbox" checked>
                 </div>
             </div>
-        </div>
+
+            <button type="submit" class="submit-btn">
+                <i class="fas fa-sync-alt"></i>
+                تحديث
+            </button>
+        </form>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const updateBtn = document.getElementById('updateSettingsBtn');
-            
-            updateBtn.addEventListener('click', function() {
-                const emailName = document.getElementById('emailName').value;
-                const emailAddress = document.getElementById('emailAddress').value;
+            const form = document.getElementById('settingsForm');
+            const successMessage = document.getElementById('successMessage');
+            const errorMessage = document.getElementById('errorMessage');
+            const currentEmailInput = document.getElementById('currentEmail');
+            const changeBtn = document.getElementById('changeBtn');
+            const reminderCheckbox = document.getElementById('reminderCheckbox');
+
+            // Change email button functionality
+            changeBtn.addEventListener('click', function() {
+                const newEmail = prompt('أدخل البريد الإلكتروني الجديد:', '');
                 
-                // Simple validation
-                if (!emailName.trim()) {
-                    alert('الرجاء إدخال اسم البريد');
-                    return;
+                if (newEmail && newEmail.trim()) {
+                    if (!isValidEmail(newEmail.trim())) {
+                        showError('يرجى إدخال بريد إلكتروني صحيح');
+                        return;
+                    }
+                    
+                    if (newEmail.trim() === currentEmailInput.value) {
+                        showError('البريد الجديد يجب أن يكون مختلفاً عن البريد الحالي');
+                        return;
+                    }
+                    
+                    // Simulate updating email
+                    currentEmailInput.value = newEmail.trim();
+                    showSuccess('تم تغيير البريد الإلكتروني بنجاح!');
                 }
+            });
+
+            // Form submission
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
                 
-                if (!emailAddress.trim()) {
-                    alert('الرجاء إدخال عنوان البريد الإلكتروني');
-                    return;
+                // Hide previous messages
+                successMessage.style.display = 'none';
+                errorMessage.style.display = 'none';
+
+                // Simulate form submission
+                const submitBtn = form.querySelector('.submit-btn');
+                const originalText = submitBtn.innerHTML;
+                
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري التحديث...';
+                submitBtn.disabled = true;
+
+                setTimeout(() => {
+                    showSuccess('تم تحديث الإعدادات بنجاح!');
+                    
+                    // Reset button
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                }, 2000);
+            });
+
+            // Email validation
+            function isValidEmail(email) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return emailRegex.test(email);
+            }
+
+            // Show success message
+            function showSuccess(message = 'تم تحديث الإعدادات بنجاح!') {
+                successMessage.innerHTML = '<i class="fas fa-check-circle"></i> ' + message;
+                successMessage.style.display = 'block';
+                successMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+
+            // Show error message
+            function showError(message) {
+                errorMessage.innerHTML = '<i class="fas fa-exclamation-circle"></i> ' + message;
+                errorMessage.style.display = 'block';
+                errorMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+
+            // Checkbox toggle animation
+            reminderCheckbox.addEventListener('change', function() {
+                if (this.checked) {
+                    console.log('تم تفعيل التذكيرات');
+                } else {
+                    console.log('تم إلغاء التذكيرات');
                 }
-                
-                // Email validation
-                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!emailPattern.test(emailAddress)) {
-                    alert('الرجاء إدخال بريد إلكتروني صحيح');
-                    return;
-                }
-                
-                // Save settings (this would normally send to server)
-                alert('تم تحديث الإعدادات بنجاح!');
             });
         });
     </script>

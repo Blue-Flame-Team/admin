@@ -73,12 +73,12 @@
                     
                     <div class="form-row">
                         <div class="form-group half-width">
-                            <label for="issuanceNumber">رقم الإصدار</label>
-                            <input type="text" id="issuanceNumber" class="form-control" placeholder="أدخل رقم الإصدار">
-                        </div>
-                        <div class="form-group half-width">
                             <label for="documentTitle">عنوان الوثيقة</label>
                             <input type="text" id="documentTitle" class="form-control" placeholder="أدخل عنوان الوثيقة">
+                        </div>
+                        <div class="form-group half-width">
+                            <label for="issuanceNumber">رقم الإصدار</label>
+                            <input type="text" id="issuanceNumber" class="form-control" placeholder="أدخل رقم الإصدار">
                         </div>
                     </div>
                     
@@ -133,24 +133,27 @@
                     </div>
                     
                     <div class="form-group">
-                        <label for="officialDocumentUpload">رفع النسخة الرسمية</label>
-                        <div class="file-upload-container">
-                            <div class="file-upload-area">
-                                <div class="file-upload-content">
-                                    <i class="fas fa-upload"></i>
-                                    <p>اسحب الملف هنا أو انقر للتحميل</p>
-                                    <small>PDF, DOCX, etc</small>
+                        <label>رفع النسخة الرسمية</label>
+                        <div class="file-upload-area">
+                            <input type="file" id="officialDocumentUpload" class="file-input" accept=".pdf,.doc,.docx">
+                            <div class="file-upload-content">
+                                <div class="upload-icon">
+                                    <i class="fas fa-cloud-upload-alt"></i>
                                 </div>
-                                <input type="file" id="officialDocumentUpload" class="file-input">
+                                <div class="upload-text">
+                                    <p>اسحب الملف هنا أو انقر للتحميل</p>
+                                    <span>مجاناً</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                     
-                    <div class="form-group checkbox-group">
+                    <div class="form-group">
                         <label class="checkbox-label">
-                            <input type="checkbox" id="attachToDefinitionCard">
+                            <input type="checkbox" class="checkbox-input" id="attachToDefinitionCard">
                             <span class="checkbox-custom"></span>
-                            <span class="checkbox-text">إضافة بيانات لبطاقة التعريف</span>
+                            <span class="checkbox-text">إضافة بيانات بطاقة التصنيف</span>
+                        </label>
                         </label>
                     </div>
                 </div>

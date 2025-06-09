@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدارة الحقول</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Responsive base */
+        html {
+            font-size: 16px;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #F8FAFC;
+            color: #333;
+            direction: rtl;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Header */
+        .header {
+            background: white;
+            padding: 15px 30px;
+            box-shadow: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+
+
+        .search-bar {
+            position: relative;
+            width: 256px;
+            height: 41px;
+        }
+
+        .search-input {
+            width: 100%;
+            height: 100%;
+            padding: 0 40px 0 16px;
+            border: 1px solid #E5E7EB;
+            border-radius: 8px;
+            font-size: 14px;
+            background: #F9FAFB;
+            transition: all 0.3s ease;
+            font-family: 'Cairo', sans-serif;
+            outline: none;
+        }
+
+        .search-input:focus {
+            border-color: #3B82F6;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .search-input::placeholder {
+            color: #9CA3AF;
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #6B7280;
+            font-size: 14px;
+            pointer-events: none;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .profile-icon {
+            width: 40px;
+            height: 40px;
+            background: #f8f9fa;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .profile-icon:hover {
+            background: #f0f0f0;
+        }
+
+        .logo-section {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 2px;
+        }
+
+        .logo-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            line-height: 1;
+        }
+
+        .logo-subtitle {
+            font-size: 12px;
+            color: #666;
+            font-weight: 400;
+            line-height: 1;
+        }
+
+        .logo-image {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 24px 32px;
+            width: 100%;
+            max-width: 1248px;
+            min-height: 614.5px;
+            margin: 24px auto 0;
+            background: white;
+            border-radius: 12px;
+        }
+
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            padding-bottom: 0;
+        }
+
+        .page-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #1F2937;
+            margin: 0;
+        }
+
+        .add-btn {
+            background: #4285f4;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .add-btn:hover {
+            background: #3367d6;
+            box-shadow: 0 2px 8px rgba(66,133,244,0.3);
+        }
+
+        /* Table Container */
+        .table-container {
+            background: white;
+            border-radius: 0;
+            box-shadow: none;
+            border: none;
+            overflow: hidden;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0;
+            background: white;
+        }
+
+        .table th {
+            background: #E5E7EB;
+            padding: 12px 16px;
+            text-align: center;
+            font-weight: 500;
+            color: #374151;
+            border-bottom: 1px solid #E5E7EB;
+            font-size: 13px;
+            border-right: none;
+            border-left: none;
+            border-top: none;
+        }
+
+        .table td {
+            padding: 12px 16px;
+            text-align: center;
+            border-bottom: 1px solid #F3F4F6;
+            color: #6B7280;
+            font-size: 13px;
+            border-right: none;
+            border-left: none;
+            vertical-align: middle;
+        }
+
+        .table tbody tr:hover {
+            background: #F8FAFC;
+        }
+
+        .table tbody tr:last-child td {
+            border-bottom: 1px solid #F1F5F9;
+        }
+
+        .serial-number {
+            font-weight: 500;
+            color: #334155;
+            font-size: 14px;
+        }
+
+        .field-name {
+            font-weight: 500;
+            color: #334155;
+        }
+
+        .field-type {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 400;
+            background: white;
+            color: #64748B;
+            display: inline-block;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .action-btn {
+            width: 32px;
+            height: 32px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            font-size: 14px;
+        }
+
+        .edit-btn {
+            background: #EFF6FF;
+            color: #3B82F6;
+        }
+
+        .edit-btn:hover {
+            background: #DBEAFE;
+        }
+
+        .delete-btn {
+            background: #FEF2F2;
+            color: #EF4444;
+        }
+
+        .delete-btn:hover {
+            background: #FEE2E2;
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            margin-top: 24px;
+            padding-top: 16px;
+        }
+
+        .pagination-btn {
+            min-width: 40px;
+            height: 40px;
+            border: 1px solid #f0f0f0;
+            background: white;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-size: 14px;
+            font-weight: 400;
+            color: #999;
+            padding: 0 8px;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .pagination-btn:hover {
+            border-color: #4285f4;
+            color: #4285f4;
+        }
+
+        .pagination-btn.active {
+            background: #4285f4;
+            color: white;
+            border-color: #4285f4;
+        }
+
+        .pagination-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Responsive Design */
+        
+        /* Large screens (1200px+) */
+        @media (min-width: 1200px) {
+            .main-content {
+                padding: 32px 40px;
+            }
+            
+            .search-bar {
+                width: 300px;
+            }
+        }
+
+        /* Medium screens (768px - 1199px) */
+        @media (max-width: 1199px) and (min-width: 768px) {
+            .header {
+                padding: 12px 24px;
+            }
+
+            .main-content {
+                padding: 24px 20px;
+                margin: 16px auto 0;
+            }
+
+            .search-bar {
+                width: 220px;
+            }
+
+            .table th,
+            .table td {
+                padding: 10px 14px;
+                font-size: 13px;
+            }
+        }
+
+        /* Tablet screens (768px) */
+        @media (max-width: 768px) {
+            .header {
+                padding: 12px 16px;
+                flex-wrap: wrap;
+            }
+
+            .header-left {
+                order: 1;
+            }
+
+            .header-right {
+                order: 2;
+                gap: 12px;
+            }
+
+            .main-content {
+                padding: 20px 16px;
+                margin: 12px auto 0;
+                border-radius: 8px;
+            }
+
+            .page-header {
+                flex-direction: column;
+                gap: 16px;
+                align-items: stretch;
+                text-align: center;
+            }
+
+            .page-title {
+                font-size: 18px;
+                margin-bottom: 0;
+            }
+
+            .add-btn {
+                justify-content: center;
+                width: 100%;
+                padding: 12px 20px;
+                font-size: 14px;
+            }
+
+            .table-container {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                border-radius: 8px;
+            }
+
+            .table {
+                min-width: 650px;
+            }
+
+            .table th,
+            .table td {
+                padding: 10px 12px;
+                font-size: 12px;
+                white-space: nowrap;
+            }
+
+            .search-bar {
+                width: 160px;
+                height: 36px;
+            }
+
+            .search-input {
+                font-size: 13px;
+                padding: 0 32px 0 12px;
+            }
+
+            .search-icon {
+                right: 10px;
+                font-size: 12px;
+            }
+
+            .logo-image {
+                width: 40px;
+                height: 40px;
+            }
+
+            .profile-icon {
+                width: 36px;
+                height: 36px;
+            }
+
+            .field-type {
+                font-size: 11px;
+                padding: 3px 6px;
+            }
+
+            .action-btn {
+                width: 28px;
+                height: 28px;
+                font-size: 12px;
+            }
+
+            .pagination-btn {
+                min-width: 36px;
+                height: 36px;
+                font-size: 13px;
+            }
+        }
+
+        /* Mobile Design Only */
+        @media (max-width: 480px) {
+            body {
+                background-color: #F8FAFC;
+            }
+
+            .header {
+                padding: 8px 16px;
+                background: white;
+                border-bottom: 1px solid #E5E7EB;
+            }
+
+            .header-left {
+                justify-content: flex-start;
+            }
+
+            .header-right {
+                gap: 12px;
+            }
+
+            .logo-image {
+                width: 32px;
+                height: 32px;
+            }
+
+            .search-bar {
+                width: 140px;
+                height: 32px;
+            }
+
+            .search-input {
+                font-size: 12px;
+                padding: 0 28px 0 10px;
+                border-radius: 6px;
+            }
+
+            .search-icon {
+                right: 8px;
+                font-size: 11px;
+            }
+
+            .profile-icon {
+                width: 32px;
+                height: 32px;
+                font-size: 14px;
+            }
+
+            .main-content {
+                padding: 16px;
+                margin: 8px 16px;
+                border-radius: 12px;
+                background: white;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            }
+
+            .page-header {
+                gap: 16px;
+                margin-bottom: 20px;
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .page-title {
+                font-size: 18px;
+                text-align: right;
+                font-weight: 600;
+                color: #1F2937;
+            }
+
+            .add-btn {
+                padding: 12px 16px;
+                font-size: 14px;
+                border-radius: 8px;
+                width: 100%;
+                justify-content: center;
+            }
+
+            /* Mobile Table Design */
+            .table-container {
+                border: none;
+                background: transparent;
+                overflow: visible;
+            }
+
+            .table {
+                width: 100%;
+                min-width: auto;
+                background: transparent;
+                border-collapse: separate;
+                border-spacing: 0 8px;
+            }
+
+            .table thead {
+                display: none;
+            }
+
+            .table tbody tr {
+                display: block;
+                background: white;
+                border: 1px solid #E5E7EB;
+                border-radius: 8px;
+                padding: 16px;
+                margin-bottom: 12px;
+                box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            }
+
+            .table tbody tr:hover {
+                background: white;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            .table tbody tr:last-child {
+                margin-bottom: 0;
+            }
+
+            .table td {
+                display: block;
+                padding: 0;
+                border: none;
+                text-align: right;
+                margin-bottom: 8px;
+            }
+
+            .table td:last-child {
+                margin-bottom: 0;
+            }
+
+            .table td:before {
+                content: attr(data-label);
+                font-weight: 500;
+                color: #6B7280;
+                font-size: 12px;
+                display: block;
+                margin-bottom: 4px;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+            }
+
+            /* First cell (serial number) special styling */
+            .table td:first-child {
+                background: #F8FAFC;
+                border-radius: 6px;
+                padding: 8px 12px;
+                margin-bottom: 12px;
+                border: 1px solid #E5E7EB;
+            }
+
+            .table td:first-child:before {
+                content: "الرقم التسلسلي";
+            }
+
+            .table td:nth-child(2):before {
+                content: "اسم الحقل";
+            }
+
+            .table td:nth-child(3):before {
+                content: "الوصف";
+            }
+
+            .table td:nth-child(4):before {
+                content: "النوع";
+            }
+
+            .table td:nth-child(5):before {
+                content: "الإجراءات";
+            }
+
+            .serial-number {
+                font-size: 14px;
+                font-weight: 600;
+                color: #1F2937;
+                text-align: center;
+            }
+
+            .field-name {
+                font-size: 14px;
+                font-weight: 500;
+                color: #1F2937;
+            }
+
+            .field-type {
+                font-size: 12px;
+                padding: 4px 8px;
+                border-radius: 4px;
+                display: inline-block;
+                margin-top: 4px;
+            }
+
+            .actions {
+                justify-content: center;
+                gap: 8px;
+                margin-top: 8px;
+            }
+
+            .action-btn {
+                width: 32px;
+                height: 32px;
+                font-size: 12px;
+            }
+
+            .pagination {
+                margin-top: 20px;
+                gap: 8px;
+                justify-content: center;
+            }
+
+            .pagination-btn {
+                min-width: 36px;
+                height: 36px;
+                font-size: 13px;
+            }
+        }
+
+        /* Extra small screens (320px) */
+        @media (max-width: 320px) {
+            .header {
+                padding: 6px 8px;
+            }
+
+            .main-content {
+                padding: 12px 8px;
+            }
+
+            .page-title {
+                font-size: 15px;
+            }
+
+            .table {
+                min-width: 450px;
+            }
+
+            .table th,
+            .table td {
+                padding: 6px 8px;
+                font-size: 10px;
+            }
+
+            .search-bar {
+                width: 120px;
+                height: 30px;
+            }
+
+            .search-input {
+                font-size: 11px;
+                padding: 0 25px 0 8px;
+            }
+
+            .logo-image {
+                width: 28px;
+                height: 28px;
+            }
+
+            .profile-icon {
+                width: 30px;
+                height: 30px;
+            }
+
+            .action-btn {
+                width: 22px;
+                height: 22px;
+                font-size: 10px;
+            }
+
+            .pagination-btn {
+                min-width: 28px;
+                height: 28px;
+                font-size: 11px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <div class="header-left">
+            <img src="assets/images/full-logo.png" alt="محامو المملكة" class="logo-image">
+        </div>
+
+        <div class="header-right">
+            <div class="search-bar">
+                <input type="text" class="search-input" placeholder="بحث...">
+                <i class="fas fa-search search-icon"></i>
+            </div>
+            <div class="profile-icon">
+                <i class="fas fa-user"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="page-header">
+            <a href="#" class="add-btn">
+                <i class="fas fa-plus"></i>
+                إضافة حقل جديد
+            </a>
+            <h1 class="page-title">إدارة الحقول</h1>
+        </div>
+
+        <div class="table-container">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>الرقم التسلسلي</th>
+                        <th>اسم الحقل</th>
+                        <th>الوصف</th>
+                        <th>النوع</th>
+                        <th>الإجراءات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="serial-number" data-label="الرقم التسلسلي">١</td>
+                        <td class="field-name" data-label="اسم الحقل">الاسم الكامل</td>
+                        <td data-label="الوصف">اسم المستخدم الكامل</td>
+                        <td data-label="النوع"><span class="field-type">نص</span></td>
+                        <td data-label="الإجراءات">
+                            <div class="actions">
+                                <button class="action-btn delete-btn" title="حذف">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                                <button class="action-btn edit-btn" title="تحرير">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="serial-number" data-label="الرقم التسلسلي">٢</td>
+                        <td class="field-name" data-label="اسم الحقل">البريد الإلكتروني</td>
+                        <td data-label="الوصف">عنوان البريد الإلكتروني للمستخدم</td>
+                        <td data-label="النوع"><span class="field-type">بريد إلكتروني</span></td>
+                        <td data-label="الإجراءات">
+                            <div class="actions">
+                                <button class="action-btn delete-btn" title="حذف">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                                <button class="action-btn edit-btn" title="تحرير">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="serial-number" data-label="الرقم التسلسلي">٣</td>
+                        <td class="field-name" data-label="اسم الحقل">رقم الهاتف</td>
+                        <td data-label="الوصف">رقم الهاتف المحمول للتواصل</td>
+                        <td data-label="النوع"><span class="field-type">هاتف</span></td>
+                        <td data-label="الإجراءات">
+                            <div class="actions">
+                                <button class="action-btn delete-btn" title="حذف">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                                <button class="action-btn edit-btn" title="تحرير">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="serial-number" data-label="الرقم التسلسلي">٤</td>
+                        <td class="field-name" data-label="اسم الحقل">العنوان</td>
+                        <td data-label="الوصف">عنوان السكن الكامل</td>
+                        <td data-label="النوع"><span class="field-type">نص طويل</span></td>
+                        <td data-label="الإجراءات">
+                            <div class="actions">
+                                <button class="action-btn delete-btn" title="حذف">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                                <button class="action-btn edit-btn" title="تحرير">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="serial-number" data-label="الرقم التسلسلي">٥</td>
+                        <td class="field-name" data-label="اسم الحقل">تاريخ الميلاد</td>
+                        <td data-label="الوصف">تاريخ ميلاد المستخدم</td>
+                        <td data-label="النوع"><span class="field-type">تاريخ</span></td>
+                        <td data-label="الإجراءات">
+                            <div class="actions">
+                                <button class="action-btn delete-btn" title="حذف">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                                <button class="action-btn edit-btn" title="تحرير">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="serial-number" data-label="الرقم التسلسلي">٦</td>
+                        <td class="field-name" data-label="اسم الحقل">الجنس</td>
+                        <td data-label="الوصف">جنس المستخدم</td>
+                        <td data-label="النوع"><span class="field-type">اختيار</span></td>
+                        <td data-label="الإجراءات">
+                            <div class="actions">
+                                <button class="action-btn delete-btn" title="حذف">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                                <button class="action-btn edit-btn" title="تحرير">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="serial-number" data-label="الرقم التسلسلي">٧</td>
+                        <td class="field-name" data-label="اسم الحقل">الصورة الشخصية</td>
+                        <td data-label="الوصف">صورة المستخدم الشخصية</td>
+                        <td data-label="النوع"><span class="field-type">ملف</span></td>
+                        <td data-label="الإجراءات">
+                            <div class="actions">
+                                <button class="action-btn delete-btn" title="حذف">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                                <button class="action-btn edit-btn" title="تحرير">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination">
+            <button class="pagination-btn" disabled>
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            <button class="pagination-btn">٣</button>
+            <button class="pagination-btn">٢</button>
+            <button class="pagination-btn active">١</button>
+            <button class="pagination-btn">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Delete buttons
+            const deleteBtns = document.querySelectorAll('.delete-btn');
+            deleteBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    if (confirm('هل أنت متأكد من حذف هذا الحقل؟')) {
+                        const row = this.closest('tr');
+                        row.remove();
+                        alert('تم حذف الحقل بنجاح');
+                    }
+                });
+            });
+
+            // Edit buttons
+            const editBtns = document.querySelectorAll('.edit-btn');
+            editBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    alert('سيتم توجيهك لصفحة التحرير');
+                });
+            });
+
+            // Pagination
+            const paginationBtns = document.querySelectorAll('.pagination-btn');
+            paginationBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    if (!this.disabled && !this.classList.contains('active')) {
+                        // Remove active class from all buttons
+                        paginationBtns.forEach(b => b.classList.remove('active'));
+                        
+                        // Add active class to clicked button (if it's a number)
+                        if (!this.querySelector('i')) {
+                            this.classList.add('active');
+                        }
+                        
+                        console.log('تحميل الصفحة:', this.textContent);
+                    }
+                });
+            });
+
+            // Add button
+            document.querySelector('.add-btn').addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('سيتم توجيهك لصفحة إضافة حقل جديد');
+            });
+        });
+    </script>
+</body>
+</html> 

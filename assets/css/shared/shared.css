@@ -1,0 +1,13 @@
+/* Shared Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Tajawal', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background-color: #F8F9FA;
+    direction: rtl;
+}

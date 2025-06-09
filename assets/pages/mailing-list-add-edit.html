@@ -5,94 +5,375 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>القائمة البريدية - إضافة وتعديل</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="../css/mailing-list/mailing-list-add-edit.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900;1000&display=swap');
-        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Cairo', sans-serif;
-            background-color: #f8f9fa;
+            background: #f8f9fa;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            direction: rtl;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            padding: 50px 40px;
+            max-width: 450px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            border: 1px solid #f0f0f0;
+            animation: fadeInUp 0.4s ease-out;
+        }
+
+        .container::before {
+            display: none;
+        }
+
+        .title {
+            font-size: 28px;
+            font-weight: 600;
+            color: #333333;
+            margin-bottom: 8px;
+            letter-spacing: -0.3px;
+        }
+
+        .subtitle {
+            font-size: 15px;
+            color: #8e8e93;
+            margin-bottom: 35px;
+            line-height: 1.4;
+            font-weight: 400;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: right;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            color: #333333;
+            margin-bottom: 8px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 14px 50px 14px 16px;
+            border: 1px solid #e8e8e8;
+            border-radius: 8px;
+            font-size: 15px;
+            font-family: 'Cairo', sans-serif;
+            background: #f8f9fa;
+            transition: all 0.2s ease;
+            direction: rtl;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #6366f1;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.08);
+        }
+
+        .form-input::placeholder {
+            color: #bbb;
+            font-size: 14px;
+        }
+
+        .input-icon {
+            position: relative;
+        }
+
+        .input-icon .icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #bbb;
+            font-size: 16px;
+            z-index: 1;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: #6366f1;
+            color: white;
+            border: none;
+            padding: 16px 20px;
+            border-radius: 8px;
+            font-size: 15px;
+            font-weight: 500;
+            font-family: 'Cairo', sans-serif;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-top: 15px;
+        }
+
+        .submit-btn:hover {
+            background: #5855eb;
+        }
+
+        .submit-btn:active {
+            transform: translateY(1px);
+        }
+
+        .privacy-note {
+            font-size: 13px;
+            color: #8e8e93;
+            margin-top: 20px;
+            line-height: 1.4;
+            font-weight: 400;
+        }
+
+        .success-message {
+            background: #ecfdf5;
+            border: 1px solid #a7f3d0;
+            color: #065f46;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        .error-message {
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+            color: #991b1b;
+            padding: 12px 16px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            display: none;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .form-group {
+            animation: fadeInUp 0.6s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .form-group:nth-child(1) { animation-delay: 0.1s; }
+        .form-group:nth-child(2) { animation-delay: 0.2s; }
+        .form-group:nth-child(3) { animation-delay: 0.3s; }
+        .submit-btn { animation-delay: 0.4s; }
+        .privacy-note { animation-delay: 0.5s; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 35px 25px;
+                margin: 10px;
+                max-width: 95%;
+            }
+
+            .title {
+                font-size: 24px;
+            }
+
+            .subtitle {
+                font-size: 14px;
+            }
+
+            .form-input {
+                padding: 13px 45px 13px 14px;
+                font-size: 14px;
+            }
+
+            .input-icon .icon {
+                left: 14px;
+                font-size: 15px;
+            }
+
+            .submit-btn {
+                padding: 15px 18px;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 30px 20px;
+            }
+
+            .title {
+                font-size: 22px;
+            }
+
+            .subtitle {
+                font-size: 13px;
+            }
         }
     </style>
 </head>
 
 <body>
-    <div class="container d-flex justify-content-center align-items-center min-vh-100">
-        <div class="card subscription-card">
-            <div class="card-body p-4 p-md-5">
-                <div class="text-center mb-4">
-                    <h2 class="fw-bold">القائمة البريدية</h2>
-                    <p class="text-muted">أضف بريدك الإلكتروني للحصول على آخر التحديثات</p>
-                </div>
-
-                <form id="subscription-form">
-                    <div class="mb-4">
-                        <label for="fullName" class="form-label">الاسم</label>
-                        <div class="input-group">
-                            <span class="input-group-text bg-white border-end-0"><i class="fa fa-user text-muted"></i></span>
-                            <input type="text" class="form-control border-start-0" id="fullName" placeholder="أدخل اسمك الكامل">
-                        </div>
-                    </div>
-
-                    <div class="mb-4">
-                        <label for="email" class="form-label">البريد الإلكتروني</label>
-                        <div class="input-group">
-                            <span class="input-group-text bg-white border-end-0"><i class="fa fa-envelope text-muted"></i></span>
-                            <input type="email" class="form-control border-start-0" id="email" placeholder="أدخل بريدك الإلكتروني">
-                        </div>
-                    </div>
-
-                    <div class="d-grid">
-                        <button type="submit" class="btn btn-subscribe">
-                            اشتراك <i class="fa fa-paper-plane ms-2"></i>
-                        </button>
-                    </div>
-
-                    <div class="text-center mt-3">
-                        <p class="privacy-note">لن نشارك معلوماتك مع أي طرف ثالث</p>
-                    </div>
-                </form>
-            </div>
+    <div class="container">
+        <div class="success-message" id="successMessage">
+            <i class="fas fa-check-circle"></i>
+            تم الاشتراك بنجاح! سنرسل لك آخر التحديثات.
         </div>
+
+        <div class="error-message" id="errorMessage">
+            <i class="fas fa-exclamation-circle"></i>
+            حدث خطأ! يرجى المحاولة مرة أخرى.
+        </div>
+
+        <h1 class="title">القائمة البريدية</h1>
+        <p class="subtitle">أضف بريد إلكتروني للحصول على آخر التحديثات</p>
+
+        <form id="mailingForm">
+            <div class="form-group">
+                <label class="form-label">الاسم</label>
+                <div class="input-icon">
+                    <input type="text" class="form-input" id="name" placeholder="أدخل اسمك الكامل" required>
+                    <i class="fas fa-user icon"></i>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">البريد الإلكتروني</label>
+                <div class="input-icon">
+                    <input type="email" class="form-input" id="email" placeholder="أدخل بريدك الإلكتروني" required>
+                    <i class="fas fa-envelope icon"></i>
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn">
+                <i class="fas fa-paper-plane" style="margin-left: 8px;"></i>
+                اشترك
+            </button>
+        </form>
+
+        <p class="privacy-note">
+            لن نشارك معلوماتك مع أي طرف آخر
+        </p>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const form = document.getElementById('subscription-form');
-            
-            form.addEventListener('submit', function(event) {
-                event.preventDefault();
+            const form = document.getElementById('mailingForm');
+            const successMessage = document.getElementById('successMessage');
+            const errorMessage = document.getElementById('errorMessage');
+            const nameInput = document.getElementById('name');
+            const emailInput = document.getElementById('email');
+
+            // Form submission
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
                 
-                const nameInput = document.getElementById('fullName');
-                const emailInput = document.getElementById('email');
-                
-                // Simple validation
-                if (!nameInput.value.trim()) {
-                    alert('الرجاء إدخال الاسم');
-                    nameInput.focus();
+                // Hide previous messages
+                successMessage.style.display = 'none';
+                errorMessage.style.display = 'none';
+
+                // Get form data
+                const name = nameInput.value.trim();
+                const email = emailInput.value.trim();
+
+                // Validate inputs
+                if (!name || !email) {
+                    showError('يرجى ملء جميع الحقول المطلوبة');
                     return;
                 }
-                
-                if (!emailInput.value.trim()) {
-                    alert('الرجاء إدخال البريد الإلكتروني');
-                    emailInput.focus();
+
+                if (!isValidEmail(email)) {
+                    showError('يرجى إدخال بريد إلكتروني صحيح');
                     return;
                 }
+
+                // Simulate form submission
+                const submitBtn = form.querySelector('.submit-btn');
+                const originalText = submitBtn.innerHTML;
                 
-                // Email validation
-                const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                if (!emailPattern.test(emailInput.value)) {
-                    alert('الرجاء إدخال بريد إلكتروني صحيح');
-                    emailInput.focus();
-                    return;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin" style="margin-left: 8px;"></i> جاري الإرسال...';
+                submitBtn.disabled = true;
+
+                setTimeout(() => {
+                    // Simulate successful submission
+                    showSuccess();
+                    form.reset();
+                    
+                    // Reset button
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                }, 2000);
+            });
+
+            // Email validation
+            function isValidEmail(email) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                return emailRegex.test(email);
+            }
+
+            // Show success message
+            function showSuccess() {
+                successMessage.style.display = 'block';
+                successMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+
+            // Show error message
+            function showError(message) {
+                errorMessage.innerHTML = '<i class="fas fa-exclamation-circle"></i> ' + message;
+                errorMessage.style.display = 'block';
+                errorMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }
+
+            // Input validation on blur
+            emailInput.addEventListener('blur', function() {
+                const email = this.value.trim();
+                if (email && !isValidEmail(email)) {
+                    this.style.borderColor = '#ef4444';
+                } else {
+                    this.style.borderColor = '#e5e7eb';
                 }
-                
-                // Submit form (this would normally send to server)
-                alert('تم الاشتراك بنجاح!');
-                form.reset();
+            });
+
+            // Real-time email validation
+            emailInput.addEventListener('input', function() {
+                const email = this.value.trim();
+                if (email && isValidEmail(email)) {
+                    this.style.borderColor = '#10b981';
+                } else if (email) {
+                    this.style.borderColor = '#ef4444';
+                } else {
+                    this.style.borderColor = '#e5e7eb';
+                }
+            });
+
+            // Focus animations
+            const inputs = document.querySelectorAll('.form-input');
+            inputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.parentElement.style.transform = 'scale(1.02)';
+                });
+
+                input.addEventListener('blur', function() {
+                    this.parentElement.style.transform = 'scale(1)';
+                });
             });
         });
     </script>

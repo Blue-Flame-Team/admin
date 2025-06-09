@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام إدارة المحتوى</title>
+    <link rel="stylesheet" href="../css/cms/cms-folders.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&family=Tajawal:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="main-container">
+        <!-- Top Header Bar -->
+        <div class="top-header-bar">
+            <div class="header-left">
+                <a href="#" class="user-icon"><i class="far fa-user"></i></a>
+                <a href="#" class="notification-icon"><i class="far fa-bell"></i></a>
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="بحث">
+                </div>
+            </div>
+            <div class="page-title">نظام إدارة المحتوى</div>
+        </div>
+
+        <!-- Navigation Bar -->
+        <div class="navigation-bar">
+            <div class="nav-right">
+                <button class="nav-btn secondary">
+                    <i class="far fa-clipboard"></i>
+                    لصق
+                </button>
+                <button class="nav-btn primary">إضافة ملف</button>
+                <button class="nav-btn primary">إضافة مجلد</button>
+            </div>
+            
+            <!-- Mobile Search Bar -->
+            <div class="mobile-search">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="بحث">
+            </div>
+            
+            <div class="nav-left">
+                <a href="#" class="nav-login">تسجيل</a>
+                <div class="filter-group">
+                    <span class="filter-label">عرض:</span>
+                    <button class="filter-button">الكل</button>
+                </div>
+                <div class="filter-group">
+                    <span class="filter-label">ترتيب حسب:</span>
+                    <button class="filter-button">الاسم</button>
+                </div>
+            </div>
+            
+        </div>
+
+        <!-- Data Table -->
+        <div class="table-container">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>رقم متسلسل</th>
+                        <th>اسم الملف/المجلد ↓</th>
+                        <th>حالة الوصول</th>
+                        <th>أدوات التحرير</th>
+                        <th>إذن النشر</th>
+                        <th>إخفاء/إظهار</th>
+                        <th>حذف</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td class="file-name">
+                            <i class="far fa-file-alt file-icon"></i>
+                            الصفحة الرئيسية
+                        </td>
+                        <td><span class="status-badge free">مجاني</span></td>
+                        <td>
+                            <button class="action-btn"><i class="fas fa-ellipsis-h"></i></button>
+                        </td>
+                        <td>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </td>
+                        <td>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </td>
+                        <td>
+                            <button class="delete-btn"><i class="far fa-trash-alt"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td class="file-name">
+                            <i class="far fa-file-alt file-icon"></i>
+                            سياسة الخصوصية
+                        </td>
+                        <td><span class="status-badge free">مجاني</span></td>
+                        <td>
+                            <button class="action-btn"><i class="fas fa-ellipsis-h"></i></button>
+                        </td>
+                        <td>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </td>
+                        <td>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </td>
+                        <td>
+                            <button class="delete-btn"><i class="far fa-trash-alt"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td class="file-name">
+                            <i class="far fa-file-alt file-icon"></i>
+                            المنتجات
+                        </td>
+                        <td><span class="status-badge paid">غير مجاني</span></td>
+                        <td>
+                            <button class="action-btn"><i class="fas fa-ellipsis-h"></i></button>
+                        </td>
+                        <td>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </td>
+                        <td>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </td>
+                        <td>
+                            <button class="delete-btn"><i class="far fa-trash-alt"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td class="file-name">
+                            <i class="far fa-file-alt file-icon"></i>
+                            من نحن
+                        </td>
+                        <td><span class="status-badge free">مجاني</span></td>
+                        <td>
+                            <button class="action-btn"><i class="fas fa-ellipsis-h"></i></button>
+                        </td>
+                        <td>
+                            <label class="toggle-switch">
+                                <input type="checkbox">
+                                <span class="slider"></span>
+                            </label>
+                        </td>
+                        <td>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </td>
+                        <td>
+                            <button class="delete-btn"><i class="far fa-trash-alt"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td class="file-name">
+                            <i class="far fa-file-alt file-icon"></i>
+                            اتصل بنا
+                        </td>
+                        <td><span class="status-badge free">مجاني</span></td>
+                        <td>
+                            <button class="action-btn"><i class="fas fa-ellipsis-h"></i></button>
+                        </td>
+                        <td>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </td>
+                        <td>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </td>
+                        <td>
+                            <button class="delete-btn"><i class="far fa-trash-alt"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td class="file-name">
+                            <i class="far fa-file-alt file-icon"></i>
+                            المدونة
+                        </td>
+                        <td><span class="status-badge paid">غير مجاني</span></td>
+                        <td>
+                            <button class="action-btn"><i class="fas fa-ellipsis-h"></i></button>
+                        </td>
+                        <td>
+                            <label class="toggle-switch">
+                                <input type="checkbox">
+                                <span class="slider"></span>
+                            </label>
+                        </td>
+                        <td>
+                            <label class="toggle-switch">
+                                <input type="checkbox">
+                                <span class="slider"></span>
+                            </label>
+                        </td>
+                        <td>
+                            <button class="delete-btn"><i class="far fa-trash-alt"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td class="file-name">
+                            <i class="far fa-file-alt file-icon"></i>
+                            الاسئلة الشائعة
+                        </td>
+                        <td><span class="status-badge free">مجاني</span></td>
+                        <td>
+                            <button class="action-btn"><i class="fas fa-ellipsis-h"></i></button>
+                        </td>
+                        <td>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </td>
+                        <td>
+                            <label class="toggle-switch">
+                                <input type="checkbox" checked>
+                                <span class="slider"></span>
+                            </label>
+                        </td>
+                        <td>
+                            <button class="delete-btn"><i class="far fa-trash-alt"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <!-- Pagination -->
+            <div class="pagination">
+                <span class="records-info">عناصر</span>
+                <div class="pagination-controls">
+                    <button class="page-btn prev" disabled><i class="fas fa-chevron-right"></i></button>
+                    <button class="page-btn active">1</button>
+                    <button class="page-btn next"><i class="fas fa-chevron-left"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

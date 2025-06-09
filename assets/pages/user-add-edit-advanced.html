@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إضافة/تعديل بيانات المستخدم</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            direction: rtl;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Header */
+        .page-header {
+            background: white;
+            border-bottom: 1px solid #e9ecef;
+            padding: 20px 30px;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header-left {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .page-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin: 0;
+        }
+
+        .breadcrumb-section {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+        }
+
+        .breadcrumb-text {
+            color: #6c757d;
+        }
+
+        .breadcrumb-current {
+            color: #007bff;
+            font-weight: 500;
+        }
+
+        .breadcrumb-separator {
+            color: #adb5bd;
+            font-size: 12px;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s ease;
+            font-family: 'Cairo', Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: #007bff;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #0056b3;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #6c757d;
+            border: 1px solid #dee2e6;
+        }
+
+        .btn-secondary:hover {
+            background: #f8f9fa;
+        }
+
+
+        /* Content Area */
+        .main-content {
+            padding: 30px;
+            background: white;
+        }
+
+        /* Form Styles */
+        .form-section {
+            margin-bottom: 40px;
+            padding: 25px;
+            background: white;
+            border-radius: 12px;
+            border: 1px solid #e9ecef;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e9ecef;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 20px;
+        }
+
+        .form-row.single {
+            grid-template-columns: 1fr;
+        }
+
+        .form-row.triple {
+            grid-template-columns: 2fr 1fr 1fr;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-label {
+            font-size: 14px;
+            font-weight: 500;
+            color: #495057;
+            margin-bottom: 8px;
+            text-align: right;
+        }
+
+        .form-control, .form-select {
+            width: 100%;
+            height: 45px;
+            padding: 12px 15px;
+            border: 1px solid #ced4da;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: 'Cairo', Arial, sans-serif;
+            background: white;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+        }
+
+        .form-control::placeholder {
+            color: #adb5bd;
+        }
+
+        /* Input with icon */
+        .input-with-icon {
+            position: relative;
+        }
+
+        .input-with-icon .form-control {
+            padding-right: 45px;
+        }
+
+        .input-icon {
+            position: absolute;
+            top: 50%;
+            right: 15px;
+            transform: translateY(-50%);
+            color: #adb5bd;
+            font-size: 16px;
+        }
+
+        /* Radio Group */
+        .radio-group {
+            display: flex;
+            gap: 30px;
+            margin-top: 10px;
+        }
+
+        .radio-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .radio-input {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ced4da;
+            border-radius: 50%;
+            appearance: none;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .radio-input:checked {
+            border-color: #007bff;
+            background: #007bff;
+        }
+
+        .radio-input:checked::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 8px;
+            height: 8px;
+            background: white;
+            border-radius: 50%;
+        }
+
+        .radio-label {
+            font-size: 14px;
+            color: #495057;
+            cursor: pointer;
+        }
+
+        /* Checkbox */
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .checkbox-input {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ced4da;
+            border-radius: 4px;
+            appearance: none;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .checkbox-input:checked {
+            background: #007bff;
+            border-color: #007bff;
+        }
+
+        .checkbox-input:checked::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .checkbox-label {
+            font-size: 14px;
+            color: #495057;
+            cursor: pointer;
+        }
+
+        /* Two Column Layout for Usage Limits */
+        .usage-limits-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .limit-section {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            border: 1px solid #e9ecef;
+        }
+
+        .limit-section-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .limit-checkbox {
+            margin-bottom: 20px;
+        }
+
+        .limit-form-group {
+            margin-bottom: 15px;
+        }
+
+        .limit-form-group:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Toggle Switch for Limit Sections */
+        .limit-checkbox .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            justify-content: flex-start;
+            padding: 10px 0;
+            flex-direction: row-reverse;
+        }
+
+        .limit-checkbox .checkbox-input {
+            width: 60px;
+            height: 30px;
+            background: #e0e0e0;
+            border-radius: 15px;
+            border: none;
+            appearance: none;
+            cursor: pointer;
+            position: relative;
+            transition: background 0.3s ease;
+        }
+
+        .limit-checkbox .checkbox-input:checked {
+            background: #4CAF50;
+        }
+
+        .limit-checkbox .checkbox-input::before {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 24px;
+            height: 24px;
+            background: white;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .limit-checkbox .checkbox-input:checked::before {
+            transform: translateX(30px);
+        }
+
+        .limit-checkbox .checkbox-label {
+            font-size: 15px;
+            color: #2c3e50;
+            cursor: pointer;
+            font-weight: 400;
+            flex: 1;
+            text-align: right;
+        }
+
+        /* Navigation Tabs */
+        .navigation-tabs {
+            display: flex;
+            justify-content: flex-start;
+            background: white;
+            border-bottom: 1px solid #e9ecef;
+            margin-bottom: 30px;
+            padding: 0;
+            gap: 0;
+        }
+
+        .tab-item {
+            width: 185px;
+            height: 70px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: transparent;
+            border-bottom: 3px solid transparent;
+            position: relative;
+        }
+
+        .tab-item i {
+            font-size: 18px;
+            margin-bottom: 6px;
+        }
+
+        .tab-item.active {
+            color: #007bff;
+            border-bottom: 3px solid #007bff;
+        }
+
+        .tab-item:not(.active) {
+            color: #6c757d;
+        }
+
+        .tab-item:not(.active):hover {
+            color: #495057;
+            background: #f8f9fa;
+        }
+
+        .tab-text {
+            font-size: 13px;
+            font-weight: 400;
+            font-family: 'Cairo', Arial, sans-serif;
+            line-height: 1.2;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .tab-item {
+                width: 160px;
+                height: 65px;
+                padding: 8px;
+            }
+
+            .tab-item i {
+                font-size: 16px;
+            }
+
+            .tab-text {
+                font-size: 12px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                margin: 0;
+                border-radius: 8px;
+            }
+
+            .page-header {
+                padding: 15px 20px;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+                align-items: stretch;
+            }
+
+            .header-left {
+                align-items: flex-start;
+            }
+
+            .header-actions {
+                justify-content: center;
+                flex-direction: row;
+            }
+
+            .btn {
+                padding: 8px 16px;
+                font-size: 13px;
+            }
+
+            .main-content {
+                padding: 20px 15px;
+            }
+
+            .navigation-tabs {
+                overflow-x: auto;
+                white-space: nowrap;
+                justify-content: flex-start;
+                padding: 0 5px;
+            }
+
+            .tab-item {
+                width: 130px;
+                height: 55px;
+                padding: 6px;
+                flex-shrink: 0;
+            }
+
+            .tab-item i {
+                font-size: 14px;
+                margin-bottom: 3px;
+            }
+
+            .tab-text {
+                font-size: 10px;
+                line-height: 1.1;
+            }
+
+            .form-section {
+                padding: 20px 15px;
+                margin-bottom: 25px;
+            }
+
+            .section-title {
+                font-size: 15px;
+                margin-bottom: 15px;
+            }
+
+            .form-row, .form-row.triple {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .usage-limits-container {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                margin-top: 15px;
+            }
+
+            .limit-section {
+                padding: 20px 15px;
+            }
+
+            .limit-section-title {
+                font-size: 15px;
+                margin-bottom: 15px;
+            }
+
+            .radio-group {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .form-control, .form-select {
+                height: 44px;
+                font-size: 14px;
+                padding: 12px;
+            }
+
+            .form-label {
+                font-size: 13px;
+                margin-bottom: 6px;
+            }
+
+            .breadcrumb-section {
+                font-size: 12px;
+            }
+
+            .page-title {
+                font-size: 18px;
+            }
+
+            /* Toggle Switch Mobile */
+            .limit-checkbox .checkbox-input {
+                width: 50px;
+                height: 26px;
+                border-radius: 13px;
+            }
+
+            .limit-checkbox .checkbox-input::before {
+                width: 20px;
+                height: 20px;
+                top: 3px;
+                left: 3px;
+            }
+
+            .limit-checkbox .checkbox-input:checked::before {
+                transform: translateX(24px);
+            }
+
+            .limit-checkbox .checkbox-label {
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 5px;
+            }
+
+            .page-header {
+                padding: 12px 15px;
+            }
+
+            .main-content {
+                padding: 15px 10px;
+            }
+
+            .header-actions {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .btn {
+                width: 100%;
+                padding: 10px;
+                font-size: 14px;
+            }
+
+            .navigation-tabs {
+                padding: 0;
+            }
+
+            .tab-item {
+                width: 110px;
+                height: 50px;
+                padding: 4px;
+            }
+
+            .tab-item i {
+                font-size: 12px;
+                margin-bottom: 2px;
+            }
+
+            .tab-text {
+                font-size: 9px;
+            }
+
+            .form-section {
+                padding: 15px 10px;
+                margin-bottom: 20px;
+                border-radius: 8px;
+            }
+
+            .limit-section {
+                padding: 15px 10px;
+            }
+
+            .form-control, .form-select {
+                height: 42px;
+                font-size: 13px;
+                padding: 10px;
+            }
+
+            .page-title {
+                font-size: 16px;
+            }
+
+            .breadcrumb-section {
+                font-size: 11px;
+            }
+
+            .section-title {
+                font-size: 14px;
+            }
+
+            .limit-section-title {
+                font-size: 14px;
+            }
+
+            /* Extra Small Toggle Switch */
+            .limit-checkbox .checkbox-input {
+                width: 45px;
+                height: 24px;
+                border-radius: 12px;
+            }
+
+            .limit-checkbox .checkbox-input::before {
+                width: 18px;
+                height: 18px;
+                top: 3px;
+                left: 3px;
+            }
+
+            .limit-checkbox .checkbox-input:checked::before {
+                transform: translateX(21px);
+            }
+
+            .limit-checkbox .checkbox-label {
+                font-size: 13px;
+            }
+
+            .limit-checkbox .checkbox-item {
+                gap: 10px;
+                padding: 8px 0;
+            }
+        }
+
+        @media (max-width: 320px) {
+            .tab-item {
+                width: 90px;
+                height: 45px;
+            }
+
+            .tab-text {
+                font-size: 8px;
+            }
+
+            .form-section {
+                padding: 12px 8px;
+            }
+
+            .limit-section {
+                padding: 12px 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Breadcrumb and Header -->
+        <div class="page-header">
+            <div class="header-content">
+                <div class="header-actions">
+                    <button type="button" class="btn btn-secondary">
+                        <i class="fas fa-times"></i>
+                        إلغاء
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i>
+                        حفظ
+                    </button>
+                </div>
+                <div class="header-left">
+                    <h1 class="page-title">إضافة/تحرير المستخدم</h1>
+                    <div class="breadcrumb-section">
+                        <span class="breadcrumb-text">لوحة التحكم</span>
+                        <i class="fas fa-chevron-left breadcrumb-separator"></i>
+                        <span class="breadcrumb-text">المستخدمين</span>
+                        <i class="fas fa-chevron-left breadcrumb-separator"></i>
+                        <span class="breadcrumb-current">إضافة مستخدم</span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Navigation Tabs -->
+            <div class="navigation-tabs">
+                <div class="tab-item active">
+                    <i class="fas fa-user"></i>
+                    <span class="tab-text">معلومات المستخدم</span>
+                </div>
+                <div class="tab-item">
+                    <i class="fas fa-tags"></i>
+                    <span class="tab-text">الاشتراكات</span>
+                </div>
+                <div class="tab-item">
+                    <i class="fas fa-phone"></i>
+                    <span class="tab-text">معلومات الاتصال</span>
+                </div>
+                <div class="tab-item">
+                    <i class="fas fa-cog"></i>
+                    <span class="tab-text">حدود الاستخدام</span>
+                </div>
+            </div>
+
+            <!-- User Information Section -->
+                <div class="form-section" id="user-info">
+                    <h3 class="section-title">معلومات المستخدم</h3>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">نوع المستخدم</label>
+                            <div class="radio-group">
+                                <div class="radio-item">
+                                    <input type="radio" id="individual" name="userType" class="radio-input" value="individual" checked>
+                                    <label for="individual" class="radio-label">فرد</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" id="training" name="userType" class="radio-input" value="training">
+                                    <label for="training" class="radio-label">تجريبي</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group"></div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">اسم المستخدم</label>
+                            <div class="input-with-icon">
+                                <input type="text" class="form-control" placeholder="أدخل اسم المستخدم">
+                                <i class="fas fa-user input-icon"></i>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">كلمة المرور</label>
+                            <div class="input-with-icon">
+                                <input type="password" class="form-control" placeholder="أدخل كلمة المرور">
+                                <i class="fas fa-lock input-icon"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row triple">
+                        <div class="form-group">
+                            <label class="form-label">البريد الإلكتروني</label>
+                            <div class="input-with-icon">
+                                <input type="email" class="form-control" placeholder="أدخل البريد الإلكتروني">
+                                <i class="fas fa-envelope input-icon"></i>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">تاريخ البدء</label>
+                            <input type="date" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">تاريخ الانتهاء</label>
+                            <input type="date" class="form-control">
+                        </div>
+                    </div>
+
+                    <div class="form-row single">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="emailNotification" class="checkbox-input">
+                            <label for="emailNotification" class="checkbox-label">إرسال إشعار بالبريد الإلكتروني</label>
+                        </div>
+                    </div>
+                </div>
+
+            <!-- Subscriptions Section -->
+                <div class="form-section" id="subscriptions">
+                    <h3 class="section-title">الاشتراكات</h3>
+                    
+                    <div class="form-row">
+                        
+                        <div class="form-group">
+                            <label class="form-label">الخدمات المشترك بها</label>
+                            <div class="checkbox-group">
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="electronicMenus" class="checkbox-input" checked>
+                                    <label for="electronicMenus" class="checkbox-label">القوائم الإلكترونية</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="subscriptions_service" class="checkbox-input" checked>
+                                    <label for="subscriptions_service" class="checkbox-label">الاشتراكات</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="companyNotifications" class="checkbox-input">
+                                    <label for="companyNotifications" class="checkbox-label">إشعارات الشركة</label>
+                                </div>
+                                <div class="checkbox-item">
+                                    <input type="checkbox" id="phoneVerification" class="checkbox-input">
+                                    <label for="phoneVerification" class="checkbox-label">تخطي التحقق من الهاتف</label>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                        <div class="form-group">
+                            <label class="form-label">منطقة المستخدم</label>
+                            <select class="form-select">
+                                <option value="riyadh">الرياض</option>
+                                <option value="jeddah">جدة</option>
+                                <option value="dammam">الدمام</option>
+                                <option value="mecca">مكة المكرمة</option>
+                                <option value="medina">المدينة المنورة</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+            <!-- Contact Information Section -->
+                <div class="form-section" id="contact-info">
+                    <h3 class="section-title">معلومات الاتصال</h3>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">المنطقة / المدينة</label>
+                            <div class="input-with-icon">
+                                <input type="text" class="form-control" placeholder="أدخل المنطقة / المدينة">
+                                <i class="fas fa-map-marker-alt input-icon"></i>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">الهاتف</label>
+                            <div class="input-with-icon">
+                                <input type="tel" class="form-control" placeholder="أدخل رقم الهاتف">
+                                <i class="fas fa-phone input-icon"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">الجوال</label>
+                            <div class="input-with-icon">
+                                <input type="tel" class="form-control" placeholder="أدخل رقم الجوال">
+                                <i class="fas fa-mobile-alt input-icon"></i>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">الفاكس</label>
+                            <div class="input-with-icon">
+                                <input type="tel" class="form-control" placeholder="أدخل رقم الفاكس">
+                                <i class="fas fa-fax input-icon"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row single">
+                        <div class="form-group">
+                            <label class="form-label">العنوان</label>
+                            <div class="input-with-icon">
+                                <input type="text" class="form-control" placeholder="أدخل العنوان">
+                                <i class="fas fa-home input-icon"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">الرمز البريدي</label>
+                            <div class="input-with-icon">
+                                <input type="text" class="form-control" placeholder="أدخل الرمز البريدي">
+                                <i class="fas fa-mail-bulk input-icon"></i>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">مصدر الإحالة</label>
+                            <select class="form-select">
+                                <option value="social">وسائل التواصل الاجتماعي</option>
+                                <option value="website">الموقع الإلكتروني</option>
+                                <option value="friend">صديق أو معارف</option>
+                                <option value="advertising">إعلانات مدفوعة</option>
+                                <option value="google">محرك البحث جوجل</option>
+                                <option value="other">أخرى</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+            <!-- Usage Limits Section -->
+                <div class="usage-limits-container" id="usage-limits">
+                    <!-- Print Limits -->
+                    <div class="limit-section">
+                        <h3 class="limit-section-title">حدود الطباعة</h3>
+                        
+                        <div class="limit-checkbox">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="blockPrint" class="checkbox-input">
+                                <label for="blockPrint" class="checkbox-label">حظر الطباعة</label>
+                            </div>
+                        </div>
+
+                        <div class="limit-form-group">
+                            <label class="form-label">الحد الأقصى للطباعة سنوياً</label>
+                            <input type="number" class="form-control" value="1000">
+                        </div>
+
+                        <div class="limit-form-group">
+                            <label class="form-label">الحد الأقصى للطباعة شهرياً</label>
+                            <input type="number" class="form-control" value="100">
+                        </div>
+
+                        <div class="limit-form-group">
+                            <label class="form-label">الحد الأقصى للطباعة يومياً</label>
+                            <input type="number" class="form-control" value="10">
+                        </div>
+                    </div>
+
+                    <!-- Copy Limits -->
+                    <div class="limit-section">
+                        <h3 class="limit-section-title">حدود النسخ</h3>
+                        
+                        <div class="limit-checkbox">
+                            <div class="checkbox-item">
+                                <input type="checkbox" id="blockCopy" class="checkbox-input">
+                                <label for="blockCopy" class="checkbox-label">حظر النسخ</label>
+                            </div>
+                        </div>
+
+                        <div class="limit-form-group">
+                            <label class="form-label">الحد الأقصى للنسخ سنوياً</label>
+                            <input type="number" class="form-control" value="2000">
+                        </div>
+
+                        <div class="limit-form-group">
+                            <label class="form-label">الحد الأقصى للنسخ شهرياً</label>
+                            <input type="number" class="form-control" value="200">
+                        </div>
+
+                        <div class="limit-form-group">
+                            <label class="form-label">الحد الأقصى للنسخ يومياً</label>
+                            <input type="number" class="form-control" value="20">
+                        </div>
+                    </div>
+                </div>
+
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Tab functionality - Scroll to sections
+            const tabs = document.querySelectorAll('.tab-item');
+            const sections = document.querySelectorAll('.form-section, .usage-limits-container');
+            
+            tabs.forEach((tab, index) => {
+                tab.addEventListener('click', function() {
+                    // Remove active class from all tabs
+                    tabs.forEach(t => t.classList.remove('active'));
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                    
+                    // Scroll to corresponding section
+                    if (sections[index]) {
+                        sections[index].scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+            
+            // Update active tab based on scroll position
+            function updateActiveTab() {
+                const scrollPosition = window.scrollY + 150;
+                
+                sections.forEach((section, index) => {
+                    const sectionTop = section.offsetTop;
+                    const sectionBottom = sectionTop + section.offsetHeight;
+                    
+                    if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                        tabs.forEach(t => t.classList.remove('active'));
+                        if (tabs[index]) {
+                            tabs[index].classList.add('active');
+                        }
+                    }
+                });
+            }
+            
+            // Listen for scroll events
+            window.addEventListener('scroll', updateActiveTab);
+
+            // Radio button interactions
+            document.querySelectorAll('.radio-label').forEach(label => {
+                label.addEventListener('click', function() {
+                    const radioId = this.getAttribute('for');
+                    const radio = document.getElementById(radioId);
+                    if (radio) {
+                        radio.checked = true;
+                    }
+                });
+            });
+
+            // Checkbox interactions
+            document.querySelectorAll('.checkbox-label').forEach(label => {
+                label.addEventListener('click', function() {
+                    const checkboxId = this.getAttribute('for');
+                    const checkbox = document.getElementById(checkboxId);
+                    if (checkbox) {
+                        checkbox.checked = !checkbox.checked;
+                        
+                        // Handle limit disabling
+                        if (checkboxId === 'blockPrint') {
+                            const printInputs = checkbox.closest('.limit-section').querySelectorAll('input[type="number"]');
+                            printInputs.forEach(input => input.disabled = checkbox.checked);
+                        }
+                        
+                        if (checkboxId === 'blockCopy') {
+                            const copyInputs = checkbox.closest('.limit-section').querySelectorAll('input[type="number"]');
+                            copyInputs.forEach(input => input.disabled = checkbox.checked);
+                        }
+                    }
+                });
+            });
+
+            // Form validation
+            function validateForm() {
+                const requiredFields = document.querySelectorAll('.form-control[required]');
+                let isValid = true;
+                
+                requiredFields.forEach(field => {
+                    if (!field.value.trim()) {
+                        field.style.borderColor = '#dc3545';
+                        isValid = false;
+                    } else {
+                        field.style.borderColor = '#ced4da';
+                    }
+                });
+                
+                // Email validation
+                const emailField = document.querySelector('input[type="email"]');
+                if (emailField && emailField.value) {
+                    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    if (!emailPattern.test(emailField.value)) {
+                        emailField.style.borderColor = '#dc3545';
+                        isValid = false;
+                    }
+                }
+                
+                return isValid;
+            }
+
+            // Save button
+            document.querySelector('.btn-primary').addEventListener('click', function() {
+                if (validateForm()) {
+                    // Collect form data
+                    const formData = {
+                        userInfo: {
+                            userType: document.querySelector('input[name="userType"]:checked')?.value,
+                            username: document.querySelector('input[placeholder="أدخل اسم المستخدم"]')?.value,
+                            email: document.querySelector('input[type="email"]')?.value,
+                            startDate: document.querySelector('input[type="date"]')?.value,
+                            emailNotification: document.getElementById('emailNotification')?.checked
+                        },
+                        subscriptions: {
+                            services: document.querySelector('select[class="form-select"]')?.value,
+                            region: document.querySelectorAll('select[class="form-select"]')[1]?.value,
+                            electronicMenus: document.getElementById('electronicMenus')?.checked,
+                            subscriptions: document.getElementById('subscriptions_service')?.checked
+                        },
+                        limits: {
+                            printLimits: {
+                                blocked: document.getElementById('blockPrint')?.checked,
+                                yearly: document.querySelector('.limit-section input[value="2000"]')?.value,
+                                monthly: document.querySelector('.limit-section input[value="200"]')?.value,
+                                daily: document.querySelector('.limit-section input[value="20"]')?.value
+                            },
+                            copyLimits: {
+                                blocked: document.getElementById('blockCopy')?.checked,
+                                yearly: document.querySelector('.limit-section:last-child input[value="1000"]')?.value
+                            }
+                        }
+                    };
+                    
+                    console.log('Form Data:', formData);
+                    alert('تم حفظ البيانات بنجاح!\n\nسيتم الآن إعادة توجيهك إلى قائمة المستخدمين.');
+                    
+                    // Simulate save and redirect
+                    setTimeout(() => {
+                        // window.location.href = 'user-management.html';
+                    }, 1500);
+                } else {
+                    alert('يرجى ملء جميع الحقول المطلوبة بشكل صحيح.');
+                }
+            });
+
+            // Cancel button
+            document.querySelector('.btn-secondary').addEventListener('click', function() {
+                if (confirm('هل أنت متأكد من إلغاء التعديلات؟\n\nسيتم فقدان جميع التغييرات غير المحفوظة.')) {
+                    window.history.back();
+                }
+            });
+
+            // Real-time validation
+            document.querySelectorAll('.form-control').forEach(field => {
+                field.addEventListener('blur', function() {
+                    if (this.hasAttribute('required') && !this.value.trim()) {
+                        this.style.borderColor = '#dc3545';
+                    } else {
+                        this.style.borderColor = '#ced4da';
+                    }
+                });
+                
+                field.addEventListener('input', function() {
+                    if (this.style.borderColor === 'rgb(220, 53, 69)') {
+                        this.style.borderColor = '#ced4da';
+                    }
+                });
+            });
+
+            // Auto-save draft functionality
+            let autoSaveTimer;
+            document.querySelectorAll('.form-control, .checkbox-input, .radio-input').forEach(field => {
+                field.addEventListener('change', function() {
+                    clearTimeout(autoSaveTimer);
+                    autoSaveTimer = setTimeout(() => {
+                        console.log('Auto-saving draft...');
+                        // Implement auto-save logic here
+                    }, 5000);
+                });
+            });
+        });
+    </script>
+</body>
+</html> 

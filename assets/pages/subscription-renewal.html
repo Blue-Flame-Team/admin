@@ -3,7 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>صفحة الاشتراك في الخدمات / تجديد اشتراك الخدمات</title>
+    <title>تجديد الاشتراك</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/mobile-additions.css">
     <link rel="stylesheet" href="../css/size-fixes.css">
@@ -13,23 +16,26 @@
 <body>
     <div class="renewal-container">
         <div class="renewal-card">
-            <h1 class="renewal-title">تجديد الاشتراك</h1>
-            
-            <form id="renewalForm">
-                <div class="form-group">
-                    <div class="form-label">
-                        <span class="label-text">اسم المستخدم</span>
-                    </div>
-                    <div class="user-highlight">عيسى</div>
+            <!-- Header section: 672px width x 61px height -->
+            <div class="renewal-header">
+                <h1 class="renewal-title">تجديد الاشتراك</h1>
+                <div class="user-section">
+                    <span>اسم المستخدم:</span>
+                    <span class="user-name">عيسى</span>
                 </div>
-                
+            </div>
+            
+            <!-- Content section: 672px width x 496px height, 24px padding -->
+            <div class="form-content">
                 <div class="form-group">
                     <div class="form-label">
                         <span class="label-text">الاشتراك في الخدمة</span>
                     </div>
-                    <div class="form-checkbox">
-                        <input type="checkbox" id="subscribeService" checked>
-                        <label for="subscribeService"></label>
+                    <div class="checkbox-wrapper">
+                        <label class="custom-checkbox">
+                            <input type="checkbox" checked>
+                            <span class="checkmark"></span>
+                        </label>
                     </div>
                 </div>
                 
@@ -51,9 +57,9 @@
                         <span class="label-text">القيمة المطلوبة</span>
                         <span class="info-icon"><i class="fas fa-info-circle"></i></span>
                     </div>
-                    <div class="currency-input">
-                        <input type="text" class="form-control" value="1200">
-                        <span class="currency-symbol">ريال</span>
+                    <div class="currency-wrapper">
+                        <input type="text" class="form-control currency-input" value="1200">
+                        <span class="currency-label">ريال</span>
                     </div>
                 </div>
                 
@@ -63,61 +69,46 @@
                     </div>
                     <textarea class="form-control form-textarea" placeholder="أدخل السبب هنا"></textarea>
                 </div>
-                
-                <div class="action-buttons">
-                    <button type="button" class="btn btn-primary">موافق</button>
-                    <button type="button" class="btn btn-secondary">رفض</button>
-                </div>
-            </form>
+            </div>
+            
+            <!-- Action buttons -->
+            <div class="action-buttons">
+                <button type="button" class="btn btn-secondary">رفض</button>
+                <button type="button" class="btn btn-primary">موافق</button>
+            </div>
         </div>
     </div>
     
     <script src="../js/jquery.min.js"></script>
     <script>
         $(document).ready(function() {
-            // Form validation
-            $('#renewalForm').on('submit', function(e) {
-                e.preventDefault();
-                
-                // Basic validation example
-                let isValid = true;
-                
-                if ($('#subscribeService').is(':checked')) {
-                    // Process form
-                    console.log('Form submitted successfully');
-                    // Redirect to success page or show success message
-                } else {
-                    isValid = false;
-                    // Show error
-                }
-                
-                return isValid;
-            });
-            
             // Info tooltip
             $('.info-icon').on('click', function() {
-                // Show tooltip or info modal
                 alert('معلومات إضافية حول هذا الحقل');
             });
             
             // Action buttons
             $('.btn-primary').on('click', function() {
-                // Handle approval logic
                 console.log('Subscription approved');
-                window.location.href = 'subscription-services.html';
+                $(this).html('<i class="fas fa-check"></i> تم الموافقة');
+                setTimeout(() => {
+                    window.location.href = 'subscription-services.html';
+                }, 1500);
             });
             
             $('.btn-secondary').on('click', function() {
-                // Handle rejection logic
                 const reason = $('.form-textarea').val();
                 if (reason.trim() === '') {
                     alert('يرجى إدخال سبب الرفض');
-                    $('.form-textarea').addClass('is-invalid');
+                    $('.form-textarea').focus();
                     return;
                 }
                 
                 console.log('Subscription rejected. Reason:', reason);
-                window.location.href = 'subscription-services.html';
+                $(this).html('<i class="fas fa-times"></i> تم الرفض');
+                setTimeout(() => {
+                    window.location.href = 'subscription-services.html';
+                }, 1500);
             });
         });
     </script>

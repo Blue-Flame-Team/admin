@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>نظام تتبع الطباعة والنسخ</title>
+    <meta name="theme-color" content="#FFFFFF">
     <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -13,20 +14,554 @@
             box-sizing: border-box;
             font-family: 'Tajawal', sans-serif;
         }
+
+        /* Tablet Responsive Styles */
+        @media (max-width: 1024px) {
+            .container {
+                width: 100%;
+                padding: 16px;
+            }
+
+            .filter-panel {
+                width: 100%;
+                height: auto;
+                padding: 20px;
+            }
+
+            .filter-form {
+                flex-wrap: wrap;
+                gap: 16px;
+            }
+
+            .form-control {
+                width: 200px;
+            }
+
+            .report-section {
+                width: 100%;
+                padding: 20px;
+            }
+
+            .table-responsive {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            table {
+                min-width: 700px;
+            }
+        }
+
+        /* Mobile Design - Clean and Organized */
+        @media (max-width: 768px) {
+            /* Reset and Base Styles */
+            body {
+                margin: 0;
+                padding: 0;
+                background: #F3F4F6 !important;
+                font-family: 'Tajawal', sans-serif !important;
+            }
+
+            .container {
+                width: 100% !important;
+                max-width: 100% !important;
+                margin: 0 !important;
+                padding: 16px !important;
+                background: #F3F4F6 !important;
+                min-height: 100vh !important;
+            }
+
+            /* Header Section */
+            .header {
+                padding: 32px 0 24px 0 !important;
+                background: transparent !important;
+                border: none !important;
+                text-align: center !important;
+                margin-bottom: 0 !important;
+            }
+
+            .header h1 {
+                font-size: 20px !important;
+                font-weight: 600 !important;
+                color: #1F2937 !important;
+                margin: 0 0 8px 0 !important;
+                line-height: 1.3 !important;
+            }
+
+            .header .date {
+                font-size: 16px !important;
+                color: #6B7280 !important;
+                margin: 0 !important;
+                font-weight: 400 !important;
+            }
+
+            /* Filter Panel */
+            .filter-panel {
+                width: 100% !important;
+                margin: 32px 0 24px 0 !important;
+                padding: 32px 24px !important;
+                background: #FFFFFF !important;
+                border-radius: 20px !important;
+                box-shadow: 0px 4px 6px -1px rgba(0, 0, 0, 0.1), 0px 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+                border: none !important;
+                height: auto !important;
+            }
+
+            .filter-title {
+                font-size: 18px !important;
+                font-weight: 600 !important;
+                color: #1F2937 !important;
+                margin-bottom: 32px !important;
+                text-align: center !important;
+            }
+
+            .filter-form {
+                flex-direction: column !important;
+                gap: 24px !important;
+                align-items: stretch !important;
+            }
+
+            .form-group {
+                height: auto !important;
+                margin-bottom: 0 !important;
+            }
+
+            .form-group label {
+                display: block !important;
+                margin-bottom: 12px !important;
+                font-size: 16px !important;
+                font-weight: 500 !important;
+                color: #374151 !important;
+                text-align: right !important;
+            }
+
+            .form-control {
+                width: 100% !important;
+                height: 56px !important;
+                font-size: 16px !important;
+                border: 1px solid #D1D5DB !important;
+                border-radius: 12px !important;
+                padding: 16px 20px !important;
+                background: #F9FAFB !important;
+                color: #1F2937 !important;
+                text-align: right !important;
+                direction: rtl !important;
+                transition: all 0.2s ease !important;
+            }
+
+            .form-control:focus {
+                outline: none !important;
+                border-color: #3B82F6 !important;
+                background: #FFFFFF !important;
+                box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1) !important;
+            }
+
+            .form-control::placeholder {
+                color: #9CA3AF !important;
+                text-align: right !important;
+                direction: rtl !important;
+            }
+
+            .search-input {
+                position: relative !important;
+            }
+
+            .search-input input {
+                padding-right: 56px !important;
+                padding-left: 20px !important;
+            }
+
+            .search-input i {
+                position: absolute !important;
+                right: 18px !important;
+                top: 50% !important;
+                transform: translateY(-50%) !important;
+                color: #6B7280 !important;
+                font-size: 18px !important;
+            }
+
+            .btn-search {
+                width: 100% !important;
+                height: 56px !important;
+                background: #3B82F6 !important;
+                color: white !important;
+                border: none !important;
+                border-radius: 12px !important;
+                font-size: 16px !important;
+                font-weight: 600 !important;
+                margin-top: 8px !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                gap: 10px !important;
+                cursor: pointer !important;
+                transition: background-color 0.2s ease !important;
+                box-shadow: 0px 4px 6px -1px rgba(59, 130, 246, 0.3) !important;
+                padding: 10px 16px !important;
+            }
+
+            .btn-search:hover {
+                background: #2563EB !important;
+            }
+
+            .btn-search i {
+                font-size: 18px !important;
+            }
+
+            /* Report Section */
+            .report-section {
+                width: 100% !important;
+                margin: 0 !important;
+                padding: 24px !important;
+                background: #FFFFFF !important;
+                border-radius: 20px !important;
+                box-shadow: 0px 4px 6px -1px rgba(0, 0, 0, 0.1), 0px 2px 4px -1px rgba(0, 0, 0, 0.06) !important;
+                position: relative !important;
+            }
+
+            .report-header {
+                position: absolute !important;
+                top: 24px !important;
+                right: 24px !important;
+                margin: 0 !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: flex-end !important;
+            }
+
+            .report-header h2 {
+                display: none !important;
+            }
+
+            .download-btn {
+                width: auto !important;
+                height: 40px !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                gap: 8px !important;
+                background: #FFFFFF !important;
+                border: 1px solid #D1D5DB !important;
+                border-radius: 8px !important;
+                color: #3B82F6 !important;
+                font-size: 14px !important;
+                font-weight: 500 !important;
+                cursor: pointer !important;
+                padding: 10px 16px !important;
+                box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05) !important;
+            }
+
+            .download-btn:hover {
+                background: #F8FAFC !important;
+                border-color: #3B82F6 !important;
+            }
+
+            .download-btn i {
+                color: #3B82F6 !important;
+                font-size: 14px !important;
+            }
+
+            /* Tabs */
+            .tab-container {
+                margin: 64px 0 32px 0 !important;
+                padding: 0 !important;
+                background: transparent !important;
+                border-radius: 0 !important;
+                display: flex !important;
+                gap: 0 !important;
+                border-bottom: 1px solid #E5E7EB !important;
+            }
+
+            .tab {
+                flex: 1 !important;
+                padding: 16px 20px !important;
+                font-size: 16px !important;
+                font-weight: 500 !important;
+                text-align: center !important;
+                border-radius: 0 !important;
+                cursor: pointer !important;
+                background: transparent !important;
+                color: #6B7280 !important;
+                border: none !important;
+                border-bottom: 3px solid transparent !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                gap: 8px !important;
+                transition: all 0.2s ease !important;
+                position: relative !important;
+            }
+
+            .tab.active {
+                background: transparent !important;
+                color: #3B82F6 !important;
+                border-bottom: 3px solid #3B82F6 !important;
+                box-shadow: none !important;
+            }
+
+            .tab i {
+                font-size: 16px !important;
+            }
+
+            /* Table */
+            .table-responsive {
+                overflow-x: auto !important;
+                -webkit-overflow-scrolling: touch !important;
+                margin-top: 0 !important;
+                border-radius: 0 !important;
+                border: none !important;
+                background: transparent !important;
+            }
+
+            table {
+                width: 100% !important;
+                border-collapse: collapse !important;
+                background: #FFFFFF !important;
+                margin: 0 !important;
+                font-size: 14px !important;
+                border: 1px solid #EAECF0 !important;
+                border-radius: 8px !important;
+            }
+
+            thead {
+                background: #374151 !important;
+            }
+
+            th {
+                padding: 16px 12px !important;
+                font-size: 14px !important;
+                font-weight: 600 !important;
+                color: #FFFFFF !important;
+                text-align: center !important;
+                white-space: nowrap !important;
+                border: none !important;
+            }
+
+            tbody tr {
+                border-bottom: 1px solid #F3F4F6 !important;
+            }
+
+            tbody tr:last-child:not(.total-row) {
+                border-bottom: none !important;
+            }
+
+            tbody tr:hover {
+                background: #F9FAFB !important;
+            }
+
+            td {
+                padding: 16px 12px !important;
+                font-size: 14px !important;
+                color: #1F2937 !important;
+                text-align: center !important;
+                white-space: nowrap !important;
+                background: #FFFFFF !important;
+                border: none !important;
+            }
+
+            /* Hide columns on mobile */
+            .mobile-hide {
+                display: none !important;
+            }
+
+            .total-row {
+                border-top: 2px solid #E5E7EB !important;
+                background: #F9FAFB !important;
+            }
+
+            .total-row td {
+                font-weight: 700 !important;
+                background: #F9FAFB !important;
+                color: #1F2937 !important;
+                font-size: 16px !important;
+                padding: 20px 12px !important;
+            }
+
+            .total-row td:nth-child(2) {
+                color: #1F2937 !important;
+                font-weight: 700 !important;
+            }
+
+            /* Record ID styling */
+            td:first-child {
+                color: #3B82F6 !important;
+                font-weight: 600 !important;
+            }
+
+            /* Adjust total row for mobile */
+            .total-row td:first-child {
+                text-align: center !important;
+                color: #1F2937 !important;
+                font-weight: 700 !important;
+            }
+        }
+
+        /* Small Mobile Screens */
+        @media (max-width: 480px) {
+            .container {
+                padding: 12px !important;
+            }
+            
+            .header {
+                padding: 24px 0 20px 0 !important;
+            }
+
+            .header h1 {
+                font-size: 18px !important;
+            }
+
+            .header .date {
+                font-size: 14px !important;
+            }
+            
+            .filter-panel {
+                margin: 24px 0 20px 0 !important;
+                padding: 24px 20px !important;
+                border-radius: 16px !important;
+            }
+
+            .filter-title {
+                font-size: 16px !important;
+                margin-bottom: 24px !important;
+            }
+
+            .filter-form {
+                gap: 20px !important;
+            }
+
+            .form-group label {
+                font-size: 14px !important;
+                margin-bottom: 8px !important;
+            }
+
+            .form-control {
+                height: 50px !important;
+                font-size: 15px !important;
+                padding: 14px 18px !important;
+                border-radius: 10px !important;
+            }
+
+            .btn-search {
+                height: 50px !important;
+                font-size: 15px !important;
+                border-radius: 10px !important;
+            }
+
+            .search-input input {
+                padding-right: 50px !important;
+            }
+
+            .search-input i {
+                right: 16px !important;
+                font-size: 16px !important;
+            }
+
+            .report-section {
+                padding: 20px !important;
+                border-radius: 16px !important;
+            }
+
+            .report-header {
+                top: 20px !important;
+                right: 20px !important;
+            }
+
+            .download-btn {
+                padding: 8px 12px !important;
+                height: 36px !important;
+                font-size: 12px !important;
+            }
+
+            .tab-container {
+                margin: 56px 0 24px 0 !important;
+            }
+
+            .tab {
+                padding: 14px 16px !important;
+                font-size: 14px !important;
+            }
+
+            .tab i {
+                font-size: 14px !important;
+            }
+
+            table {
+                font-size: 13px !important;
+            }
+
+            th, td {
+                padding: 12px 8px !important;
+            }
+
+            th {
+                font-size: 12px !important;
+            }
+
+            td {
+                font-size: 13px !important;
+            }
+
+            .total-row td {
+                font-size: 14px !important;
+                padding: 16px 8px !important;
+            }
+        }
         
         body {
-            background-color: #f6f7fb;
+            background-color: #FFFFFF;
             color: #333;
             direction: rtl;
+            min-height: 100vh;
         }
         
         .container {
-            max-width: 1000px;
-            margin: 20px auto;
-            background-color: white;
-            border-radius: 12px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            overflow: hidden;
+            width: 1280px;
+            margin: 0 auto;
+            padding: 24px;
+        }
+
+        /* Header Tabs */
+        .header-tabs {
+            display: flex;
+            gap: 40px;
+            padding-bottom: 16px;
+            border-bottom: 1px solid #EAECF0;
+            margin-bottom: 24px;
+        }
+
+        .header-tabs .tab {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 4px 0;
+            color: #475467;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            border-bottom: 2px solid transparent;
+            margin-bottom: -17px;
+        }
+
+        .header-tabs .tab i {
+            font-size: 16px;
+            color: #475467;
+        }
+
+        .header-tabs .tab.active {
+            color: #2563EB;
+            border-bottom: 2px solid #2563EB;
+        }
+
+        .header-tabs .tab.active i {
+            color: #2563EB;
+        }
+
+        .header-tabs .tab:hover {
+            color: #2563EB;
+        }
+
+        .header-tabs .tab:hover i {
+            color: #2563EB;
         }
         
         .header {
@@ -49,45 +584,50 @@
         }
         
         .filter-panel {
-            background-color: #f9f9f9;
-            padding: 15px 20px;
-            margin: 0;
-            border-bottom: 1px solid #eee;
+            background-color: #FFFFFF;
+            padding: 24px;
+            margin: 24px auto 0;
+            border-radius: 12px;
+            box-shadow: 0px 1px 3px rgba(16, 24, 40, 0.1), 0px 1px 2px rgba(16, 24, 40, 0.06);
+            width: 1248px;
+            height: 164px;
         }
         
         .filter-title {
-            font-size: 14px;
+            font-size: 18px;
             font-weight: 600;
-            margin-bottom: 15px;
-            color: #333;
+            margin-bottom: 24px;
+            color: #101828;
         }
         
         .filter-form {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 15px;
-            align-items: end;
+            display: flex;
+            gap: 24px;
+            align-items: flex-end;
         }
         
         .form-group {
             margin-bottom: 0;
+            height: 35px;
         }
         
         .form-group label {
             display: block;
             margin-bottom: 8px;
-            font-size: 12px;
-            color: #333;
+            font-size: 14px;
+            color: #101828;
             font-weight: 500;
         }
         
         .form-control {
-            width: 100%;
+            width: 256px;
+            height: 35px;
             padding: 8px 12px;
-            border: 1px solid #e6e6e6;
-            border-radius: 6px;
-            font-size: 13px;
+            border: 1px solid #D0D5DD;
+            border-radius: 8px;
+            font-size: 14px;
             background-color: white;
+            color: #101828;
         }
         
         .search-input {
@@ -103,51 +643,153 @@
         }
         
         .btn-search {
-            background-color: #4F77FF;
+            background-color: #2563EB;
             color: white;
             border: none;
-            border-radius: 6px;
-            padding: 8px 15px;
-            font-size: 13px;
+            border-radius: 8px;
+            padding: 10px 16px;
+            font-size: 14px;
+            font-weight: 500;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            height: 36px;
+            width: 100.67px;
+            height: 40px;
         }
         
         .btn-search i {
             margin-left: 6px;
         }
         
+        /* Report Section */
+        .report-section {
+            width: 1248px;
+            margin: 0 auto;
+            background: #FFFFFF;
+            border-radius: 12px;
+            box-shadow: 0px 1px 3px rgba(16, 24, 40, 0.1), 0px 1px 2px rgba(16, 24, 40, 0.06);
+            padding: 24px;
+        }
+
+        .report-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .report-header h2 {
+            color: #101828;
+            font-size: 18px;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        /* Table Styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 24px;
+            background: #FFFFFF;
+            border: 1px solid #EAECF0;
+            border-radius: 8px;
+        }
+
+        th {
+            background: #1D2939;
+            padding: 16px;
+            text-align: right;
+            font-weight: 500;
+            color: #FFFFFF;
+            font-size: 12px;
+            white-space: nowrap;
+        }
+
+        td {
+            padding: 16px;
+            border-bottom: 1px solid #EAECF0;
+            color: #101828;
+            font-size: 14px;
+            background: #FFFFFF;
+        }
+
+        tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .total-row {
+            font-weight: 600;
+        }
+
+        .total-row td {
+            background: #F9FAFB;
+            border-top: 1px solid #EAECF0;
+        }
+
+        /* Download Button */
+        .download-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #FFFFFF;
+            border: 1px solid #D0D5DD;
+            box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
+            border-radius: 8px;
+            padding: 10px 16px;
+            color: #344054;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .download-btn:hover {
+            background: #F9FAFB;
+            border-color: #98A2B3;
+        }
+
+        .download-btn i {
+            color: #344054;
+        }
+
         /* Tabs Styles */
         .tab-container {
             display: flex;
-            border-bottom: 1px solid #eee;
-            margin-top: 15px;
+            margin-bottom: 0;
+            background: #F9FAFB;
+            border-radius: 8px;
+            padding: 4px;
+            gap: 4px;
         }
         
         .tab {
-            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 16px;
             font-size: 14px;
+            font-weight: 500;
             cursor: pointer;
-            position: relative;
-            color: #777;
+            border-radius: 6px;
+            color: #475467;
+            background: transparent;
+            transition: all 0.2s ease;
+        }
+        
+        .tab i {
+            font-size: 16px;
         }
         
         .tab.active {
-            color: #4F77FF;
-            font-weight: 500;
+            color: #FFFFFF;
+            background: #2563EB;
+            box-shadow: 0px 1px 2px rgba(16, 24, 40, 0.05);
         }
         
-        .tab.active::after {
-            content: '';
-            position: absolute;
-            bottom: -1px;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background-color: #4F77FF;
+        .tab:hover:not(.active) {
+            background: #F3F4F6;
+            color: #374151;
         }
         
         /* Table Styles */
@@ -227,24 +869,24 @@
 
         <!-- Filter Section -->
         <div class="filter-panel">
-            <h3 class="filter-title">تصفية التقارير</h3>
+            <h2 class="filter-title">تصفية التقارير</h2>
             <div class="filter-form">
                 <div class="form-group">
-                    <label for="employee">اسم الموظف</label>
+                    <label>إلى تاريخ</label>
+                    <input type="text" class="form-control" placeholder="04/20/2025">
+                </div>
+                
+                <div class="form-group">
+                    <label>من تاريخ</label>
+                    <input type="text" class="form-control" placeholder="04/01/2025">
+                </div>
+                
+                <div class="form-group">
+                    <label>اسم الموظف</label>
                     <div class="search-input">
-                        <input type="text" id="employee" class="form-control" placeholder="ادخل اسم الموظف">
-                        <i class="fas fa-search"></i>
+                        <input type="text" class="form-control" placeholder="ادخل اسم الموظف">
+                        <i class="fas fa-user"></i>
                     </div>
-                </div>
-                
-                <div class="form-group">
-                    <label for="fromDate">من تاريخ</label>
-                    <input type="text" id="fromDate" class="form-control" placeholder="04/01/2025">
-                </div>
-                
-                <div class="form-group">
-                    <label for="toDate">الى تاريخ</label>
-                    <input type="text" id="toDate" class="form-control" placeholder="04/20/2025">
                 </div>
                 
                 <button class="btn-search">
@@ -254,117 +896,123 @@
             </div>
         </div>
 
-        <!-- Tab Navigation -->
-        <div class="tab-container">
-            <div class="tab">تقرير النسخ</div>
-            <div class="tab active">تقرير الطباعة</div>
-        </div>
+        <div class="report-section">
+            <!-- Tabs -->
+            <div class="tab-container">
+                <div class="tab">
+                    <i class="fas fa-copy"></i>
+                    تقرير النسخ
+                </div>
+                <div class="tab active">
+                    <i class="fas fa-print"></i>
+                    تقرير الطباعة
+                </div>
+            </div>
+            <!-- Report Header with Download Button -->
+            <div class="report-header">
+                <h2>تقرير نشاط الطباعة</h2>
+                <button class="download-btn">
+                    <i class="fas fa-download"></i>
+                    تنزيل التقرير
+                </button>
+            </div>
 
-        <!-- Table Header with Download Button -->
-        <div class="table-header">
-            <button class="download-btn">
-                <i class="fas fa-download"></i>
-                تنزيل التقرير
-            </button>
-        </div>
 
-        <!-- Table Container -->
-        <div class="table-container">
-            <table>
+            <!-- Table -->
+            <div class="table-responsive">
+                <table>
                 <thead>
                     <tr>
-                        <th>رقم السجل</th>
+                        <th>رمز السجل</th>
                         <th>اسم الموظف</th>
-                        <th>تاريخ الطبعة</th>
-                        <th>اسم الوثيقة</th>
+                        <th class="mobile-hide">تاريخ الحركة</th>
+                        <th class="mobile-hide">اسم الوثيقة</th>
                         <th>نوع الوثيقة</th>
                         <th>عدد الصفحات المطبوعة</th>
-                        <th>وصف الوثيقة</th>
+                        <th class="mobile-hide">وصف الوثيقة</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td class="record-id">P-1025</td>
+                        <td>P-1025</td>
                         <td>محمد عبد الرحمن</td>
-                        <td>2/15</td>
-                        <td>مدير المشاريع</td>
+                        <td class="mobile-hide">2/15</td>
+                        <td class="mobile-hide">مدير المشاريع</td>
                         <td>تقرير</td>
                         <td>12</td>
-                        <td>مراجعة المشروع</td>
+                        <td class="mobile-hide">مراجعة المشروع</td>
                     </tr>
                     <tr>
-                        <td class="record-id">P-1026</td>
+                        <td>P-1026</td>
                         <td>سارة الأحمد</td>
-                        <td>2/15</td>
-                        <td>محلل مالي</td>
+                        <td class="mobile-hide">2/15</td>
+                        <td class="mobile-hide">محلل مالي</td>
                         <td>جدول بيانات</td>
                         <td>8</td>
-                        <td>مراجعة المشروع</td>
+                        <td class="mobile-hide">ميزانية المشروع</td>
                     </tr>
                     <tr>
-                        <td class="record-id">P-1027</td>
+                        <td>P-1027</td>
                         <td>أحمد المنصوري</td>
-                        <td>2/15</td>
-                        <td>مطور البرمجيات</td>
+                        <td class="mobile-hide">2/15</td>
+                        <td class="mobile-hide">مطور برمجيات</td>
                         <td>مستند</td>
-                        <td>10</td>
-                        <td>وثائق التصميم الفنية</td>
+                        <td>15</td>
+                        <td class="mobile-hide">وثائق المشروع الفنية</td>
                     </tr>
                     <tr>
-                        <td class="record-id">P-1028</td>
-                        <td>نورة المعطاني</td>
-                        <td>2/15</td>
-                        <td>مديرة الموارد البشرية</td>
-                        <td>مخطط</td>
+                        <td>P-1028</td>
+                        <td>نورة القحطاني</td>
+                        <td class="mobile-hide">2/15</td>
+                        <td class="mobile-hide">مديرة الموارد البشرية</td>
+                        <td>نموذج</td>
                         <td>3</td>
-                        <td>مخطط المؤسسة الجديدة</td>
+                        <td class="mobile-hide">نموذج تقييم الأداء</td>
                     </tr>
                     <tr>
-                        <td class="record-id">P-1029</td>
-                        <td>عبد الله الشمسي</td>
-                        <td>2/25</td>
-                        <td>التسويق</td>
+                        <td>P-1029</td>
+                        <td>عبد الله الشمري</td>
+                        <td class="mobile-hide">2/15</td>
+                        <td class="mobile-hide">مدير التسويق</td>
                         <td>عرض تقديمي</td>
                         <td>18</td>
-                        <td>عرض استراتيجية التسويق</td>
+                        <td class="mobile-hide">عرض استراتيجية التسويق</td>
                     </tr>
                     <tr>
-                        <td class="record-id">P-1030</td>
-                        <td>ليان الشمري</td>
-                        <td>2/25</td>
-                        <td>مساعدة إدارية</td>
+                        <td>P-1030</td>
+                        <td>ليلى العتيبي</td>
+                        <td class="mobile-hide">2/15</td>
+                        <td class="mobile-hide">مساعد إداري</td>
                         <td>رسالة</td>
                         <td>2</td>
-                        <td>خطاب رسمي للعملاء</td>
+                        <td class="mobile-hide">خطاب رسمي للعملاء</td>
                     </tr>
                     <tr>
-                        <td class="record-id">P-1031</td>
+                        <td>P-1031</td>
                         <td>فهد الدوسري</td>
-                        <td>3/10</td>
-                        <td>محاسبة</td>
+                        <td class="mobile-hide">2/15</td>
+                        <td class="mobile-hide">محاسب</td>
                         <td>فاتورة</td>
                         <td>4</td>
-                        <td>فواتير شهر ابريل</td>
+                        <td class="mobile-hide">فواتير شهر ابريل</td>
                     </tr>
                     <tr>
-                        <td class="record-id">P-1032</td>
-                        <td>فهمي الحربي</td>
-                        <td>3/10</td>
-                        <td>مؤسسة وطنية</td>
+                        <td>P-1032</td>
+                        <td>هدى الحربي</td>
+                        <td class="mobile-hide">2/15</td>
+                        <td class="mobile-hide">مصممة جرافيك</td>
                         <td>تصميم</td>
                         <td>6</td>
-                        <td>تصاميم العلامة التجارية الجديدة</td>
+                        <td class="mobile-hide">تصاميم العلامة التجارية الجديدة</td>
                     </tr>
                     <tr class="total-row">
-                        <td colspan="5">الإجمالي</td>
+                        <td colspan="3">الإجمالي</td>
                         <td>78</td>
-                        <td></td>
+                        <td class="mobile-hide"></td>
                     </tr>
                 </tbody>
             </table>
         </div>
-    </div>
-</div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script>

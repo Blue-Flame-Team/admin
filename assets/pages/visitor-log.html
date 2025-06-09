@@ -3,1061 +3,1054 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>سجل الزوار | مفاتيح المملكة</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="../css/new-dashboard.css">
+    <title>إدارة الرسائل</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Estilos específicos de la página de visitantes */
-        .messages-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-        }
-        
-        .messages-table th {
-            background-color: #1a2653;
-            color: white;
-            font-weight: 500;
-            padding: 12px;
-            text-align: right;
-            font-size: 14px;
-        }
-        
-        .messages-table td {
-            padding: 15px 12px;
-            vertical-align: middle;
-            border-bottom: 1px solid #eee;
-            font-size: 14px;
-        }
-        
-        .messages-table tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-        
-        .messages-table tr:hover {
-            background-color: #f0f4f8;
-        }
-        
-        .status-badge {
-            display: inline-block;
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 500;
-        }
-        
-        .status-open {
-            background-color: #dcfce7;
-            color: #166534;
-        }
-        
-        .status-pending {
-            background-color: #fef3c7;
-            color: #92400e;
-        }
-        
-        .status-closed {
-            background-color: #fee2e2;
-            color: #b91c1c;
-        }
-        
-        .action-icons {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-        }
-        
-        .action-icon {
-            font-size: 14px;
-            cursor: pointer;
-        }
-        
-        .icon-delete {
-            color: #ef4444;
-        }
-        
-        .icon-edit {
-            color: #3b82f6;
-        }
-        
-        .icon-reply {
-            color: #6366f1;
-        }
-        
-        .message-content {
-            max-height: 60px;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-        }
-        
-        .show-more {
-            color: #3b82f6;
-            text-decoration: none;
-            font-size: 12px;
-            display: block;
-            margin-top: 5px;
-        }
-        
-        .tabs-area {
-            display: flex;
-            gap: 10px;
-        }
-        
-        .tab-item {
-            padding: 5px 15px;
-            font-size: 14px;
-            color: #555;
-            text-decoration: none;
-            border-radius: 20px;
-            transition: all 0.2s;
-        }
-        
-        .tab-item.active {
-            background-color: #1e3a8a;
-            color: white;
-        }
-        
-        .page-title-area {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-    </style>
-        
-        .sidebar-menu .section-header {
-            font-size: 0.8rem;
-            padding: 10px 20px 5px;
-            color: #868e96;
-            font-weight: bold;
-            text-transform: uppercase;
-            margin-top: 15px;
-            border-bottom: 1px solid #f1f1f1;
-        }
-        
-        .sidebar-menu li:not(.section-header) {
-            margin-bottom: 2px;
-        }
-        
-        .sidebar-menu a {
-            display: block;
-            padding: 10px 20px;
-            color: #555;
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-        
-        .sidebar-menu a:hover {
-            background-color: #f5f7fa;
-            color: #1e3a8a;
-        }
-        
-        .sidebar-menu i {
-            margin-left: 10px;
-            width: 20px;
-            text-align: center;
-        }
-        
-        .sidebar-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.5);
-            z-index: 1040;
-        }
-        
-        .toggle-sidebar-btn {
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: #1e3a8a;
-            font-size: 18px;
-            display: none;
-        }
-        
-        /* للأجهزة المحمولة */
-        @media (max-width: 992px) {
-            .sidebar {
-                transform: translateX(100%);
-            }
-            
-            .sidebar.active {
-                transform: translateX(0);
-            }
-            
-            .sidebar-overlay.active {
-                display: block;
-            }
-            
-            .toggle-sidebar-btn {
-                display: block;
-            }
-            
-            .main-container {
-                margin-right: 0;
-                max-width: 100%;
-            }
-        }
-
-        /* تعديل main-content لدعم القائمة الجانبية */
-        .main-content {
-            transition: all 0.3s ease;
-            margin-right: 250px;
-            width: calc(100% - 250px);
-            padding: 20px;
-        }
-        
-        @media (min-width: 993px) {
-            .main-content.expanded {
-                margin-right: 0;
-                width: 100%;
-            }
-        }
-        
-        .main-container {
-            background-color: #fff;
-            border-radius: 15px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            margin: 20px auto;
-            max-width: 1200px;
-            padding: 20px;
-        }
-
-        .header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 10px 0;
-            border-bottom: 1px solid #eee;
-            margin-bottom: 20px;
-        }
-        
-        /* أنماط شريط التنقل العلوي */
-        .sub-nav {
-            margin-bottom: 20px;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 10px;
-        }
-        
-        .sub-nav ul {
-            display: flex;
-            list-style: none;
-            padding: 0;
+        * {
             margin: 0;
-            flex-wrap: wrap;
-        }
-        
-        .sub-nav li {
-            margin-left: 15px;
-            margin-bottom: 5px;
-        }
-        
-        .sub-nav a {
-            display: flex;
-            align-items: center;
-            color: #555;
-            text-decoration: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            transition: all 0.2s;
-        }
-        
-        .sub-nav li.active a {
-            background-color: #1e3a8a;
-            color: #fff;
-        }
-        
-        .sub-nav a:hover {
-            background-color: #f5f7fa;
-            color: #1e3a8a;
-        }
-        
-        .sub-nav li.active a:hover {
-            background-color: #15296d;
-            color: #fff;
-        }
-        
-        .sub-nav i {
-            margin-left: 8px;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        .logo-area {
+        body {
+            font-family: 'Cairo', Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            direction: rtl;
+        }
+
+        /* Top Header */
+        .top-header {
+            background: white;
+            padding: 12px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .logo-section {
             display: flex;
             align-items: center;
+        }
+
+        .logo-image {
+            height: 40px;
+            width: auto;
+            object-fit: contain;
+        }
+
+        .center-section {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            flex: 1;
             justify-content: center;
-            flex-direction: column;
         }
 
-        .logo-area img {
-            height: 50px;
+        .search-section {
+            position: relative;
         }
 
-        .logo-area .sub-title {
-            font-size: 12px;
-            color: #666;
-            margin-top: 5px;
+        .search-box {
+            width: 256px;
+            height: 39px;
+            padding: 8px 40px 8px 15px;
+            border: 1px solid #e5e7eb;
+            border-radius: 20px;
+            background: #f9fafb;
+            color: #1f2937;
+            font-size: 14px;
+            outline: none;
+            box-sizing: border-box;
         }
 
-        .user-controls {
+        .search-box::placeholder {
+            color: #9ca3af;
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #6b7280;
+            font-size: 14px;
+        }
+
+        .user-section {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 20px;
+            color: #1f2937;
+        }
+
+        .notification-icon,
+        .settings-icon {
+            font-size: 18px;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            color: #6b7280;
+        }
+
+        .notification-icon:hover,
+        .settings-icon:hover {
+            background: #f3f4f6;
+            color: #374151;
         }
 
         .user-info {
             display: flex;
             align-items: center;
             gap: 10px;
+            cursor: pointer;
+            padding: 5px 15px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .user-info:hover {
+            background: #f3f4f6;
+        }
+
+        .user-name {
+            font-size: 14px;
+            font-weight: 500;
+            color: #1f2937;
         }
 
         .user-avatar {
-            width: 40px;
-            height: 40px;
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
-            background-color: #eee;
+            background: #e5e7eb;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #555;
-        }
-
-        .search-box {
-            position: relative;
-            margin-right: 15px;
-        }
-
-        .search-box input {
-            border: none;
-            background-color: #f5f7fa;
-            border-radius: 20px;
-            padding: 8px 15px;
-            padding-right: 35px;
-            width: 250px;
             font-size: 14px;
+            color: #6b7280;
         }
 
-        .search-box i {
-            position: absolute;
-            right: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #888;
+        /* Main Content Container */
+        .main-wrapper {
+            padding: 20px;
         }
 
-        .page-title-area {
+        /* Main Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border: 1px solid #e5e7eb;
+        }
+
+        /* Header */
+        .header {
+            background: white;
+            padding: 20px 30px;
+            border-bottom: 1px solid #e5e7eb;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 15px;
         }
 
         .page-title {
-            font-size: 24px;
-            font-weight: 700;
-            color: #333;
-            margin-bottom: 0;
+            font-size: 22px;
+            font-weight: 600;
+            color: #1f2937;
         }
 
-        .actions-area {
+        .left-section {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .center-filters {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .filter-btn {
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid #d1d5db;
+            background: white;
+            color: #6b7280;
+        }
+
+        .filter-btn.active {
+            background: #f3f4f6;
+            color: #374151;
+            border-color: #9ca3af;
+        }
+
+        .filter-btn:hover {
+            background: #f9fafb;
+            border-color: #9ca3af;
+        }
+
+        .header-actions {
             display: flex;
             gap: 10px;
+            align-items: center;
         }
 
-        .btn-primary {
-            background-color: #2e4ead;
-            border-color: #2e4ead;
-        }
-
-        .btn-outline-secondary {
-            color: #6c757d;
-            border-color: #6c757d;
-        }
-
-        .tabs-area {
+        .action-btn {
             display: flex;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        .tab-item {
-            padding: 8px 15px;
-            border-radius: 5px;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 25px;
             font-size: 14px;
-            cursor: pointer;
-            background-color: #fff;
-            border: 1px solid #e9ecef;
-        }
-
-        .tab-item.active {
-            background-color: #f8f9fa;
-            border-color: #e9ecef;
             font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: none;
         }
 
-        .messages-table {
+        .btn-update {
+            background: white;
+            color: #6b7280;
+            border: 1px solid #d1d5db;
+        }
+
+        .btn-update:hover {
+            background: #f3f4f6;
+            color: #374151;
+        }
+
+        .btn-delete {
+            background: #3b82f6;
+            color: white;
+            border: 1px solid #3b82f6;
+        }
+
+        .btn-delete:hover {
+            background: #2563eb;
+            border-color: #2563eb;
+        }
+
+        /* Table Container */
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        .data-table {
             width: 100%;
             border-collapse: collapse;
+            background: white;
         }
 
-        .messages-table th {
-            background-color: #1a2653;
-            color: white;
+        .data-table thead {
+            background: #f8fafc;
+        }
+
+        .data-table th {
+            padding: 16px 20px;
+            text-align: center;
             font-weight: 500;
-            padding: 12px;
-            text-align: right;
             font-size: 14px;
+            color: #6b7280;
+            border-bottom: 1px solid #e5e7eb;
+            white-space: nowrap;
         }
 
-        .messages-table td {
-            padding: 15px 12px;
+        .data-table td {
+            padding: 16px 20px;
+            border-bottom: 1px solid #f1f5f9;
             vertical-align: middle;
-            border-bottom: 1px solid #eee;
             font-size: 14px;
+            text-align: center;
         }
 
-        .messages-table tr:nth-child(even) {
-            background-color: #fafbfc;
+        .data-table tbody tr:hover {
+            background: #fefce8;
         }
 
-        .status-badge {
-            padding: 5px 10px;
-            border-radius: 15px;
-            font-size: 12px;
+        .checkbox-cell {
+            width: 50px;
+            text-align: center;
+        }
+
+        .checkbox-cell input[type="checkbox"] {
+            width: 16px;
+            height: 16px;
+            cursor: pointer;
+            accent-color: #3b82f6;
+        }
+
+        .id-cell {
+            font-weight: 600;
+            color: #1f2937;
+            min-width: 80px;
+        }
+
+        .name-cell {
             font-weight: 500;
+            color: #1f2937;
+            min-width: 120px;
+        }
+
+        .email-cell {
+            color: #3b82f6;
+            text-decoration: none;
+            min-width: 180px;
+        }
+
+        .email-cell:hover {
+            text-decoration: underline;
+        }
+
+        .message-cell {
+            max-width: 300px;
+            text-align: right;
+            line-height: 1.5;
+            color: #4b5563;
+            position: relative;
+        }
+
+        .message-text {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .show-more-link {
+            color: #3b82f6;
+            font-size: 13px;
+            text-decoration: none;
             display: inline-block;
         }
 
-        .status-open {
-            background-color: #e6f7ee;
-            color: #22c55e;
+        .show-more-link:hover {
+            text-decoration: underline;
+        }
+
+        .status-cell {
+            min-width: 100px;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 500;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        .status-replied {
+            background: #dcfce7;
+            color: #16a34a;
+        }
+
+        .status-published {
+            background: #dcfce7;
+            color: #16a34a;
+        }
+
+        .status-ongoing {
+            background: #fef3c7;
+            color: #d97706;
         }
 
         .status-pending {
-            background-color: #fff8e6;
-            color: #f59e0b;
+            background: #e0e7ff;
+            color: #3730a3;
         }
 
-        .message-content {
-            max-width: 350px;
-            line-height: 1.5;
+        .actions-cell {
+            min-width: 120px;
         }
 
         .action-icons {
             display: flex;
             gap: 8px;
+            justify-content: center;
+            align-items: center;
         }
 
         .action-icon {
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
+            width: 32px;
+            height: 32px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 14px;
+            border-radius: 6px;
             cursor: pointer;
+            transition: all 0.2s;
+            font-size: 14px;
         }
 
-        .icon-delete {
-            color: #ef4444;
+        .action-icon.delete {
+            color: #dc2626;
         }
 
-        .icon-edit {
+        .action-icon.edit {
             color: #3b82f6;
         }
 
-        .icon-reply {
-            color: #6366f1;
+        .action-icon.view {
+            color: #16a34a;
         }
 
-        .pagination {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 20px;
-            gap: 5px;
+        .action-icon:hover {
+            background: #f3f4f6;
         }
 
-        .page-item {
+        /* Pagination */
+        .pagination-wrapper {
+            padding: 20px 30px;
+            background: white;
+            border-top: 1px solid #e5e7eb;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .pagination-controls {
+            display: flex;
+            gap: 6px;
+            align-items: center;
+        }
+
+        .page-btn {
+            width: 36px;
+            height: 36px;
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 35px;
-            height: 35px;
-            border-radius: 5px;
+            border-radius: 6px;
             cursor: pointer;
             font-size: 14px;
-            border: 1px solid #dee2e6;
+            font-weight: 500;
+            border: 1px solid #e5e7eb;
+            background: white;
+            color: #6b7280;
+            transition: all 0.2s;
         }
 
-        .page-item.active {
-            background-color: #2e4ead;
+        .page-btn:hover {
+            background: #f9fafb;
+            color: #374151;
+        }
+
+        .page-btn.active {
+            background: #3b82f6;
             color: white;
-            border-color: #2e4ead;
+            border-color: #3b82f6;
         }
 
-        .checkbox-container {
-            width: 20px;
-            height: 20px;
-            position: relative;
-            margin: 0 auto;
-        }
-
-        .checkbox-container input {
-            width: 100%;
-            height: 100%;
+        .page-arrow {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
             cursor: pointer;
+            border: 1px solid #e5e7eb;
+            background: white;
+            color: #6b7280;
+            transition: all 0.2s;
         }
-        
-        .show-more {
-            color: #2e4ead;
-            text-decoration: none;
-            font-size: 12px;
-            display: block;
-            margin-top: 5px;
+
+        .page-arrow:hover {
+            background: #f9fafb;
+            color: #374151;
         }
+
+        .pagination-info {
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        /* Responsive Design */
         
-        /* custom styles to match the exact design */
-        .message-row td {
-            padding-top: 20px;
-            padding-bottom: 20px;
+        /* Large Desktop (1200px+) - Default styles already cover this */
+        
+        /* Desktop (992px - 1199px) */
+        @media (max-width: 1199px) {
+            .main-wrapper {
+                padding: 15px;
+            }
+            
+            .container {
+                max-width: 100%;
+            }
+        }
+
+        /* Tablet Large (768px - 991px) */
+        @media (max-width: 991px) {
+            .top-header {
+                padding: 10px 20px;
+            }
+
+            .center-section {
+                gap: 25px;
+            }
+
+            .logo-image {
+                height: 35px;
+            }
+
+            .search-box {
+                width: 200px;
+            }
+
+            .header {
+                flex-direction: column;
+                gap: 15px;
+                align-items: stretch;
+                padding: 20px 25px;
+            }
+
+            .header-actions {
+                order: 1;
+                justify-content: center;
+            }
+
+            .left-section {
+                order: 2;
+                flex-direction: column;
+                gap: 15px;
+                align-items: center;
+            }
+
+            .action-btn {
+                padding: 8px 16px;
+                font-size: 13px;
+            }
+
+            .filter-btn {
+                padding: 8px 16px;
+                font-size: 13px;
+            }
+
+            .page-title {
+                font-size: 20px;
+            }
+        }
+
+        /* Tablet (576px - 767px) */
+        @media (max-width: 767px) {
+            .main-wrapper {
+                padding: 10px;
+            }
+
+            .top-header {
+                padding: 8px 15px;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            .user-section {
+                order: 1;
+                width: 100%;
+                justify-content: center;
+            }
+
+            .center-section {
+                order: 2;
+                width: 100%;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .logo-image {
+                height: 30px;
+            }
+
+            .search-box {
+                width: 100%;
+                max-width: 300px;
+                height: 35px;
+            }
+
+            .user-name {
+                display: none;
+            }
+
+            .container {
+                border-radius: 8px;
+            }
+
+            .header {
+                padding: 15px 20px;
+            }
+
+            .data-table th,
+            .data-table td {
+                padding: 8px 6px;
+                font-size: 12px;
+            }
+
+            .message-cell {
+                max-width: 150px;
+                font-size: 12px;
+            }
+
+            .page-title {
+                font-size: 18px;
+            }
+
+            .action-btn,
+            .filter-btn {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+
+            .pagination-wrapper {
+                padding: 15px 20px;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .status-badge {
+                font-size: 10px;
+                padding: 3px 8px;
+            }
+
+            .action-icon {
+                width: 28px;
+                height: 28px;
+                font-size: 12px;
+            }
+        }
+
+        /* Mobile Large (481px - 575px) */
+        @media (max-width: 575px) {
+            body {
+                background: #f5f5f5;
+            }
+
+            .top-header {
+                padding: 15px 20px;
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+                background: white;
+                border-radius: 0;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            }
+
+            .center-section {
+                order: 1;
+                width: 100%;
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+
+            .logo-section {
+                order: 1;
+            }
+
+            .logo-image {
+                height: 45px;
+            }
+
+            .user-section {
+                order: 2;
+                width: 100%;
+                justify-content: center;
+                gap: 20px;
+            }
+
+            .search-section {
+                order: 3;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+            }
+
+            .search-box {
+                width: 100%;
+                max-width: 300px;
+                height: 40px;
+                border-radius: 25px;
+                padding: 10px 50px 10px 20px;
+                border: 1px solid #d1d5db;
+                background: #f9fafb;
+            }
+
+            .main-wrapper {
+                padding: 0;
+                background: #f5f5f5;
+            }
+
+            .container {
+                margin-top: 15px;
+                border-radius: 15px;
+                margin-left: 10px;
+                margin-right: 10px;
+            }
+
+            .header {
+                padding: 20px;
+                flex-direction: column;
+                gap: 20px;
+                align-items: center;
+                background: white;
+                border-radius: 15px 15px 0 0;
+            }
+
+            .header-actions {
+                order: 1;
+                width: 100%;
+                justify-content: space-between;
+                gap: 10px;
+            }
+
+            .action-btn {
+                flex: 1;
+                justify-content: center;
+                padding: 12px 16px;
+                border-radius: 25px;
+                font-size: 14px;
+            }
+
+            .left-section {
+                order: 2;
+                width: 100%;
+                flex-direction: column;
+                gap: 15px;
+                align-items: center;
+            }
+
+            .page-title {
+                font-size: 20px;
+                text-align: center;
+                order: 2;
+            }
+
+            .center-filters {
+                order: 1;
+                flex-wrap: wrap;
+                gap: 10px;
+                justify-content: center;
+                width: 100%;
+            }
+
+            .filter-btn {
+                padding: 8px 16px;
+                font-size: 13px;
+                border-radius: 20px;
+            }
+
+            .table-wrapper {
+                border-radius: 0 0 15px 15px;
+                overflow: hidden;
+            }
+
+            .data-table th,
+            .data-table td {
+                padding: 12px 8px;
+                font-size: 12px;
+            }
+
+            .message-cell {
+                max-width: 150px;
+                font-size: 12px;
+            }
+
+            .id-cell,
+            .name-cell,
+            .email-cell {
+                min-width: auto;
+                font-size: 12px;
+            }
+
+            .pagination-wrapper {
+                padding: 20px;
+                flex-direction: column;
+                gap: 15px;
+                background: white;
+                border-radius: 0 0 15px 15px;
+            }
+
+            .pagination-controls {
+                justify-content: center;
+            }
+
+            .page-btn,
+            .page-arrow {
+                width: 35px;
+                height: 35px;
+                font-size: 13px;
+            }
+
+            .user-name {
+                display: inline;
+                font-size: 14px;
+            }
+
+            .user-avatar {
+                width: 35px;
+                height: 35px;
+            }
+
+            .notification-icon,
+            .settings-icon {
+                font-size: 20px;
+                padding: 8px;
+            }
+        }
+
+        /* Mobile Small (320px - 480px) */
+        @media (max-width: 480px) {
+            .top-header {
+                padding: 12px 15px;
+            }
+
+            .logo-image {
+                height: 40px;
+            }
+
+            .search-box {
+                height: 38px;
+                font-size: 13px;
+                max-width: 280px;
+            }
+
+            .container {
+                margin-left: 8px;
+                margin-right: 8px;
+                border-radius: 12px;
+            }
+
+            .header {
+                padding: 15px;
+            }
+
+            .page-title {
+                font-size: 18px;
+            }
+
+            .action-btn {
+                padding: 10px 14px;
+                font-size: 13px;
+            }
+
+            .filter-btn {
+                padding: 7px 14px;
+                font-size: 12px;
+            }
+
+            .table-wrapper {
+                overflow-x: scroll;
+                -webkit-overflow-scrolling: touch;
+            }
+
+            .data-table {
+                min-width: 600px;
+            }
+
+            .data-table th,
+            .data-table td {
+                padding: 10px 6px;
+                font-size: 11px;
+                white-space: nowrap;
+            }
+
+            .message-cell {
+                max-width: 120px;
+                font-size: 11px;
+            }
+
+            .status-badge {
+                font-size: 10px;
+                padding: 3px 8px;
+                min-width: 65px;
+            }
+
+            .action-icon {
+                width: 28px;
+                height: 28px;
+                font-size: 11px;
+            }
+
+            .pagination-wrapper {
+                padding: 15px;
+            }
+
+            .page-btn,
+            .page-arrow {
+                width: 32px;
+                height: 32px;
+                font-size: 12px;
+            }
+
+            .pagination-info {
+                font-size: 13px;
+            }
+
+            .user-section {
+                gap: 18px;
+            }
+
+            .notification-icon,
+            .settings-icon {
+                font-size: 18px;
+            }
+
+            .user-avatar {
+                width: 32px;
+                height: 32px;
+            }
+
+            .user-name {
+                font-size: 13px;
+            }
+        }
+
+        /* Mobile Extra Small (max 320px) */
+        @media (max-width: 320px) {
+            .top-header {
+                padding: 10px;
+            }
+
+            .logo-image {
+                height: 35px;
+            }
+
+            .search-box {
+                max-width: 260px;
+                height: 36px;
+                font-size: 12px;
+            }
+
+            .container {
+                margin-left: 5px;
+                margin-right: 5px;
+            }
+
+            .header {
+                padding: 12px;
+            }
+
+            .page-title {
+                font-size: 16px;
+            }
+
+            .action-btn {
+                padding: 8px 12px;
+                font-size: 12px;
+            }
+
+            .filter-btn {
+                padding: 6px 12px;
+                font-size: 11px;
+            }
+
+            .data-table th,
+            .data-table td {
+                padding: 8px 4px;
+                font-size: 10px;
+            }
+
+            .message-cell {
+                max-width: 100px;
+                font-size: 10px;
+            }
+
+            .user-section {
+                gap: 15px;
+            }
+
+            .user-name {
+                font-size: 12px;
+            }
+
+            .user-avatar {
+                width: 30px;
+                height: 30px;
+            }
+
+            .notification-icon,
+            .settings-icon {
+                font-size: 16px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container-fluid p-0">
-        <!-- Sidebar overlay for mobile -->
-        <div class="sidebar-overlay" id="sidebar-overlay"></div>
-        
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <div class="sidebar-header">
-                <div class="logo-container">
-                    <img src="../images/logo-icon.png" alt="مفاتيح المملكة" class="logo-icon">
-                    <h3>مفاتيح المملكة</h3>
+    <!-- Top Header -->
+    <div class="top-header">
+        <div class="user-section">
+            <div class="user-info">
+                <span class="user-name">أحمد محمد</span>
+                <div class="user-avatar">
+                    <i class="fas fa-user"></i>
                 </div>
-                <button id="close-sidebar" class="close-btn">&times;</button>
+            </div>
+            <i class="fas fa-cog settings-icon"></i>
+            <i class="fas fa-bell notification-icon"></i>
+        </div>
+        
+        <div class="center-section">
+            <div class="logo-section">
+                <img src="assets/images/logo.png" alt="مجاموع المملكة" class="logo-image">
             </div>
             
-            <div class="sidebar-menu">
-                <ul>
-                    <li class="menu-item">
-                        <a href="../../index.html">
-                            <i class="fas fa-home"></i>
-                            <span>لوحة التحكم</span>
-                        </a>
-                    </li>
-                    <li class="menu-item active">
-                        <a href="visitor-log.html">
-                            <i class="fas fa-users"></i>
-                            <span>سجل الزوار</span>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="user-profile.html">
-                            <i class="fas fa-user"></i>
-                            <span>إدارة المستخدمين</span>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="content-view.html">
-                            <i class="fas fa-file-alt"></i>
-                            <span>إدارة المحتوى</span>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="advertisements-banners.html">
-                            <i class="fas fa-ad"></i>
-                            <span>الإعلانات</span>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="print-copy-report.html">
-                            <i class="fas fa-chart-pie"></i>
-                            <span>التقارير</span>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="general-settings.html">
-                            <i class="fas fa-cog"></i>
-                            <span>الإعدادات</span>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="sitemap.html">
-                            <i class="fas fa-sitemap"></i>
-                            <span>خريطة الموقع</span>
-                        </a>
-                    </li>
-                </ul>
+            <div class="search-section">
+                <input type="text" class="search-box" placeholder="بحث...">
+                <i class="fas fa-search search-icon"></i>
             </div>
-        </aside>
+        </div>
         
-        <!-- Main Content Area -->
-        <main class="main-content">
-            <!-- Top Navigation Bar -->
-            <nav class="top-navbar">
-                <div class="menu-toggle">
-                    <button id="sidebar-toggle">
-                        <i class="fas fa-bars"></i>
+        <div style="flex: 0;"></div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-wrapper">
+        <div class="container">
+            <!-- Header -->
+            <div class="header">
+                <div class="header-actions">
+                    <button class="action-btn btn-update">
+                        <i class="fas fa-sync"></i>
+                        تحديث الحالة
+                    </button>
+                    <button class="action-btn btn-delete">
+                        <i class="fas fa-trash"></i>
+                        حذف المحدد
                     </button>
                 </div>
                 
-                <div class="brand">
-                    <img src="../images/logo-icon.png" alt="مفاتيح المملكة" class="logo-icon">
-                    <span class="brand-name">مفاتيح المملكة</span>
+                <div class="left-section">
+                    <div class="center-filters">
+                        <button class="filter-btn active">جميع الحالات</button>
+                        <button class="filter-btn">نصيحة</button>
+                        <button class="filter-btn">45 رسالة</button>
+                    </div>
+                    <h1 class="page-title">إدارة الرسائل</h1>
                 </div>
-                
-                <div class="user-menu">
-                    <div class="notifications">
-                        <a href="#" class="notification-icon">
-                            <i class="fas fa-bell"></i>
-                            <span class="badge">5</span>
-                        </a>
-                    </div>
-                    <div class="user-profile">
-                        <img src="../images/user-avatar.png" alt="صورة المستخدم" class="user-avatar">
-                        <span class="user-name">أحمد محمد</span>
-                    </div>
-                </div>
-            </nav>
-
-            <!-- Main Content Container -->
-            <div class="dashboard-container">
-                <!-- Dashboard Header with Stats -->
-                <div class="dashboard-header">
-                    <div class="dashboard-title">
-                        <h2>سجل الزوار</h2>
-                        <p>إدارة سجلات ورسائل الزوار</p>
-                    </div>
-                    
-                    <!-- Stats Cards -->
-                    <div class="stats-cards">
-                        <div class="stat-card">
-                            <div class="stat-info">
-                                <h3>48</h3>
-                                <p>رسالة جديدة</p>
-                            </div>
-                            <div class="stat-icon blue">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                        </div>
-                        
-                        <div class="stat-card">
-                            <div class="stat-info">
-                                <h3>120</h3>
-                                <p>إجمالي الرسائل</p>
-                            </div>
-                            <div class="stat-icon green">
-                                <i class="fas fa-inbox"></i>
-                            </div>
-                        </div>
-                        
-                        <div class="stat-card">
-                            <div class="stat-info">
-                                <h3>85%</h3>
-                                <p>معدل الاستجابة</p>
-                            </div>
-                            <div class="stat-icon orange">
-                                <i class="fas fa-chart-line"></i>
-                            </div>
-                        </div>
-                        
-                        <div class="stat-card">
-                            <div class="stat-info">
-                                <h3>7</h3>
-                                <p>رسائل بانتظار الرد</p>
-                            </div>
-                            <div class="stat-icon red">
-                                <i class="fas fa-clock"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Action Buttons -->
-                <div class="action-buttons">
-                    <a href="visitor-add-entry.html" class="btn add-btn">
-                        <i class="fas fa-plus"></i>
-                        <span>إضافة رسالة</span>
-                    </a>
-                    
-                    <div class="filter-options">
-                        <select class="filter-select">
-                            <option>جميع الرسائل</option>
-                            <option>رسائل جديدة</option>
-                            <option>تم الرد</option>
-                            <option>بانتظار الرد</option>
-                        </select>
-                        
-                        <div class="search-container">
-                            <input type="text" placeholder="بحث..." class="search-input">
-                            <button class="search-btn"><i class="fas fa-search"></i></button>
-                        </div>
-                    </div>
-                </div>
-
-            <!-- Messages table -->
-            <div class="table-responsive">
-                <table class="messages-table">
-                    <thead>
-                        <tr>
-                            <th style="width: 40px">
-                                <label class="checkbox-container">
-                                    <input type="checkbox" id="select-all">
-                                </label>
-                            </th>
-                            <th style="width: 80px">معرف</th>
-                            <th style="width: 120px">الاسم</th>
-                            <th style="width: 120px">البريد الإلكتروني</th>
-                            <th>الرسالة</th>
-                            <th style="width: 100px">الحالة</th>
-                            <th style="width: 100px">الرد</th>
-                            <th style="width: 120px">الإجراءات</th>
-                        </tr>
-                    </thead>
-                <tbody>
-                    <tr class="message-row">
-                        <td>
-                            <input type="checkbox" class="form-check-input">
-                        </td>
-                        <td>#1254</td>
-                        <td>سارة الأحمد</td>
-                        <td>
-                            <a href="mailto:sara@example.com">sara@example.com</a>
-                        </td>
-                        <td>
-                            <div>
-                                يرجى الرد على الخدمة المطلوبة في منشوراتكم
-                                لدي استفسارات للزيارة العائلية في مدينة مكة
-                                سرعة الرد وان التواصل معكم مهم للغاية
-                            </div>
-                            <a href="#" class="show-more">عرض المزيد</a>
-                        </td>
-                        <td>
-                            <span class="status-badge status-open">مفتوح</span>
-                        </td>
-                        <td>
-                            <span class="status-badge status-open">تم الرد</span>
-                        </td>
-                        <td>
-                            <div class="action-icons">
-                                <a href="javascript:void(0)" onclick="handleMessageAction('delete', this)" class="action-icon icon-delete">
-                                    <i class="fas fa-trash"></i>
-                                </a>
-                                <a href="javascript:void(0)" onclick="handleMessageAction('edit', this)" class="action-icon icon-edit">
-                                    <i class="fas fa-pen"></i>
-                                </a>
-                                <a href="javascript:void(0)" onclick="handleMessageAction('reply', this)" class="action-icon icon-reply">
-                                    <i class="fas fa-reply"></i>
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label class="checkbox-container">
-                                <input type="checkbox">
-                                <span class="checkmark"></span>
-                            </label>
-                        </td>
-                        <td>
-                            <div class="user-id">#1252</div>
-                        </td>
-                        <td>
-                            <div class="user-name">فاطمة الزهراء</div>
-                        </td>
-                        <td>
-                            <a href="mailto:fatima@example.com" class="email">fatima@example.com</a>
-                        </td>
-                        <td>
-                            <div class="message-content">
-                                أنا مهتمة بالاشتراك في خدمتكم المميزة، ولكن لدي
-                                بعض الأسئلة قبل اتخاذ القرار. هل يمكنني الحصول
-                                على فترة تجريبية مجانية؟ وما هي المميزات التي...
-                            </div>
-                            <a href="#" class="show-more">عرض المزيد</a>
-                        </td>
-                        <td>
-                            <span class="status-badge status-open">مفتوح</span>
-                        </td>
-                        <td>
-                            <span class="status-badge status-open">تم الرد</span>
-                        </td>
-                        <td>
-                            <div class="action-icons">
-                                <a href="#" class="action-icon icon-delete">
-                                    <i class="fas fa-trash"></i>
-                                </a>
-                                <a href="#" class="action-icon icon-edit">
-                                    <i class="fas fa-pen"></i>
-                                </a>
-                                <a href="#" class="action-icon icon-reply">
-                                    <i class="fas fa-reply"></i>
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="message-row">
-                        <td>
-                            <input type="checkbox" class="form-check-input">
-                        </td>
-                        <td>#1250</td>
-                        <td>نورة السعيد</td>
-                        <td>
-                            <a href="mailto:noura@example.com">noura@example.com</a>
-                        </td>
-                        <td>
-                            <div>
-                                شكراً لتحسين خدماتكم. اعتقد أنه
-                                من المفيد إضافة ميزة الدفع عبر المحفظة
-                                حيث أن العديد من العملاء يتعاملون هذه...
-                            </div>
-                            <a href="#" class="show-more">عرض المزيد</a>
-                        </td>
-                        <td>
-                            <span class="status-badge status-open">مفتوح</span>
-                        </td>
-                        <td>
-                            <span class="status-badge status-open">تم الرد</span>
-                        </td>
-                        <td>
-                            <div class="action-icons">
-                                <a href="javascript:void(0)" onclick="handleMessageAction('delete', this)" class="action-icon icon-delete">
-                                    <i class="fas fa-trash"></i>
-                                </a>
-                                <a href="javascript:void(0)" onclick="handleMessageAction('edit', this)" class="action-icon icon-edit">
-                                    <i class="fas fa-pen"></i>
-                                </a>
-                                <a href="javascript:void(0)" onclick="handleMessageAction('reply', this)" class="action-icon icon-reply">
-                                    <i class="fas fa-reply"></i>
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <label class="checkbox-container">
-                                <input type="checkbox">
-                                <span class="checkmark"></span>
-                            </label>
-                        </td>
-                        <td>
-                            <div class="user-id">#1249</div>
-                        </td>
-                        <td>
-                            <div class="user-name">خالد المنصور</div>
-                        </td>
-                    <tr class="message-row">
-                        <td>
-                            <input type="checkbox" class="form-check-input">
-                        </td>
-                        <td>#1249</td>
-                        <td>خالد المنصور</td>
-                        <td>
-                            <a href="mailto:khalid@example.com">khalid@example.com</a>
-                        </td>
-                        <td>
-                            <div>
-                                بمعرفة مواعيد العمل خلال شهر رمضان.
-                                هل ستطبق هناك تغييرات في أوقات
-                                العمل؟ ستبقى دون عوائق خاصة بمناسبة...
-                            </div>
-                            <a href="#" class="show-more">عرض المزيد</a>
-                        </td>
-                        <td>
-                            <span class="status-badge status-pending">بانتظار الرد</span>
-                        </td>
-                        <td>
-                            <span class="status-badge status-pending">قيد التنفيذ</span>
-                        </td>
-                        <td>
-                            <div class="action-icons">
-                                <a href="javascript:void(0)" onclick="handleMessageAction('delete', this)" class="action-icon icon-delete">
-                                    <i class="fas fa-trash"></i>
-                                </a>
-                                <a href="javascript:void(0)" onclick="handleMessageAction('edit', this)" class="action-icon icon-edit">
-                                    <i class="fas fa-pen"></i>
-                                </a>
-                                <a href="javascript:void(0)" onclick="handleMessageAction('reply', this)" class="action-icon icon-reply">
-                                    <i class="fas fa-reply"></i>
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="message-row">
-                        <td>
-                            <input type="checkbox" class="form-check-input">
-                        </td>
-                        <td>#1252</td>
-                        <td>فاطمة الزهراء</td>
-                        <td>
-                            <a href="mailto:fatima@example.com">fatima@example.com</a>
-                        </td>
-                        <td>
-                            <div>
-                                اني مهتمة بالمشاركة في مخيمكم التدريبي ولكن لدي
-                                بعض الاسئلة: هل يجب علي دفع كامل المبلغ المطلوب
-                                قبل الدخول؟ والى كم المساحات التي
-                            </div>
-                            <a href="#" class="show-more">عرض المزيد</a>
-                        </td>
-                        <td>
-                            <span class="status-badge status-open">مفتوح</span>
-                        </td>
-                        <td>
-                            <span class="status-badge status-open">تم الرد</span>
-                        </td>
-                        <td>
-                            <div class="action-icons">
-                                <a href="javascript:void(0)" onclick="handleMessageAction('delete', this)" class="action-icon icon-delete">
-                                    <i class="fas fa-trash"></i>
-                                </a>
-                                <a href="javascript:void(0)" onclick="handleMessageAction('edit', this)" class="action-icon icon-edit">
-                                    <i class="fas fa-pen"></i>
-                                </a>
-                                <a href="javascript:void(0)" onclick="handleMessageAction('reply', this)" class="action-icon icon-reply">
-                                    <i class="fas fa-reply"></i>
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="message-row">
-                        <td>
-                            <input type="checkbox" class="form-check-input">
-                        </td>
-                        <td>#1251</td>
-                        <td>عمر الخالدي</td>
-                        <td>
-                            <a href="mailto:omar@example.com">omar@example.com</a>
-                        </td>
-                        <td>
-                            <div>
-                                قمت بالتسجيل للدخول إلى حسابي لكن
-                                لا استطيع تغيير كلمة المرور وايضا انا لا
-                                اتذكر كلمتي الحالية هل يمكنكم مساعدتي
-                            </div>
-                            <a href="#" class="show-more">عرض المزيد</a>
-                        </td>
-                        <td>
-                            <span class="status-badge status-open">مفتوح</span>
-                        </td>
-                        <td>
-                            <span class="status-badge status-open">تم الرد</span>
-                        </td>
-                        <td>
-                            <div class="action-icons">
-                                <a href="javascript:void(0)" onclick="handleMessageAction('delete', this)" class="action-icon icon-delete">
-                                    <i class="fas fa-trash"></i>
-                                </a>
-                                <a href="javascript:void(0)" onclick="handleMessageAction('edit', this)" class="action-icon icon-edit">
-                                    <i class="fas fa-pen"></i>
-                                </a>
-                                <a href="javascript:void(0)" onclick="handleMessageAction('reply', this)" class="action-icon icon-reply">
-                                    <i class="fas fa-reply"></i>
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="message-row">
-                        <td>
-                            <input type="checkbox" class="form-check-input">
-                        </td>
-                        <td>#1250</td>
-                        <td>نورا السعيدي</td>
-                        <td>
-                            <a href="mailto:noura@example.com">noura@example.com</a>
-                        </td>
-                        <td>
-                            <div>
-                                ارغب بمعرفة اسعار الدورات التدريبية المقامة معكم
-                                + طريقة الدفع المتاحة لديكم وحالة توفر مقاعد
-                                + يجب ان اعرف اذا الملف سيتضمن فقط
-                            </div>
-                            <a href="#" class="show-more">عرض المزيد</a>
-                        </td>
-                        <td>
-                            <span class="status-badge status-pending">بانتظار الرد</span>
-                        </td>
-                        <td>
-                            <span class="status-badge status-pending">قيد التنفيذ</span>
-                        </td>
-                        <td>
-                            <div class="action-icons">
-                                <a href="javascript:void(0)" onclick="handleMessageAction('delete', this)" class="action-icon icon-delete">
-                                    <i class="fas fa-trash"></i>
-                                </a>
-                                <a href="javascript:void(0)" onclick="handleMessageAction('edit', this)" class="action-icon icon-edit">
-                                    <i class="fas fa-pen"></i>
-                                </a>
-                                <a href="javascript:void(0)" onclick="handleMessageAction('reply', this)" class="action-icon icon-reply">
-                                    <i class="fas fa-reply"></i>
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-                    <tr class="message-row">
-                        <td>
-                            <input type="checkbox" class="form-check-input">
-                        </td>
-                        <td>#1249</td>
-                        <td>خالد المنصور</td>
-                        <td>
-                            <a href="mailto:khalid@example.com">khalid@example.com</a>
-                        </td>
-                        <td>
-                            <div>
-                                مرحبا، نرجو منكم كامل تفاصيل ستقام ورشات العمل مثل
-                                ما ستقدم منكم وكذلك إذا كان هناك أي توقيت
-                                تستطيعون عرضها خاصة بالنسبة
-                            </div>
-                            <a href="#" class="show-more">عرض المزيد</a>
-                        </td>
-                        <td>
-                            <span class="status-badge status-pending">بانتظار الرد</span>
-                        </td>
-                        <td>
-                            <span class="status-badge status-pending">قيد التنفيذ</span>
-                        </td>
-                        <td>
-                            <div class="action-icons">
-                                <a href="javascript:void(0)" onclick="handleMessageAction('delete', this)" class="action-icon icon-delete">
-                                    <i class="fas fa-trash"></i>
-                                </a>
-                                <a href="javascript:void(0)" onclick="handleMessageAction('edit', this)" class="action-icon icon-edit">
-                                    <i class="fas fa-pen"></i>
-                                </a>
-                                <a href="javascript:void(0)" onclick="handleMessageAction('reply', this)" class="action-icon icon-reply">
-                                    <i class="fas fa-reply"></i>
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <div>
-                <button class="btn btn-primary">
-                    <i class="fas fa-plus"></i>
-                    <span>إضافة البيانات</span>
-                </button>
-                <button class="btn btn-outline-secondary ms-2">
-                    <i class="fas fa-sync-alt"></i>
-                    <span>تحديث الحالة</span>
-                </button>
             </div>
 
-            <!-- Table Section -->
-            <div class="table-responsive mt-3">
-                <table class="messages-table">
+            <!-- Table -->
+            <div class="table-wrapper">
+                <table class="data-table">
                     <thead>
                         <tr>
-                            <th style="width: 40px">
-                                <input type="checkbox" class="form-check-input">
+                            <th class="checkbox-cell">
+                                <input type="checkbox" id="select-all">
                             </th>
                             <th>معرف</th>
                             <th>الاسم</th>
@@ -1069,477 +1062,210 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!-- Message 1 - سارة الأحمد -->
                         <tr>
-                            <td>
-                                <input type="checkbox" class="form-check-input">
+                            <td class="checkbox-cell">
+                                <input type="checkbox">
                             </td>
-                            <td>#1254</td>
-                            <td>سارة الأحمد</td>
-                            <td>
-                                <a href="mailto:sara@example.com">sara@example.com</a>
+                            <td class="id-cell">#1254</td>
+                            <td class="name-cell">سارة أحمد</td>
+                            <td class="email-cell">sara@example.com</td>
+                            <td class="message-cell">
+                                <span class="message-text">يؤكد على الخدمة المميزة التي قدمتموها لدعمتوقعنا للغاية ومساعدتي في حل مشكلتي. أتطلع إلى التعامل معكم مرة أخرى</span>
+                                <a href="#" class="show-more-link">عرض المزيد</a>
                             </td>
-                            <td>
-                                <div>
-                                    يرجى الرد على الخدمة المطلوبة في منشوراتكم
-                                    لدي استفسارات للزيارة العائلية في مدينة مكة
-                                    سرعة الرد وان التواصل معكم مهم للغاية
-                                </div>
-                                <a href="#" class="show-more">عرض المزيد</a>
+                            <td class="status-cell">
+                                <span class="status-badge status-replied">تم الرد</span>
                             </td>
-                            <td>
-                                <span class="status-badge status-open">مفتوح</span>
+                            <td class="status-cell">
+                                <span class="status-badge status-published">منشور</span>
                             </td>
-                            <td>
-                                <span class="status-badge status-open">تم الرد</span>
-                            </td>
-                            <td>
+                            <td class="actions-cell">
                                 <div class="action-icons">
-                                    <a href="javascript:void(0)" onclick="handleMessageAction('delete', this)" class="action-icon icon-delete">
-                                        <i class="fas fa-trash"></i>
-                                    </a>
-                                    <a href="javascript:void(0)" onclick="handleMessageAction('edit', this)" class="action-icon icon-edit">
-                                        <i class="fas fa-pen"></i>
-                                    </a>
-                                    <a href="javascript:void(0)" onclick="handleMessageAction('reply', this)" class="action-icon icon-reply">
-                                        <i class="fas fa-reply"></i>
-                                    </a>
+                                    <i class="fas fa-trash action-icon delete"></i>
+                                    <i class="fas fa-edit action-icon edit"></i>
+                                    <i class="fas fa-eye action-icon view"></i>
                                 </div>
                             </td>
                         </tr>
-                        <!-- Message 2 - محمد المعلمي -->
                         <tr>
-                            <td>
-                                <input type="checkbox" class="form-check-input">
+                            <td class="checkbox-cell">
+                                <input type="checkbox">
                             </td>
-                            <td>#1253</td>
-                            <td>محمد المعلمي</td>
-                            <td>
-                                <a href="mailto:mohammed@example.com">mohammed@example.com</a>
+                            <td class="id-cell">#1253</td>
+                            <td class="name-cell">محمد العبدالله</td>
+                            <td class="email-cell">mohammed@example.com</td>
+                            <td class="message-cell">
+                                <span class="message-text">لدي استفسار بخصوص المنتج الذي اشتريته مؤخراً. هل يمكن استبداله إذا لم يكن مناسباً لاحتياجاتي؟ وما هي سياسة الاسترجاع لديكم؟ أرجو الرد في أقرب</span>
+                                <a href="#" class="show-more-link">عرض المزيد</a>
                             </td>
-                            <td>
-                                <div>
-                                    لدي استفسار بخصوص التسجيل الإلكتروني للخدمات الإدارية
-                                    هل يمكنني اضافة اكثر من فرد باسم المستخدم الواحد؟
-                                    وهل هي بنفسة الطريقة ام كيف اقوم بالربط؟
-                                </div>
-                                <a href="#" class="show-more">عرض المزيد</a>
+                            <td class="status-cell">
+                                <span class="status-badge status-ongoing">مُستمر</span>
                             </td>
-                            <td>
-                                <span class="status-badge status-pending">بانتظار الرد</span>
+                            <td class="status-cell">
+                                <span class="status-badge status-pending">ينتظر الرد</span>
                             </td>
-                            <td>
-                                <span class="status-badge status-pending">قيد التنفيذ</span>
-                            </td>
-                            <td>
+                            <td class="actions-cell">
                                 <div class="action-icons">
-                                    <a href="javascript:void(0)" onclick="handleMessageAction('delete', this)" class="action-icon icon-delete">
-                                        <i class="fas fa-trash"></i>
-                                    </a>
-                                    <a href="javascript:void(0)" onclick="handleMessageAction('edit', this)" class="action-icon icon-edit">
-                                        <i class="fas fa-pen"></i>
-                                    </a>
-                                    <a href="javascript:void(0)" onclick="handleMessageAction('reply', this)" class="action-icon icon-reply">
-                                        <i class="fas fa-reply"></i>
-                                    </a>
+                                    <i class="fas fa-trash action-icon delete"></i>
+                                    <i class="fas fa-edit action-icon edit"></i>
+                                    <i class="fas fa-eye action-icon view"></i>
                                 </div>
                             </td>
                         </tr>
-                        <!-- Message 3 - فاطمة الزهراء -->
                         <tr>
-                            <td>
-                                <input type="checkbox" class="form-check-input">
+                            <td class="checkbox-cell">
+                                <input type="checkbox">
                             </td>
-                            <td>#1252</td>
-                            <td>فاطمة الزهراء</td>
-                            <td>
-                                <a href="mailto:fatima@example.com">fatima@example.com</a>
+                            <td class="id-cell">#1252</td>
+                            <td class="name-cell">فاطمة الزهراء</td>
+                            <td class="email-cell">fatima@example.com</td>
+                            <td class="message-cell">
+                                <span class="message-text">أنا مهتمة بالاشتراك في خدمتكم المميزة، ولكن لدي بعض الأسئلة قبل اتخاذ القرار. هل يمكن الحصول على فترة تجريبية مجانية؟ وما هي المميزات التي</span>
+                                <a href="#" class="show-more-link">عرض المزيد</a>
                             </td>
-                            <td>
-                                <div>
-                                    اني مهتمة بالمشاركة في مخيمكم التدريبي ولكن لدي
-                                    بعض الاسئلة: هل يجب علي دفع كامل المبلغ المطلوب
-                                    قبل الدخول؟ والى كم المساحات التي
-                                </div>
-                                <a href="#" class="show-more">عرض المزيد</a>
+                            <td class="status-cell">
+                                <span class="status-badge status-published">منشور</span>
                             </td>
-                            <td>
-                                <span class="status-badge status-open">مفتوح</span>
+                            <td class="status-cell">
+                                <span class="status-badge status-pending">ينتظر الرد</span>
                             </td>
-                            <td>
-                                <span class="status-badge status-open">تم الرد</span>
-                            </td>
-                            <td>
+                            <td class="actions-cell">
                                 <div class="action-icons">
-                                    <a href="javascript:void(0)" onclick="handleMessageAction('delete', this)" class="action-icon icon-delete">
-                                        <i class="fas fa-trash"></i>
-                                    </a>
-                                    <a href="javascript:void(0)" onclick="handleMessageAction('edit', this)" class="action-icon icon-edit">
-                                        <i class="fas fa-pen"></i>
-                                    </a>
-                                    <a href="javascript:void(0)" onclick="handleMessageAction('reply', this)" class="action-icon icon-reply">
-                                        <i class="fas fa-reply"></i>
-                                    </a>
+                                    <i class="fas fa-trash action-icon delete"></i>
+                                    <i class="fas fa-edit action-icon edit"></i>
+                                    <i class="fas fa-eye action-icon view"></i>
                                 </div>
                             </td>
                         </tr>
-                        <!-- Message 4 - عمر الخالدي -->
                         <tr>
-                            <td>
-                                <input type="checkbox" class="form-check-input">
+                            <td class="checkbox-cell">
+                                <input type="checkbox">
                             </td>
-                            <td>#1251</td>
-                            <td>عمر الخالدي</td>
-                            <td>
-                                <a href="mailto:omar@example.com">omar@example.com</a>
+                            <td class="id-cell">#1251</td>
+                            <td class="name-cell">عمر الخالدي</td>
+                            <td class="email-cell">omar@example.com</td>
+                            <td class="message-cell">
+                                <span class="message-text">كلما في تسجيل الدخول إلى حسابي. لقد نسيت كلمة المرور عدة مرات ولكن لم أتمكن من إعادة تعيينها الإلكتروني للتأكيد. هل يمكنكم مساعدتي</span>
+                                <a href="#" class="show-more-link">عرض المزيد</a>
                             </td>
-                            <td>
-                                <div>
-                                    قمت بالتسجيل للدخول إلى حسابي لكن
-                                    لا استطيع تغيير كلمة المرور وايضا انا لا
-                                    اتذكر كلمتي الحالية هل يمكنكم مساعدتي
-                                </div>
-                                <a href="#" class="show-more">عرض المزيد</a>
+                            <td class="status-cell">
+                                <span class="status-badge status-replied">تم الرد</span>
                             </td>
-                            <td>
-                                <span class="status-badge status-open">مفتوح</span>
+                            <td class="status-cell">
+                                <span class="status-badge status-published">منشور</span>
                             </td>
-                            <td>
-                                <span class="status-badge status-open">تم الرد</span>
-                            </td>
-                            <td>
+                            <td class="actions-cell">
                                 <div class="action-icons">
-                                    <a href="javascript:void(0)" onclick="handleMessageAction('delete', this)" class="action-icon icon-delete">
-                                        <i class="fas fa-trash"></i>
-                                    </a>
-                                    <a href="javascript:void(0)" onclick="handleMessageAction('edit', this)" class="action-icon icon-edit">
-                                        <i class="fas fa-pen"></i>
-                                    </a>
-                                    <a href="javascript:void(0)" onclick="handleMessageAction('reply', this)" class="action-icon icon-reply">
-                                        <i class="fas fa-reply"></i>
-                                    </a>
+                                    <i class="fas fa-trash action-icon delete"></i>
+                                    <i class="fas fa-edit action-icon edit"></i>
+                                    <i class="fas fa-eye action-icon view"></i>
                                 </div>
                             </td>
                         </tr>
-                        <!-- Message 5 - نورا السعيدي -->
                         <tr>
-                            <td>
-                                <input type="checkbox" class="form-check-input">
+                            <td class="checkbox-cell">
+                                <input type="checkbox">
                             </td>
-                            <td>#1250</td>
-                            <td>نورا السعيدي</td>
-                            <td>
-                                <a href="mailto:noura@example.com">noura@example.com</a>
+                            <td class="id-cell">#1250</td>
+                            <td class="name-cell">نورة السعيد</td>
+                            <td class="email-cell">noura@example.com</td>
+                            <td class="message-cell">
+                                <span class="message-text">أقترح أن تحسينوا خدماتكم. أعتقد أنه يمكن إضافة ميزة الدفع عبر المحفظة الإلكترونية، حيث أن العديد من العملاء يفضلون هذه</span>
+                                <a href="#" class="show-more-link">عرض المزيد</a>
                             </td>
-                            <td>
-                                <div>
-                                    ارغب بمعرفة اسعار الدورات التدريبية المقامة معكم
-                                    + طريقة الدفع المتاحة لديكم وحالة توفر مقاعد
-                                    + يجب ان اعرف اذا الملف سيتضمن فقط
-                                </div>
-                                <a href="#" class="show-more">عرض المزيد</a>
+                            <td class="status-cell">
+                                <span class="status-badge status-ongoing">مُستمر</span>
                             </td>
-                            <td>
-                                <span class="status-badge status-pending">بانتظار الرد</span>
+                            <td class="status-cell">
+                                <span class="status-badge status-pending">ينتظر الرد</span>
                             </td>
-                            <td>
-                                <span class="status-badge status-pending">قيد التنفيذ</span>
-                            </td>
-                            <td>
+                            <td class="actions-cell">
                                 <div class="action-icons">
-                                    <a href="javascript:void(0)" onclick="handleMessageAction('delete', this)" class="action-icon icon-delete">
-                                        <i class="fas fa-trash"></i>
-                                    </a>
-                                    <a href="javascript:void(0)" onclick="handleMessageAction('edit', this)" class="action-icon icon-edit">
-                                        <i class="fas fa-pen"></i>
-                                    </a>
-                                    <a href="javascript:void(0)" onclick="handleMessageAction('reply', this)" class="action-icon icon-reply">
-                                        <i class="fas fa-reply"></i>
-                                    </a>
+                                    <i class="fas fa-trash action-icon delete"></i>
+                                    <i class="fas fa-edit action-icon edit"></i>
+                                    <i class="fas fa-eye action-icon view"></i>
                                 </div>
                             </td>
                         </tr>
-                        <!-- Message 6 - خالد المنصور -->
                         <tr>
-                            <td>
-                                <input type="checkbox" class="form-check-input">
+                            <td class="checkbox-cell">
+                                <input type="checkbox">
                             </td>
-                            <td>#1249</td>
-                            <td>خالد المنصور</td>
-                            <td>
-                                <a href="mailto:khalid@example.com">khalid@example.com</a>
+                            <td class="id-cell">#1249</td>
+                            <td class="name-cell">خالد المنصور</td>
+                            <td class="email-cell">khalid@example.com</td>
+                            <td class="message-cell">
+                                <span class="message-text">بمعرفة مواعيد العمل خلال شهر رمضان. هل ستكون هناك تغييرات في أوقات العمل؟ وهل ستقدمون عروضاً خاصة بمناسبة</span>
+                                <a href="#" class="show-more-link">عرض المزيد</a>
                             </td>
-                            <td>
-                                <div>
-                                    مرحبا، نرجو منكم كامل تفاصيل ستقام ورشات العمل مثل
-                                    ما ستقدم منكم وكذلك إذا كان هناك أي توقيت
-                                    تستطيعون عرضها خاصة بالنسبة
-                                </div>
-                                <a href="#" class="show-more">عرض المزيد</a>
+                            <td class="status-cell">
+                                <span class="status-badge status-published">منشور</span>
                             </td>
-                            <td>
-                                <span class="status-badge status-pending">بانتظار الرد</span>
+                            <td class="status-cell">
+                                <span class="status-badge status-pending">ينتظر الرد</span>
                             </td>
-                            <td>
-                                <span class="status-badge status-pending">قيد التنفيذ</span>
-                            </td>
-                            <td>
+                            <td class="actions-cell">
                                 <div class="action-icons">
-                                    <a href="javascript:void(0)" onclick="handleMessageAction('delete', this)" class="action-icon icon-delete">
-                                        <i class="fas fa-trash"></i>
-                                    </a>
-                                    <a href="javascript:void(0)" onclick="handleMessageAction('edit', this)" class="action-icon icon-edit">
-                                        <i class="fas fa-pen"></i>
-                                    </a>
-                                    <a href="javascript:void(0)" onclick="handleMessageAction('reply', this)" class="action-icon icon-reply">
-                                        <i class="fas fa-reply"></i>
-                                    </a>
+                                    <i class="fas fa-trash action-icon delete"></i>
+                                    <i class="fas fa-edit action-icon edit"></i>
+                                    <i class="fas fa-eye action-icon view"></i>
                                 </div>
                             </td>
                         </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+                    </tbody>
+                </table>
             </div>
 
             <!-- Pagination -->
-            <div class="d-flex justify-content-between align-items-center mt-4">
-                <div class="pagination">
-                    <a href="#" onclick="navigateToPage('next')" class="page-item"><i class="fas fa-chevron-right"></i></a>
-                    <a href="#" onclick="navigateToPage(5)" class="page-item">5</a>
-                    <a href="#" onclick="navigateToPage(4)" class="page-item">4</a>
-                    <a href="#" onclick="navigateToPage(3)" class="page-item">3</a>
-                    <a href="#" onclick="navigateToPage(2)" class="page-item">2</a>
-                    <a href="#" onclick="navigateToPage(1)" class="page-item active">1</a>
-                    <a href="#" onclick="navigateToPage('prev')" class="page-item"><i class="fas fa-chevron-left"></i></a>
+            <div class="pagination-wrapper">
+                <div class="pagination-controls">
+                    <div class="page-arrow">
+                        <i class="fas fa-chevron-right"></i>
+                    </div>
+                    <div class="page-btn">5</div>
+                    <div class="page-btn">4</div>
+                    <div class="page-btn">3</div>
+                    <div class="page-btn">2</div>
+                    <div class="page-btn active">1</div>
+                    <div class="page-arrow">
+                        <i class="fas fa-chevron-left"></i>
+                    </div>
                 </div>
-                <div>
-                    <span class="text-muted">عرض 1-6 من 28 رسالة</span>
-                </div>
+                
+                <div class="pagination-info">
+                    <span>رسالة</span>
                 </div>
             </div>
-        </main>
+        </div>
     </div>
 
-    <script src="../js/jquery.min.js"></script>
     <script>
-        // Function to handle page navigation
-        function navigateTo(page) {
-            window.location.href = page;
-        }
-        
-        // Function to handle sidebar toggle
-        function toggleSidebar() {
-            const sidebar = document.querySelector('.sidebar');
-            const sidebarOverlay = document.getElementById('sidebar-overlay');
-            const mainContent = document.querySelector('.main-content');
-            
-            sidebar.classList.toggle('active');
-            sidebarOverlay.classList.toggle('active');
-            mainContent.classList.toggle('expanded');
-        }
-        
-        // Function to handle pagination navigation
-        function navigateToPage(pageNum) {
-            // Current page url structure
-            const baseUrl = 'visitor-log.html';
-            
-            // If it's a next/prev action, calculate the new page
-            if (pageNum === 'next' || pageNum === 'prev') {
-                const currentActive = $('.pagination .page-item.active').text();
-                const currentPage = parseInt(currentActive) || 1;
-                
-                if (pageNum === 'next' && currentPage < 5) {
-                    pageNum = currentPage + 1;
-                } else if (pageNum === 'prev' && currentPage > 1) {
-                    pageNum = currentPage - 1;
-                } else {
-                    // Stay on same page if at limits
-                    return;
-                }
-            }
-            
-            // Update UI to show active page
-            $('.pagination .page-item').removeClass('active');
-            $(`.pagination .page-item:contains('${pageNum}')`).addClass('active');
-            
-            // In a real app, this would load new data for the page
-            // For demo, just update the page counter
-            updatePageCounter(pageNum);
-        }
-        
-        // Update the page counter display
-        function updatePageCounter(page) {
-            let start, end;
-            const total = 28; // Total messages
-            const perPage = 6; // Messages per page
-            
-            start = ((page - 1) * perPage) + 1;
-            end = Math.min(page * perPage, total);
-            
-            $('.text-muted').text(`عرض ${start}-${end} من ${total} رسالة`);
-        }
-        
-        // Function to handle message actions
-        function handleMessageAction(action, element) {
-            // Get the parent row element
-            const row = $(element).closest('tr');
-            
-            // Extract message data from the row
-            const messageId = row.find('td:nth-child(2)').text().replace('#', '');
-            const messageTitle = row.find('td:nth-child(3)').text();
-            
-            switch(action) {
-                case 'delete':
-                    if(confirm(`هل أنت متأكد من رغبتك في حذف الرسالة: ${messageTitle}؟`)) {
-                        console.log(`تم حذف الرسالة: ${messageId}`);
-                        // In a real app, this would send an API request
-                        row.fadeOut(400, function() {
-                            $(this).remove();
-                            updateMessagesCount();
-                        });
-                    }
-                    break;
-                case 'edit':
-                    window.location.href = `visitor-edit-entry.html?id=${messageId}`;
-                    break;
-                case 'reply':
-                    window.location.href = `visitor-edit-entry.html?id=${messageId}&reply=true`;
-                    break;
-            }
-        }
-        
-        // Function to toggle visibility of filter section
-        function toggleFilters() {
-            $('.filters-section').slideToggle(300);
-        }
-        
-        // Function to update message status for selected messages
-        function updateSelectedMessagesStatus() {
-            const selectedRows = $('table input[type="checkbox"]:checked').closest('tr');
-            if (selectedRows.length === 0) {
-                alert('الرجاء تحديد رسالة واحدة على الأقل');
-                return;
-            }
-            
-            // Show status selection dialog (in a real app)
-            const newStatus = prompt('اختر الحالة الجديدة (مفتوح, بانتظار الرد, مغلق)', 'مفتوح');
-            
-            if (newStatus) {
-                // Update the status badge for selected rows
-                selectedRows.each(function() {
-                    const statusClass = newStatus === 'مفتوح' ? 'status-open' : 
-                                      newStatus === 'بانتظار الرد' ? 'status-pending' : 'status-closed';
-                                      
-                    $(this).find('.status-badge').first().attr('class', `status-badge ${statusClass}`).text(newStatus);
-                });
-                
-                alert(`تم تحديث حالة ${selectedRows.length} رسائل`);
-            }
-        }
-        
-        // Function to update message count in the tabs
-        function updateMessagesCount() {
-            const count = $('.messages-table tbody tr').length;
-            $('.tab-item.active').text(`${count} رسالة`);
-        }
+        // Select all checkbox functionality
+        document.getElementById('select-all').addEventListener('change', function() {
+            const checkboxes = document.querySelectorAll('tbody input[type="checkbox"]');
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = this.checked;
+            });
+        });
 
-        $(document).ready(function() {
-            // Initialize the page
-            updateMessagesCount();
-            
-            // Initialize sidebar functionality
-            $('#header-toggle-sidebar').on('click', function() {
-                toggleSidebar();
-            });
-            
-            // Close sidebar when X button is clicked
-            $('#close-sidebar').on('click', function() {
-                toggleSidebar();
-            });
-            
-            // Close sidebar when overlay is clicked
-            $('#sidebar-overlay').on('click', function() {
-                toggleSidebar();
-            });
-            
-            // Select all checkbox functionality
-            $('#select-all').on('change', function() {
-                var isChecked = this.checked;
-                $('table input[type="checkbox"]').each(function() {
-                    $(this).prop('checked', isChecked);
-                });
-            });
-            
-            // Show more functionality
-            $('.show-more').on('click', function(e) {
-                e.preventDefault();
-                const content = $(this).prev('div');
-                const isExpanded = content.hasClass('expanded');
+        // Individual checkbox functionality
+        document.querySelectorAll('tbody input[type="checkbox"]').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const totalCheckboxes = document.querySelectorAll('tbody input[type="checkbox"]').length;
+                const checkedCheckboxes = document.querySelectorAll('tbody input[type="checkbox"]:checked').length;
                 
-                if (!isExpanded) {
-                    content.addClass('expanded');
-                    content.css('max-height', 'none');
-                    $(this).text('عرض أقل');
-                } else {
-                    content.removeClass('expanded');
-                    content.css('max-height', '');
-                    $(this).text('عرض المزيد');
+                document.getElementById('select-all').checked = totalCheckboxes === checkedCheckboxes;
+                document.getElementById('select-all').indeterminate = checkedCheckboxes > 0 && checkedCheckboxes < totalCheckboxes;
+            });
+        });
+
+        // Page navigation
+        document.querySelectorAll('.page-btn, .page-arrow').forEach(btn => {
+            btn.addEventListener('click', function() {
+                if (this.classList.contains('page-btn')) {
+                    document.querySelectorAll('.page-btn').forEach(p => p.classList.remove('active'));
+                    this.classList.add('active');
                 }
-            });
-            
-            // Filter tabs
-            $('.filter-tab').on('click', function() {
-                $('.filter-tab').removeClass('active');
-                $(this).addClass('active');
-            });
-            
-            // Initialize sidebar navigation links
-            $('.sidebar-link').on('click', function(e) {
-                if ($(this).attr('href') === '#') {
-                    e.preventDefault();
-                    const target = $(this).data('target');
-                    if (target) {
-                        navigateTo(target);
-                    }
-                }
-            });
-            
-            // Handle search form submission
-            $('.search-box').on('submit', function(e) {
-                e.preventDefault();
-                const query = $(this).find('input').val().trim();
-                if (query) {
-                    // In a real app, this would perform the search
-                    alert(`جاري البحث عن: ${query}`);
-                }
-            });
-            
-            // Search icon click handler
-            $('.search-box i').on('click', function() {
-                $(this).closest('form').submit();
-            });
-            
-            // Enable form submission with Enter key
-            $('.search-box input').on('keypress', function(e) {
-                if (e.which === 13) {
-                    e.preventDefault();
-                    $(this).closest('form').submit();
-                }
-            });
-            
-            // Make table rows clickable
-            $('.message-row').on('click', function(e) {
-                // Skip if clicking on a checkbox or action button
-                if ($(e.target).is('input[type="checkbox"]') || 
-                    $(e.target).closest('.action-icons').length) {
-                    return;
-                }
-                
-                // Get message ID and navigate to detail page
-                const messageId = $(this).find('td:nth-child(2)').text().replace('#', '');
-                window.location.href = `visitor-edit-entry.html?id=${messageId}`;
             });
         });
     </script>

@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إضافة/تحرير ملف المؤسسة</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            direction: rtl;
+        }
+
+        .container {
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: white;
+            padding: 15px 30px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            height: 70px;
+            border-bottom: 1px solid #e8eaed;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .back-btn {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #4285f4;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            padding: 8px 16px;
+            border-radius: 6px;
+            transition: background-color 0.2s ease;
+        }
+
+        .back-btn:hover {
+            background-color: #f8f9fa;
+        }
+
+        .back-btn i {
+            font-size: 16px;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .header-content {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .header-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #202124;
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        .header-breadcrumb {
+            color: #5f6368;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .header-breadcrumb a {
+            color: #1a73e8;
+            text-decoration: none;
+            font-weight: 400;
+        }
+
+        .header-breadcrumb a:hover {
+            text-decoration: underline;
+        }
+
+        .header-breadcrumb i {
+            font-size: 9px;
+            color: #9aa0a6;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 70px;
+            padding: 30px 20px;
+            width: 100%;
+            min-height: calc(100vh - 70px);
+            background-color: #f8f9fa;
+        }
+
+        .content-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+            background: transparent;
+            border-radius: 0;
+            padding: 0;
+            box-shadow: none;
+            border: none;
+        }
+
+        /* Form Sections */
+        .form-section {
+            margin-bottom: 25px;
+            background: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            border: 1px solid #e8eaed;
+        }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #202124;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .section-title .title-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title i {
+            color: #1a73e8;
+            font-size: 18px;
+        }
+
+        .section-title .info-icon {
+            color: #9aa0a6;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-grid.single {
+            grid-template-columns: 1fr;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-label {
+            font-weight: 500;
+            color: #202124;
+            margin-bottom: 8px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .form-label.required::after {
+            content: " *";
+            color: #ea4335;
+        }
+
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-icon {
+            position: absolute;
+            left: 12px;
+            color: #9aa0a6;
+            font-size: 14px;
+            z-index: 2;
+        }
+
+        .form-input {
+            padding: 12px 14px;
+            padding-left: 35px;
+            border: 1px solid #dadce0;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: 'Cairo', sans-serif;
+            background: #fff;
+            transition: all 0.2s ease;
+            color: #202124;
+            width: 100%;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #1a73e8;
+            box-shadow: 0 0 0 1px #1a73e8;
+        }
+
+        .form-input::placeholder {
+            color: #9aa0a6;
+        }
+
+        .form-textarea {
+            min-height: 100px;
+            resize: vertical;
+            line-height: 1.5;
+            padding-left: 14px;
+        }
+
+        .form-select {
+            padding: 12px 14px;
+            padding-left: 35px;
+            border: 1px solid #dadce0;
+            border-radius: 6px;
+            font-size: 14px;
+            font-family: 'Cairo', sans-serif;
+            background: #fff;
+            cursor: pointer;
+            color: #202124;
+            width: 100%;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+            background-position: left 8px center;
+            background-repeat: no-repeat;
+            background-size: 16px;
+        }
+
+        .form-select:focus {
+            outline: none;
+            border-color: #1a73e8;
+            box-shadow: 0 0 0 1px #1a73e8;
+        }
+
+        /* Classification Actions */
+        .classification-actions {
+            display: flex;
+            justify-content: flex-start;
+            gap: 12px;
+            margin: 20px 0;
+            padding: 15px 0;
+        }
+
+        .classification-actions .btn {
+            padding: 10px 20px;
+            font-size: 14px;
+        }
+
+        /* Action Buttons */
+        .form-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 1px solid #f0f0f0;
+        }
+
+        .btn {
+            padding: 10px 24px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+            font-family: 'Cairo', sans-serif;
+            border: 1px solid transparent;
+        }
+
+        .btn-primary {
+            background: #1a73e8;
+            color: white;
+            border-color: #1a73e8;
+        }
+
+        .btn-primary:hover {
+            background: #1557b0;
+            border-color: #1557b0;
+            box-shadow: 0 1px 3px rgba(26,115,232,0.3);
+        }
+
+        .btn-secondary {
+            background: #fff;
+            color: #5f6368;
+            border-color: #dadce0;
+        }
+
+        .btn-secondary:hover {
+            background: #f8f9fa;
+            border-color: #bdc1c6;
+        }
+
+        /* Upload Area */
+        .upload-area {
+            border: 2px dashed #dadce0;
+            border-radius: 8px;
+            padding: 40px 20px;
+            text-align: center;
+            background: #fafbfc;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .upload-area:hover {
+            border-color: #1a73e8;
+            background: #f8f9ff;
+        }
+
+        .upload-area.dragover {
+            border-color: #1a73e8;
+            background: #e8f0fe;
+        }
+
+        .upload-content i {
+            font-size: 48px;
+            color: #9aa0a6;
+            margin-bottom: 15px;
+        }
+
+        .upload-text {
+            font-size: 16px;
+            font-weight: 500;
+            color: #1a73e8;
+            margin-bottom: 5px;
+        }
+
+        .upload-subtext {
+            font-size: 13px;
+            color: #5f6368;
+            margin-bottom: 10px;
+        }
+
+        .upload-limit {
+            font-size: 12px;
+            color: #9aa0a6;
+        }
+
+        .file-input {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        /* Toggle Switch */
+        .toggle-group {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .toggle-wrapper {
+            position: relative;
+        }
+
+        .toggle-input {
+            display: none;
+        }
+
+        .toggle-label {
+            display: block;
+            width: 50px;
+            height: 26px;
+            background: #dadce0;
+            border-radius: 26px;
+            cursor: pointer;
+            position: relative;
+            transition: background 0.3s ease;
+        }
+
+        .toggle-label::after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+
+        .toggle-input:checked + .toggle-label {
+            background: #1a73e8;
+        }
+
+        .toggle-input:checked + .toggle-label::after {
+            transform: translateX(24px);
+        }
+
+        /* Position Buttons */
+        .position-buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-top: 5px;
+        }
+
+        .position-btn {
+            padding: 10px 15px;
+            border: 1px solid #dadce0;
+            border-radius: 6px;
+            background: white;
+            color: #5f6368;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .position-btn:hover {
+            border-color: #1a73e8;
+            color: #1a73e8;
+            background: #f8f9ff;
+        }
+
+        .position-btn.active {
+            background: #1a73e8;
+            color: white;
+            border-color: #1a73e8;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .main-content {
+                padding: 20px 10px;
+            }
+            
+            .form-section {
+                padding: 18px;
+                border-radius: 6px;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 10px 15px;
+                height: auto;
+                min-height: 60px;
+            }
+            
+            .header-left {
+                gap: 15px;
+            }
+
+            .header-title {
+                font-size: 1.1rem;
+            }
+
+            .header-breadcrumb {
+                font-size: 11px;
+            }
+            
+            .main-content {
+                margin-top: 80px;
+                padding: 15px 8px;
+            }
+            
+            .form-section {
+                padding: 16px;
+            }
+            
+            .form-actions {
+                flex-direction: column-reverse;
+                gap: 10px;
+            }
+            
+            .btn {
+                justify-content: center;
+                padding: 12px 20px;
+            }
+
+            .classification-actions {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .header {
+                padding: 8px 12px;
+                height: auto;
+                min-height: 55px;
+            }
+
+            .header-title {
+                font-size: 1rem;
+            }
+
+            .header-breadcrumb {
+                font-size: 10px;
+            }
+
+            .back-btn span {
+                display: none;
+            }
+
+            .back-btn {
+                padding: 6px 8px;
+            }
+            
+            .main-content {
+                margin-top: 75px;
+                padding: 12px 5px;
+            }
+            
+            .form-section {
+                padding: 15px;
+                border-radius: 4px;
+            }
+            
+            .section-title {
+                font-size: 1rem;
+            }
+
+            .form-grid {
+                gap: 12px;
+            }
+
+            .form-input,
+            .form-select {
+                padding: 10px 12px;
+                padding-left: 32px;
+            }
+
+            .input-icon {
+                left: 10px;
+                font-size: 12px;
+            }
+        }
+
+        .classification-actions {
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .upload-area {
+            padding: 30px 15px;
+        }
+
+        .upload-content i {
+            font-size: 36px;
+        }
+
+        .upload-text {
+            font-size: 14px;
+        }
+
+        .upload-subtext {
+            font-size: 12px;
+        }
+
+        .position-buttons {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+        }
+
+        .position-btn {
+            padding: 8px 12px;
+            font-size: 12px;
+        }
+
+        .toggle-label {
+            width: 45px;
+            height: 24px;
+        }
+
+        .toggle-label::after {
+            width: 18px;
+            height: 18px;
+        }
+
+        .toggle-input:checked + .toggle-label::after {
+            transform: translateX(21px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-left">
+                <div class="header-content">
+                    <h1 class="header-title">إضافة/تحرير ملف المؤسسة</h1>
+                    <div class="header-breadcrumb">
+                        <a href="#">الرئيسية</a>
+                        <i class="fas fa-chevron-left"></i>
+                        <a href="#">المؤسسات</a>
+                        <i class="fas fa-chevron-left"></i>
+                        <span>إضافة مؤسسة جديدة</span>
+                    </div>
+                </div>
+            </div>
+            <div class="header-right">
+                <a href="#" class="back-btn">
+                    <i class="fas fa-chevron-left"></i>
+                    <span>رجوع</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="content-wrapper">
+                <!-- Form -->
+                <form class="ad-form">
+                    <!-- Basic Information -->
+                    <div class="form-section">
+                        <h2 class="section-title">
+                            <div class="title-left">
+                                <i class="fas fa-info-circle"></i>
+                                المعلومات الأساسية
+                            </div>
+                            <i class="fas fa-question-circle info-icon"></i>
+                        </h2>
+                        
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label required">الاسم</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-building input-icon"></i>
+                                    <input type="text" class="form-input" placeholder="ادخل اسم المؤسسة">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label required">البريد الإلكتروني</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-envelope input-icon"></i>
+                                    <input type="email" class="form-input" placeholder="example@domain.com">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label">العنوان</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-map-marker-alt input-icon"></i>
+                                    <input type="text" class="form-input" placeholder="ادخل العنوان">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">الموقع الإلكتروني</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-globe input-icon"></i>
+                                    <input type="url" class="form-input" placeholder="https://example.com">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label">الهاتف</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-phone input-icon"></i>
+                                    <input type="tel" class="form-input" placeholder="05xxxxxxxx">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">نوع النشاط</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-list input-icon"></i>
+                                    <select class="form-select">
+                                        <option value="">اختر نوع النشاط</option>
+                                        <option value="technology">تكنولوجيا</option>
+                                        <option value="commerce">تجارة</option>
+                                        <option value="services">خدمات</option>
+                                        <option value="manufacturing">تصنيع</option>
+                                        <option value="education">تعليم</option>
+                                        <option value="health">صحة</option>
+                                        <option value="finance">مالية</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-grid single">
+                            <div class="form-group">
+                                <label class="form-label">السيرة الذاتية</label>
+                                <textarea class="form-input form-textarea" placeholder="ادخل نبذة عن المؤسسة" rows="6"></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Classification Section -->
+                    <div class="form-section">
+                        <h2 class="section-title">
+                            <div class="title-left">
+                                <i class="fas fa-folder"></i>
+                                التصنيف
+                            </div>
+                            <i class="fas fa-question-circle info-icon"></i>
+                        </h2>
+                        
+                        <div class="form-grid single">
+                            <div class="form-group">
+                                <label class="form-label">رقم مجلد المستندات</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-hashtag input-icon"></i>
+                                    <input type="text" class="form-input" placeholder="ادخل رقم المجلد">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="classification-actions">
+                            <button type="button" class="btn btn-primary">
+                                <i class="fas fa-save"></i>
+                                حفظ المعلومات
+                            </button>
+                            <button type="button" class="btn btn-secondary">
+                                <i class="fas fa-times"></i>
+                                إلغاء
+                            </button>
+                        </div>
+
+                        <div class="form-grid single">
+                            <div class="form-group">
+                                <label class="form-label">الفقرة الأصل</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-list-alt input-icon"></i>
+                                    <select class="form-select">
+                                        <option value="">اختر الفقرة الأصل</option>
+                                        <option value="paragraph1">الفقرة الأولى</option>
+                                        <option value="paragraph2">الفقرة الثانية</option>
+                                        <option value="paragraph3">الفقرة الثالثة</option>
+                                        <option value="paragraph4">الفقرة الرابعة</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Display Settings Section -->
+                    <div class="form-section">
+                        <h2 class="section-title">
+                            <div class="title-left">
+                                <i class="fas fa-cog"></i>
+                                إعدادات العرض
+                            </div>
+                            <i class="fas fa-question-circle info-icon"></i>
+                        </h2>
+                        
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label class="form-label">تاريخ البداية والانتهاء</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-calendar input-icon"></i>
+                                    <input type="date" class="form-input" placeholder="mm/dd/yyyy">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">ترتيب العرض</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-sort-numeric-up input-icon"></i>
+                                    <input type="number" class="form-input" placeholder="ادخل رقم الترتيب">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-grid single">
+                            <div class="form-group">
+                                <label class="form-label">رفع صورة</label>
+                                <div class="upload-area">
+                                    <div class="upload-content">
+                                        <i class="fas fa-cloud-upload-alt"></i>
+                                        <p class="upload-text">اضغط لتحميل الصورة</p>
+                                        <p class="upload-subtext">أو قم بسحب وإفلات الصورة هنا</p>
+                                        <p class="upload-limit">2MB</p>
+                                    </div>
+                                    <input type="file" class="file-input" accept="image/*">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <div class="toggle-group">
+                                    <label class="form-label">تصنيف الصفحة</label>
+                                    <div class="toggle-wrapper">
+                                        <input type="checkbox" id="pageClassification" class="toggle-input">
+                                        <label for="pageClassification" class="toggle-label"></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="toggle-group">
+                                    <label class="form-label">عرض في الصفحة الرئيسية</label>
+                                    <div class="toggle-wrapper">
+                                        <input type="checkbox" id="mainPageDisplay" class="toggle-input">
+                                        <label for="mainPageDisplay" class="toggle-label"></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-grid single">
+                            <div class="form-group">
+                                <label class="form-label">اختر تصنيف الصفحة</label>
+                                <div class="input-wrapper">
+                                    <i class="fas fa-list input-icon"></i>
+                                    <select class="form-select">
+                                        <option value="">اختر تصنيف الصفحة</option>
+                                        <option value="category1">التصنيف الأول</option>
+                                        <option value="category2">التصنيف الثاني</option>
+                                        <option value="category3">التصنيف الثالث</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-grid single">
+                            <div class="form-group">
+                                <label class="form-label">موضع الظهور</label>
+                                <div class="position-buttons">
+                                    <button type="button" class="position-btn" data-position="top">أعلى</button>
+                                    <button type="button" class="position-btn" data-position="right">يمين</button>
+                                    <button type="button" class="position-btn" data-position="left">يسار</button>
+                                    <button type="button" class="position-btn" data-position="bottom">أسفل</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Form Actions -->
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-secondary">
+                            <i class="fas fa-times"></i>
+                            إلغاء
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i>
+                            حفظ المعلومات
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Form submission
+            const form = document.querySelector('.ad-form');
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Validate required fields
+                const requiredLabels = form.querySelectorAll('.form-label.required');
+                let isValid = true;
+                
+                requiredLabels.forEach(label => {
+                    const formGroup = label.closest('.form-group');
+                    const input = formGroup.querySelector('.form-input, .form-select');
+                    if (input && !input.value.trim()) {
+                        input.style.borderColor = '#dc3545';
+                        isValid = false;
+                    } else if (input) {
+                        input.style.borderColor = '#dadce0';
+                    }
+                });
+                
+                if (isValid) {
+                    alert('تم حفظ المعلومات بنجاح!');
+                } else {
+                    alert('يرجى ملء جميع الحقول المطلوبة');
+                }
+            });
+
+            // Cancel buttons
+            const cancelBtns = document.querySelectorAll('.btn-secondary');
+            cancelBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    if (confirm('هل أنت متأكد من إلغاء العملية؟ سيتم فقدان جميع البيانات المدخلة.')) {
+                        form.reset();
+                    }
+                });
+            });
+
+            // Classification save button
+            const classificationSaveBtn = document.querySelector('.classification-actions .btn-primary');
+            classificationSaveBtn.addEventListener('click', function() {
+                const folderNumber = document.querySelector('input[placeholder="ادخل رقم المجلد"]').value;
+                if (folderNumber.trim()) {
+                    alert('تم حفظ معلومات التصنيف بنجاح!');
+                } else {
+                    alert('يرجى إدخال رقم المجلد أولاً');
+                }
+            });
+
+            // File upload functionality
+            const uploadArea = document.querySelector('.upload-area');
+            const fileInput = document.querySelector('.file-input');
+
+            if (uploadArea && fileInput) {
+                uploadArea.addEventListener('click', () => {
+                    fileInput.click();
+                });
+
+                uploadArea.addEventListener('dragover', (e) => {
+                    e.preventDefault();
+                    uploadArea.classList.add('dragover');
+                });
+
+                uploadArea.addEventListener('dragleave', () => {
+                    uploadArea.classList.remove('dragover');
+                });
+
+                uploadArea.addEventListener('drop', (e) => {
+                    e.preventDefault();
+                    uploadArea.classList.remove('dragover');
+                    const files = e.dataTransfer.files;
+                    if (files.length > 0) {
+                        handleFileUpload(files[0]);
+                    }
+                });
+
+                fileInput.addEventListener('change', (e) => {
+                    if (e.target.files.length > 0) {
+                        handleFileUpload(e.target.files[0]);
+                    }
+                });
+
+                function handleFileUpload(file) {
+                    if (file.size > 2 * 1024 * 1024) { // 2MB
+                        alert('حجم الملف يجب أن يكون أقل من 2MB');
+                        return;
+                    }
+                    
+                    if (!file.type.startsWith('image/')) {
+                        alert('يرجى اختيار ملف صورة صحيح');
+                        return;
+                    }
+
+                    // Update upload area to show selected file
+                    const uploadContent = document.querySelector('.upload-content');
+                    uploadContent.innerHTML = `
+                        <i class="fas fa-check-circle" style="color: #34a853;"></i>
+                        <p class="upload-text">تم اختيار الملف: ${file.name}</p>
+                        <p class="upload-subtext">انقر لتغيير الملف</p>
+                    `;
+                }
+            }
+
+            // Position buttons functionality
+            const positionBtns = document.querySelectorAll('.position-btn');
+            positionBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    positionBtns.forEach(b => b.classList.remove('active'));
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html> 
